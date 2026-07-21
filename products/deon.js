@@ -119,11 +119,10 @@
      every scroll, both directions). Uses the CSS `translate` property so it
      composes with reveal `transform` animations instead of overriding them. */
   var layers=[];
-  document.querySelectorAll('[data-plx],.gallery,.sec-head,.hl,.stdgrid,.certs,.foot-tag .big').forEach(function(el){
+  document.querySelectorAll('[data-plx],.sec-head,.hl,.stdgrid,.certs,.foot-tag .big').forEach(function(el){
     var speed=parseFloat(el.getAttribute('data-plx'));
     if(isNaN(speed)){
-      speed = el.classList.contains('gallery') ? 26
-            : el.classList.contains('hl') ? 16
+      speed = el.classList.contains('hl') ? 16
             : el.classList.contains('foot-tag') || el.classList.contains('big') ? 22
             : 12;
     }

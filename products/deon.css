@@ -214,14 +214,10 @@ a{color:inherit;text-decoration:none}
 .phero .pinfo.reveal{opacity:0;transform:translate3d(28px,0,0);transition:opacity .7s ease .05s,transform .7s cubic-bezier(.2,.7,.2,1) .05s}
 .phero .reveal.in{opacity:1;transform:none}
 
-/* main image: continuous floating levitation (always visible), hover magnify on inner img */
-.gallery .main{cursor:zoom-in;animation:floatBob 3.4s ease-in-out infinite}
+/* main image: static (no float / no scroll drift); hover magnify on inner img only */
+.gallery .main{cursor:zoom-in;box-shadow:0 14px 24px -14px rgba(20,10,10,.28)}
 .gallery .main img{transition:transform .55s cubic-bezier(.2,.7,.2,1)}
 .gallery .main:hover img{transform:scale(1.14)}
-@keyframes floatBob{
-  0%{transform:translateY(0);box-shadow:0 14px 24px -14px rgba(20,10,10,.28)}
-  50%{transform:translateY(-18px);box-shadow:0 34px 40px -16px rgba(20,10,10,.18)}
-  100%{transform:translateY(0);box-shadow:0 14px 24px -14px rgba(20,10,10,.28)}}
 .thumbs button{transition:border-color .2s,transform .2s}
 .thumbs button:hover{transform:translateY(-2px)}
 
