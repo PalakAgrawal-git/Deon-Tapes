@@ -83,8 +83,9 @@
     grid.innerHTML=list.length?list.map(card).join(''):'<p class="muted" style="grid-column:1/-1;padding:40px 0">No products match these filters. <a class="arrow" href="products.html">Clear all →</a></p>';
     document.getElementById('pcount').textContent=list.length;
     document.getElementById('ptotal').textContent=PRODUCTS.length;
-    // re-observe reveals for newly rendered cards
-    if(window.deonReveal) window.deonReveal();
+    // re-bind reveals, tilt, ripple and blur-up for newly rendered cards
+    if(window.deonAnimRefresh) window.deonAnimRefresh();
+    else if(window.deonReveal) window.deonReveal();
   }
 
   function chips(){

@@ -53,7 +53,7 @@
   var sm=$('#searchModal'); if(sm) sm.addEventListener('click',function(e){if(e.target===sm)closeAll();});
 
   /* ---------- accessibility settings (persisted) ---------- */
-  var A11Y=['contrast','fontscale','motion'];
+  var A11Y=['contrast','fontscale','motion','theme'];
   function loadA11y(){
     A11Y.forEach(function(k){
       var v=localStorage.getItem('deon-'+k);
@@ -195,4 +195,192 @@
     $('#c7_sub').textContent=fmt(perCarton,2)+' m per carton';
   });
 
+})();
+
+/* =========================================================================
+   DEON — repeating animation layer + live search
+   Every effect re-fires: scroll animations toggle on enter AND leave,
+   hover/click effects repeat, marquees and sheens loop forever.
+   ========================================================================= */
+(function(){
+  'use strict';
+  var $  = function(s,c){return (c||document).querySelector(s);};
+  var $$ = function(s,c){return [].slice.call((c||document).querySelectorAll(s));};
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---------------- LIVE SEARCH (works on every page) ---------------- */
+  var INDEX = [
+    ['Page','Home','index.html','Manufacturer of tapes & soft PVC films'],
+    ['Page','Products','products.html','Filter by family, adhesive, backing'],
+    ['Page','Tools & Calculators','tools.html','Roll length, weight, grammage, consumption'],
+    ['Page','Markets','markets.html','Industries we serve'],
+    ['Page','Applications','applications.html','Start from the job the tape does'],
+    ['Page','Manufacturing & technology','manufacturing-technology.html','Coating, converting, testing'],
+    ['Page','Soft PVC films','films.html','Calendered in-house'],
+    ['Page','Quality & certifications','certifications.html','ISO 9001, 45001, 14001, UL, BIS'],
+    ['Page','Knowledge Center','knowledge-center.html','Guides, datasheets, FAQs'],
+    ['Page','About us','about.html','Manufacturing since 2016'],
+    ['Page','Careers','careers.html','Join DEON'],
+    ['Page','Press','press.html','News & announcements'],
+    ['Page','Partners','partners.html','Converter, OEM, dealer programs'],
+    ['Page','Contact','contact.html','Samples, quotes and enquiries']
+  ];
+  var PRODUCT_INDEX = [
+    ['31700','PVC Electrical Insulation Tape'],['50W13','Wire Harness Tape'],
+    ['DT1111','Class B Polyester Insulation Tape'],['DT1113','Class B Polyester Fleece Insulation Tape'],
+    ['DT1123','Class F Polyester Fleece Insulation Tape'],['DT2131','Class H Polyimide Insulation Tape'],
+    ['DT3121L','Class F Glass Cloth Insulation Tape'],['DT3124L','Polyglass Waterproofing Tape'],
+    ['41860','Floor Marking Tape'],['DT3131','High-Temperature Glass Cloth Tape'],
+    ['DT4021','Aluminium Foil Tape - Acrylic'],['DT4041','Aluminium Foil Tape - Hot Melt'],
+    ['M5001','Masking Tape'],['PW6001','PVC Pipe Wrapping Tape'],
+    ['DT1142','Double-Sided Polyester Bonding Tape'],['DT1221H','Polyester Holding & Splicing Tape'],
+    ['DT1231','High-Temperature Polyester Masking Tape'],['DT5142','Double-Sided PE Foam Bonding Tape'],
+    ['DT6041','Adhesive Transfer Tape'],['DT6122','Double-Sided Tissue Bonding Tape'],
+    ['DT3741L','HDPE Fabric Tape'],['DT7143','Monofilament Reinforced Packaging Tape'],
+    ['DT7243','Cross Filament Reinforced Packaging Tape'],['DT9151','BOPP Packaging Tape']
+  ];
+  PRODUCT_INDEX.forEach(function(p){
+    INDEX.push(['Product','Deon '+p[0]+' - '+p[1],'products.html','Request sample or datasheet']);
+  });
+
+  var input = $('#searchInput');
+  if(input){
+    var box = input.closest('.search-box');
+    var results = document.createElement('div');
+    results.className='search-results hide';
+    box.appendChild(results);
+    var hints = $('.search-hints', box);
+    function runSearch(){
+      var q = input.value.trim().toLowerCase();
+      if(!q){ results.classList.add('hide'); if(hints) hints.classList.remove('hide'); return; }
+      if(hints) hints.classList.add('hide');
+      results.classList.remove('hide');
+      var hits = INDEX.filter(function(r){
+        return (r[1]+' '+r[3]).toLowerCase().indexOf(q) > -1;
+      }).slice(0,12);
+      results.innerHTML = hits.length
+        ? hits.map(function(r){
+            return '<a class="sr-item" href="'+r[2]+'"><span class="k">'+r[0]+'</span>'+
+              '<span><span class="t">'+r[1]+'</span><br><span class="d">'+r[3]+'</span></span></a>';
+          }).join('')
+        : '<div class="sr-empty">No matches for &ldquo;'+input.value.replace(/[<>]/g,'')+'&rdquo;. Try a product code, market or &ldquo;calculator&rdquo;.</div>';
+    }
+    input.addEventListener('input', runSearch);
+    input.addEventListener('keydown', function(e){
+      if(e.key==='Enter'){ var first=$('.sr-item',results); if(first) location.href=first.getAttribute('href'); }
+    });
+  }
+
+  if(reduce) return;                 /* everything below is motion */
+  document.body.classList.add('js-anim');
+
+  /* ---------------- split headings into words (repeatable reveal) ------- */
+  function splitHeadings(){
+    $$('.sec-head h2, .hero-photo h1, .page-head h1').forEach(function(h){
+      // re-split if the text was replaced after the first pass (dynamic pages)
+      if(h.dataset.split && h.querySelector('.split-w')) return;
+      h.dataset.split='1';
+      var words = h.textContent.trim().split(/\s+/);
+      h.innerHTML = words.map(function(w){return '<span class="split-w"><i>'+w+'</i></span>';}).join(' ');
+    });
+  }
+  splitHeadings();
+
+  /* ---------------- scroll progress bar + nav shrink ------------------- */
+  var bar = document.createElement('div'); bar.className='scrollbar';
+  document.body.appendChild(bar);
+  var header = $('.site-header');
+
+  /* ---------------- back to top ---------------- */
+  var btt = document.createElement('button');
+  btt.className='backtop'; btt.type='button'; btt.setAttribute('aria-label','Back to top'); btt.textContent='↑';
+  document.body.appendChild(btt);
+  btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  /* ---------------- continuous parallax layers ------------------------- */
+  var layers = $$('.sec-head, .hl, .stdgrid, .certs, .hero-badges, .imgband').map(function(el){
+    return {el:el, s: el.classList.contains('hero-badges') ? 20 : 12};
+  });
+
+  var ticking=false;
+  function onScroll(){
+    if(ticking) return; ticking=true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY||0;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX('+(h>0?Math.min(y/h,1):0)+')';
+      if(header) header.classList.toggle('scrolled', y>40);
+      btt.classList.toggle('show', y>500);
+      var vh = window.innerHeight||1;
+      layers.forEach(function(L){
+        var r = L.el.getBoundingClientRect();
+        if(r.bottom<-200||r.top>vh+200) return;
+        var d = ((r.top+r.height/2)-vh/2)/vh;
+        L.el.style.translate = '0 '+(-d*L.s).toFixed(1)+'px';
+      });
+      ticking=false;
+    });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+
+  /* ---------------- blur-up images (repeat per load) ------------------- */
+  $$('.cimg img, .pimg img').forEach(function(img){
+    if(img.complete && img.naturalWidth) img.classList.add('loaded');
+    else img.addEventListener('load',function(){img.classList.add('loaded');});
+  });
+
+  /* ---------------- 3D tilt on cards (repeats every hover) ------------- */
+  function bindTilt(root){
+    $$('.card, .pcard, .calc', root||document).forEach(function(c){
+      if(c.__tilt) return; c.__tilt=1;
+      c.addEventListener('mousemove',function(e){
+        var r=c.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+        c.style.transform='translateY(-5px) rotateX('+(-py*5).toFixed(2)+'deg) rotateY('+(px*5).toFixed(2)+'deg)';
+      });
+      c.addEventListener('mouseleave',function(){c.style.transform='';});
+    });
+  }
+  bindTilt();
+
+  /* ---------------- magnetic buttons + ripple (repeat) ----------------- */
+  function bindButtons(root){
+    $$('.btn', root||document).forEach(function(b){
+      if(b.__fx) return; b.__fx=1;
+      b.addEventListener('click',function(e){
+        var r=b.getBoundingClientRect(), d=Math.max(r.width,r.height), s=document.createElement('span');
+        s.className='ripple'; s.style.width=s.style.height=d+'px';
+        s.style.left=(e.clientX-r.left-d/2)+'px'; s.style.top=(e.clientY-r.top-d/2)+'px';
+        b.appendChild(s); setTimeout(function(){s.remove();},600);
+      });
+      if(b.classList.contains('btn-primary')){
+        b.addEventListener('mousemove',function(e){
+          var r=b.getBoundingClientRect();
+          b.style.transform='translate('+(((e.clientX-r.left)/r.width-.5)*7).toFixed(1)+'px,'+
+            (((e.clientY-r.top)/r.height-.5)*7).toFixed(1)+'px)';
+        });
+        b.addEventListener('mouseleave',function(){b.style.transform='';});
+      }
+    });
+  }
+  bindButtons();
+
+  /* ---------------- trusted-brands infinite marquee -------------------- */
+  var logos = $('.logos');
+  if(logos && !logos.querySelector('.logos-track')){
+    var items = logos.innerHTML;
+    logos.innerHTML = '<div class="logos-track">'+items+items+'</div>';
+  }
+
+  /* ---------------- re-bind after dynamic renders ---------------------- */
+  window.deonAnimRefresh = function(){
+    splitHeadings(); bindTilt(); bindButtons();
+    $$('.cimg img, .pimg img').forEach(function(img){
+      if(img.complete && img.naturalWidth) img.classList.add('loaded');
+      else img.addEventListener('load',function(){img.classList.add('loaded');});
+    });
+    if(window.deonReveal) window.deonReveal();
+  };
 })();

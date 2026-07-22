@@ -166,6 +166,10 @@
       '<div class="a11y-row"><div class="lbl">Contrast</div><div class="seg">'+
         '<button data-a11y="contrast" data-val="default">Standard</button>'+
         '<button data-a11y="contrast" data-val="high">High contrast</button></div></div>'+
+      '<div class="a11y-row"><div class="lbl">Theme</div><div class="seg">'+
+        '<button data-a11y="theme" data-val="default">System</button>'+
+        '<button data-a11y="theme" data-val="light">Light</button>'+
+        '<button data-a11y="theme" data-val="dark">Dark</button></div></div>'+
       '<div class="a11y-row"><div class="lbl">Motion</div><div class="seg">'+
         '<button data-a11y="motion" data-val="default">Animations on</button>'+
         '<button data-a11y="motion" data-val="off">Reduce motion</button></div></div>'+
