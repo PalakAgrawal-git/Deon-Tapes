@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Applications | DEON®</title>
+<meta name="description" content="Start from the job the tape has to do — masking, bundling, insulation, bonding, mounting, protection, packaging and marking.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="applications">
+
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><b>Applications</b></div>
+  <div class="wrap">
+    <span class="eyebrow">Applications</span>
+    <h1 style="margin-top:14px">Start from the job the tape has to do.</h1>
+    <p class="lead">Every pressure-sensitive tape combines an adhesive system, a backing and converting precision — selected according to the application. Choose the job and we'll point you to the right construction.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">By function</span><h2>What do you need the tape to do?</h2></div>
+    <div class="grid grid-3 reveal-stagger" id="appGrid"></div>
+  </div>
+</section>
+
+<section class="cta"><div class="wrap">
+  <div><h2>Not sure where you fit?</h2><p>Describe the application and we'll recommend a construction and send a sample.</p></div>
+  <div class="cta-actions"><a class="btn btn-light" href="contact.html?type=sample">Request samples</a></div>
+</div></section>
+
+<script src="assets/data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var order=['masking','bundling','insulation','bonding','mounting','protection','packaging','floor-and-safety-marking','thermal-management','assembly'];
+  var g=document.getElementById('appGrid');
+  g.innerHTML=order.map(function(k){var a=DEON_APPLICATIONS[k];if(!a)return'';
+    var type=(k==='floor-and-safety-marking'||k==='thermal-management'||k==='masking')?'app':'group';
+    return '<a class="card" href="application.html?'+type+'='+k+'"><span class="tag">'+a.name+'</span>'+
+      '<h3>'+a.name+'</h3><p>'+a.intro+'</p><span class="arrow">See tapes <span class="a">→</span></span></a>';
+  }).join('');
+});
+</script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Markets | DEON®</title>
+<meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes used across electrical, transportation, packaging, HVAC, appliance, renewable energy and industrial production.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="markets">
+
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><b>Markets</b></div>
+  <div class="wrap">
+    <span class="eyebrow">Markets</span>
+    <h1 style="margin-top:14px">Tape systems for manufacturing, infrastructure and packaging.</h1>
+    <p class="lead">DEON manufactures pressure-sensitive adhesive tapes used across electrical equipment, transportation, packaging, HVAC, appliances, renewable energy and industrial production.</p>
+    <div class="hero-actions" style="margin-top:26px"><a class="btn btn-primary" href="#industries">Explore by industry</a><a class="btn btn-ghost" href="contact.html">Get in touch</a></div>
+  </div>
+</div>
+
+<section class="section" id="industries">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Built for your industry</span><h2>Explore by industry.</h2></div>
+    <div class="grid grid-3 reveal-stagger" id="marketGrid"></div>
+  </div>
+</section>
+
+<section class="section tint">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Partnerships</span><h2>Supplying industry rather than buying for one?</h2>
+      <p>DEON works through three partner tracks — industrial converters, OEM &amp; private label and authorized dealers.</p></div>
+    <div class="grid grid-3 reveal-stagger">
+      <a class="card" href="converter-partners.html"><span class="tag">Converters</span><h3>Industrial converters</h3><p>Jumbo and log rolls slit to your specified core, OD and tension.</p><span class="arrow">Learn more <span class="a">→</span></span></a>
+      <a class="card" href="oem-partners.html"><span class="tag">OEM</span><h3>OEM &amp; private label</h3><p>Custom specifications, packaging and branding programs.</p><span class="arrow">Learn more <span class="a">→</span></span></a>
+      <a class="card" href="dealer-partners.html"><span class="tag">Dealers</span><h3>Authorized dealers</h3><p>Standard product programs with reliable, repeatable supply.</p><span class="arrow">Learn more <span class="a">→</span></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta"><div class="wrap">
+  <div><h2>Send us the application and specification.</h2><p>Our team will direct your inquiry to the appropriate department.</p></div>
+  <div class="cta-actions"><a class="btn btn-light" href="contact.html">Contact DEON</a></div>
+</div></section>
+
+<script src="assets/data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var g=document.getElementById('marketGrid');
+  g.innerHTML=DEON_MARKET_ORDER.map(function(k,i){var m=DEON_MARKETS[k];
+    return '<a class="card" href="market.html?m='+k+'"><div class="num-index">'+String(i+1).padStart(2,'0')+'</div>'+
+      '<h3>'+m.name+'</h3><p>'+m.intro.split('—')[0].trim()+'.</p><span class="arrow">Find out more <span class="a">→</span></span></a>';
+  }).join('');
+});
+</script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

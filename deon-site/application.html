@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Application | DEON®</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="applications">
+
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><a href="applications.html">Applications</a><span class="sep">›</span><b id="crumb">Application</b></div>
+  <div class="wrap">
+    <span class="eyebrow" id="eyebrow">Application</span>
+    <h1 id="title" style="margin-top:14px">Application</h1>
+    <p class="lead" id="intro"></p>
+    <div class="hero-actions" style="margin-top:26px"><a class="btn btn-primary" href="contact.html?type=sample">Request samples</a><a class="btn btn-ghost" href="products.html">Browse products</a></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Recommended constructions</span><h2>Tapes for this job</h2><p id="notes"></p></div>
+    <div class="pgrid reveal-stagger" id="tapes"></div>
+  </div>
+</section>
+
+<section class="section tint"><div class="wrap">
+  <div class="build reveal-stagger">
+    <div class="col"><div class="n">01</div><h3>Adhesive system</h3><div class="chips"><span class="chip">Acrylic</span><span class="chip">Rubber</span><span class="chip">Hot-melt</span><span class="chip">Silicone</span></div></div>
+    <div class="col"><div class="n">02</div><h3>Backing material</h3><div class="chips"><span class="chip">Film</span><span class="chip">Foam</span><span class="chip">Foil</span><span class="chip">Cloth</span><span class="chip">Filament</span></div></div>
+    <div class="col"><div class="n">03</div><h3>Converting precision</h3><div class="chips"><span class="chip">Slitting</span><span class="chip">Custom widths</span><span class="chip">Private label</span></div></div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="wrap">
+  <div><h2>Tell us your application.</h2><p>We'll recommend a construction and send a sample.</p></div>
+  <div class="cta-actions"><a class="btn btn-light" href="contact.html?type=sample">Request samples</a></div>
+</div></section>
+
+<script src="assets/data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var q=new URLSearchParams(location.search);
+  var key=q.get('group')||q.get('app')||'masking';
+  var a=DEON_APPLICATIONS[key]||DEON_APPLICATIONS.masking;
+  document.title=a.name+' | DEON®';
+  document.getElementById('crumb').textContent=a.name;
+  document.getElementById('eyebrow').textContent='Application · '+a.name;
+  document.getElementById('title').textContent=a.name+'.';
+  document.getElementById('intro').textContent=a.intro;
+  document.getElementById('notes').textContent=a.notes;
+  document.getElementById('tapes').innerHTML=a.tapes.map(function(code){
+    var name=DEON_PNAME[code]||code;
+    return '<a class="pcard" href="contact.html?type=sample&sku='+code+'">'+
+      '<div class="pimg"><img src="assets/img/'+code.toLowerCase()+'.jpeg" alt="'+name+'" loading="lazy"></div>'+
+      '<div class="pbody"><div class="pcard-top"><span class="pcode">Deon '+code+'</span></div>'+
+      '<h3 style="font-size:1.08rem">'+name+'</h3><span class="arrow" style="margin-top:6px">Request sample <span class="a">→</span></span></div></a>';
+  }).join('');
+});
+</script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

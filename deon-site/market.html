@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Market | DEON®</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="markets">
+
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><a href="markets.html">Markets</a><span class="sep">›</span><b id="crumb">Market</b></div>
+  <div class="wrap">
+    <span class="eyebrow" id="eyebrow">Market</span>
+    <h1 id="title" style="margin-top:14px">Market</h1>
+    <p class="lead" id="intro"></p>
+    <div class="hero-actions" style="margin-top:26px"><a class="btn btn-primary" href="contact.html?type=sample">Request samples</a><a class="btn btn-ghost" href="products.html">Browse products</a></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid-2" style="gap:48px;align-items:start">
+      <div class="reveal">
+        <div class="sec-head" style="margin-bottom:24px"><span class="eyebrow">Where DEON tape is used</span><h2>Typical applications</h2></div>
+        <ul class="card-list-plain" id="needs"></ul>
+      </div>
+      <div class="reveal">
+        <div class="sec-head" style="margin-bottom:24px"><span class="eyebrow">Recommended</span><h2>Products for this market</h2></div>
+        <div class="pgrid" id="products" style="grid-template-columns:1fr"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint">
+  <div class="wrap center">
+    <div class="sec-head reveal" style="margin:0 auto 30px"><span class="eyebrow">What DEON brings</span><h2>Manufactured in-house, documented and traceable.</h2></div>
+    <div class="certs reveal-stagger" style="justify-content:center">
+      <div class="cert"><div class="t">In-house</div><div class="d">Adhesive formulation</div></div>
+      <div class="cert"><div class="t">Coating</div><div class="d">& converting</div></div>
+      <div class="cert"><div class="t">Tested</div><div class="d">Batch traceability</div></div>
+      <div class="cert"><div class="t">Custom</div><div class="d">Widths & formats</div></div>
+      <div class="cert"><div class="t">OEM</div><div class="d">& private label</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta"><div class="wrap">
+  <div><h2 id="ctaTitle">Talk to our team.</h2><p>Send us the application and specification and we'll recommend a product and provide a sample.</p></div>
+  <div class="cta-actions"><a class="btn btn-light" href="contact.html?type=sample">Request samples</a><a class="btn btn-light" href="contact.html?type=quote">Request a quote</a></div>
+</div></section>
+
+<script src="assets/data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var key=new URLSearchParams(location.search).get('m')||'electrical';
+  var m=DEON_MARKETS[key]||DEON_MARKETS.electrical;
+  document.title=m.name+' | DEON®';
+  document.getElementById('crumb').textContent=m.name;
+  document.getElementById('eyebrow').textContent='Market · '+m.name;
+  document.getElementById('title').textContent='Tape for '+m.name.toLowerCase()+'.';
+  document.getElementById('intro').textContent=m.intro;
+  document.getElementById('ctaTitle').textContent='Building for '+m.name.toLowerCase()+'?';
+  document.getElementById('needs').innerHTML=m.needs.map(function(n){
+    return '<li><span class="li-mark">→</span><span>'+n+'</span></li>';}).join('');
+  document.getElementById('products').innerHTML=m.products.map(function(code){
+    var name=DEON_PNAME[code]||code;
+    return '<a class="pcard" href="contact.html?type=sample&sku='+code+'">'+
+      '<div class="pimg"><img src="assets/img/'+code.toLowerCase()+'.jpeg" alt="'+name+'" loading="lazy"></div>'+
+      '<div class="pbody"><div class="pcard-top"><span class="pcode">Deon '+code+'</span></div>'+
+      '<h3 style="font-size:1.05rem">'+name+'</h3><span class="arrow" style="margin-top:6px">Request sample <span class="a">→</span></span></div></a>';
+  }).join('');
+});
+</script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

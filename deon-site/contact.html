@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact | DEON®</title>
+<meta name="description" content="Request product information, a quotation or samples from DEON. Send us the application and specification and our team will recommend a product.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="contact">
+
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><b>Contact</b></div>
+  <div class="wrap">
+    <span class="eyebrow">Contact DEON</span>
+    <h1 style="margin-top:14px">Request product information, a quotation or samples.</h1>
+    <p class="lead">Send us the application and specification, and our team will recommend a product and provide a sample.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split2">
+      <div>
+        <div class="tabs" id="tabs">
+          <button class="tab" data-type="sample">Request samples</button>
+          <button class="tab" data-type="quote">Request a quote</button>
+          <button class="tab" data-type="general">General enquiry</button>
+        </div>
+        <form id="contactForm" class="reveal">
+          <div class="form-grid">
+            <div class="form-row"><label>First name</label><input name="first" required></div>
+            <div class="form-row"><label>Last name</label><input name="last" required></div>
+            <div class="form-row"><label>Company</label><input name="company"></div>
+            <div class="form-row"><label>Country</label><input name="country"></div>
+            <div class="form-row"><label>Work email</label><input type="email" name="email" required></div>
+            <div class="form-row"><label>Phone</label><input name="phone"></div>
+            <div class="form-row full"><label>Product / SKU of interest</label><input name="sku" id="skuField" placeholder="e.g. Deon 31700"></div>
+            <div class="form-row full"><label id="msgLabel">Application &amp; specification</label>
+              <textarea name="message" rows="5" placeholder="Tell us the application, substrate, width, length and volume."></textarea></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;margin-top:18px;flex-wrap:wrap">
+            <button class="btn btn-primary" type="submit" id="submitBtn">Send request</button>
+            <span class="form-note">We reply within one business day. Nothing is shared with third parties.</span>
+          </div>
+          <div id="formOk" class="form-ok hide" style="margin-top:18px"></div>
+        </form>
+      </div>
+      <div>
+        <div class="info-card reveal">
+          <h3>Sales &amp; enquiries</h3>
+          <p class="muted" style="margin:6px 0 2px">Phone</p><p><a class="arrow" href="tel:+917700085050">+91 77000 85050</a></p>
+          <p class="muted" style="margin:14px 0 2px">Email</p><p><a class="arrow" href="mailto:info@deontapes.com">info@deontapes.com</a></p>
+          <p class="muted" style="margin:14px 0 2px">Plants</p><p>Silvassa &amp; Vadodara, India</p>
+        </div>
+        <div class="info-card reveal" style="margin-top:18px;background:#fff">
+          <h3>Which team?</h3>
+          <p class="muted">Samples &amp; specs → Technical sales</p>
+          <p class="muted">Volume pricing → Commercial</p>
+          <p class="muted">OEM &amp; private label → <a class="arrow" href="oem-partners.html">Partner desk →</a></p>
+          <p class="muted">Careers → <a class="arrow" href="careers.html">See openings →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var q=new URLSearchParams(location.search);
+  var type=q.get('type')||'sample', sku=q.get('sku');
+  function setType(t){
+    type=t;
+    document.querySelectorAll('#tabs .tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-type')===t);});
+    var label={sample:'Application &amp; specification',quote:'Requirement, volume &amp; target price',general:'How can we help?'}[t];
+    document.getElementById('msgLabel').innerHTML=label;
+    document.getElementById('submitBtn').textContent={sample:'Request samples',quote:'Request a quote',general:'Send enquiry'}[t];
+  }
+  document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('.tab');if(b)setType(b.getAttribute('data-type'));});
+  setType(type);
+  if(sku){document.getElementById('skuField').value='Deon '+sku;}
+  document.getElementById('contactForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=document.getElementById('formOk');
+    ok.textContent='Thanks — your '+(type==='quote'?'quote request':type==='general'?'enquiry':'sample request')+' has been received. Our team will reply within one business day.';
+    ok.classList.remove('hide');
+    this.querySelectorAll('input,textarea').forEach(function(f){f.value='';});
+    if(sku)document.getElementById('skuField').value='Deon '+sku;
+    ok.scrollIntoView({behavior:'smooth',block:'center'});
+  });
+});
+</script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
