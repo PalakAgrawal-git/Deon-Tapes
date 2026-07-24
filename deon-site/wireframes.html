@@ -127,12 +127,14 @@
 
   @media (max-width:480px) {
     #chrome { flex-direction:column; align-items:flex-start; }
-    .util-strip { flex-wrap:wrap; gap:8px; font-size:0.7em; }
-    .nav-bar { flex-direction:column; align-items:stretch; }
+    .util-strip { overflow-x:auto; flex-wrap:nowrap; gap:8px; font-size:0.7em; }
+    .util-strip a { white-space:nowrap; flex-shrink:0; }
+    .nav-bar { flex-wrap:nowrap; overflow-x:auto; padding:10px 12px; gap:6px; }
     .nav-tabs { flex-wrap:nowrap; overflow-x:auto; justify-content:flex-start; }
     .nav-tab { padding:6px 8px; font-size:0.72em; white-space:nowrap; flex-shrink:0; }
-    .stats-row { grid-template-columns:repeat(2,1fr) !important; }
-    .nav-icons { justify-content:center; flex-wrap:wrap; }
+    .nav-icons { flex-wrap:nowrap; flex-shrink:0; }
+    .nav-icons > * { white-space:nowrap; }
+    .stats-row { grid-template-columns:repeat(2,1fr) !important; gap:8px !important; }
     footer.wf-footer .grid4 { grid-template-columns:1fr; }
     .flow-node { min-width:80px; font-size:0.75em; }
   }
