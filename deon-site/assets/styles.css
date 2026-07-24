@@ -717,3 +717,80 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 :root[data-theme="dark"] .section.dark{background:#0C0A0A}
 :root[data-theme="dark"] .calc-out{background:#000}
 :root[data-theme="dark"] .stat{border-left-color:var(--red)}
+
+/* =========================================================================
+   DARK MODE — form controls & panel surfaces (were hardcoded light)
+   ========================================================================= */
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea,
+:root[data-theme="dark"] .lang-grid button,
+:root[data-theme="dark"] .seg button,
+:root[data-theme="dark"] .tab,
+:root[data-theme="dark"] .card-list-plain li,
+:root[data-theme="dark"] .info-card,
+:root[data-theme="dark"] .btn-ghost{
+  background:#211C1C;color:var(--ink);border-color:#2A2423;
+}
+:root[data-theme="dark"] .field input,
+:root[data-theme="dark"] .field select,
+:root[data-theme="dark"] .form-row input,
+:root[data-theme="dark"] .form-row select,
+:root[data-theme="dark"] .form-row textarea{background:#0C0A0A;color:var(--ink);border-color:#2A2423}
+:root[data-theme="dark"] input::placeholder,
+:root[data-theme="dark"] textarea::placeholder{color:#8A7F7E}
+:root[data-theme="dark"] .search-box input{background:#161313;color:var(--ink)}
+:root[data-theme="dark"] .lang-grid button:hover,
+:root[data-theme="dark"] .seg button:hover{background:#2A2423}
+:root[data-theme="dark"] .lang-grid button.active,
+:root[data-theme="dark"] .seg button.on{background:#2E1414;border-color:var(--red);color:#ff6b6b}
+:root[data-theme="dark"] .tab.on{background:var(--red);color:#fff;border-color:var(--red)}
+:root[data-theme="dark"] .facet-opt{color:var(--ink)}
+:root[data-theme="dark"] .search-hints a,
+:root[data-theme="dark"] .active-chip{background:#2E1414;color:#ff8080;border-color:#5a2020}
+:root[data-theme="dark"] .chip{background:#211C1C;color:var(--ink);border-color:#2A2423}
+:root[data-theme="dark"] .pcode,
+:root[data-theme="dark"] .eyebrow,
+:root[data-theme="dark"] .num-index,
+:root[data-theme="dark"] .arrow{color:#ff6b6b}
+:root[data-theme="dark"] .sr-item .t{color:var(--ink)}
+:root[data-theme="dark"] .form-ok{background:#13291b;border-color:#2f5a3c;color:#8fe0a8}
+:root[data-theme="dark"] .note{background:#2a2412;border-color:#4a4020;color:#d8c88a}
+:root[data-theme="dark"] .note b{color:#e8d89a}
+
+/* ---------- theme toggle button with mode label ---------- */
+#btnTheme{flex-direction:column;width:auto;min-width:56px;height:auto;padding:5px 8px;gap:1px}
+#btnTheme .theme-lbl{font-family:var(--font-body);font-size:.58rem;font-weight:600;letter-spacing:.02em;
+  color:var(--text-mid);white-space:nowrap;text-transform:none}
+#btnTheme:hover .theme-lbl{color:var(--blue)}
+@media (max-width:640px){#btnTheme .theme-lbl{display:none}}
+
+/* dark mode: remaining light surfaces (var(--ink) bg + hardcoded #fff) */
+:root[data-theme="dark"] .utilbar{background:#000;color:#B0A8A7}
+:root[data-theme="dark"] .util-tabs a{color:#B0A8A7}
+:root[data-theme="dark"] .util-tabs a.on{background:#211C1C;color:#ff6b6b}
+:root[data-theme="dark"] .util-links a{color:#B0A8A7}
+:root[data-theme="dark"] .util-links a:hover{color:#fff}
+:root[data-theme="dark"] .pillar{background:#161313}
+:root[data-theme="dark"] .pillar:hover{background:#1C1818}
+:root[data-theme="dark"] .trusted{background:#0C0A0A}
+:root[data-theme="dark"] .hero-badge{background:#161313}
+:root[data-theme="dark"] .pillars,
+:root[data-theme="dark"] .market-list{background:#2A2423}
+:root[data-theme="dark"] .market-row{background:#161313}
+:root[data-theme="dark"] .market-row:hover{background:#1C1818}
+/* brand-red text is too dim on near-black — brighten every red-text token */
+:root[data-theme="dark"] .tag,
+:root[data-theme="dark"] .card .tag,
+:root[data-theme="dark"] .ptag,
+:root[data-theme="dark"] .btn-ghost:hover,
+:root[data-theme="dark"] .nav-trigger:hover,
+:root[data-theme="dark"] .mega-link:hover .t{color:#ff6b6b}
+:root[data-theme="dark"] .card .tag{background:#2E1414}
+
+/* dark mode: brighten the text-accent alias so all red text clears 4.5:1
+   (--red stays brand red for fills: buttons, CTA, tape marquee) */
+:root[data-theme="dark"]{--blue:#ff6b6b;--logo-blue:#ff8080}
+:root[data-theme="dark"] .market-row .a,
+:root[data-theme="dark"] .arrow,
+:root[data-theme="dark"] .arrow .a{color:#ff6b6b}
