@@ -118,6 +118,7 @@
     '<header class="site-header">'+utilBar+'<nav class="nav">'+
       '<a class="brand" href="index.html" aria-label="DEON home">'+logoIMG+'</a>'+
       '<div class="nav-main">'+
+        '<div class="nav-item"><a class="nav-trigger nav-home" href="index.html" data-nav="home">Home</a></div>'+
         NAV.map(function(it){
           return '<div class="nav-item">'+
             '<button class="nav-trigger" aria-expanded="false" data-nav="'+it[0]+'">'+it[1]+'<span class="chev"></span></button>'+
@@ -131,7 +132,6 @@
           '<svg class="ic-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg>'+
           '<span class="theme-lbl">Light mode</span>'+
         '</button>'+
-        '<button class="icon-btn lang-btn" id="btnLang" aria-label="Change language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span id="langLabel">EN</span></button>'+
         '<button class="icon-btn" id="btnA11y" aria-label="Accessibility and display options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="1.6"/><path d="M4 8h16M9 21l3-8 3 8M12 8v5"/></svg></button>'+
         '<a class="btn btn-primary nav-cta" href="contact.html">Contact</a>'+
         '<button class="icon-btn" id="btnMenu" aria-label="Menu" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>'+
@@ -155,11 +155,6 @@
         '<a href="products.html?adhesive=acrylic">Acrylic tapes</a><a href="certifications.html">Certifications</a>'+
         '<a href="contact.html?type=sample">Request samples</a></div>'+
     '</div></div>'+
-    // language
-    '<aside class="panel" id="langPanel" aria-label="Language"><div class="panel-head"><h3>Language</h3>'+
-      '<button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
-      '<div class="lang-grid">'+LANGS.map(function(l){return '<button data-code="'+l[0]+'"'+(l[0]==='EN'?' class="active"':'')+'><span>'+l[1]+'</span>'+l[2]+'</button>';}).join('')+'</div>'+
-    '</aside>'+
     // a11y
     '<aside class="panel" id="a11yPanel" aria-label="Accessibility and display options"><div class="panel-head"><h3>Display options</h3>'+
       '<button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
