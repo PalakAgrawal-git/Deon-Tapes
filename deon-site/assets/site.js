@@ -78,6 +78,35 @@
   });
   loadA11y();
 
+  /* ---------- header theme toggle (light <-> dark) ---------- */
+  // The site only darkens on an explicit data-theme="dark"; it does not
+  // auto-follow the OS. So the visible theme is simply whether that is set.
+  function effectiveTheme(){
+    return document.documentElement.getAttribute('data-theme')==='dark' ? 'dark' : 'light';
+  }
+  function syncThemeToggle(){
+    var btn=$('#btnTheme'); if(!btn) return;
+    var dark=effectiveTheme()==='dark';
+    btn.classList.toggle('is-dark',dark);
+    btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  }
+  var themeBtn=$('#btnTheme');
+  if(themeBtn){
+    themeBtn.addEventListener('click',function(){
+      var next = effectiveTheme()==='dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme',next);
+      localStorage.setItem('deon-theme',next);
+      syncThemeToggle();
+      syncA11yButtons();      /* keep the accessibility panel in step */
+    });
+    syncThemeToggle();
+  }
+
+  /* keep the toggle icon in step when theme changes from the a11y panel */
+  var _origSync=syncA11yButtons;
+  syncA11yButtons=function(){ _origSync(); syncThemeToggle(); };
+
   /* ---------- language (visual only) ---------- */
   $$('#langPanel .lang-grid button').forEach(function(b){
     b.addEventListener('click',function(){
