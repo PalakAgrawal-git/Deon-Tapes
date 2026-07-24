@@ -191,9 +191,9 @@ function navBar(id){
         NAVTABS.map(t=>`<div class="nav-tab ${at===t[0]?'active':''}" onclick="goTo('${t[0]}')">${t[1]}${['markets','applications','products','manufacturing','knowledge'].includes(t[0])?' ▾':''}</div>`).join('')+
       `</div>
       <div class="nav-icons">
-        <span class="ic">🔍</span>
+        <span class="ic">Search</span>
         <div class="theme-toggle" title="Light / Dark mode toggle"><div class="theme-opt active">☀ Light</div><div class="theme-opt">☾ Dark</div></div>
-        <span class="ic">♿</span>
+        <span class="ic">Display options</span>
         <span class="nav-contact" onclick="goTo('contact')">CONTACT</span>
       </div>
     </div>`;
