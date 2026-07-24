@@ -508,9 +508,9 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .pillars,.market-list{box-shadow:var(--shadow-sm)}
 .trusted{background:#fff}
 
-/* fix: right-align mega menus near the right edge; clamp phantom overflow */
+/* mega menus open rightward (left:0); JS nudges them left only if they would
+   run off-screen. overflow-x clamp keeps any residual bleed from scrolling. */
 html,body{overflow-x:hidden}
-.nav-item:nth-last-child(-n+2) .mega{left:auto;right:0}
 
 /* ---------- interior photographic page-head ---------- */
 .page-head.photo{position:relative;background:var(--ink);border-bottom:4px solid var(--red);overflow:hidden}

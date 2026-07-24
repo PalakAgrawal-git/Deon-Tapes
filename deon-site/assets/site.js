@@ -29,18 +29,30 @@
     $$('.mega.open').forEach(function(m){m.classList.remove('open');});
     $$('.nav-trigger[aria-expanded="true"]').forEach(function(b){b.setAttribute('aria-expanded','false');});
   }
+  // open rightward from the trigger; shift left only enough to stay on-screen
+  function positionMega(mega){
+    mega.style.left='0'; mega.style.right='auto';
+    var r=mega.getBoundingClientRect();
+    var vw=document.documentElement.clientWidth, margin=16;
+    var over=r.right-(vw-margin);
+    if(over>0) mega.style.left=(-over)+'px';
+  }
+  function positionAllMegas(){$$('.mega').forEach(positionMega);}
+  positionAllMegas();
+  window.addEventListener('resize',positionAllMegas,{passive:true});
+
   $$('.nav-item').forEach(function(item){
     var btn=item.querySelector('.nav-trigger');
     var mega=item.querySelector('.mega');
     if(!btn||!mega) return;
     // hovering any item clears a click-opened menu, so hover + click never stack
-    item.addEventListener('mouseenter', closeAllMegas);
+    item.addEventListener('mouseenter',function(){ closeAllMegas(); positionMega(mega); });
     // click toggles (for touch / keyboard), always closing the others first
     btn.addEventListener('click',function(e){
       e.stopPropagation();
       var wasOpen=mega.classList.contains('open');
       closeAllMegas();
-      if(!wasOpen){mega.classList.add('open');btn.setAttribute('aria-expanded','true');}
+      if(!wasOpen){positionMega(mega);mega.classList.add('open');btn.setAttribute('aria-expanded','true');}
     });
   });
   document.addEventListener('click',function(e){
