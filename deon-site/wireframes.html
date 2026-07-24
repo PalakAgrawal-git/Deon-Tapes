@@ -1,670 +1,404 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DEON Website — Wireframes</title>
-<meta name="description" content="Low-fidelity wireframes for the complete DEON website — all 25 pages plus global components.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEON — Wireframe Prototype</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-  :root{
-    --ink:#1a1a1a; --mid:#6b6b6b; --soft:#9a9a9a;
-    --line:#c8c8c8; --line-dark:#8f8f8f;
-    --fill:#ececec; --fill-2:#e0e0e0; --fill-3:#d4d4d4; --fill-dark:#4a4a4a;
-    --bg:#f7f7f7; --paper:#fff;
-    --accent:#CC0000;
-    --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
-    --sans:'Inter',system-ui,sans-serif;
-    --sidebar:260px;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#eee; color:#333; line-height:1.5; }
 
-  /* ---------- layout ---------- */
-  .app{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh}
-  .side{position:sticky;top:0;height:100vh;overflow:auto;background:#fff;border-right:1px solid var(--line);padding:22px 18px}
-  .side h1{font-size:1rem;margin:0 0 2px;letter-spacing:-.01em}
-  .side h1 b{color:var(--accent)}
-  .side .sub{font-size:.72rem;color:var(--mid);margin-bottom:16px}
-  .side .grp{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;
-    color:var(--soft);margin:16px 0 6px;font-weight:600}
-  .side a{display:block;font-size:.8rem;color:#333;text-decoration:none;padding:5px 8px;border-radius:5px;
-    border-left:2px solid transparent}
-  .side a:hover{background:var(--fill);border-left-color:var(--accent);color:#000}
-  .side a .n{font-family:var(--mono);color:var(--soft);font-size:.68rem;margin-right:6px}
+  /* Top prototype bar */
+  #chrome { position:sticky; top:0; z-index:999; background:#222; color:#fff;
+    padding:12px 24px; display:flex; align-items:center; justify-content:space-between; font-size:0.9em; flex-wrap:wrap; gap:10px; }
+  #chrome .brand { font-weight:bold; letter-spacing:0.5px; }
+  #chrome .crumb { color:#bbb; }
+  #chrome .crumb b { color:#fff; }
+  .barbtn { background:#444; color:#fff; border:1px solid #777; padding:6px 14px; border-radius:3px; cursor:pointer; font-size:0.85em; }
+  .barbtn:hover { background:#666; }
 
-  .main{padding:30px 34px 90px;max-width:1180px}
-  .doc-head{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:8px}
-  .doc-head h2{margin:0 0 6px;font-size:1.9rem;letter-spacing:-.02em}
-  .doc-head p{margin:0;color:var(--mid);font-size:.9rem;max-width:70ch}
-  .meta{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;color:var(--mid);
-    text-transform:uppercase;letter-spacing:.08em;margin-top:12px}
-  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0 34px;padding:14px 16px;background:#fff;
-    border:1px solid var(--line);border-radius:6px}
-  .legend div{display:flex;align-items:center;gap:7px;font-size:.72rem;color:var(--mid)}
-  .sw{width:26px;height:14px;border:1px solid var(--line-dark);border-radius:2px}
-  .sw.f1{background:var(--fill)}.sw.f2{background:var(--fill-3)}
-  .sw.im{background:repeating-linear-gradient(45deg,#e4e4e4 0 6px,#d8d8d8 6px 12px)}
-  .sw.dk{background:var(--fill-dark)}
-  .sw.dash{background:#fff;border-style:dashed}
+  .legend { background:#fffbe6; border-bottom:2px solid #ddd; padding:10px 24px; font-size:0.85em; color:#555; }
+  .legend b { color:#000; }
+  .legend.hidden { display:none; }
 
-  /* ---------- page card ---------- */
-  .page{margin:0 0 54px;scroll-margin-top:16px}
-  .page-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
-  .page-title h3{margin:0;font-size:1.25rem;letter-spacing:-.01em}
-  .page-title .file{font-family:var(--mono);font-size:.72rem;color:var(--accent);background:#fdeaea;
-    padding:2px 8px;border-radius:4px}
-  .page-title .idx{font-family:var(--mono);font-size:.72rem;color:var(--soft)}
-  .page-desc{color:var(--mid);font-size:.84rem;margin:0 0 14px;max-width:78ch}
+  /* Wireframe primitives */
+  .wf-box { border:1px solid #ccc; background:#f9f9f9; padding:16px; }
+  .wf-box.dashed { border-style:dashed; }
+  .wf-label { font-size:0.75em; text-transform:uppercase; letter-spacing:0.5px; color:#999; font-weight:bold; margin-bottom:8px; }
+  .placeholder-img { background:#dcdcdc; border:1px solid #bbb; color:#888; display:flex; align-items:center; justify-content:center; font-size:0.85em; min-height:120px; text-align:center; padding:6px; }
+  .text-lines > span { display:block; height:8px; background:#ddd; margin-bottom:6px; border-radius:2px; }
+  .text-lines > span:nth-child(1){width:95%;} .text-lines > span:nth-child(2){width:85%;} .text-lines > span:nth-child(3){width:60%;}
+  .text-lines > span:nth-child(4){width:80%;} .text-lines > span:nth-child(5){width:50%;}
 
-  .browser{background:var(--paper);border:1px solid var(--line-dark);border-radius:8px;overflow:hidden;
-    box-shadow:0 1px 3px rgba(0,0,0,.07)}
-  .bbar{display:flex;align-items:center;gap:6px;padding:8px 12px;background:#f0f0f0;border-bottom:1px solid var(--line)}
-  .bbar i{width:9px;height:9px;border-radius:50%;background:#cfcfcf;display:block}
-  .bbar .url{flex:1;margin-left:10px;background:#fff;border:1px solid var(--line);border-radius:4px;
-    font-family:var(--mono);font-size:.66rem;color:var(--mid);padding:3px 9px}
-  .canvas{padding:0}
+  .static-btn { border:1px solid #999; background:#f0f0f0; color:#666; padding:9px 16px; display:inline-block; font-weight:bold; font-size:0.85em; cursor:default; border-radius:3px; margin:3px 4px 3px 0; }
+  .static-btn.primary { background:#d9d0d0; color:#444; border-color:#a77; }
+  .chip { display:inline-block; border:1px solid #bbb; background:#efefef; color:#666; border-radius:12px; padding:4px 11px; font-size:0.78em; margin:0 5px 5px 0; }
+  .redline { height:8px; background:#c99; opacity:.6; border-radius:2px; width:110px; margin-bottom:8px; }
 
-  /* ---------- wireframe primitives ---------- */
-  .sec{border-bottom:1px dashed var(--line);padding:16px 18px;position:relative}
-  .sec:last-child{border-bottom:0}
-  .sec.dark{background:#efefef}
-  .sec.tint{background:#fafafa}
-  .sec-label{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;
-    color:var(--soft);margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .sec-label b{color:var(--mid);font-weight:600}
-  .tagn{background:var(--ink);color:#fff;border-radius:3px;padding:1px 6px;font-size:.58rem;letter-spacing:.06em}
+  /* Utility strip + nav bar */
+  .util-strip { background:#111; color:#bbb; padding:6px 24px; font-size:0.78em; display:flex; gap:16px; justify-content:flex-end; flex-wrap:wrap; }
+  .util-strip a { color:#bbb; cursor:pointer; text-decoration:none; }
+  .util-strip a:hover { color:#fff; } .util-strip a.active { color:#fff; font-weight:bold; }
 
-  .bar{background:var(--fill);border:1px solid var(--line);border-radius:3px}
-  .txt{height:9px;background:var(--fill-2);border-radius:2px;margin:5px 0}
-  .txt.w90{width:90%}.txt.w75{width:75%}.txt.w60{width:60%}.txt.w45{width:45%}.txt.w30{width:30%}
-  .h-blk{background:var(--fill-3);border-radius:3px;margin-bottom:8px}
-  .h1b{height:26px;width:72%}.h2b{height:19px;width:56%}.h3b{height:13px;width:44%}
-  .eyeb{height:8px;width:120px;background:var(--accent);opacity:.55;border-radius:2px;margin-bottom:9px}
+  .nav-bar { background:#333; color:#fff; padding:14px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  .nav-bar .logo { font-weight:bold; border:1px solid #a55; color:#e88; padding:6px 12px; border-radius:3px; letter-spacing:1px; }
+  .nav-tabs { display:flex; gap:6px; flex-wrap:wrap; }
+  .nav-tab { padding:9px 14px; border:1px solid #777; cursor:pointer; font-size:0.86em; background:#3d3d3d; border-radius:3px; transition:background 0.15s; }
+  .nav-tab:hover { background:#555; }
+  .nav-tab.active { background:#fff; color:#000; border-color:#fff; font-weight:bold; }
+  .nav-icons { display:flex; gap:10px; align-items:center; font-size:0.85em; color:#aaa; }
+  .nav-icons .ic { border:1px solid #777; border-radius:3px; padding:6px 9px; cursor:default; }
+  .theme-toggle { display:flex; border:1px solid #777; border-radius:14px; overflow:hidden; }
+  .theme-opt { padding:6px 11px; cursor:pointer; background:#3d3d3d; color:#ccc; font-size:0.78em; font-weight:bold; }
+  .theme-opt.active { background:#fff; color:#000; }
+  .theme-opt:hover:not(.active){ background:#555; }
+  .nav-contact { background:#c33; color:#fff; border:1px solid #c33; padding:8px 15px; border-radius:3px; font-weight:bold; cursor:pointer; font-size:0.85em; }
 
-  .img{background:repeating-linear-gradient(45deg,#e6e6e6 0 7px,#dadada 7px 14px);
-    border:1px solid var(--line);border-radius:3px;display:grid;place-items:center;
-    font-family:var(--mono);font-size:.6rem;color:#8a8a8a;text-align:center;padding:4px}
-  .btn{display:inline-block;background:var(--fill-3);border:1px solid var(--line-dark);border-radius:4px;
-    padding:7px 14px;font-family:var(--mono);font-size:.64rem;color:#444;margin:0 7px 7px 0}
-  .btn.pri{background:var(--fill-dark);color:#fff;border-color:var(--fill-dark)}
-  .chip{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:12px;
-    padding:4px 11px;font-family:var(--mono);font-size:.6rem;color:#555;margin:0 5px 5px 0}
-  .box{border:1px solid var(--line);border-radius:4px;background:#fff;padding:11px}
-  .box.fill{background:var(--fill)}
-  .dashbox{border:1px dashed var(--line-dark);border-radius:4px;background:#fff;padding:11px}
-  .grid{display:grid;gap:10px}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start}
-  .cap{font-family:var(--mono);font-size:.6rem;color:var(--soft);text-transform:uppercase;letter-spacing:.07em}
-  .note{font-family:var(--mono);font-size:.63rem;color:var(--mid);background:#fffbe6;border:1px solid #eadfae;
-    border-radius:4px;padding:7px 10px;margin-top:10px}
-  .note b{color:#8a6d00}
-  .darkband{background:var(--fill-dark);color:#fff;border-radius:4px;padding:14px}
-  .darkband .txt{background:#6f6f6f}
-  .darkband .h-blk{background:#7d7d7d}
-  .redband{background:var(--accent);opacity:.85;border-radius:3px;height:34px;display:grid;place-items:center;
-    font-family:var(--mono);font-size:.62rem;color:#fff;letter-spacing:.14em}
+  .page-wrap { max-width:1300px; margin:0 auto; padding:24px; }
+  h2.sec { color:#333; font-size:1.15em; margin:28px 0 10px; padding-bottom:6px; border-bottom:1px solid #ccc; }
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin-bottom:15px; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-bottom:15px; }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; margin-bottom:15px; }
+  .hero { min-height:170px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:12px; }
+  .hero.center { align-items:center; text-align:center; }
+  .breadcrumb { font-size:0.85em; color:#888; margin-bottom:15px; }
+  .link { color:#a55; cursor:pointer; font-weight:bold; }
+  .link:hover { text-decoration:underline; }
+  .muted { color:#999; font-size:0.85em; }
 
-  /* annotations list */
-  .annos{margin-top:12px;border:1px solid var(--line);border-radius:6px;background:#fff;padding:12px 14px}
-  .annos .cap{margin-bottom:7px}
-  .annos ol{margin:0;padding-left:18px}
-  .annos li{font-size:.78rem;color:#444;margin:4px 0}
-  .annos code{font-family:var(--mono);font-size:.72rem;background:var(--fill);padding:1px 5px;border-radius:3px}
+  table.spec { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.85em; }
+  table.spec th { background:#444; color:#fff; padding:8px; text-align:left; }
+  table.spec td { padding:8px; border-bottom:1px solid #ddd; }
 
-  @media print{
-    .side{display:none} .app{grid-template-columns:1fr} .main{padding:0;max-width:none}
-    .page{break-inside:avoid;page-break-inside:avoid}
-    body{background:#fff}
-  }
-  @media (max-width:900px){
-    .app{grid-template-columns:1fr} .side{position:static;height:auto}
-  }
+  .note { background:#fff3cd; border-left:3px solid #d4a017; padding:8px 12px; margin:12px 0; font-size:0.8em; color:#664d00; }
+  .note b { color:#5a4200; }
+
+  footer.wf-footer { background:#2b2b2b; color:#ddd; padding:20px; margin-top:25px; border-radius:3px; font-size:0.9em; }
+  footer.wf-footer .grid4 { color:#ccc; margin-bottom:8px; }
+  footer.wf-footer b { color:#fff; }
+  footer.wf-footer .legalbar { border-top:1px solid #555; margin-top:12px; padding-top:10px; color:#999; font-size:0.85em; display:flex; gap:10px; flex-wrap:wrap; }
+
+  /* Site map flow screen */
+  .flowmap { display:flex; flex-wrap:wrap; gap:14px; align-items:center; padding:8px 0; }
+  .flow-node { border:1px solid #999; background:#fff; padding:11px 16px; text-align:center; font-weight:bold; min-width:130px; border-radius:3px; cursor:pointer; font-size:0.9em; }
+  .flow-node:hover { background:#f0f0f0; border-color:#666; }
+  .flow-node.root { background:#333; color:#fff; }
+  .flow-arrow { font-size:1.3em; color:#999; }
+  .flow-group { margin:6px 0 4px; font-weight:bold; color:#555; font-size:0.9em; }
+  .journey-steps { background:#fff; border:1px solid #ddd; border-radius:4px; padding:20px; margin-top:22px; }
+  .journey-steps ol { margin-left:20px; } .journey-steps li { margin-bottom:8px; }
+  .start-btn { display:inline-block; margin-top:18px; padding:12px 22px; background:#333; color:#fff; border-radius:3px; cursor:pointer; font-weight:bold; }
+  .start-btn:hover { background:#555; }
 </style>
 </head>
 <body>
-<div class="app">
-  <aside class="side">
-    <h1>DEON<b>®</b> Wireframes</h1>
-    <div class="sub">Low-fidelity structural blueprint</div>
-    <div id="toc"></div>
-  </aside>
 
-  <main class="main">
-    <div class="doc-head">
-      <h2>DEON Website — Wireframes</h2>
-      <p>Low-fidelity structural wireframes for the complete DEON website. Greyscale by design — these communicate
-         layout, hierarchy and content blocks, not visual styling. Every page and global component in the build
-         is represented.</p>
-      <div class="meta">
-        <span>Version 1.0</span><span id="mPages">— pages</span><span>Global components: 6</span>
-        <span>Breakpoints: 1180 / 1080 / 900 / 640</span>
-      </div>
-    </div>
-
-    <div class="legend">
-      <div><span class="sw f1"></span> Content block</div>
-      <div><span class="sw f2"></span> Heading / emphasis</div>
-      <div><span class="sw im"></span> Image / media</div>
-      <div><span class="sw dk"></span> Dark section</div>
-      <div><span class="sw dash"></span> Dynamic (JS-rendered)</div>
-      <div><span class="sw" style="background:#CC0000;opacity:.55"></span> Brand accent</div>
-    </div>
-
-    <div id="out"></div>
-  </main>
+<div id="chrome">
+  <div class="brand">DEON — WIREFRAME PROTOTYPE</div>
+  <div class="crumb">Current page: <b id="crumbLabel">Home</b></div>
+  <div style="display:flex; gap:8px;">
+    <button class="barbtn" onclick="goTo('flowmap')">🗺️ Site Map</button>
+    <button class="barbtn" onclick="toggleLegend()">ℹ️ How to use this</button>
+  </div>
 </div>
+<div class="legend" id="legendBar">
+  <b>How to use:</b> The tabs in the <b>navigation bar</b> (Home, Markets, Applications, Products, Manufacturing, Knowledge Center) and the top utility links (About, Career, Press…) are clickable — they move you between pages like real tabs.
+  Inside pages, links marked <span class="link">like this →</span> open detail/sub-pages. Everything else (buttons, cards, inputs) is a <b>static placeholder</b> showing where content will sit. Greyscale is intentional — this is structure, not visual design.
+</div>
+
+<div id="app"></div>
 
 <script>
 /* =========================================================================
-   WIREFRAME SPEC — every page & global component of the DEON site.
-   Rendered from data so structure stays consistent and complete.
+   DEON wireframe prototype — all 25 page templates + site-map flow.
+   Greyscale lo-fi. Nav tabs + utility links + in-page "→" links navigate.
    ========================================================================= */
 
-/* ---- block helpers (return HTML strings) ---- */
-const B = {
-  eyebrow: ()=>`<div class="eyeb"></div>`,
-  h:(n=1,w)=>`<div class="h-blk h${n}b" ${w?`style="width:${w}"`:''}></div>`,
-  txt:(n=3,cls='')=>Array.from({length:n},(_,i)=>`<div class="txt ${i===n-1?'w60':(cls||'w90')}"></div>`).join(''),
-  img:(h=120,cap='Image')=>`<div class="img" style="height:${h}px">${cap}</div>`,
-  btns:(arr,pri=1)=>arr.map((b,i)=>`<span class="btn ${i<pri?'pri':''}">${b}</span>`).join(''),
-  chips:(arr)=>arr.map(c=>`<span class="chip">${c}</span>`).join(''),
-  cap:(t)=>`<div class="cap">${t}</div>`,
-  note:(t)=>`<div class="note"><b>Note —</b> ${t}</div>`,
-  /* a grid of n cards, each optionally with image */
-  cards:(cols,n,{img=0,lines=2,tag=0,title=1,foot=0,label=''}={})=>{
-    const item = `<div class="box">
-      ${tag?`<span class="chip">tag</span>`:''}
-      ${img?`<div class="img" style="height:${img}px;margin-bottom:9px">${label||'Image'}</div>`:''}
-      ${title?`<div class="h-blk h3b" style="width:70%"></div>`:''}
-      ${B.txt(lines)}
-      ${foot?`<div class="txt w45" style="margin-top:9px;background:#CC0000;opacity:.35"></div>`:''}
+/* ---------- primitives ---------- */
+const IMG   = (t,h)=>`<div class="placeholder-img"${h?` style="min-height:${h}px"`:''}>${t||'Image'}</div>`;
+const LINES = (n=3)=>`<div class="wf-box text-lines">${'<span></span>'.repeat(n)}</div>`;
+const BTN   = (t,p)=>`<span class="static-btn${p?' primary':''}">${t}</span>`;
+const SEC   = (t)=>`<h2 class="sec">${t}</h2>`;
+const NOTE  = (t)=>`<div class="note"><b>Note:</b> ${t}</div>`;
+const CHIPS = (arr)=>arr.map(c=>`<span class="chip">${c}</span>`).join('');
+const LINK  = (t,id)=>`<span class="link" onclick="goTo('${id}')">${t} →</span>`;
+const box   = (inner,center)=>`<div class="wf-box"${center?' style="text-align:center"':''}>${inner}</div>`;
+const grid  = (n,items)=>`<div class="grid${n}">${items.join('')}</div>`;
+function hero(label,title,btns,center){
+  return `<div class="wf-box hero${center?' center':''}"><div class="wf-label">${label}</div>`+
+    `<div class="redline"></div>`+
+    (title?`<div style="font-size:1.3em;font-weight:bold">${title}</div>`:'')+
+    (btns?`<div style="margin-top:4px">${btns}</div>`:'')+`</div>`;
+}
+function photoHero(title,btns,badges){
+  return `<div class="wf-box hero">`+
+    `<div class="wf-label">Hero — full-bleed factory photo + dark scrim</div>`+
+    IMG('Factory / production photograph (background)',150)+
+    `<div class="redline" style="margin-top:10px"></div>`+
+    `<div style="font-size:1.3em;font-weight:bold">${title}</div>`+
+    (btns?`<div>${btns}</div>`:'')+
+    (badges?`<div style="margin-top:4px">${CHIPS(badges)}</div>`:'')+`</div>`;
+}
+function stats(arr){
+  return box(`<div class="grid${arr.length}" style="margin-bottom:0;text-align:center">`+
+    arr.map(s=>`<div style="font-size:1.4em;font-weight:bold">${s[0]}<div style="font-size:0.55em;font-weight:normal;color:#777;margin-top:4px">${s[1]}</div></div>`).join('')+`</div>`);
+}
+function badges(arr){
+  return box(`<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">`+
+    arr.map(b=>`<div style="text-align:center;min-width:120px"><b>${b[0]}</b><br><span class="muted">${b[1]}</span></div>`).join('')+`</div>`);
+}
+function prodCard(code,name){
+  return box(IMG('Product photo',80)+`<div style="margin:8px 0 4px"><b>${name}</b></div>`+
+    `<div class="muted">Deon ${code}</div><div style="margin-top:6px">${BTN('Request sample')}${BTN('Datasheet')}</div>`,true);
+}
+function cta(title,btns){
+  return SEC('CTA Band — brand red')+box(`<div class="hero center" style="min-height:90px"><div style="font-weight:bold">${title}</div><div>${btns}</div></div>`);
+}
+function footer(){
+  return `<footer class="wf-footer">
+    <div class="wf-label" style="color:#999">Footer (same on every page)</div>
+    <div class="grid4">
+      <div><b>Products</b><br>All products · Double-sided · Foil · Masking · Insulation</div>
+      <div><b>Markets</b><br>Electrical · Automotive · HVAC · Packaging</div>
+      <div><b>Company</b><br>About · Manufacturing · Careers · Press · Partners</div>
+      <div><b>Resources</b><br>Knowledge Center · Tools · Certifications · Quote · Samples</div>
+    </div>
+    <div class="legalbar"><span>© 2026 DEON Tapes Industries Pvt. Ltd. — It's Power-Strong</span>
+      <span style="margin-left:auto">${LINK('Legal','legal-notice')} · ${LINK('Privacy','privacy-statement')} · ${LINK('Terms','terms-conditions')} · ${LINK('Accessibility','accessibility-statement')} · ${LINK('Cookies','cookie-settings')} · ${LINK('Sitemap','site-map')}</span>
+    </div>
+  </footer>`;
+}
+function pageHead(crumb,title,intro){
+  return `<div class="wf-box hero" style="min-height:120px"><div class="wf-label">Interior page head — photo band + breadcrumb</div>`+
+    `<div class="breadcrumb">${crumb}</div><div class="redline"></div><div style="font-size:1.3em;font-weight:bold">${title}</div>`+
+    (intro?`<div class="muted">${intro}</div>`:'')+`</div>`;
+}
+
+/* ---------- navigation ---------- */
+const NAVTABS = [['home','Home'],['markets','Markets'],['applications','Applications'],['products','Products'],['manufacturing','Manufacturing'],['knowledge','Knowledge Center']];
+const UTIL    = [['about','About us'],['careers','Career'],['press','Press'],['partners','Partner with us'],['certifications','Quality & Certifications']];
+const PARENT  = { 'market-detail':'markets','application-detail':'applications', tools:'knowledge', films:'manufacturing',
+  'converter-partners':'partners','oem-partners':'partners','dealer-partners':'partners' };
+function activeTab(id){ return PARENT[id]||id; }
+function navBar(id){
+  var at=activeTab(id);
+  return `<div class="util-strip">`+
+      UTIL.map(u=>`<a class="${at===u[0]?'active':''}" onclick="goTo('${u[0]}')">${u[1]}</a>`).join('')+
+    `</div>`+
+    `<div class="nav-bar">
+      <div class="logo">DEON®</div>
+      <div class="nav-tabs">`+
+        NAVTABS.map(t=>`<div class="nav-tab ${at===t[0]?'active':''}" onclick="goTo('${t[0]}')">${t[1]}${['markets','applications','products','manufacturing','knowledge'].includes(t[0])?' ▾':''}</div>`).join('')+
+      `</div>
+      <div class="nav-icons">
+        <span class="ic">🔍</span>
+        <div class="theme-toggle" title="Light / Dark mode toggle"><div class="theme-opt active">☀ Light</div><div class="theme-opt">☾ Dark</div></div>
+        <span class="ic">♿</span>
+        <span class="nav-contact" onclick="goTo('contact')">CONTACT</span>
+      </div>
     </div>`;
-    return `<div class="grid" style="grid-template-columns:repeat(${cols},1fr)">${item.repeat(n)}</div>`;
-  },
-  /* list rows */
-  rows:(n,{num=0}={})=>`<div class="grid" style="gap:0;border:1px solid var(--line);border-radius:4px">`+
-    Array.from({length:n},()=>`<div style="display:flex;gap:12px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)">
-      ${num?`<span class="cap">00</span>`:''}<div class="txt w45" style="flex:1;margin:0"></div><span class="cap">&rarr;</span>
-    </div>`).join('')+`</div>`,
-  /* stat blocks */
-  stats:(n=4)=>`<div class="darkband"><div class="grid" style="grid-template-columns:repeat(${n},1fr)">`+
-    `<div><div class="h-blk h2b" style="width:80%"></div><div class="txt w75"></div></div>`.repeat(n)+
-    `</div></div>`,
-  /* certification badges */
-  badges:(n=5)=>`<div class="row">`+`<div class="box" style="min-width:130px;text-align:center">
-      <div class="h-blk h3b" style="width:70%;margin:0 auto 6px"></div><div class="txt w60" style="margin:0 auto"></div>
-    </div>`.repeat(n)+`</div>`,
-  cta:()=>`<div class="darkband" style="background:#CC0000;opacity:.9">
-      <div class="row" style="align-items:center;justify-content:space-between">
-        <div style="flex:1;min-width:220px">
-          <div class="h-blk h2b" style="width:60%;background:rgba(255,255,255,.55)"></div>
-          <div class="txt w75" style="background:rgba(255,255,255,.4)"></div>
-        </div>
-        <div><span class="btn">CTA 1</span><span class="btn">CTA 2</span></div>
-      </div></div>`
+}
+
+/* ---------- screens (25 pages + flow map) ---------- */
+const SCREENS = {
+
+home:()=>
+  photoHero('Pressure-sensitive adhesive tapes and soft PVC films, manufactured in-house.',
+    BTN('Browse Products',1)+BTN('Contact DEON'), ['ISO 9001:2015 certified','89,000 m² area','2 plants — Silvassa & Vadodara'])
+  + SEC('Tape marquee — "It\'s Power-Strong" (infinite scroll)') + box('<div class="redline" style="width:100%;height:20px"></div>')
+  + SEC('Trusted by leading brands (logo marquee)') + box(`<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">${['Logo','Logo','Logo','Logo','Logo','Logo'].map(l=>IMG(l,45)).join('')}</div>`)
+  + SEC('Who we are — 3 pillars') + grid(3,[box('<b>01</b><br>In-house adhesive formulation'+LINES(2)),box('<b>02</b><br>Manufacturing capability'+LINES(2)),box('<b>03</b><br>Traceable quality'+LINES(2))])
+  + SEC('What we make — 6 product categories (with photos)')
+  + grid(3,[prodCard('DT5142','Double-sided & foam'),prodCard('DT4021','Foil & sealing'),prodCard('M5001','Masking'),prodCard('50W13','Bundling & harness'),prodCard('DT2131','Insulation & dielectric'),prodCard('41860','Floor-marking')])
+  + SEC('How a DEON tape is built — 3 columns')
+  + grid(3,[box('<b>01 Adhesive system</b><br>'+CHIPS(['Acrylic','Rubber','Hot-melt','Silicone'])),box('<b>02 Backing material</b><br>'+CHIPS(['Film','Foam','Foil','Paper','Cloth','Filament'])),box('<b>03 Converting</b><br>'+CHIPS(['Slitting','Printed cores','Private label']))])
+  + SEC('Markets — 10 industries') + grid(2,[box(['Transportation','Electrical','Building components','Renewable energy','Metal manufacturing'].map(m=>`<div>› ${m} &nbsp; ${LINK('open','market-detail')}</div>`).join('')),box(['HVAC & Insulation','Appliance','Packaging & logistics','Electronics','Automotive'].map(m=>`<div>› ${m}</div>`).join(''))])
+  + SEC('How we make it — 3 steps') + grid(3,[box('<b>01</b> Formulate & coat'+LINES(2)),box('<b>02</b> Convert & slit'+LINES(2)),box('<b>03</b> Test & qualify'+LINES(2))])
+  + SEC('Quality & compliance — 5 certification badges') + badges([['ISO 9001','Quality'],['ISO 45001','Safety'],['ISO 14001','Environment'],['UL','Recognised'],['BIS · IS 7809','Standard']])
+  + SEC('By the numbers — count-up stats') + stats([['2016','Making tape since'],['100+','Customers'],['89,000 m²','Built-up area'],['2','Plants']])
+  + cta('Request product information, a quotation or samples.', BTN('Request samples',1)+BTN('Request a quote')),
+
+products:()=>
+  pageHead('Home › Products','Industrial pressure-sensitive tapes.','Filter by family, adhesive, backing and construction.')
+  + NOTE('Filterable catalogue — sidebar facets, URL-synced (e.g. products.html?adhesive=acrylic&sided=double).')
+  + `<div class="grid2" style="grid-template-columns:1fr 3fr">`
+    + box('<div class="wf-label">Sidebar filters</div>'
+      + '<b>Product family (7)</b><br>'+['Electrical & insulation','Bonding & double-sided','Masking','Foil & sealing','Packaging','Harness','Floor marking'].map(f=>`☐ ${f}`).join('<br>')
+      + '<br><br><b>Adhesive (4)</b><br>☐ Acrylic ☐ Rubber ☐ Hot-melt ☐ Silicone'
+      + '<br><br><b>Backing (11)</b><br>☐ PVC ☐ PET ☐ Polyimide ☐ BOPP ☐ Foam ☐ Foil ☐ Paper ☐ Cloth …'
+      + '<br><br><b>Construction (2)</b><br>☐ Single-sided ☐ Double-sided')
+    + box('<div class="wf-label">Product grid — Showing 24 of 24 · active filter chips: '+CHIPS(['Acrylic ✕','Double-sided ✕','Clear all'])+'</div>'
+      + grid(3,[prodCard('31700','PVC Electrical Insulation'),prodCard('DT2131','Class H Polyimide'),prodCard('DT5142','Double-Sided PE Foam'),prodCard('M5001','Masking Tape'),prodCard('DT9151','BOPP Packaging'),prodCard('DT4041','Aluminium Foil')])
+      + '<p class="muted">… 24 product cards total (3-col → 2-col → 1-col responsive)</p>')
+  + `</div>`
+  + cta('Not sure which grade fits?', BTN('Request samples',1)+BTN('Open calculators')),
+
+tools:()=>
+  pageHead('Home › Knowledge Center › Tools & Calculators','Tools & Calculators','Seven calculators — everything runs in your browser.')
+  + SEC('Calculator grid — 7 tools (2 columns)')
+  + grid(2, [['Roll Length','Packaging'],['Roll Diameter','Packaging'],['Roll Weight','Packaging'],['Grammage / Coat-Weight','Manufacturing'],['Jumbo-to-Finished Roll','Conversion'],['Tape Consumption','Procurement'],['Carton Sealing','Packaging']].map(c=>
+      box(`<span class="chip">${c[1]}</span><h3 style="margin:6px 0">${c[0]} Calculator</h3>`
+        + `<div>Input <span class="static-btn" style="padding:5px 22px">___</span> · Input <span class="static-btn" style="padding:5px 22px">___</span> · Input <span class="static-btn" style="padding:5px 22px">___</span></div>`
+        + box('<div class="wf-label" style="color:#bbb">Result</div><b style="font-size:1.3em">— — —</b>',false).replace('wf-box','wf-box" style="background:#3a3a3a;color:#fff;margin-top:8px')
+        + '<div class="muted" style="margin-top:6px">assumptions note…</div>')))
+  + NOTE('Every field recomputes live; defaults reproduce the reference values (135.5 m, 99.9 mm/239 wraps, 0.206 kg, 65 g/m², 20 lanes, 19,500 m, 1,040 m).'),
+
+markets:()=>
+  pageHead('Home › Markets','Tape systems for manufacturing, infrastructure and packaging.')
+  + SEC('Explore by industry — 11 cards') + grid(3, ['Transportation','Electrical','Building components','Renewable energy','Metal manufacturing','HVAC & Insulation','Appliance','Packaging & logistics','Electronics','Automotive','Print & Paper'].map(m=>box(`<b>${m}</b>`+LINES(1)+LINK('Find out more','market-detail'),true)))
+  + SEC('Partnerships — 3 program cards') + grid(3,[box('<b>Industrial converters</b>'+LINES(1)+LINK('Learn more','converter-partners'),true),box('<b>OEM & private label</b>'+LINES(1)+LINK('Learn more','oem-partners'),true),box('<b>Authorized dealers</b>'+LINES(1)+LINK('Learn more','dealer-partners'),true)])
+  + cta('Send us the application and specification.', BTN('Contact DEON',1)),
+
+'market-detail':()=>
+  pageHead('Home › Markets › Electrical','Tape for electrical.','The insulation backbone for motors, transformers, switchgear and coils.')
+  + `<div class="grid2">`
+    + box('<div class="wf-label">Where DEON tape is used</div>'+['Coil & layer insulation','Motor / transformer winding','Terminal & busbar insulation','Wave-soldering & coil masking'].map(n=>`<div>→ ${n}</div>`).join(''))
+    + box('<div class="wf-label">Recommended products</div>'+grid(2,[prodCard('DT1111','Class B Polyester'),prodCard('DT2131','Class H Polyimide')]))
+  + `</div>`
+  + SEC('What DEON brings') + badges([['In-house','Formulation'],['Coating','& converting'],['Tested','Traceability'],['Custom','Formats'],['OEM','Private label']])
+  + NOTE('One template renders all 11 industry pages from ?m= (electrical, automotive, hvacr, packaging …).')
+  + cta('Building for electrical?', BTN('Request samples',1)+BTN('Request a quote')),
+
+applications:()=>
+  pageHead('Home › Applications','Start from the job the tape has to do.')
+  + SEC('By function — 10 application cards') + grid(3, ['Masking','Bundling & harnessing','Insulation','Surface protection','Bonding','Mounting','Packaging','Floor & safety marking','Thermal management','Assembly'].map(a=>box(`<span class="chip">${a}</span><br><b>${a}</b>`+LINES(1)+LINK('See tapes','application-detail'))))
+  + cta('Not sure where you fit?', BTN('Request samples',1)),
+
+'application-detail':()=>
+  pageHead('Home › Applications › Masking','Masking.','Low-tack masking that holds through paint, cure and process heat.')
+  + SEC('Recommended constructions') + grid(3,[prodCard('M5001','Masking Tape'),prodCard('DT1231','High-Temp Polyester'),prodCard('DT3131','Glass Cloth')])
+  + SEC('How the tape is built') + grid(3,[box('<b>01 Adhesive</b><br>'+CHIPS(['Acrylic','Rubber','Silicone'])),box('<b>02 Backing</b><br>'+CHIPS(['Film','Cloth','Paper'])),box('<b>03 Converting</b><br>'+CHIPS(['Slitting','Custom widths']))])
+  + NOTE('One template renders all 10 application pages from ?group= / ?app=.')
+  + cta('Tell us your application.', BTN('Request samples',1)),
+
+manufacturing:()=>
+  pageHead('Home › Manufacturing','Coated, converted and qualified — all under one roof.')
+  + SEC('Capabilities — 3 cards') + grid(3,[box('<b>01</b> Formulate & coat'+LINES(2)),box('<b>02</b> Convert & slit'+LINES(2)),box('<b>03</b> Finish'+LINES(2))])
+  + SEC('Adhesive technologies — 4 columns') + grid(4,[box('<b>Acrylic</b>'+LINES(1)),box('<b>Rubber</b>'+LINES(1)),box('<b>Hot-melt</b>'+LINES(1)),box('<b>Silicone</b>'+LINES(1))])
+  + SEC('Testing & validation') + badges([['Peel','Adhesion'],['Tensile','Elongation'],['Dielectric','Breakdown'],['Thermal','Class'],['Ageing','Weather']])
+  + SEC('Custom product development') + box(LINES(2)+BTN('Start a development enquiry',1))
+  + `<p class="muted">Also linked here: ${LINK('Soft PVC films','films')}</p>`
+  + cta('Coated, converted and qualified — under one roof.', BTN('Request samples',1)+BTN('Browse products')),
+
+films:()=>
+  pageHead('Home › Manufacturing › Soft PVC Films','DEON manufactures its own soft PVC film through in-house calendering.')
+  + SEC('Soft PVC film — 3 cards') + grid(3,[box('<b>Calendered in-house</b>'+LINES(2)),box('<b>Industrial & converting</b>'+LINES(2)),box('<b>Custom formulation</b>'+LINES(2))])
+  + cta('Need soft PVC film?', BTN('Request a quote',1)+BTN('Request samples')),
+
+certifications:()=>
+  pageHead('Home › Quality & Certifications','Manufactured to recognised quality standards.')
+  + SEC('Certifications — 5 anchored cards') + grid(3,[['ISO 9001:2015','Quality management'],['ISO 45001:2018','Occupational H&S'],['ISO 14001:2015','Environmental'],['UL','Recognised component'],['BIS · IS 7809','Bureau of Indian Standards']].map(c=>box(`<span class="chip">Certified</span><br><b>${c[0]}</b><br><span class="muted">${c[1]}</span>`)))
+  + SEC('Documented & audit-ready') + badges([['Datasheets','Per product'],['Test reports','Per batch'],['Samples','On request']])
+  + cta('Need documentation?', BTN('Request documents',1)+BTN('Knowledge Center')),
+
+knowledge:()=>
+  pageHead('Home › Knowledge Center','Guides, datasheets, calculators and FAQs.')
+  + SEC('Resources — 6 cards') + grid(3,[box('<b>Tools & Calculators</b>'+LINES(1)+LINK('Open','tools'),true),box('<b>Product finder</b>'+LINES(1)+LINK('Browse','products'),true),box('<b>Certifications</b>'+LINES(1)+LINK('See','certifications'),true),box('<b>Manufacturing</b>'+LINES(1)+LINK('Explore','manufacturing'),true),box('<b>By application</b>'+LINES(1)+LINK('Open','applications'),true),box('<b>Talk to our team</b>'+LINES(1)+LINK('Contact','contact'),true)])
+  + SEC('FAQ — 4 questions') + box(['Custom widths & cores?','Private label?','What documentation?','How to get a sample?'].map(q=>`<div><b>Q · ${q}</b><br><span class="muted">answer…</span></div>`).join('<br>'))
+  + cta('Can\'t find what you need?', BTN('Contact DEON',1)),
+
+about:()=>
+  pageHead('Home › About us','Manufacturing owned from formulation to finished roll.')
+  + SEC('Who we are — 3 cards') + grid(3,[box('<b>01</b> In-house formulation'+LINES(2)),box('<b>02</b> Two plants in India'+LINES(2)),box('<b>03</b> Traceable quality'+LINES(2))])
+  + SEC('Our presence — count-up stats') + stats([['2016','Making tape since'],['100+','Customers'],['89,000 m²','Built-up area'],['2','Plants']])
+  + cta('Get to know DEON.', BTN('Contact DEON',1)+BTN('Careers at DEON')),
+
+careers:()=>
+  pageHead('Home › Careers','Build the tapes that hold industry together.')
+  + SEC('Open roles — 3 cards') + grid(3,[box('<span class="chip">Production</span><br><b>Coating & converting operators</b>'+LINK('Apply','contact'),true),box('<span class="chip">R&D</span><br><b>Adhesive chemist</b>'+LINK('Apply','contact'),true),box('<span class="chip">Sales</span><br><b>Technical sales engineer</b>'+LINK('Apply','contact'),true)])
+  + cta('Don\'t see your role?', BTN('Send your CV',1)),
+
+press:()=>
+  pageHead('Home › Press','News & announcements.')
+  + SEC('News — dated list') + box(['2026 — New plant commissioned in Vadodara','2025 — Expanded aluminium-foil tape range','2025 — ISO 45001:2018 certification'].map(n=>`<div><b>${n.split(' — ')[0]}</b> — ${n.split(' — ')[1]}</div>`).join('<br>'))
+  + cta('Media enquiries', BTN('Contact DEON',1)),
+
+partners:()=>
+  pageHead('Home › Partners','Supplying industry rather than buying for one?')
+  + SEC('Partner programs — 3 cards') + grid(3,[box('<span class="chip">Converters</span><br><b>Industrial converters</b>'+LINES(1)+LINK('Learn more','converter-partners'),true),box('<span class="chip">OEM</span><br><b>OEM & private label</b>'+LINES(1)+LINK('Learn more','oem-partners'),true),box('<span class="chip">Dealers</span><br><b>Authorized dealers</b>'+LINES(1)+LINK('Learn more','dealer-partners'),true)])
+  + cta('Ready to partner?', BTN('Contact the partner desk',1)),
+
+'converter-partners':()=>partnerDetail('Industrial converter program','Jumbo and log rolls, slit to your specified core, OD and tension.'),
+'oem-partners':()=>partnerDetail('OEM & private-label program','Custom specifications, packaging and branding — manufactured under your brand.'),
+'dealer-partners':()=>partnerDetail('Authorized dealer program','Standard product programs with reliable, repeatable supply.'),
+
+contact:()=>
+  pageHead('Home › Contact','Request product information, a quotation or samples.')
+  + `<div style="margin-bottom:10px">${CHIPS(['Request samples','Request a quote','General enquiry'])} <span class="muted">(tabs)</span></div>`
+  + `<div class="grid2">`
+    + box('<div class="wf-label">Contact form</div>'
+      + ['First name','Last name','Company','Country','Work email','Phone'].map(f=>`<div>${f}</div>${IMG('input',34)}`).join('')
+      + '<div>Product / SKU of interest</div>'+IMG('input',34)
+      + '<div>Application & specification</div>'+IMG('textarea',60)
+      + '<div style="margin-top:8px">'+BTN('Send request',1)+'</div>'
+      + NOTE('?type=sample|quote|general preselects a tab; ?sku=DT2131 pre-fills the product field. Submit shows an inline confirmation.'))
+    + box('<div class="wf-label">Contact details</div>'+IMG('Which-team routing + phone / email / plants',180))
+  + `</div>`
+  + footer(),
+
+/* legal / simple */
+'legal-notice':()=>simplePage('Home › Legal notice','Legal notice'),
+'privacy-statement':()=>simplePage('Home › Privacy','Privacy statement'),
+'terms-conditions':()=>simplePage('Home › Terms','Terms & conditions'),
+'accessibility-statement':()=>simplePage('Home › Accessibility','Accessibility statement'),
+'cookie-settings':()=>
+  pageHead('Home › Cookie settings','Cookie settings')
+  + `<div class="grid2">`+box('<div class="wf-label">Explanation</div>'+LINES(4))
+    + box('<div class="wf-label">Preferences card</div><div>Essential — <span class="chip">Always on</span></div><div>Preferences — <span class="chip">On</span><span class="chip">Off</span></div><div style="margin-top:8px">'+BTN('Save settings',1)+'</div>')+`</div>`,
+'site-map':()=>
+  pageHead('Home › Sitemap','Sitemap')
+  + grid(4,[['Products','All products, Double-sided, Foil, Masking'],['Applications','All, Bonding, Insulation, Marking'],['Markets','All, Electrical, Automotive, HVAC, Packaging'],['Manufacturing','Manufacturing, Films, Certifications'],['Knowledge','Knowledge Center, Tools'],['Company','About, Careers, Press, Partners, Contact'],['Legal','Legal, Privacy, Terms, Accessibility, Cookies'],['&nbsp;','']].map(c=>box(`<div class="wf-label">${c[0]}</div><span class="muted">${c[1]}</span>`))),
+
+/* site map / flow */
+flowmap:()=>
+  `<div style="max-width:1300px;margin:0 auto;padding:24px">
+    <h2 style="font-size:1.4em;margin-bottom:6px">Site Navigation Flow</h2>
+    <p class="muted" style="margin-bottom:12px">All 25 pages and how they connect. Click any node to open that wireframe.</p>
+    <div class="flowmap"><div class="flow-node root" onclick="goTo('home')">Home</div><div class="flow-arrow">→</div>
+      <div class="flow-node" onclick="goTo('markets')">Markets</div><div class="flow-node" onclick="goTo('applications')">Applications</div>
+      <div class="flow-node" onclick="goTo('products')">Products</div><div class="flow-node" onclick="goTo('manufacturing')">Manufacturing</div>
+      <div class="flow-node" onclick="goTo('knowledge')">Knowledge Center</div><div class="flow-node" onclick="goTo('contact')">Contact</div></div>
+    <div class="flow-group">Markets →</div><div class="flowmap"><div class="flow-node" onclick="goTo('markets')">Markets index</div><div class="flow-arrow">→</div><div class="flow-node" onclick="goTo('market-detail')">Market detail (×11)</div></div>
+    <div class="flow-group">Applications →</div><div class="flowmap"><div class="flow-node" onclick="goTo('applications')">Applications index</div><div class="flow-arrow">→</div><div class="flow-node" onclick="goTo('application-detail')">Application detail (×10)</div></div>
+    <div class="flow-group">Products & Knowledge →</div><div class="flowmap"><div class="flow-node" onclick="goTo('products')">Products catalogue</div><div class="flow-node" onclick="goTo('tools')">Tools & Calculators</div><div class="flow-node" onclick="goTo('knowledge')">Knowledge Center</div><div class="flow-node" onclick="goTo('certifications')">Certifications</div></div>
+    <div class="flow-group">Manufacturing →</div><div class="flowmap"><div class="flow-node" onclick="goTo('manufacturing')">Manufacturing & Tech</div><div class="flow-node" onclick="goTo('films')">Soft PVC Films</div></div>
+    <div class="flow-group">Company →</div><div class="flowmap"><div class="flow-node" onclick="goTo('about')">About</div><div class="flow-node" onclick="goTo('careers')">Careers</div><div class="flow-node" onclick="goTo('press')">Press</div><div class="flow-node" onclick="goTo('partners')">Partners</div><div class="flow-node" onclick="goTo('converter-partners')">Converter</div><div class="flow-node" onclick="goTo('oem-partners')">OEM</div><div class="flow-node" onclick="goTo('dealer-partners')">Dealer</div></div>
+    <div class="flow-group">Legal →</div><div class="flowmap"><div class="flow-node" onclick="goTo('legal-notice')">Legal</div><div class="flow-node" onclick="goTo('privacy-statement')">Privacy</div><div class="flow-node" onclick="goTo('terms-conditions')">Terms</div><div class="flow-node" onclick="goTo('accessibility-statement')">Accessibility</div><div class="flow-node" onclick="goTo('cookie-settings')">Cookie settings</div><div class="flow-node" onclick="goTo('site-map')">Sitemap</div></div>
+    <div class="journey-steps"><h3>Typical user journey</h3><ol>
+      <li>Land on <b>Home</b> → hero, product categories, markets, quality, stats.</li>
+      <li>Click <b>Products</b> → filter the catalogue by adhesive / backing / construction.</li>
+      <li>Open a product → <b>Request sample</b> / <b>Datasheet</b> jumps to <b>Contact</b> (pre-filled SKU).</li>
+      <li>Or start from <b>Applications</b> / <b>Markets</b> → land on the right product set.</li>
+      <li>Use <b>Knowledge Center → Tools</b> for the 7 calculators.</li>
+    </ol><div class="start-btn" onclick="goTo('home')">▶ Start at Home</div></div>
+  </div>`
 };
 
-/* ---- reusable page-level sections ---- */
-const S = {
-  pageHead:(photo=1)=>({
-    label:`PAGE HEAD ${photo?'— photographic (dark scrim)':'— tint band'}`, tag:'GLOBAL',
-    cls: photo?'dark':'tint',
-    html:`${photo?`<div class="img" style="height:16px;margin-bottom:8px">background photo (factory) + dark scrim</div>`:''}
-      <div class="cap" style="margin-bottom:8px">Home &rsaquo; Section &rsaquo; <b>Current page</b> &nbsp;(breadcrumb)</div>
-      ${B.eyebrow()}${B.h(1,'66%')}${B.txt(2)}`
-  }),
-  cta:()=>({label:'CTA BAND — brand red, animated light sheen', tag:'GLOBAL', html:B.cta()}),
-};
-
-/* ---- GLOBAL COMPONENTS ---- */
-const GLOBALS = [
-{
-  id:'g-header', name:'Global Header', file:'assets/chrome.js', kind:'global',
-  desc:'Injected on every page by chrome.js. Sticky; shrinks on scroll. Contains the utility bar, brand, five mega-menu triggers and the icon cluster.',
-  sections:[
-    {label:'UTILITY BAR — charcoal, hidden below 900px', cls:'dark', html:
-      `<div class="row" style="align-items:center">
-        <span class="chip">TAPES (active)</span><span class="chip">FILMS</span>
-        <div style="margin-left:auto" class="row">
-          <span class="cap">About us</span><span class="cap">Career</span><span class="cap">Press</span>
-          <span class="cap">Partner with us</span><span class="cap">Quality &amp; Certifications</span>
-        </div>
-      </div>`},
-    {label:'MAIN NAV — sticky, 92px (72px when scrolled)', html:
-      `<div class="row" style="align-items:center">
-        <div class="img" style="width:130px;height:44px">DEON logo (SVG)</div>
-        <div class="row" style="gap:6px;margin-left:14px">
-          ${['Markets','Applications','Products','Manufacturing','Knowledge Center'].map(n=>`<span class="chip">${n} ▾</span>`).join('')}
-        </div>
-        <div class="row" style="margin-left:auto;gap:6px;align-items:center">
-          <span class="chip">🔍</span><span class="chip">🌐 EN</span><span class="chip">♿</span>
-          <span class="btn pri">Contact</span><span class="chip">☰ (mobile)</span>
-        </div>
-      </div>`},
-    {label:'MEGA-MENU PANEL — one per nav item (5 total)', html:
-      `<div class="dashbox">
-        <div class="cap" style="margin-bottom:8px">Opens on hover + click · last two right-aligned to avoid overflow</div>
-        <div class="grid" style="grid-template-columns:repeat(3,1fr)">
-          ${`<div><div class="cap" style="margin-bottom:6px">Column heading</div>
-             ${`<div class="box" style="padding:7px;margin-bottom:5px"><div class="txt w75" style="margin:0"></div><div class="txt w45"></div></div>`.repeat(4)}
-          </div>`.repeat(3)}
-        </div>
-        <div class="row" style="justify-content:space-between;border-top:1px solid var(--line);margin-top:9px;padding-top:9px">
-          <span class="cap">Feature line</span><span class="cap">Explore &rarr;</span>
-        </div>
-      </div>`},
-    {label:'SCROLL PROGRESS BAR — fixed top, brand red', html:`<div class="redband" style="height:14px">scroll progress (scaleX 0 → 1)</div>`}
-  ],
-  annos:[
-    'Five mega-menus: Markets (11 industries), Applications (8 jobs), Products (by type / adhesive / backing), Manufacturing (capabilities), Knowledge Center (resources + company).',
-    'Nav collapses below <code>1080px</code>; utility bar hides below <code>900px</code>; hamburger opens the mobile panel.',
-    'Header gains <code>.scrolled</code> past 40px — height 92px → 72px, logo 44px → 38px.'
-  ]
-},
-{
-  id:'g-overlays', name:'Global Overlays', file:'assets/chrome.js', kind:'global',
-  desc:'Four overlay surfaces plus a shared scrim. All close on Escape, scrim click, or the close button.',
-  sections:[
-    {label:'SEARCH MODAL — live results', html:
-      `<div class="dashbox" style="max-width:560px;margin:0 auto">
-        <div class="bar" style="height:38px;margin-bottom:8px"></div>
-        <div class="cap" style="margin-bottom:6px">Popular: chips (All products / Calculators / Acrylic / Certifications / Samples)</div>
-        <div class="cap" style="margin-bottom:6px">↓ live results (pages + 24 products)</div>
-        ${`<div class="row" style="align-items:center;border-top:1px solid var(--line);padding:8px 0">
-            <span class="chip" style="background:#CC0000;opacity:.6;color:#fff">TYPE</span>
-            <div style="flex:1"><div class="txt w60" style="margin:0"></div><div class="txt w45"></div></div>
-          </div>`.repeat(3)}
-      </div>`},
-    {label:'ACCESSIBILITY PANEL — right drawer, persisted', html:
-      `<div class="dashbox" style="max-width:340px">
-        ${['Text size — Default / Large / Extra large','Contrast — Standard / High','Theme — System / Light / Dark','Motion — Animations on / Reduce motion']
-          .map(r=>`<div style="border-bottom:1px solid var(--line);padding:8px 0">
-            <div class="cap" style="margin-bottom:5px">${r.split(' — ')[0]}</div>
-            <div>${r.split(' — ')[1].split(' / ').map(o=>`<span class="chip">${o}</span>`).join('')}</div></div>`).join('')}
-        <div class="cap" style="margin-top:8px">Saved to localStorage per device</div>
-      </div>`},
-    {label:'LANGUAGE PANEL — 16 locales', html:
-      `<div class="dashbox" style="max-width:340px">
-        <div class="grid" style="grid-template-columns:1fr 1fr">
-          ${`<div class="box" style="padding:7px"><div class="txt w75" style="margin:0"></div></div>`.repeat(8)}
-        </div><div class="cap" style="margin-top:8px">EN · DE · FR · ES · PT · IT · NL · AR · TR · PL · RU · HI · JA · ZH · KO · VI</div>
-      </div>`},
-    {label:'MOBILE MENU — right drawer (below 1080px)', html:
-      `<div class="dashbox" style="max-width:300px">
-        ${`<div class="box" style="padding:8px;margin-bottom:5px"><div class="txt w60" style="margin:0"></div></div>`.repeat(7)}
-        <span class="btn pri" style="width:100%;text-align:center">Request samples</span>
-      </div>`}
-  ],
-  annos:['Scrim dims the page behind any open overlay.','Search matches page titles, descriptions and all 24 product codes/names; Enter opens the first hit.']
-},
-{
-  id:'g-footer', name:'Global Footer', file:'assets/chrome.js', kind:'global',
-  desc:'Charcoal footer injected on every page — brand block, four link columns, and a legal bottom bar.',
-  sections:[
-    {label:'FOOTER — charcoal', cls:'dark', html:
-      `<div class="darkband">
-        <div class="grid" style="grid-template-columns:1.6fr 1fr 1fr 1fr 1fr">
-          <div><div class="img" style="height:44px;width:130px;margin-bottom:8px">logo (on white chip)</div>
-            ${B.txt(3)}<span class="btn">Contact DEON</span></div>
-          ${['Products','Markets','Company','Resources'].map(c=>`<div>
-            <div class="cap" style="color:#ddd;margin-bottom:7px">${c}</div>
-            ${`<div class="txt w75"></div>`.repeat(5)}</div>`).join('')}
-        </div>
-        <div style="border-top:1px solid #6a6a6a;margin-top:12px;padding-top:10px" class="row">
-          <span class="cap" style="color:#ccc">© 2026 DEON Tapes Industries Pvt. Ltd.</span>
-          <span class="cap" style="color:#ccc">It's Power-Strong</span>
-          <span class="cap" style="color:#ccc;margin-left:auto">Legal · Privacy · Terms · Accessibility · Sitemap</span>
-        </div>
-      </div>`},
-    {label:'BACK-TO-TOP — fixed, appears after 500px', html:`<div class="row"><span class="btn pri" style="border-radius:50%">↑</span><span class="cap">fixed bottom-right</span></div>`}
-  ],
-  annos:[]
+function partnerDetail(title,intro){
+  return pageHead('Home › Partners › '+title, title, intro)
+    + SEC('What you get — 5 points') + box(['Point one','Point two','Point three','Point four','Point five'].map(p=>`<div>→ ${p}</div>`).join(''))
+    + cta('Interested in this program?', BTN('Contact the partner desk',1)+BTN('All partner programs'));
 }
-];
-
-/* ---- CONTENT PAGES ---- */
-const PAGES = [
-{
-  id:'home', name:'Home', file:'index.html',
-  desc:'Landing page. Photographic hero, then nine content bands ending in the CTA.',
-  sections:[
-    {label:'HERO — full-bleed factory photo, dark scrim, 74vh', cls:'dark', html:
-      `<div class="img" style="height:150px">Factory coating-line photograph (full-bleed) + gradient scrim</div>
-       <div style="margin-top:-118px;position:relative;padding:0 8px">
-        <div class="eyeb"></div>${B.h(1,'60%')}${B.txt(2)}
-        <div style="margin-top:10px">${B.btns(['Browse products','Contact DEON'])}</div>
-        <div style="margin-top:8px">${B.chips(['ISO 9001:2015 certified','89,000 m² area','2 plants'])}</div>
-       </div>`},
-    {label:'TAPE MARQUEE — brand red, infinite scroll, rotated −0.6°', html:`<div class="redband">IT'S POWER-STRONG ◆ IT'S POWER-STRONG ◆ …</div>`},
-    {label:'TRUSTED BY — infinite logo marquee', cls:'tint', html:
-      `<div class="cap" style="text-align:center;margin-bottom:8px">TRUSTED BY LEADING BRANDS</div>
-       <div class="row" style="justify-content:center">${B.chips(['ACME','VOLTEC','NORDPAK','FERROLINE','KAIZEN','ORBIT OEM'])}</div>`},
-    {label:'WHO WE ARE — section head + 3 pillars', html:
-      `${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:12px">${B.cards(3,3,{lines:2})}</div>`},
-    {label:'WHAT WE MAKE — 6 product cards with photos', cls:'tint', html:
-      `${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:12px">${B.cards(3,6,{img:74,lines:2,tag:1,foot:1,label:'Product photo'})}</div>`},
-    {label:'HOW A TAPE IS BUILT — 3 columns of chips', html:
-      `${B.eyebrow()}${B.h(2)}${B.txt(1)}
-       <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:12px">
-         ${['Adhesive system','Backing material','Converting precision'].map((t,i)=>`<div style="border-top:3px solid #CC0000;padding-top:9px">
-            <div class="cap">0${i+1}</div><div class="h-blk h3b" style="width:75%"></div>
-            <div>${B.chips(i===0?['Acrylic','Rubber','Hot-melt','Silicone']:i===1?['Film','Foam','Foil','Paper','Cloth','Filament']:['Slitting','Printed cores','Private label'])}</div>
-         </div>`).join('')}
-       </div><div class="cap" style="margin-top:9px">→ Or start from the job the tape has to do</div>`},
-    {label:'MARKETS — 2-column row list (10 industries)', cls:'tint', html:
-      `${B.eyebrow()}${B.h(2)}${B.txt(1)}
-       <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:12px">${B.rows(5,{num:1})}${B.rows(5,{num:1})}</div>
-       <div class="cap" style="margin-top:9px">→ See all markets</div>`},
-    {label:'HOW WE MAKE IT — 3 numbered cards', html:`${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:12px">${B.cards(3,3,{lines:2})}</div>`},
-    {label:'QUALITY &amp; COMPLIANCE — 5 certification badges', cls:'tint', html:
-      `${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:12px">${B.badges(5)}</div>
-       <div class="cap" style="margin-top:9px">→ Datasheets, test reports &amp; certifications</div>`},
-    {label:'BY THE NUMBERS — dark band, 4 count-up stats', cls:'dark', html:`${B.eyebrow()}${B.h(2,'40%')}<div style="margin-top:10px">${B.stats(4)}</div>`},
-    S.cta()
-  ],
-  annos:[
-    'Stats count up from zero and <b>re-count every time</b> they scroll back into view.',
-    'Product cards use the real 24-product photography; images blur-up on load.',
-    'Tape and logo marquees loop infinitely and pause on hover.'
-  ]
-},
-{
-  id:'products', name:'Products — Catalogue', file:'products.html',
-  desc:'Filterable product catalogue. Sidebar facets + responsive card grid, fully URL-synced.',
-  sections:[
-    S.pageHead(1),
-    {label:'CATALOGUE — 260px facet rail + card grid', html:
-      `<div class="grid" style="grid-template-columns:200px 1fr">
-        <div class="dashbox">
-          <div class="cap" style="margin-bottom:8px">FACETS (sticky)</div>
-          ${['Product family (7)','Adhesive (4)','Backing (11)','Construction (2)'].map(g=>`
-            <div style="margin-bottom:11px"><div class="cap" style="margin-bottom:5px">${g}</div>
-            ${`<div class="row" style="gap:6px;align-items:center;margin-bottom:3px"><span class="bar" style="width:13px;height:13px"></span><div class="txt w60" style="margin:0;flex:1"></div></div>`.repeat(4)}
-            </div>`).join('')}
-        </div>
-        <div>
-          <div class="row" style="align-items:center;margin-bottom:9px">
-            <span class="cap">Showing <b>24</b> of 24 products</span>
-            <div style="margin-left:auto">${B.chips(['Acrylic ✕','Double-sided ✕','Clear all'])}</div>
-          </div>
-          ${B.cards(3,6,{img:66,lines:2,tag:1,foot:1,label:'Product photo'})}
-          <div class="cap" style="margin-top:8px">… 24 cards total (3-col → 2-col → 1-col)</div>
-        </div>
-      </div>`},
-    S.cta()
-  ],
-  annos:[
-    'Filters are additive within a group, AND across groups; results and count update instantly.',
-    'State syncs to the URL via <code>history.replaceState</code> — e.g. <code>products.html?adhesive=acrylic&amp;sided=double</code>.',
-    'Deep links from the mega-menu and footer pre-apply filters on load.',
-    'Each card: photo, product code, family tag, name, description, adhesive/backing/construction meta, "Request sample" + "Datasheet".'
-  ]
-},
-{
-  id:'tools', name:'Tools &amp; Calculators', file:'tools.html',
-  desc:'Seven working calculators. All computation is client-side; nothing is transmitted.',
-  sections:[
-    S.pageHead(0),
-    {label:'CALCULATOR GRID — 2 columns (1 on mobile)', html:
-      `<div class="grid" style="grid-template-columns:1fr 1fr">
-        ${['Roll Length','Roll Diameter','Roll Weight','Grammage / Coat-Weight','Jumbo-to-Finished-Roll','Tape Consumption','Carton Sealing']
-          .map((t,i)=>`<div class="box">
-            <span class="chip">${['Packaging','Packaging','Packaging','Manufacturing','Conversion','Procurement','Packaging'][i]}</span>
-            <div class="h-blk h3b" style="width:72%;margin-top:7px"></div>
-            <div class="txt w90"></div>
-            <div style="margin:9px 0">
-              ${`<div class="row" style="align-items:center;margin-bottom:5px"><div class="txt w45" style="margin:0;flex:1"></div><span class="bar" style="width:60px;height:22px"></span><span class="cap">unit</span></div>`.repeat(3)}
-            </div>
-            <div class="darkband" style="padding:10px"><div class="cap" style="color:#ddd">RESULT</div>
-              <div class="h-blk h2b" style="width:55%;margin:5px 0 0;background:#8a8a8a"></div></div>
-            <div class="txt w75" style="margin-top:7px"></div>
-          </div>`).join('')}
-      </div>
-      <div class="box fill" style="margin-top:11px" class="row">
-        <div class="row" style="align-items:center;justify-content:space-between">
-          <div class="txt w60" style="margin:0"></div><span class="btn pri">Open product finder</span>
-        </div>
-      </div>`},
-  ],
-  annos:[
-    'Calculators: 1 Roll Length · 2 Roll Diameter (+wraps) · 3 Roll Weight · 4 Grammage · 5 Jumbo-to-Finished (lanes, rolls, utilisation, trim) · 6 Tape Consumption (monthly/annual/reorder) · 7 Carton Sealing (pattern-driven).',
-    'Every field recomputes live on input; each card shows a dark result panel plus an assumptions note.',
-    'Defaults reproduce the reference values exactly (135.5 m, 99.9 mm/239 wraps, 0.206 kg, 65 g/m², 20 lanes, 19,500 m, 1,040 m).'
-  ]
-},
-{
-  id:'markets', name:'Markets — Index', file:'markets.html',
-  desc:'Industry overview: 11 market cards plus the three partner tracks.',
-  sections:[
-    S.pageHead(1),
-    {label:'EXPLORE BY INDUSTRY — 11 cards', html:`${B.eyebrow()}${B.h(2)}<div style="margin-top:11px">${B.cards(3,6,{lines:2,foot:1})}</div><div class="cap" style="margin-top:8px">… 11 industry cards</div>`},
-    {label:'PARTNERSHIPS — 3 program cards', cls:'tint', html:`${B.eyebrow()}${B.h(2)}${B.txt(1)}<div style="margin-top:11px">${B.cards(3,3,{lines:2,tag:1,foot:1})}</div>`},
-    S.cta()
-  ],
-  annos:['Cards link to <code>market.html?m=&lt;key&gt;</code> — transportation, electrical, building, renewable, metal, hvacr, appliance, packaging, electronics, automotive, print.']
-},
-{
-  id:'market', name:'Market — Detail (×11)', file:'market.html?m=…', dynamic:1,
-  desc:'One template renders all 11 industry pages from the shared data file, keyed off the ?m= parameter.',
-  sections:[
-    S.pageHead(1),
-    {label:'TWO-COLUMN — applications list + recommended products', html:
-      `<div class="grid" style="grid-template-columns:1fr 1fr">
-        <div><div class="cap" style="margin-bottom:6px">Where DEON tape is used</div>${B.eyebrow()}${B.h(3)}
-          <div class="dashbox" style="margin-top:8px">${`<div class="row" style="align-items:center;padding:7px 0;border-bottom:1px solid var(--line)"><span class="cap" style="color:#CC0000">→</span><div class="txt w75" style="margin:0;flex:1"></div></div>`.repeat(4)}</div></div>
-        <div><div class="cap" style="margin-bottom:6px">Recommended</div>${B.eyebrow()}${B.h(3)}
-          <div class="dashbox" style="margin-top:8px">${`<div class="row" style="align-items:center;gap:9px;margin-bottom:7px"><div class="img" style="width:56px;height:42px">img</div><div style="flex:1"><div class="cap">Deon CODE</div><div class="txt w75" style="margin:3px 0 0"></div></div></div>`.repeat(4)}</div></div>
-      </div>`},
-    {label:'WHAT DEON BRINGS — 5 centred badges', cls:'tint', html:`${B.eyebrow()}${B.h(2,'50%')}<div style="margin-top:11px;display:flex;justify-content:center">${B.badges(5)}</div>`},
-    S.cta()
-  ],
-  annos:[
-    'Title, intro, breadcrumb, applications list and product set are all injected from <code>DEON_MARKETS</code>.',
-    'Falls back to <b>electrical</b> when no/unknown <code>?m=</code> is supplied.'
-  ]
-},
-{
-  id:'applications', name:'Applications — Index', file:'applications.html',
-  desc:'Entry point for choosing a tape by the job it has to do.',
-  sections:[S.pageHead(1),
-    {label:'BY FUNCTION — 10 application cards', html:`${B.eyebrow()}${B.h(2)}<div style="margin-top:11px">${B.cards(3,6,{lines:2,tag:1,foot:1})}</div><div class="cap" style="margin-top:8px">… 10 cards</div>`},
-    S.cta()],
-  annos:['Masking · Bundling &amp; harnessing · Insulation · Surface protection · Bonding · Mounting · Packaging · Floor &amp; safety marking · Thermal management · Assembly.']
-},
-{
-  id:'application', name:'Application — Detail (×10)', file:'application.html?group=…', dynamic:1,
-  desc:'Single template for all application pages, keyed off ?group= or ?app=.',
-  sections:[S.pageHead(1),
-    {label:'RECOMMENDED CONSTRUCTIONS — product grid', html:`${B.eyebrow()}${B.h(2)}${B.txt(1)}<div style="margin-top:11px">${B.cards(3,3,{img:60,lines:1,label:'Product photo'})}</div>`},
-    {label:'BUILD EXPLAINER — 3 chip columns', cls:'tint', html:
-      `<div class="grid" style="grid-template-columns:repeat(3,1fr)">
-        ${['Adhesive system','Backing material','Converting precision'].map((t,i)=>`<div style="border-top:3px solid #CC0000;padding-top:9px">
-          <div class="cap">0${i+1}</div><div class="h-blk h3b" style="width:70%"></div>
-          <div>${B.chips(i===0?['Acrylic','Rubber','Hot-melt','Silicone']:i===1?['Film','Foam','Foil','Cloth','Filament']:['Slitting','Custom widths','Private label'])}</div></div>`).join('')}
-      </div>`},
-    S.cta()],
-  annos:['Defaults to <b>masking</b> when the parameter is missing or unknown.']
-},
-{
-  id:'contact', name:'Contact', file:'contact.html',
-  desc:'Three-mode enquiry form with contact details alongside.',
-  sections:[S.pageHead(1),
-    {label:'FORM + INFO — 2 columns', html:
-      `<div class="grid" style="grid-template-columns:1.3fr .7fr">
-        <div>
-          <div style="margin-bottom:9px">${B.chips(['Request samples','Request a quote','General enquiry'])}</div>
-          <div class="grid" style="grid-template-columns:1fr 1fr">
-            ${['First name','Last name','Company','Country','Work email','Phone'].map(f=>`<div><div class="cap">${f}</div><div class="bar" style="height:30px;margin-top:4px"></div></div>`).join('')}
-            <div style="grid-column:1/-1"><div class="cap">Product / SKU of interest</div><div class="bar" style="height:30px;margin-top:4px"></div></div>
-            <div style="grid-column:1/-1"><div class="cap">Application &amp; specification</div><div class="bar" style="height:74px;margin-top:4px"></div></div>
-          </div>
-          <div class="row" style="align-items:center;margin-top:10px"><span class="btn pri">Send request</span><span class="cap">Reply within one business day</span></div>
-          <div class="box" style="margin-top:9px;background:#eef7f0;border-color:#bfe0c8"><div class="cap">✓ success confirmation (shown after submit)</div></div>
-        </div>
-        <div>
-          <div class="box fill"><div class="h-blk h3b" style="width:70%"></div><div class="cap">Phone · Email · Plants</div>${B.txt(3)}</div>
-          <div class="box" style="margin-top:9px"><div class="h-blk h3b" style="width:60%"></div><div class="cap">Which team? routing links</div>${B.txt(3)}</div>
-        </div>
-      </div>`}],
-  annos:[
-    'Tabs switch the message label and submit wording; <code>?type=sample|quote|general</code> preselects one.',
-    '<code>?sku=DT2131</code> pre-fills the product field from any "Request sample" link.',
-    'Submission is intercepted and shows an inline confirmation (no backend wired).'
-  ]
-},
-{
-  id:'about', name:'About us', file:'about.html',
-  desc:'Company story and presence.',
-  sections:[S.pageHead(1),
-    {label:'WHO WE ARE — 3 cards', html:`${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:11px">${B.cards(3,3,{lines:2})}</div>`},
-    {label:'OUR PRESENCE — 4 count-up stats (#our-presence)', cls:'tint', html:`${B.eyebrow()}${B.h(2,'45%')}<div style="margin-top:10px">${B.stats(4)}</div>`},
-    S.cta()],
-  annos:['<code>#our-presence</code> is deep-linked from the Manufacturing mega-menu.']
-},
-{
-  id:'manufacturing', name:'Manufacturing &amp; Technology', file:'manufacturing-technology.html',
-  desc:'Capability story across four anchored sections, all linked from the mega-menu.',
-  sections:[S.pageHead(1),
-    {label:'CAPABILITIES — 3 cards (#manufacturing-capabilities)', html:`${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:11px">${B.cards(3,3,{lines:2})}</div>`},
-    {label:'ADHESIVE TECHNOLOGIES — 4 columns (#adhesive-technologies)', cls:'tint', html:
-      `${B.eyebrow()}${B.h(2)}<div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:11px">
-        ${['Acrylic','Rubber','Hot-melt','Silicone'].map(t=>`<div style="border-top:3px solid #CC0000;padding-top:9px"><div class="cap">${t}</div><div class="h-blk h3b" style="width:80%"></div><div class="txt w90"></div></div>`).join('')}</div>`},
-    {label:'TESTING &amp; VALIDATION — 5 badges (#testing-and-validation)', html:`${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:11px">${B.badges(5)}</div>`},
-    {label:'CUSTOM DEVELOPMENT (#custom-product-development)', cls:'tint', html:`${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:9px">${B.btns(['Start a development enquiry'])}</div>`},
-    S.cta()],
-  annos:['All four anchors are targeted directly from the Manufacturing mega-menu.']
-},
-{
-  id:'films', name:'Soft PVC Films', file:'films.html',
-  desc:'In-house calendered film capability.',
-  sections:[S.pageHead(1),{label:'SOFT PVC FILM — 3 cards', html:`${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:11px">${B.cards(3,3,{lines:2})}</div>`},S.cta()],
-  annos:[]
-},
-{
-  id:'certifications', name:'Quality &amp; Certifications', file:'certifications.html',
-  desc:'Certification detail with per-standard anchors.',
-  sections:[S.pageHead(1),
-    {label:'CERTIFICATIONS — 5 anchored cards', html:`${B.eyebrow()}${B.h(2)}${B.txt(2)}<div style="margin-top:11px">${B.cards(3,5,{lines:2,tag:1})}</div>
-      <div class="cap" style="margin-top:8px">#iso-9001 · #iso-45001 · #iso-14001 · #ul · #bis</div>`},
-    {label:'DOCUMENTED &amp; AUDIT-READY — 3 badges', cls:'tint', html:`${B.eyebrow()}${B.h(2)}<div style="margin-top:11px">${B.badges(3)}</div>`},
-    S.cta()],
-  annos:['Each card is individually anchored so the footer/mega-menu can deep-link a single standard.']
-},
-{
-  id:'knowledge', name:'Knowledge Center', file:'knowledge-center.html',
-  desc:'Resource hub plus FAQ.',
-  sections:[S.pageHead(1),
-    {label:'RESOURCES — 6 cards', html:`${B.eyebrow()}${B.h(2)}${B.txt(1)}<div style="margin-top:11px">${B.cards(3,6,{lines:2,tag:1,foot:1})}</div>`},
-    {label:'FAQ — 4 Q&amp;A rows', cls:'tint', html:`${B.eyebrow()}${B.h(2,'35%')}
-      <div class="dashbox" style="margin-top:10px">${`<div class="row" style="align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)"><span class="cap" style="color:#CC0000">Q</span><div style="flex:1"><div class="txt w60" style="margin:0"></div><div class="txt w90"></div></div></div>`.repeat(4)}</div>`},
-    S.cta()],
-  annos:[]
-},
-{
-  id:'careers', name:'Careers', file:'careers.html', desc:'Open roles.',
-  sections:[S.pageHead(1),{label:'OPEN ROLES — 3 cards', html:`${B.eyebrow()}${B.h(2)}${B.txt(1)}<div style="margin-top:11px">${B.cards(3,3,{lines:1,tag:1,foot:1})}</div>`},S.cta()],
-  annos:[]
-},
-{
-  id:'press', name:'Press', file:'press.html', desc:'News and announcements.',
-  sections:[S.pageHead(1),{label:'NEWS — dated list', html:`${B.eyebrow()}${B.h(2,'35%')}
-    <div class="dashbox" style="margin-top:10px">${`<div class="row" style="align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)"><span class="cap" style="color:#CC0000">2026</span><div style="flex:1"><div class="txt w60" style="margin:0"></div><div class="txt w90"></div></div></div>`.repeat(3)}</div>`},S.cta()],
-  annos:[]
-},
-{
-  id:'partners', name:'Partners — Index', file:'partners.html', desc:'Three partner tracks.',
-  sections:[S.pageHead(1),{label:'PARTNER PROGRAMS — 3 cards', html:`${B.eyebrow()}${B.h(2)}${B.txt(1)}<div style="margin-top:11px">${B.cards(3,3,{lines:2,tag:1,foot:1})}</div>`},S.cta()],
-  annos:['Links to converter-partners, oem-partners and dealer-partners.']
-},
-{
-  id:'partner-detail', name:'Partner Program — Detail (×3)', file:'converter- / oem- / dealer-partners.html',
-  desc:'Shared layout for the converter, OEM &amp; private-label, and authorised dealer programs.',
-  sections:[S.pageHead(1),
-    {label:'WHAT YOU GET — 5 marked list rows', html:`${B.eyebrow()}${B.h(2)}
-      <div class="dashbox" style="margin-top:10px">${`<div class="row" style="align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)"><span class="cap" style="color:#CC0000">→</span><div class="txt w75" style="margin:0;flex:1"></div></div>`.repeat(5)}</div>`},
-    S.cta()],
-  annos:['Three separate files sharing one structure; only the heading and the five bullets differ.']
-},
-{
-  id:'legal', name:'Legal Pages (×4)', file:'legal-notice / privacy-statement / terms-conditions / accessibility-statement.html',
-  desc:'Prose pages on a tint page-head with a constrained measure.',
-  sections:[S.pageHead(0),
-    {label:'PROSE — max 70ch measure', html:`<div style="max-width:520px">${B.h(3)}${B.txt(3)}${B.h(3)}${B.txt(4)}${B.h(3)}${B.txt(2)}</div>`}],
-  annos:['Legal notice · Privacy statement · Terms &amp; conditions · Accessibility statement.']
-},
-{
-  id:'cookies', name:'Cookie Settings', file:'cookie-settings.html',
-  desc:'Explanatory prose beside an interactive preferences card.',
-  sections:[S.pageHead(0),
-    {label:'PROSE + SETTINGS CARD', html:
-      `<div class="grid" style="grid-template-columns:1fr 1fr">
-        <div>${B.h(3)}${B.txt(3)}${B.h(3)}${B.txt(3)}</div>
-        <div class="box fill">
-          <div class="h-blk h3b" style="width:60%"></div>
-          <div style="border-bottom:1px solid var(--line);padding:8px 0"><div class="cap">Essential</div><span class="chip">Always on</span></div>
-          <div style="border-bottom:1px solid var(--line);padding:8px 0"><div class="cap">Preferences</div><span class="chip">On</span><span class="chip">Off</span></div>
-          <div style="margin-top:9px">${B.btns(['Save settings'])}</div>
-        </div>
-      </div>`}],
-  annos:['Only essential and preference cookies; no advertising or third-party tracking.']
-},
-{
-  id:'sitemap', name:'Sitemap', file:'site-map.html', desc:'Every page grouped into seven columns.',
-  sections:[S.pageHead(0),
-    {label:'LINK COLUMNS — 4-up grid, 7 groups', html:
-      `<div class="grid" style="grid-template-columns:repeat(4,1fr)">
-        ${['Products','Applications','Markets','Manufacturing','Knowledge','Company','Legal'].map(g=>`<div>
-          <div class="cap" style="margin-bottom:6px">${g}</div>${`<div class="txt w75"></div>`.repeat(5)}</div>`).join('')}
-      </div>`}],
-  annos:[]
-}
-];
-
-/* ---------- render ---------- */
-function renderSection(s){
-  return `<div class="sec ${s.cls||''}">
-    <div class="sec-label">${s.tag?`<span class="tagn">${s.tag}</span>`:''}<b>${s.label}</b></div>
-    ${s.html}
-  </div>`;
-}
-function renderItem(p,i,isGlobal){
-  return `<section class="page" id="${p.id}">
-    <div class="page-title">
-      <span class="idx">${isGlobal?'G'+(i+1):String(i+1).padStart(2,'0')}</span>
-      <h3>${p.name}</h3>
-      <span class="file">${p.file}</span>
-      ${p.dynamic?`<span class="chip">dynamic template</span>`:''}
-    </div>
-    <p class="page-desc">${p.desc}</p>
-    <div class="browser">
-      <div class="bbar"><i></i><i></i><i></i><div class="url">deontapes.com/${p.file.split(' ')[0]}</div></div>
-      <div class="canvas">
-        ${!isGlobal?`<div class="sec" style="background:#f3f3f3"><div class="sec-label"><span class="tagn">GLOBAL</span><b>HEADER — utility bar + nav + 5 mega-menus</b></div></div>`:''}
-        ${p.sections.map(renderSection).join('')}
-        ${!isGlobal?`<div class="sec" style="background:#f3f3f3"><div class="sec-label"><span class="tagn">GLOBAL</span><b>FOOTER — brand + 4 link columns + legal bar</b></div></div>`:''}
-      </div>
-    </div>
-    ${p.annos&&p.annos.length?`<div class="annos"><div class="cap">Behaviour &amp; notes</div><ol>${p.annos.map(a=>`<li>${a}</li>`).join('')}</ol></div>`:''}
-  </section>`;
+function simplePage(crumb,title){
+  return pageHead(crumb,title) + SEC('Prose (constrained measure)') + LINES(4) + SEC('&nbsp;') + LINES(3);
 }
 
-const out=document.getElementById('out'), toc=document.getElementById('toc');
-out.innerHTML =
-  `<h2 style="font-size:1.1rem;margin:6px 0 4px;letter-spacing:-.01em">Global Components</h2>
-   <p class="page-desc">Shared chrome injected on every page.</p>`
-  + GLOBALS.map((p,i)=>renderItem(p,i,true)).join('')
-  + `<h2 style="font-size:1.1rem;margin:24px 0 4px;letter-spacing:-.01em">Pages</h2>
-     <p class="page-desc">All content templates. Detail templates render many pages from one file.</p>`
-  + PAGES.map((p,i)=>renderItem(p,i,false)).join('');
+/* ---------- controller ---------- */
+const LABELS = { flowmap:'Site Map', home:'Home', products:'Products — Catalogue', tools:'Tools & Calculators',
+  markets:'Markets — Index','market-detail':'Market — Detail (×11)', applications:'Applications — Index','application-detail':'Application — Detail (×10)',
+  manufacturing:'Manufacturing & Technology', films:'Soft PVC Films', certifications:'Quality & Certifications', knowledge:'Knowledge Center',
+  about:'About us', careers:'Careers', press:'Press', partners:'Partners','converter-partners':'Converter Partners','oem-partners':'OEM Partners','dealer-partners':'Dealer Partners',
+  contact:'Contact','legal-notice':'Legal notice','privacy-statement':'Privacy','terms-conditions':'Terms & conditions','accessibility-statement':'Accessibility','cookie-settings':'Cookie settings','site-map':'Sitemap' };
 
-toc.innerHTML =
-  `<div class="grp">Global</div>`+GLOBALS.map((p,i)=>`<a href="#${p.id}"><span class="n">G${i+1}</span>${p.name}</a>`).join('')
-  +`<div class="grp">Pages</div>`+PAGES.map((p,i)=>`<a href="#${p.id}"><span class="n">${String(i+1).padStart(2,'0')}</span>${p.name}</a>`).join('');
-
-/* page count: templates + the pages the dynamic ones expand to */
-document.getElementById('mPages').textContent = '25 page files · '+(PAGES.length+GLOBALS.length)+' wireframes';
+function goTo(id){
+  var body = SCREENS[id] ? SCREENS[id]() : '<div class="page-wrap"><p>Missing screen: '+id+'</p></div>';
+  var html = (id==='flowmap') ? body : (navBar(id)+'<div class="page-wrap">'+body+(body.indexOf('wf-footer')>-1?'':footer())+'</div>');
+  document.getElementById('app').innerHTML = html;
+  document.getElementById('crumbLabel').textContent = LABELS[id]||id;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function toggleLegend(){ document.getElementById('legendBar').classList.toggle('hidden'); }
+goTo('home');
 </script>
 </body>
 </html>
