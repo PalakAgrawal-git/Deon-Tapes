@@ -130,6 +130,7 @@
         '<button class="icon-btn" id="btnTheme" aria-label="Switch to dark mode" title="Toggle light / dark">'+
           '<svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M2 12h2.5M19.5 12H22M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>'+
           '<svg class="ic-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg>'+
+          '<span class="theme-lbl">Light mode</span>'+
         '</button>'+
         '<button class="icon-btn lang-btn" id="btnLang" aria-label="Change language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span id="langLabel">EN</span></button>'+
         '<button class="icon-btn" id="btnA11y" aria-label="Accessibility and display options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="1.6"/><path d="M4 8h16M9 21l3-8 3 8M12 8v5"/></svg></button>'+

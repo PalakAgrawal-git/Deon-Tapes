@@ -90,6 +90,8 @@
     btn.classList.toggle('is-dark',dark);
     btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    var lbl=btn.querySelector('.theme-lbl');
+    if(lbl) lbl.textContent = dark ? 'Dark mode' : 'Light mode';
   }
   var themeBtn=$('#btnTheme');
   if(themeBtn){
