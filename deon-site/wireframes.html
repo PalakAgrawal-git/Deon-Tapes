@@ -206,6 +206,7 @@ home:()=>
   photoHero('Pressure-sensitive adhesive tapes and soft PVC films, manufactured in-house.',
     BTN('Browse Products',1)+BTN('Contact DEON'), ['ISO 9001:2015 certified','89,000 m² area','2 plants — Silvassa & Vadodara'])
   + SEC('Tape marquee — "It\'s Power-Strong" (infinite scroll)') + box('<div class="redline" style="width:100%;height:20px"></div>')
+  + SEC('By the numbers — count-up stats') + stats([['2016','Making tape since'],['100+','Customers'],['89,000 m²','Built-up area'],['2','Plants']])
   + SEC('Trusted by leading brands (logo marquee)') + box(`<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">${['Logo','Logo','Logo','Logo','Logo','Logo'].map(l=>IMG(l,45)).join('')}</div>`)
   + SEC('Who we are — 3 pillars') + grid(3,[box('<b>01</b><br>In-house adhesive formulation'+LINES(2)),box('<b>02</b><br>Manufacturing capability'+LINES(2)),box('<b>03</b><br>Traceable quality'+LINES(2))])
   + SEC('What we make — 6 product categories (with photos)')
@@ -215,7 +216,6 @@ home:()=>
   + SEC('Markets — 10 industries') + grid(2,[box(['Transportation','Electrical','Building components','Renewable energy','Metal manufacturing'].map(m=>`<div>› ${m} &nbsp; ${LINK('open','market-detail')}</div>`).join('')),box(['HVAC & Insulation','Appliance','Packaging & logistics','Electronics','Automotive'].map(m=>`<div>› ${m}</div>`).join(''))])
   + SEC('How we make it — 3 steps') + grid(3,[box('<b>01</b> Formulate & coat'+LINES(2)),box('<b>02</b> Convert & slit'+LINES(2)),box('<b>03</b> Test & qualify'+LINES(2))])
   + SEC('Quality & compliance — 5 certification badges') + badges([['ISO 9001','Quality'],['ISO 45001','Safety'],['ISO 14001','Environment'],['UL','Recognised'],['BIS · IS 7809','Standard']])
-  + SEC('By the numbers — count-up stats') + stats([['2016','Making tape since'],['100+','Customers'],['89,000 m²','Built-up area'],['2','Plants']])
   + cta('Request product information, a quotation or samples.', BTN('Request samples',1)+BTN('Request a quote')),
 
 products:()=>
