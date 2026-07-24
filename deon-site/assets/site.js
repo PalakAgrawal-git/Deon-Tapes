@@ -24,16 +24,23 @@
     if(scrim) scrim.classList.add('show');
   }
 
-  /* ---------- header: mega menus (click for touch/keyboard; hover via CSS) ---------- */
-  $$('.nav-trigger').forEach(function(btn){
-    var mega=btn.parentElement.querySelector('.mega');
+  /* ---------- header: mega menus — exactly one open at a time ---------- */
+  function closeAllMegas(){
+    $$('.mega.open').forEach(function(m){m.classList.remove('open');});
+    $$('.nav-trigger[aria-expanded="true"]').forEach(function(b){b.setAttribute('aria-expanded','false');});
+  }
+  $$('.nav-item').forEach(function(item){
+    var btn=item.querySelector('.nav-trigger');
+    var mega=item.querySelector('.mega');
+    if(!btn||!mega) return;
+    // hovering any item clears a click-opened menu, so hover + click never stack
+    item.addEventListener('mouseenter', closeAllMegas);
+    // click toggles (for touch / keyboard), always closing the others first
     btn.addEventListener('click',function(e){
-      if(!mega)return;
       e.stopPropagation();
-      var open=mega.classList.contains('open');
-      $$('.mega.open').forEach(function(m){m.classList.remove('open');});
-      $$('.nav-trigger[aria-expanded="true"]').forEach(function(b){b.setAttribute('aria-expanded','false');});
-      if(!open){mega.classList.add('open');btn.setAttribute('aria-expanded','true');}
+      var wasOpen=mega.classList.contains('open');
+      closeAllMegas();
+      if(!wasOpen){mega.classList.add('open');btn.setAttribute('aria-expanded','true');}
     });
   });
   document.addEventListener('click',function(e){
