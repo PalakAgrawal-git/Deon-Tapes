@@ -117,7 +117,7 @@
 /* ---------- primitives ---------- */
 const IMG   = (t,h)=>`<div class="placeholder-img"${h?` style="min-height:${h}px"`:''}>${t||'Image'}</div>`;
 const LINES = (n=3)=>`<div class="wf-box text-lines">${'<span></span>'.repeat(n)}</div>`;
-const BTN   = (t,p)=>`<span class="static-btn${p?' primary':''}">${t}</span>`;
+const BTN   = (t,p,go)=>`<span class="static-btn${p?' primary':''}"${go?` onclick="goTo('${go}')" style="cursor:pointer"`:''}">${t}</span>`;
 const SEC   = (t)=>`<h2 class="sec">${t}</h2>`;
 const NOTE  = (t)=>`<div class="note"><b>Note:</b> ${t}</div>`;
 const CHIPS = (arr)=>arr.map(c=>`<span class="chip">${c}</span>`).join('');
@@ -204,7 +204,7 @@ const SCREENS = {
 
 home:()=>
   photoHero('Pressure-sensitive adhesive tapes and soft PVC films, manufactured in-house.',
-    BTN('Browse Products',1)+BTN('Contact DEON'), ['ISO 9001:2015 certified','89,000 m² area','2 plants — Silvassa & Vadodara'])
+    BTN('Browse Products',1)+BTN('Contact DEON',0,'contact'), ['ISO 9001:2015 certified','89,000 m² area','2 plants — Silvassa & Vadodara'])
   + SEC('Tape marquee — "It\'s Power-Strong" (infinite scroll)') + box('<div class="redline" style="width:100%;height:20px"></div>')
   + SEC('By the numbers — count-up stats') + stats([['2016','Making tape since'],['100+','Customers'],['89,000 m²','Built-up area'],['2','Plants']])
   + SEC('Trusted by leading brands (logo marquee)') + box(`<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">${['Logo','Logo','Logo','Logo','Logo','Logo'].map(l=>IMG(l,45)).join('')}</div>`)
@@ -247,7 +247,7 @@ markets:()=>
   pageHead('Home › Markets','Tape systems for manufacturing, infrastructure and packaging.')
   + SEC('Explore by industry — 11 cards') + grid(3, ['Transportation','Electrical','Building components','Renewable energy','Metal manufacturing','HVAC & Insulation','Appliance','Packaging & logistics','Electronics','Automotive','Print & Paper'].map(m=>box(`<b>${m}</b>`+LINES(1)+LINK('Find out more','market-detail'),true)))
   + SEC('Partnerships — 3 program cards') + grid(3,[box('<b>Industrial converters</b>'+LINES(1)+LINK('Learn more','converter-partners'),true),box('<b>OEM & private label</b>'+LINES(1)+LINK('Learn more','oem-partners'),true),box('<b>Authorized dealers</b>'+LINES(1)+LINK('Learn more','dealer-partners'),true)])
-  + cta('Send us the application and specification.', BTN('Contact DEON',1)),
+  + cta('Send us the application and specification.', BTN('Contact DEON',1,'contact')),
 
 'market-detail':()=>
   pageHead('Home › Markets › Electrical','Tape for electrical.','The insulation backbone for motors, transformers, switchgear and coils.')
@@ -295,13 +295,13 @@ knowledge:()=>
   pageHead('Home › Knowledge Center','Guides, datasheets, calculators and FAQs.')
   + SEC('Resources — 6 cards') + grid(3,[box('<b>Tools & Calculators</b>'+LINES(1)+LINK('Open','tools'),true),box('<b>Product finder</b>'+LINES(1)+LINK('Browse','products'),true),box('<b>Certifications</b>'+LINES(1)+LINK('See','certifications'),true),box('<b>Manufacturing</b>'+LINES(1)+LINK('Explore','manufacturing'),true),box('<b>By application</b>'+LINES(1)+LINK('Open','applications'),true),box('<b>Talk to our team</b>'+LINES(1)+LINK('Contact','contact'),true)])
   + SEC('FAQ — 4 questions') + box(['Custom widths & cores?','Private label?','What documentation?','How to get a sample?'].map(q=>`<div><b>Q · ${q}</b><br><span class="muted">answer…</span></div>`).join('<br>'))
-  + cta('Can\'t find what you need?', BTN('Contact DEON',1)),
+  + cta('Can\'t find what you need?', BTN('Contact DEON',1,'contact')),
 
 about:()=>
   pageHead('Home › About us','Manufacturing owned from formulation to finished roll.')
   + SEC('Who we are — 3 cards') + grid(3,[box('<b>01</b> In-house formulation'+LINES(2)),box('<b>02</b> Two plants in India'+LINES(2)),box('<b>03</b> Traceable quality'+LINES(2))])
   + SEC('Our presence — count-up stats') + stats([['2016','Making tape since'],['100+','Customers'],['89,000 m²','Built-up area'],['2','Plants']])
-  + cta('Get to know DEON.', BTN('Contact DEON',1)+BTN('Careers at DEON')),
+  + cta('Get to know DEON.', BTN('Contact DEON',1,'contact')+BTN('Careers at DEON')),
 
 careers:()=>
   pageHead('Home › Careers','Build the tapes that hold industry together.')
@@ -311,7 +311,7 @@ careers:()=>
 press:()=>
   pageHead('Home › Press','News & announcements.')
   + SEC('News — dated list') + box(['2026 — New plant commissioned in Vadodara','2025 — Expanded aluminium-foil tape range','2025 — ISO 45001:2018 certification'].map(n=>`<div><b>${n.split(' — ')[0]}</b> — ${n.split(' — ')[1]}</div>`).join('<br>'))
-  + cta('Media enquiries', BTN('Contact DEON',1)),
+  + cta('Media enquiries', BTN('Contact DEON',1,'contact')),
 
 partners:()=>
   pageHead('Home › Partners','Supplying industry rather than buying for one?')
