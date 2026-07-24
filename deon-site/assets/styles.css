@@ -705,3 +705,15 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
   .sec-head h2::after,.rule i{transform:scaleX(1)!important}
   .backtop{display:none}
 }
+
+/* header theme toggle icon state */
+#btnTheme .ic-moon{display:none}
+#btnTheme.is-dark .ic-sun{display:none}
+#btnTheme.is-dark .ic-moon{display:block}
+
+/* dark mode: keep intentionally-dark surfaces dark (they use var(--ink) as a
+   background, which flips light in the dark palette) */
+:root[data-theme="dark"] .site-footer,
+:root[data-theme="dark"] .section.dark{background:#0C0A0A}
+:root[data-theme="dark"] .calc-out{background:#000}
+:root[data-theme="dark"] .stat{border-left-color:var(--red)}
