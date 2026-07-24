@@ -44,9 +44,9 @@
   $$('.nav-item').forEach(function(item){
     var btn=item.querySelector('.nav-trigger');
     var mega=item.querySelector('.mega');
+    // hovering ANY item (incl. Home, which has no dropdown) clears open menus
+    item.addEventListener('mouseenter',function(){ closeAllMegas(); if(mega) positionMega(mega); });
     if(!btn||!mega) return;
-    // hovering any item clears a click-opened menu, so hover + click never stack
-    item.addEventListener('mouseenter',function(){ closeAllMegas(); positionMega(mega); });
     // click toggles (for touch / keyboard), always closing the others first
     btn.addEventListener('click',function(e){
       e.stopPropagation();
