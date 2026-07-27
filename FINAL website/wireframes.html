@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEON — Wireframe Prototype</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#eee; color:#333; line-height:1.5; }
+
+  /* Top prototype bar */
+  #chrome { position:sticky; top:0; z-index:999; background:#222; color:#fff;
+    padding:12px 24px; display:flex; align-items:center; justify-content:space-between; font-size:0.9em; flex-wrap:wrap; gap:10px; }
+  #chrome .brand { font-weight:bold; letter-spacing:0.5px; }
+  #chrome .crumb { color:#bbb; }
+  #chrome .crumb b { color:#fff; }
+  .barbtn { background:#444; color:#fff; border:1px solid #777; padding:6px 14px; border-radius:3px; cursor:pointer; font-size:0.85em; }
+  .barbtn:hover { background:#666; }
+
+  .legend { background:#fffbe6; border-bottom:2px solid #ddd; padding:10px 24px; font-size:0.85em; color:#555; }
+  .legend b { color:#000; }
+  .legend.hidden { display:none; }
+
+  /* Wireframe primitives */
+  .wf-box { border:1px solid #ccc; background:#f9f9f9; padding:16px; }
+  .wf-box.dashed { border-style:dashed; }
+  .wf-label { font-size:0.75em; text-transform:uppercase; letter-spacing:0.5px; color:#999; font-weight:bold; margin-bottom:8px; }
+  .placeholder-img { background:#dcdcdc; border:1px solid #bbb; color:#888; display:flex; align-items:center; justify-content:center; font-size:0.85em; min-height:120px; text-align:center; padding:6px; }
+  .text-lines > span { display:block; height:8px; background:#ddd; margin-bottom:6px; border-radius:2px; }
+  .text-lines > span:nth-child(1){width:95%;} .text-lines > span:nth-child(2){width:85%;} .text-lines > span:nth-child(3){width:60%;}
+  .text-lines > span:nth-child(4){width:80%;} .text-lines > span:nth-child(5){width:50%;}
+
+  .static-btn { border:1px solid #999; background:#f0f0f0; color:#666; padding:9px 16px; display:inline-block; font-weight:bold; font-size:0.85em; cursor:default; border-radius:3px; margin:3px 4px 3px 0; }
+  .static-btn.primary { background:#d9d0d0; color:#444; border-color:#a77; }
+  .chip { display:inline-block; border:1px solid #bbb; background:#efefef; color:#666; border-radius:12px; padding:4px 11px; font-size:0.78em; margin:0 5px 5px 0; }
+  .redline { height:8px; background:#c99; opacity:.6; border-radius:2px; width:110px; margin-bottom:8px; }
+
+  /* Utility strip + nav bar */
+  .util-strip { background:#111; color:#bbb; padding:6px 24px; font-size:0.78em; display:flex; gap:16px; justify-content:flex-end; flex-wrap:wrap; }
+  .util-strip a { color:#bbb; cursor:pointer; text-decoration:none; }
+  .util-strip a:hover { color:#fff; } .util-strip a.active { color:#fff; font-weight:bold; }
+
+  .nav-bar { background:#333; color:#fff; padding:14px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  .nav-bar .logo { font-weight:bold; border:1px solid #a55; color:#e88; padding:6px 12px; border-radius:3px; letter-spacing:1px; }
+  .nav-tabs { display:flex; gap:6px; flex-wrap:wrap; }
+  .nav-tab { padding:9px 14px; border:1px solid #777; cursor:pointer; font-size:0.86em; background:#3d3d3d; border-radius:3px; transition:background 0.15s; }
+  .nav-tab:hover { background:#555; }
+  .nav-tab.active { background:#fff; color:#000; border-color:#fff; font-weight:bold; }
+  .nav-icons { display:flex; gap:10px; align-items:center; font-size:0.85em; color:#aaa; }
+  .nav-icons .ic { border:1px solid #777; border-radius:3px; padding:6px 9px; cursor:default; }
+  .theme-toggle { display:flex; border:1px solid #777; border-radius:14px; overflow:hidden; }
+  .theme-opt { padding:6px 11px; cursor:pointer; background:#3d3d3d; color:#ccc; font-size:0.78em; font-weight:bold; }
+  .theme-opt.active { background:#fff; color:#000; }
+  .theme-opt:hover:not(.active){ background:#555; }
+  .nav-contact { background:#c33; color:#fff; border:1px solid #c33; padding:8px 15px; border-radius:3px; font-weight:bold; cursor:pointer; font-size:0.85em; }
+
+  .page-wrap { max-width:1300px; margin:0 auto; padding:24px; }
+  h2.sec { color:#333; font-size:1.15em; margin:28px 0 10px; padding-bottom:6px; border-bottom:1px solid #ccc; }
+  .grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:15px; margin-bottom:15px; }
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; margin-bottom:15px; }
+  .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; margin-bottom:15px; }
+  .hero { min-height:170px; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:12px; }
+  .hero.center { align-items:center; text-align:center; }
+  .breadcrumb { font-size:0.85em; color:#888; margin-bottom:15px; }
+  .link { color:#a55; cursor:pointer; font-weight:bold; }
+  .link:hover { text-decoration:underline; }
+  .muted { color:#999; font-size:0.85em; }
+
+  table.spec { width:100%; border-collapse:collapse; margin:10px 0; font-size:0.85em; }
+  table.spec th { background:#444; color:#fff; padding:8px; text-align:left; }
+  table.spec td { padding:8px; border-bottom:1px solid #ddd; }
+
+  .note { background:#fff3cd; border-left:3px solid #d4a017; padding:8px 12px; margin:12px 0; font-size:0.8em; color:#664d00; }
+  .note b { color:#5a4200; }
+
+  footer.wf-footer { background:#2b2b2b; color:#ddd; padding:20px; margin-top:25px; border-radius:3px; font-size:0.9em; }
+  footer.wf-footer .grid4 { color:#ccc; margin-bottom:8px; }
+  footer.wf-footer b { color:#fff; }
+  footer.wf-footer .legalbar { border-top:1px solid #555; margin-top:12px; padding-top:10px; color:#999; font-size:0.85em; display:flex; gap:10px; flex-wrap:wrap; }
+
+  /* Site map flow screen */
+  .flowmap { display:flex; flex-wrap:wrap; gap:14px; align-items:center; padding:8px 0; }
+  .flow-node { border:1px solid #999; background:#fff; padding:11px 16px; text-align:center; font-weight:bold; min-width:130px; border-radius:3px; cursor:pointer; font-size:0.9em; }
+  .flow-node:hover { background:#f0f0f0; border-color:#666; }
+  .flow-node.root { background:#333; color:#fff; }
+  .flow-arrow { font-size:1.3em; color:#999; }
+  .flow-group { margin:6px 0 4px; font-weight:bold; color:#555; font-size:0.9em; }
+  .journey-steps { background:#fff; border:1px solid #ddd; border-radius:4px; padding:20px; margin-top:22px; }
+  .journey-steps ol { margin-left:20px; } .journey-steps li { margin-bottom:8px; }
+  .start-btn { display:inline-block; margin-top:18px; padding:12px 22px; background:#333; color:#fff; border-radius:3px; cursor:pointer; font-weight:bold; }
+  .start-btn:hover { background:#555; }
+
+  /* Hamburger menu (mobile only) */
+  .hamburger { display:none; background:#444; color:#fff; border:1px solid #777; padding:8px 12px; border-radius:3px; cursor:pointer; font-size:1.1em; line-height:1; }
+  .mob-dropdown { display:none; position:absolute; top:100%; left:0; right:0; background:#2a2a2a; border-top:1px solid #555; z-index:998; flex-direction:column; padding:8px 0; }
+  .mob-dropdown.open { display:flex; }
+  .mob-dropdown .mob-item { padding:12px 20px; color:#ddd; font-size:0.9em; cursor:pointer; border:none; background:none; text-align:left; font-weight:500; }
+  .mob-dropdown .mob-item:hover { background:#444; }
+  .mob-dropdown .mob-item.active { background:#fff; color:#000; font-weight:bold; }
+
+  /* ---- Mobile responsive ---- */
+  @media (max-width:768px) {
+    #chrome { padding:10px 14px; font-size:0.82em; }
+    #chrome .brand { font-size:0.85em; }
+    .legend { padding:8px 14px; font-size:0.8em; }
+
+    .util-strip { padding:5px 12px; gap:10px; font-size:0.72em; justify-content:center; }
+    .nav-bar { padding:10px 12px; gap:8px; position:relative; }
+    .nav-bar .logo { font-size:0.85em; padding:5px 10px; }
+    .nav-tabs { display:none; }
+    .hamburger { display:block; }
+    .nav-icons { gap:6px; font-size:0.78em; }
+    .nav-icons .ic { padding:5px 7px; }
+    .nav-contact { padding:7px 11px; font-size:0.78em; }
+    .theme-toggle { display:none; }
+
+    .page-wrap { padding:14px; }
+    h2.sec { font-size:1.05em; margin:20px 0 8px; }
+    .grid2, .grid3, .grid4 { grid-template-columns:1fr; }
+    .stats-row { grid-template-columns:repeat(4,1fr) !important; font-size:0.85em; }
+    footer.wf-footer .grid4 { grid-template-columns:repeat(2,1fr); }
+
+    .hero { min-height:120px; gap:10px; }
+    .placeholder-img { min-height:80px; font-size:0.78em; }
+    .wf-box { padding:12px; }
+    .static-btn { padding:8px 12px; font-size:0.8em; }
+
+    .flowmap { gap:8px; }
+    .flow-node { min-width:100px; padding:9px 10px; font-size:0.8em; }
+    .flow-arrow { font-size:1em; }
+    .journey-steps { padding:14px; }
+
+    table.spec th, table.spec td { padding:6px; font-size:0.8em; }
+  }
+
+  @media (max-width:480px) {
+    #chrome { flex-direction:column; align-items:flex-start; }
+    .util-strip { overflow-x:auto; flex-wrap:nowrap; gap:8px; font-size:0.7em; }
+    .util-strip a { white-space:nowrap; flex-shrink:0; }
+    .nav-icons { flex-wrap:nowrap; flex-shrink:0; }
+    .nav-icons > * { white-space:nowrap; }
+    .stats-row { grid-template-columns:repeat(2,1fr) !important; gap:8px !important; }
+    footer.wf-footer .grid4 { grid-template-columns:1fr; }
+    .flow-node { min-width:80px; font-size:0.75em; }
+  }
+</style>
+</head>
+<body>
+
+<div id="chrome">
+  <div class="brand">DEON — WIREFRAME PROTOTYPE</div>
+  <div class="crumb">Current page: <b id="crumbLabel">Home</b></div>
+  <div style="display:flex; gap:8px;">
+    <button class="barbtn" onclick="goTo('flowmap')">🗺️ Site Map</button>
+    <button class="barbtn" onclick="toggleLegend()">ℹ️ How to use this</button>
+  </div>
+</div>
+<div class="legend" id="legendBar">
+  <b>How to use:</b> The tabs in the <b>navigation bar</b> (Home, Markets, Applications, Products, Manufacturing, Knowledge Center) and the top utility links (About, Career, Press…) are clickable — they move you between pages like real tabs.
+  Inside pages, links marked <span class="link">like this →</span> open detail/sub-pages. Everything else (buttons, cards, inputs) is a <b>static placeholder</b> showing where content will sit. Greyscale is intentional — this is structure, not visual design.
+</div>
+
+<div id="app"></div>
+
+<script>
+/* =========================================================================
+   DEON wireframe prototype — all 25 page templates + site-map flow.
+   Greyscale lo-fi. Nav tabs + utility links + in-page "→" links navigate.
+   ========================================================================= */
+
+/* ---------- primitives ---------- */
+const IMG   = (t,h)=>`<div class="placeholder-img"${h?` style="min-height:${h}px"`:''}>${t||'Image'}</div>`;
+const LINES = (n=3)=>`<div class="wf-box text-lines">${'<span></span>'.repeat(n)}</div>`;
+const BTN   = (t,p,go)=>`<span class="static-btn${p?' primary':''}"${go?` onclick="goTo('${go}')" style="cursor:pointer"`:''}">${t}</span>`;
+const SEC   = (t)=>`<h2 class="sec">${t}</h2>`;
+const NOTE  = (t)=>`<div class="note"><b>Note:</b> ${t}</div>`;
+const CHIPS = (arr)=>arr.map(c=>`<span class="chip">${c}</span>`).join('');
+const LINK  = (t,id)=>`<span class="link" onclick="goTo('${id}')">${t} →</span>`;
+const box   = (inner,center)=>`<div class="wf-box"${center?' style="text-align:center"':''}>${inner}</div>`;
+const grid  = (n,items)=>`<div class="grid${n}">${items.join('')}</div>`;
+function hero(label,title,btns,center){
+  return `<div class="wf-box hero${center?' center':''}"><div class="wf-label">${label}</div>`+
+    `<div class="redline"></div>`+
+    (title?`<div style="font-size:1.3em;font-weight:bold">${title}</div>`:'')+
+    (btns?`<div style="margin-top:4px">${btns}</div>`:'')+`</div>`;
+}
+function photoHero(title,btns,badges){
+  return `<div class="wf-box hero">`+
+    `<div class="wf-label">Hero — full-bleed factory photo + dark scrim</div>`+
+    IMG('Factory / production photograph (background)',150)+
+    `<div class="redline" style="margin-top:10px"></div>`+
+    `<div style="font-size:1.3em;font-weight:bold">${title}</div>`+
+    (btns?`<div>${btns}</div>`:'')+
+    (badges?`<div style="margin-top:4px">${CHIPS(badges)}</div>`:'')+`</div>`;
+}
+function stats(arr){
+  return box(`<div class="grid${arr.length} stats-row" style="margin-bottom:0;text-align:center">`+
+    arr.map(s=>`<div style="font-size:1.4em;font-weight:bold">${s[0]}<div style="font-size:0.55em;font-weight:normal;color:#777;margin-top:4px">${s[1]}</div></div>`).join('')+`</div>`);
+}
+function badges(arr){
+  return box(`<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">`+
+    arr.map(b=>`<div style="text-align:center;min-width:120px"><b>${b[0]}</b><br><span class="muted">${b[1]}</span></div>`).join('')+`</div>`);
+}
+function prodCard(code,name){
+  return box(IMG('Product photo',80)+`<div style="margin:8px 0 4px"><b>${name}</b></div>`+
+    `<div class="muted">Deon ${code}</div><div style="margin-top:6px">${BTN('Request sample')}${BTN('Datasheet')}</div>`,true);
+}
+function cta(title,btns){
+  return SEC('CTA Band — brand red')+box(`<div class="hero center" style="min-height:90px"><div style="font-weight:bold">${title}</div><div>${btns}</div></div>`);
+}
+function footer(){
+  return `<footer class="wf-footer">
+    <div class="wf-label" style="color:#999">Footer (same on every page)</div>
+    <div class="grid4">
+      <div><b>Products</b><br>All products · Double-sided · Foil · Masking · Insulation</div>
+      <div><b>Markets</b><br>Electrical · Automotive · HVAC · Packaging</div>
+      <div><b>Company</b><br>About · Manufacturing · Careers · Press · Partners</div>
+      <div><b>Resources</b><br>Knowledge Center · Tools · Certifications · Quote · Samples</div>
+    </div>
+    <div class="legalbar"><span>© 2026 DEON Tapes Industries Pvt. Ltd. — It's Power-Strong</span>
+      <span style="margin-left:auto">${LINK('Legal','legal-notice')} · ${LINK('Privacy','privacy-statement')} · ${LINK('Terms','terms-conditions')} · ${LINK('Accessibility','accessibility-statement')} · ${LINK('Cookies','cookie-settings')} · ${LINK('Sitemap','site-map')}</span>
+    </div>
+  </footer>`;
+}
+function pageHead(crumb,title,intro){
+  return `<div class="wf-box hero" style="min-height:120px"><div class="wf-label">Interior page head — photo band + breadcrumb</div>`+
+    `<div class="breadcrumb">${crumb}</div><div class="redline"></div><div style="font-size:1.3em;font-weight:bold">${title}</div>`+
+    (intro?`<div class="muted">${intro}</div>`:'')+`</div>`;
+}
+
+/* ---------- navigation ---------- */
+const NAVTABS = [['home','Home'],['markets','Markets'],['applications','Applications'],['products','Products'],['manufacturing','Manufacturing'],['knowledge','Knowledge Center']];
+const UTIL    = [['about','About us'],['careers','Career'],['press','Press'],['partners','Partner with us'],['certifications','Quality & Certifications']];
+const PARENT  = { 'market-detail':'markets','application-detail':'applications', tools:'knowledge', films:'manufacturing',
+  'converter-partners':'partners','oem-partners':'partners','dealer-partners':'partners' };
+function activeTab(id){ return PARENT[id]||id; }
+function navBar(id){
+  var at=activeTab(id);
+  return `<div class="util-strip">`+
+      UTIL.map(u=>`<a class="${at===u[0]?'active':''}" onclick="goTo('${u[0]}')">${u[1]}</a>`).join('')+
+    `</div>`+
+    `<div class="nav-bar">
+      <div class="logo">DEON®</div>
+      <button class="hamburger" onclick="document.getElementById('mobDrop').classList.toggle('open')">☰ Menu</button>
+      <div class="nav-tabs">`+
+        NAVTABS.map(t=>`<div class="nav-tab ${at===t[0]?'active':''}" onclick="goTo('${t[0]}')">${t[1]}${['markets','applications','products','manufacturing','knowledge'].includes(t[0])?' ▾':''}</div>`).join('')+
+      `</div>
+      <div class="nav-icons">
+        <span class="ic">Search</span>
+        <div class="theme-toggle" title="Light / Dark mode toggle"><div class="theme-opt active">☀ Light</div><div class="theme-opt">☾ Dark</div></div>
+        <span class="ic">Display options</span>
+        <span class="nav-contact" onclick="goTo('contact')">CONTACT</span>
+      </div>
+      <div class="mob-dropdown" id="mobDrop">`+
+        NAVTABS.map(t=>`<button class="mob-item ${at===t[0]?'active':''}" onclick="goTo('${t[0]}')">${t[1]}</button>`).join('')+
+        `<button class="mob-item" onclick="goTo('contact')">Contact</button>
+      </div>
+    </div>`;
+}
+
+/* ---------- screens (25 pages + flow map) ---------- */
+const SCREENS = {
+
+home:()=>
+  photoHero('Pressure-sensitive adhesive tapes and soft PVC films, manufactured in-house.',
+    BTN('Browse Products',1)+BTN('Contact DEON',0,'contact'), ['ISO 9001:2015 certified','89,000 m² area','2 plants — Silvassa & Vadodara'])
+  + SEC('Tape marquee — "It\'s Power-Strong" (infinite scroll)') + box('<div class="redline" style="width:100%;height:20px"></div>')
+  + SEC('By the numbers — count-up stats') + stats([['2016','Making tape since'],['100+','Customers'],['89,000 m²','Built-up area'],['2','Plants']])
+  + SEC('Trusted by leading brands (logo marquee)') + box(`<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">${['Logo','Logo','Logo','Logo','Logo','Logo'].map(l=>IMG(l,45)).join('')}</div>`)
+  + SEC('Who we are — 3 pillars') + grid(3,[box('<b>01</b><br>In-house adhesive formulation'+LINES(2)),box('<b>02</b><br>Manufacturing capability'+LINES(2)),box('<b>03</b><br>Traceable quality'+LINES(2))])
+  + SEC('What we make — 6 product categories (with photos)')
+  + grid(3,[prodCard('DT5142','Double-sided & foam'),prodCard('DT4021','Foil & sealing'),prodCard('M5001','Masking'),prodCard('50W13','Bundling & harness'),prodCard('DT2131','Insulation & dielectric'),prodCard('41860','Floor-marking')])
+  + SEC('How a DEON tape is built — 3 columns')
+  + grid(3,[box('<b>01 Adhesive system</b><br>'+CHIPS(['Acrylic','Rubber','Hot-melt','Silicone'])),box('<b>02 Backing material</b><br>'+CHIPS(['Film','Foam','Foil','Paper','Cloth','Filament'])),box('<b>03 Converting</b><br>'+CHIPS(['Slitting','Printed cores','Private label']))])
+  + SEC('Markets — 10 industries') + grid(2,[box(['Transportation','Electrical','Building components','Renewable energy','Metal manufacturing'].map(m=>`<div>› ${m} &nbsp; ${LINK('open','market-detail')}</div>`).join('')),box(['HVAC & Insulation','Appliance','Packaging & logistics','Electronics','Automotive'].map(m=>`<div>› ${m}</div>`).join(''))])
+  + SEC('How we make it — 3 steps') + grid(3,[box('<b>01</b> Formulate & coat'+LINES(2)),box('<b>02</b> Convert & slit'+LINES(2)),box('<b>03</b> Test & qualify'+LINES(2))])
+  + SEC('Quality & compliance — 5 certification badges') + badges([['ISO 9001','Quality'],['ISO 45001','Safety'],['ISO 14001','Environment'],['UL','Recognised'],['BIS · IS 7809','Standard']])
+  + cta('Request product information, a quotation or samples.', BTN('Request samples',1)+BTN('Request a quote')),
+
+products:()=>
+  pageHead('Home › Products','Industrial pressure-sensitive tapes.','Filter by family, adhesive, backing and construction.')
+  + NOTE('Filterable catalogue — sidebar facets, URL-synced (e.g. products.html?adhesive=acrylic&sided=double).')
+  + `<div class="grid2" style="grid-template-columns:1fr 3fr">`
+    + box('<div class="wf-label">Sidebar filters</div>'
+      + '<b>Product family (7)</b><br>'+['Electrical & insulation','Bonding & double-sided','Masking','Foil & sealing','Packaging','Harness','Floor marking'].map(f=>`☐ ${f}`).join('<br>')
+      + '<br><br><b>Adhesive (4)</b><br>☐ Acrylic ☐ Rubber ☐ Hot-melt ☐ Silicone'
+      + '<br><br><b>Backing (11)</b><br>☐ PVC ☐ PET ☐ Polyimide ☐ BOPP ☐ Foam ☐ Foil ☐ Paper ☐ Cloth …'
+      + '<br><br><b>Construction (2)</b><br>☐ Single-sided ☐ Double-sided')
+    + box('<div class="wf-label">Product grid — Showing 24 of 24 · active filter chips: '+CHIPS(['Acrylic ✕','Double-sided ✕','Clear all'])+'</div>'
+      + grid(3,[prodCard('31700','PVC Electrical Insulation'),prodCard('DT2131','Class H Polyimide'),prodCard('DT5142','Double-Sided PE Foam'),prodCard('M5001','Masking Tape'),prodCard('DT9151','BOPP Packaging'),prodCard('DT4041','Aluminium Foil')])
+      + '<p class="muted">… 24 product cards total (3-col → 2-col → 1-col responsive)</p>')
+  + `</div>`
+  + cta('Not sure which grade fits?', BTN('Request samples',1)+BTN('Open calculators')),
+
+tools:()=>
+  pageHead('Home › Knowledge Center › Tools & Calculators','Tools & Calculators','Seven calculators — everything runs in your browser.')
+  + SEC('Calculator grid — 7 tools (2 columns)')
+  + grid(2, [['Roll Length','Packaging'],['Roll Diameter','Packaging'],['Roll Weight','Packaging'],['Grammage / Coat-Weight','Manufacturing'],['Jumbo-to-Finished Roll','Conversion'],['Tape Consumption','Procurement'],['Carton Sealing','Packaging']].map(c=>
+      box(`<span class="chip">${c[1]}</span><h3 style="margin:6px 0">${c[0]} Calculator</h3>`
+        + `<div>Input <span class="static-btn" style="padding:5px 22px">___</span> · Input <span class="static-btn" style="padding:5px 22px">___</span> · Input <span class="static-btn" style="padding:5px 22px">___</span></div>`
+        + box('<div class="wf-label" style="color:#bbb">Result</div><b style="font-size:1.3em">— — —</b>',false).replace('wf-box','wf-box" style="background:#3a3a3a;color:#fff;margin-top:8px')
+        + '<div class="muted" style="margin-top:6px">assumptions note…</div>')))
+  + NOTE('Every field recomputes live; defaults reproduce the reference values (135.5 m, 99.9 mm/239 wraps, 0.206 kg, 65 g/m², 20 lanes, 19,500 m, 1,040 m).'),
+
+markets:()=>
+  pageHead('Home › Markets','Tape systems for manufacturing, infrastructure and packaging.')
+  + SEC('Explore by industry — 11 cards') + grid(3, ['Transportation','Electrical','Building components','Renewable energy','Metal manufacturing','HVAC & Insulation','Appliance','Packaging & logistics','Electronics','Automotive','Print & Paper'].map(m=>box(`<b>${m}</b>`+LINES(1)+LINK('Find out more','market-detail'),true)))
+  + SEC('Partnerships — 3 program cards') + grid(3,[box('<b>Industrial converters</b>'+LINES(1)+LINK('Learn more','converter-partners'),true),box('<b>OEM & private label</b>'+LINES(1)+LINK('Learn more','oem-partners'),true),box('<b>Authorized dealers</b>'+LINES(1)+LINK('Learn more','dealer-partners'),true)])
+  + cta('Send us the application and specification.', BTN('Contact DEON',1,'contact')),
+
+'market-detail':()=>
+  pageHead('Home › Markets › Electrical','Tape for electrical.','The insulation backbone for motors, transformers, switchgear and coils.')
+  + `<div class="grid2">`
+    + box('<div class="wf-label">Where DEON tape is used</div>'+['Coil & layer insulation','Motor / transformer winding','Terminal & busbar insulation','Wave-soldering & coil masking'].map(n=>`<div>→ ${n}</div>`).join(''))
+    + box('<div class="wf-label">Recommended products</div>'+grid(2,[prodCard('DT1111','Class B Polyester'),prodCard('DT2131','Class H Polyimide')]))
+  + `</div>`
+  + SEC('What DEON brings') + badges([['In-house','Formulation'],['Coating','& converting'],['Tested','Traceability'],['Custom','Formats'],['OEM','Private label']])
+  + NOTE('One template renders all 11 industry pages from ?m= (electrical, automotive, hvacr, packaging …).')
+  + cta('Building for electrical?', BTN('Request samples',1)+BTN('Request a quote')),
+
+applications:()=>
+  pageHead('Home › Applications','Start from the job the tape has to do.')
+  + SEC('By function — 10 application cards') + grid(3, ['Masking','Bundling & harnessing','Insulation','Surface protection','Bonding','Mounting','Packaging','Floor & safety marking','Thermal management','Assembly'].map(a=>box(`<span class="chip">${a}</span><br><b>${a}</b>`+LINES(1)+LINK('See tapes','application-detail'))))
+  + cta('Not sure where you fit?', BTN('Request samples',1)),
+
+'application-detail':()=>
+  pageHead('Home › Applications › Masking','Masking.','Low-tack masking that holds through paint, cure and process heat.')
+  + SEC('Recommended constructions') + grid(3,[prodCard('M5001','Masking Tape'),prodCard('DT1231','High-Temp Polyester'),prodCard('DT3131','Glass Cloth')])
+  + SEC('How the tape is built') + grid(3,[box('<b>01 Adhesive</b><br>'+CHIPS(['Acrylic','Rubber','Silicone'])),box('<b>02 Backing</b><br>'+CHIPS(['Film','Cloth','Paper'])),box('<b>03 Converting</b><br>'+CHIPS(['Slitting','Custom widths']))])
+  + NOTE('One template renders all 10 application pages from ?group= / ?app=.')
+  + cta('Tell us your application.', BTN('Request samples',1)),
+
+manufacturing:()=>
+  pageHead('Home › Manufacturing','Coated, converted and qualified — all under one roof.')
+  + SEC('Capabilities — 3 cards') + grid(3,[box('<b>01</b> Formulate & coat'+LINES(2)),box('<b>02</b> Convert & slit'+LINES(2)),box('<b>03</b> Finish'+LINES(2))])
+  + SEC('Adhesive technologies — 4 columns') + grid(4,[box('<b>Acrylic</b>'+LINES(1)),box('<b>Rubber</b>'+LINES(1)),box('<b>Hot-melt</b>'+LINES(1)),box('<b>Silicone</b>'+LINES(1))])
+  + SEC('Testing & validation') + badges([['Peel','Adhesion'],['Tensile','Elongation'],['Dielectric','Breakdown'],['Thermal','Class'],['Ageing','Weather']])
+  + SEC('Custom product development') + box(LINES(2)+BTN('Start a development enquiry',1))
+  + `<p class="muted">Also linked here: ${LINK('Soft PVC films','films')}</p>`
+  + cta('Coated, converted and qualified — under one roof.', BTN('Request samples',1)+BTN('Browse products')),
+
+films:()=>
+  pageHead('Home › Manufacturing › Soft PVC Films','DEON manufactures its own soft PVC film through in-house calendering.')
+  + SEC('Soft PVC film — 3 cards') + grid(3,[box('<b>Calendered in-house</b>'+LINES(2)),box('<b>Industrial & converting</b>'+LINES(2)),box('<b>Custom formulation</b>'+LINES(2))])
+  + cta('Need soft PVC film?', BTN('Request a quote',1)+BTN('Request samples')),
+
+certifications:()=>
+  pageHead('Home › Quality & Certifications','Manufactured to recognised quality standards.')
+  + SEC('Certifications — 5 anchored cards') + grid(3,[['ISO 9001:2015','Quality management'],['ISO 45001:2018','Occupational H&S'],['ISO 14001:2015','Environmental'],['UL','Recognised component'],['BIS · IS 7809','Bureau of Indian Standards']].map(c=>box(`<span class="chip">Certified</span><br><b>${c[0]}</b><br><span class="muted">${c[1]}</span>`)))
+  + SEC('Documented & audit-ready') + badges([['Datasheets','Per product'],['Test reports','Per batch'],['Samples','On request']])
+  + cta('Need documentation?', BTN('Request documents',1)+BTN('Knowledge Center')),
+
+knowledge:()=>
+  pageHead('Home › Knowledge Center','Guides, datasheets, calculators and FAQs.')
+  + SEC('Resources — 6 cards') + grid(3,[box('<b>Tools & Calculators</b>'+LINES(1)+LINK('Open','tools'),true),box('<b>Product finder</b>'+LINES(1)+LINK('Browse','products'),true),box('<b>Certifications</b>'+LINES(1)+LINK('See','certifications'),true),box('<b>Manufacturing</b>'+LINES(1)+LINK('Explore','manufacturing'),true),box('<b>By application</b>'+LINES(1)+LINK('Open','applications'),true),box('<b>Talk to our team</b>'+LINES(1)+LINK('Contact','contact'),true)])
+  + SEC('FAQ — 4 questions') + box(['Custom widths & cores?','Private label?','What documentation?','How to get a sample?'].map(q=>`<div><b>Q · ${q}</b><br><span class="muted">answer…</span></div>`).join('<br>'))
+  + cta('Can\'t find what you need?', BTN('Contact DEON',1,'contact')),
+
+about:()=>
+  pageHead('Home › About us','Manufacturing owned from formulation to finished roll.')
+  + SEC('Who we are — 3 cards') + grid(3,[box('<b>01</b> In-house formulation'+LINES(2)),box('<b>02</b> Two plants in India'+LINES(2)),box('<b>03</b> Traceable quality'+LINES(2))])
+  + SEC('Our presence — count-up stats') + stats([['2016','Making tape since'],['100+','Customers'],['89,000 m²','Built-up area'],['2','Plants']])
+  + cta('Get to know DEON.', BTN('Contact DEON',1,'contact')+BTN('Careers at DEON')),
+
+careers:()=>
+  pageHead('Home › Careers','Build the tapes that hold industry together.')
+  + SEC('Open roles — 3 cards') + grid(3,[box('<span class="chip">Production</span><br><b>Coating & converting operators</b>'+LINK('Apply','contact'),true),box('<span class="chip">R&D</span><br><b>Adhesive chemist</b>'+LINK('Apply','contact'),true),box('<span class="chip">Sales</span><br><b>Technical sales engineer</b>'+LINK('Apply','contact'),true)])
+  + cta('Don\'t see your role?', BTN('Send your CV',1)),
+
+press:()=>
+  pageHead('Home › Press','News & announcements.')
+  + SEC('News — dated list') + box(['2026 — New plant commissioned in Vadodara','2025 — Expanded aluminium-foil tape range','2025 — ISO 45001:2018 certification'].map(n=>`<div><b>${n.split(' — ')[0]}</b> — ${n.split(' — ')[1]}</div>`).join('<br>'))
+  + cta('Media enquiries', BTN('Contact DEON',1,'contact')),
+
+partners:()=>
+  pageHead('Home › Partners','Supplying industry rather than buying for one?')
+  + SEC('Partner programs — 3 cards') + grid(3,[box('<span class="chip">Converters</span><br><b>Industrial converters</b>'+LINES(1)+LINK('Learn more','converter-partners'),true),box('<span class="chip">OEM</span><br><b>OEM & private label</b>'+LINES(1)+LINK('Learn more','oem-partners'),true),box('<span class="chip">Dealers</span><br><b>Authorized dealers</b>'+LINES(1)+LINK('Learn more','dealer-partners'),true)])
+  + cta('Ready to partner?', BTN('Contact the partner desk',1)),
+
+'converter-partners':()=>partnerDetail('Industrial converter program','Jumbo and log rolls, slit to your specified core, OD and tension.'),
+'oem-partners':()=>partnerDetail('OEM & private-label program','Custom specifications, packaging and branding — manufactured under your brand.'),
+'dealer-partners':()=>partnerDetail('Authorized dealer program','Standard product programs with reliable, repeatable supply.'),
+
+contact:()=>
+  pageHead('Home › Contact','Request product information, a quotation or samples.')
+  + `<div style="margin-bottom:10px">${CHIPS(['Request samples','Request a quote','General enquiry'])} <span class="muted">(tabs)</span></div>`
+  + `<div class="grid2">`
+    + box('<div class="wf-label">Contact form</div>'
+      + ['First name','Last name','Company','Country','Work email','Phone'].map(f=>`<div>${f}</div>${IMG('input',34)}`).join('')
+      + '<div>Product / SKU of interest</div>'+IMG('input',34)
+      + '<div>Application & specification</div>'+IMG('textarea',60)
+      + '<div style="margin-top:8px">'+BTN('Send request',1)+'</div>'
+      + NOTE('?type=sample|quote|general preselects a tab; ?sku=DT2131 pre-fills the product field. Submit shows an inline confirmation.'))
+    + box('<div class="wf-label">Contact details</div>'+IMG('Which-team routing + phone / email / plants',180))
+  + `</div>`
+  + footer(),
+
+/* legal / simple */
+'legal-notice':()=>simplePage('Home › Legal notice','Legal notice'),
+'privacy-statement':()=>simplePage('Home › Privacy','Privacy statement'),
+'terms-conditions':()=>simplePage('Home › Terms','Terms & conditions'),
+'accessibility-statement':()=>simplePage('Home › Accessibility','Accessibility statement'),
+'cookie-settings':()=>
+  pageHead('Home › Cookie settings','Cookie settings')
+  + `<div class="grid2">`+box('<div class="wf-label">Explanation</div>'+LINES(4))
+    + box('<div class="wf-label">Preferences card</div><div>Essential — <span class="chip">Always on</span></div><div>Preferences — <span class="chip">On</span><span class="chip">Off</span></div><div style="margin-top:8px">'+BTN('Save settings',1)+'</div>')+`</div>`,
+'site-map':()=>
+  pageHead('Home › Sitemap','Sitemap')
+  + grid(4,[['Products','All products, Double-sided, Foil, Masking'],['Applications','All, Bonding, Insulation, Marking'],['Markets','All, Electrical, Automotive, HVAC, Packaging'],['Manufacturing','Manufacturing, Films, Certifications'],['Knowledge','Knowledge Center, Tools'],['Company','About, Careers, Press, Partners, Contact'],['Legal','Legal, Privacy, Terms, Accessibility, Cookies'],['&nbsp;','']].map(c=>box(`<div class="wf-label">${c[0]}</div><span class="muted">${c[1]}</span>`))),
+
+/* site map / flow */
+flowmap:()=>
+  `<div style="max-width:1300px;margin:0 auto;padding:24px">
+    <h2 style="font-size:1.4em;margin-bottom:6px">Site Navigation Flow</h2>
+    <p class="muted" style="margin-bottom:12px">All 25 pages and how they connect. Click any node to open that wireframe.</p>
+    <div class="flowmap"><div class="flow-node root" onclick="goTo('home')">Home</div><div class="flow-arrow">→</div>
+      <div class="flow-node" onclick="goTo('markets')">Markets</div><div class="flow-node" onclick="goTo('applications')">Applications</div>
+      <div class="flow-node" onclick="goTo('products')">Products</div><div class="flow-node" onclick="goTo('manufacturing')">Manufacturing</div>
+      <div class="flow-node" onclick="goTo('knowledge')">Knowledge Center</div><div class="flow-node" onclick="goTo('contact')">Contact</div></div>
+    <div class="flow-group">Markets →</div><div class="flowmap"><div class="flow-node" onclick="goTo('markets')">Markets index</div><div class="flow-arrow">→</div><div class="flow-node" onclick="goTo('market-detail')">Market detail (×11)</div></div>
+    <div class="flow-group">Applications →</div><div class="flowmap"><div class="flow-node" onclick="goTo('applications')">Applications index</div><div class="flow-arrow">→</div><div class="flow-node" onclick="goTo('application-detail')">Application detail (×10)</div></div>
+    <div class="flow-group">Products & Knowledge →</div><div class="flowmap"><div class="flow-node" onclick="goTo('products')">Products catalogue</div><div class="flow-node" onclick="goTo('tools')">Tools & Calculators</div><div class="flow-node" onclick="goTo('knowledge')">Knowledge Center</div><div class="flow-node" onclick="goTo('certifications')">Certifications</div></div>
+    <div class="flow-group">Manufacturing →</div><div class="flowmap"><div class="flow-node" onclick="goTo('manufacturing')">Manufacturing & Tech</div><div class="flow-node" onclick="goTo('films')">Soft PVC Films</div></div>
+    <div class="flow-group">Company →</div><div class="flowmap"><div class="flow-node" onclick="goTo('about')">About</div><div class="flow-node" onclick="goTo('careers')">Careers</div><div class="flow-node" onclick="goTo('press')">Press</div><div class="flow-node" onclick="goTo('partners')">Partners</div><div class="flow-node" onclick="goTo('converter-partners')">Converter</div><div class="flow-node" onclick="goTo('oem-partners')">OEM</div><div class="flow-node" onclick="goTo('dealer-partners')">Dealer</div></div>
+    <div class="flow-group">Legal →</div><div class="flowmap"><div class="flow-node" onclick="goTo('legal-notice')">Legal</div><div class="flow-node" onclick="goTo('privacy-statement')">Privacy</div><div class="flow-node" onclick="goTo('terms-conditions')">Terms</div><div class="flow-node" onclick="goTo('accessibility-statement')">Accessibility</div><div class="flow-node" onclick="goTo('cookie-settings')">Cookie settings</div><div class="flow-node" onclick="goTo('site-map')">Sitemap</div></div>
+    <div class="journey-steps"><h3>Typical user journey</h3><ol>
+      <li>Land on <b>Home</b> → hero, product categories, markets, quality, stats.</li>
+      <li>Click <b>Products</b> → filter the catalogue by adhesive / backing / construction.</li>
+      <li>Open a product → <b>Request sample</b> / <b>Datasheet</b> jumps to <b>Contact</b> (pre-filled SKU).</li>
+      <li>Or start from <b>Applications</b> / <b>Markets</b> → land on the right product set.</li>
+      <li>Use <b>Knowledge Center → Tools</b> for the 7 calculators.</li>
+    </ol><div class="start-btn" onclick="goTo('home')">▶ Start at Home</div></div>
+  </div>`
+};
+
+function partnerDetail(title,intro){
+  return pageHead('Home › Partners › '+title, title, intro)
+    + SEC('What you get — 5 points') + box(['Point one','Point two','Point three','Point four','Point five'].map(p=>`<div>→ ${p}</div>`).join(''))
+    + cta('Interested in this program?', BTN('Contact the partner desk',1)+BTN('All partner programs'));
+}
+function simplePage(crumb,title){
+  return pageHead(crumb,title) + SEC('Prose (constrained measure)') + LINES(4) + SEC('&nbsp;') + LINES(3);
+}
+
+/* ---------- controller ---------- */
+const LABELS = { flowmap:'Site Map', home:'Home', products:'Products — Catalogue', tools:'Tools & Calculators',
+  markets:'Markets — Index','market-detail':'Market — Detail (×11)', applications:'Applications — Index','application-detail':'Application — Detail (×10)',
+  manufacturing:'Manufacturing & Technology', films:'Soft PVC Films', certifications:'Quality & Certifications', knowledge:'Knowledge Center',
+  about:'About us', careers:'Careers', press:'Press', partners:'Partners','converter-partners':'Converter Partners','oem-partners':'OEM Partners','dealer-partners':'Dealer Partners',
+  contact:'Contact','legal-notice':'Legal notice','privacy-statement':'Privacy','terms-conditions':'Terms & conditions','accessibility-statement':'Accessibility','cookie-settings':'Cookie settings','site-map':'Sitemap' };
+
+function goTo(id){
+  var body = SCREENS[id] ? SCREENS[id]() : '<div class="page-wrap"><p>Missing screen: '+id+'</p></div>';
+  var html = (id==='flowmap') ? body : (navBar(id)+'<div class="page-wrap">'+body+(body.indexOf('wf-footer')>-1?'':footer())+'</div>');
+  document.getElementById('app').innerHTML = html;
+  document.getElementById('crumbLabel').textContent = LABELS[id]||id;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function toggleLegend(){ document.getElementById('legendBar').classList.toggle('hidden'); }
+goTo('home');
+</script>
+</body>
+</html>

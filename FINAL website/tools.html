@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tools & Calculators | DEON®</title>
+<meta name="description" content="Practical tape, manufacturing and procurement calculators — roll length, roll diameter, roll weight, grammage, slitting yield, tape consumption and carton sealing. Everything runs in your browser.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="knowledge">
+
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><a href="knowledge-center.html">Knowledge Center</a><span class="sep">›</span><b>Tools &amp; Calculators</b></div>
+  <div class="wrap">
+    <span class="eyebrow">Knowledge Center</span>
+    <h1 style="margin-top:14px">Tools &amp; Calculators</h1>
+    <p class="lead">Practical tape, manufacturing and procurement calculators — roll length, roll diameter, roll weight, grammage, slitting yield, tape consumption and carton sealing. Everything runs in your browser; nothing is sent anywhere.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="calc-grid">
+
+      <!-- 1 Roll Length -->
+      <div class="calc reveal">
+        <span class="tag">Packaging</span>
+        <h3>Roll Length Calculator</h3>
+        <p class="desc">Wound tape length from roll outer diameter, core diameter and tape thickness.</p>
+        <div class="field"><label>Roll outer diameter</label><div class="in"><input id="c1_od" type="number" value="120"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Core diameter</label><div class="in"><input id="c1_core" type="number" value="76"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Total tape thickness</label><div class="in"><input id="c1_t" type="number" value="50"><span class="unit">µm</span></div></div>
+        <div class="calc-out"><div class="k">Wound length</div><div class="v" id="c1_out">—</div></div>
+        <p class="note">Assumes a tight, gap-free wind. Total thickness = backing + adhesive.</p>
+      </div>
+
+      <!-- 2 Roll Diameter -->
+      <div class="calc reveal">
+        <span class="tag">Packaging</span>
+        <h3>Roll Diameter Calculator</h3>
+        <p class="desc">Finished roll outer diameter from wound length, core diameter and tape thickness.</p>
+        <div class="field"><label>Wound length</label><div class="in"><input id="c2_len" type="number" value="66"><span class="unit">m</span></div></div>
+        <div class="field"><label>Core diameter</label><div class="in"><input id="c2_core" type="number" value="76"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Total tape thickness</label><div class="in"><input id="c2_t" type="number" value="50"><span class="unit">µm</span></div></div>
+        <div class="calc-out"><div class="k">Roll outer diameter</div><div class="v" id="c2_out">—</div><div class="sub" id="c2_sub"></div></div>
+        <p class="note">Inverse of the length calculation; useful for checking build against a target OD.</p>
+      </div>
+
+      <!-- 3 Roll Weight -->
+      <div class="calc reveal">
+        <span class="tag">Packaging</span>
+        <h3>Roll Weight Calculator</h3>
+        <p class="desc">Approximate roll weight from length, width, thickness and material density.</p>
+        <div class="field"><label>Length</label><div class="in"><input id="c3_len" type="number" value="66"><span class="unit">m</span></div></div>
+        <div class="field"><label>Width</label><div class="in"><input id="c3_w" type="number" value="48"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Total thickness</label><div class="in"><input id="c3_t" type="number" value="50"><span class="unit">µm</span></div></div>
+        <div class="field"><label>Material density</label><div class="in"><input id="c3_d" type="number" value="1.3" step="0.01"><span class="unit">g/cm³</span></div></div>
+        <div class="field"><label>Core weight (optional)</label><div class="in"><input id="c3_core" type="number" value="0"><span class="unit">g</span></div></div>
+        <div class="calc-out"><div class="k">Approx. roll weight</div><div class="v" id="c3_out">—</div></div>
+        <p class="note">Density guide: PVC ≈ 1.3, PET ≈ 1.4, PP/BOPP ≈ 0.91, paper ≈ 0.8. Excludes liner unless included in thickness.</p>
+      </div>
+
+      <!-- 4 Grammage -->
+      <div class="calc reveal">
+        <span class="tag">Manufacturing</span>
+        <h3>Grammage / Coat-Weight Calculator</h3>
+        <p class="desc">Grammage (GSM) of a film or coating layer from its thickness and density.</p>
+        <div class="field"><label>Layer thickness</label><div class="in"><input id="c4_t" type="number" value="50"><span class="unit">µm</span></div></div>
+        <div class="field"><label>Density</label><div class="in"><input id="c4_d" type="number" value="1.3" step="0.01"><span class="unit">g/cm³</span></div></div>
+        <div class="calc-out"><div class="k">Grammage</div><div class="v" id="c4_out">—</div></div>
+        <p class="note">Use adhesive density + dry coat thickness for adhesive coat weight; film density + film thickness for backing GSM.</p>
+      </div>
+
+      <!-- 5 Jumbo → Finished -->
+      <div class="calc reveal">
+        <span class="tag">Conversion</span>
+        <h3>Jumbo-to-Finished-Roll Calculator</h3>
+        <p class="desc">Finished rolls from one jumbo — slit lanes across the width, cut lengths down the roll.</p>
+        <div class="field"><label>Jumbo web width</label><div class="in"><input id="c5_jw" type="number" value="500"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Finished slit width</label><div class="in"><input id="c5_fw" type="number" value="24"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Total edge trim</label><div class="in"><input id="c5_trim" type="number" value="6"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Jumbo length</label><div class="in"><input id="c5_jl" type="number" value="1000"><span class="unit">m</span></div></div>
+        <div class="field"><label>Finished roll length</label><div class="in"><input id="c5_fl" type="number" value="66"><span class="unit">m</span></div></div>
+        <div class="calc-out"><div class="k">Slit lanes per jumbo</div><div class="v" id="c5_out">—</div><div class="sub" id="c5_sub"></div></div>
+        <p class="note">Lanes are whole; leftover width becomes trim. Finished rolls = lanes × whole cut lengths per lane.</p>
+      </div>
+
+      <!-- 6 Tape Consumption -->
+      <div class="calc reveal">
+        <span class="tag">Procurement</span>
+        <h3>Tape Consumption Calculator</h3>
+        <p class="desc">Monthly and annual tape demand from a daily usage rate, plus a suggested reorder quantity.</p>
+        <div class="field"><label>Boxes per day</label><div class="in"><input id="c6_bpd" type="number" value="150"><span class="unit"></span></div></div>
+        <div class="field"><label>Tape per box</label><div class="in"><input id="c6_tpb" type="number" value="5" step="0.1"><span class="unit">m</span></div></div>
+        <div class="field"><label>Working days per month</label><div class="in"><input id="c6_days" type="number" value="26"><span class="unit"></span></div></div>
+        <div class="field"><label>Roll length (for reorder)</label><div class="in"><input id="c6_roll" type="number" value="66"><span class="unit">m</span></div></div>
+        <div class="calc-out"><div class="k">Monthly consumption</div><div class="v" id="c6_out">—</div><div class="sub" id="c6_sub"></div></div>
+        <p class="note">Assumes 12 months per year. Suggested reorder covers one month plus a 20% safety buffer.</p>
+      </div>
+
+      <!-- 7 Carton Sealing -->
+      <div class="calc reveal">
+        <span class="tag">Packaging</span>
+        <h3>Carton Sealing Calculator</h3>
+        <p class="desc">Total sealing tape for a carton run, from box length, tab overlap, seal pattern and quantity.</p>
+        <div class="field"><label>Carton length (seam run)</label><div class="in"><input id="c7_len" type="number" value="500"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Tab overlap per end</label><div class="in"><input id="c7_tab" type="number" value="10"><span class="unit">mm</span></div></div>
+        <div class="field"><label>Seal pattern</label><div class="in"><select id="c7_pat">
+          <option value="1">Top centre seam</option>
+          <option value="2" selected>Top &amp; bottom seam</option>
+          <option value="6">H-tape (both ends)</option>
+        </select></div></div>
+        <div class="field"><label>Number of cartons</label><div class="in"><input id="c7_qty" type="number" value="1000"><span class="unit"></span></div></div>
+        <div class="calc-out"><div class="k">Total tape required</div><div class="v" id="c7_out">—</div><div class="sub" id="c7_sub"></div></div>
+        <p class="note">Tape per strip = carton length + two tabs. Seal pattern sets strip count: 1 (top), 2 (top &amp; bottom), 6 (H-tape).</p>
+      </div>
+
+    </div>
+
+    <div class="card reveal" style="margin-top:28px;background:var(--tint);border-color:#cfe0f3;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+      <p style="margin:0;color:var(--ink);font-weight:500">Looking for a product, not a calculation? Try the guided product finder.</p>
+      <a class="btn btn-primary" href="products.html">Open product finder</a>
+    </div>
+  </div>
+</section>
+
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
