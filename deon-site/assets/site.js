@@ -66,7 +66,6 @@
   var t;
   if(t=$('#btnSearch'))  t.addEventListener('click',function(){openPanel('#searchModal');setTimeout(function(){var i=$('#searchInput');if(i)i.focus();},60);});
   if(t=$('#btnLang'))    t.addEventListener('click',function(){openPanel('#langPanel');});
-  if(t=$('#btnA11y'))    t.addEventListener('click',function(){openPanel('#a11yPanel');});
   if(t=$('#btnMenu'))    t.addEventListener('click',function(){openPanel('#mobilePanel');document.body.style.overflow='hidden';});
   $$('[data-close]').forEach(function(b){b.addEventListener('click',closeAll);});
   var sm=$('#searchModal'); if(sm) sm.addEventListener('click',function(e){if(e.target===sm)closeAll();});

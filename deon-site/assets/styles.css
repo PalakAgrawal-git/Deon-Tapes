@@ -758,16 +758,16 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 :root[data-theme="dark"] .lang-grid button:hover,
 :root[data-theme="dark"] .seg button:hover{background:#2A2423}
 :root[data-theme="dark"] .lang-grid button.active,
-:root[data-theme="dark"] .seg button.on{background:#2E1414;border-color:var(--red);color:#ff6b6b}
+:root[data-theme="dark"] .seg button.on{background:#2E1414;border-color:var(--red);color:#CC0000}
 :root[data-theme="dark"] .tab.on{background:var(--red);color:#fff;border-color:var(--red)}
 :root[data-theme="dark"] .facet-opt{color:var(--ink)}
 :root[data-theme="dark"] .search-hints a,
-:root[data-theme="dark"] .active-chip{background:#2E1414;color:#ff8080;border-color:#5a2020}
+:root[data-theme="dark"] .active-chip{background:#2E1414;color:#CC0000;border-color:#5a2020}
 :root[data-theme="dark"] .chip{background:#211C1C;color:var(--ink);border-color:#2A2423}
 :root[data-theme="dark"] .pcode,
 :root[data-theme="dark"] .eyebrow,
 :root[data-theme="dark"] .num-index,
-:root[data-theme="dark"] .arrow{color:#ff6b6b}
+:root[data-theme="dark"] .arrow{color:#CC0000}
 :root[data-theme="dark"] .sr-item .t{color:var(--ink)}
 :root[data-theme="dark"] .form-ok{background:#13291b;border-color:#2f5a3c;color:#8fe0a8}
 :root[data-theme="dark"] .note{background:#2a2412;border-color:#4a4020;color:#d8c88a}
@@ -783,7 +783,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 /* dark mode: remaining light surfaces (var(--ink) bg + hardcoded #fff) */
 :root[data-theme="dark"] .utilbar{background:#000;color:#B0A8A7}
 :root[data-theme="dark"] .util-tabs a{color:#B0A8A7}
-:root[data-theme="dark"] .util-tabs a.on{background:#211C1C;color:#ff6b6b}
+:root[data-theme="dark"] .util-tabs a.on{background:#211C1C;color:#CC0000}
 :root[data-theme="dark"] .util-links a{color:#B0A8A7}
 :root[data-theme="dark"] .util-links a:hover{color:#fff}
 :root[data-theme="dark"] .pillar{background:#161313}
@@ -800,12 +800,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 :root[data-theme="dark"] .ptag,
 :root[data-theme="dark"] .btn-ghost:hover,
 :root[data-theme="dark"] .nav-trigger:hover,
-:root[data-theme="dark"] .mega-link:hover .t{color:#ff6b6b}
+:root[data-theme="dark"] .mega-link:hover .t{color:#CC0000}
 :root[data-theme="dark"] .card .tag{background:#2E1414}
 
-/* dark mode: brighten the text-accent alias so all red text clears 4.5:1
-   (--red stays brand red for fills: buttons, CTA, tape marquee) */
-:root[data-theme="dark"]{--blue:#ff6b6b;--logo-blue:#ff8080}
-:root[data-theme="dark"] .market-row .a,
-:root[data-theme="dark"] .arrow,
-:root[data-theme="dark"] .arrow .a{color:#ff6b6b}
+:root[data-theme="dark"]{--blue:#CC0000;--logo-blue:#AA0000}

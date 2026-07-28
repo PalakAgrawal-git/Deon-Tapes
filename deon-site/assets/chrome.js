@@ -83,7 +83,6 @@
     '<div class="mega-grid">'+
       '<div class="mega-col"><h4>Resources</h4>'+
         link('knowledge-center.html','Knowledge Center','Guides, datasheets, FAQs')+
-        link('blog.html','Blog','Insights, guides & case studies')+
         link('tools.html','Tools & Calculators','Roll, weight, consumption')+
         link('certifications.html','Certifications','ISO, UL, BIS')+
       '</div>'+
@@ -135,7 +134,6 @@
           '<svg class="ic-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"/></svg>'+
           '<span class="theme-lbl">Light mode</span>'+
         '</button>'+
-        '<button class="icon-btn" id="btnA11y" aria-label="Accessibility and display options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="1.6"/><path d="M4 8h16M9 21l3-8 3 8M12 8v5"/></svg></button>'+
         '<a class="btn btn-primary nav-cta" href="contact.html">Contact</a>'+
         '<button class="icon-btn" id="btnMenu" aria-label="Menu" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>'+
       '</div>'+
@@ -158,25 +156,6 @@
         '<a href="products.html?adhesive=acrylic">Acrylic tapes</a><a href="certifications.html">Certifications</a>'+
         '<a href="contact.html?type=sample">Request samples</a></div>'+
     '</div></div>'+
-    // a11y
-    '<aside class="panel" id="a11yPanel" aria-label="Accessibility and display options"><div class="panel-head"><h3>Display options</h3>'+
-      '<button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
-      '<div class="a11y-row"><div class="lbl">Text size</div><div class="seg">'+
-        '<button data-a11y="fontscale" data-val="default">Default</button>'+
-        '<button data-a11y="fontscale" data-val="large">Large</button>'+
-        '<button data-a11y="fontscale" data-val="xl">Extra large</button></div></div>'+
-      '<div class="a11y-row"><div class="lbl">Contrast</div><div class="seg">'+
-        '<button data-a11y="contrast" data-val="default">Standard</button>'+
-        '<button data-a11y="contrast" data-val="high">High contrast</button></div></div>'+
-      '<div class="a11y-row"><div class="lbl">Theme</div><div class="seg">'+
-        '<button data-a11y="theme" data-val="default">System</button>'+
-        '<button data-a11y="theme" data-val="light">Light</button>'+
-        '<button data-a11y="theme" data-val="dark">Dark</button></div></div>'+
-      '<div class="a11y-row"><div class="lbl">Motion</div><div class="seg">'+
-        '<button data-a11y="motion" data-val="default">Animations on</button>'+
-        '<button data-a11y="motion" data-val="off">Reduce motion</button></div></div>'+
-      '<p class="muted" style="font-size:.8rem;margin-top:16px">Preferences are saved on this device.</p>'+
-    '</aside>'+
     // mobile
     '<aside class="panel" id="mobilePanel" aria-label="Menu"><div class="panel-head"><h3>Menu</h3>'+
       '<button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+

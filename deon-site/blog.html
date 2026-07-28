@@ -126,16 +126,39 @@
 document.addEventListener('DOMContentLoaded',function(){
   var filters=document.getElementById('blogFilters');
   var cards=document.querySelectorAll('#blogGrid .card');
+  var loadBtn=document.getElementById('loadMore');
+  var VISIBLE=3;
+
+  function applyVisibility(){
+    var cat=filters.querySelector('.chip.on').getAttribute('data-cat');
+    var shown=0;
+    cards.forEach(function(c){
+      var match=cat==='all'||c.getAttribute('data-cat')===cat;
+      if(match){
+        shown++;
+        c.style.display=shown<=VISIBLE?'':'none';
+      }else{
+        c.style.display='none';
+      }
+    });
+    loadBtn.style.display=shown>VISIBLE?'':'none';
+  }
+
   filters.addEventListener('click',function(e){
     var btn=e.target.closest('.chip');
     if(!btn)return;
     filters.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
     btn.classList.add('on');
-    var cat=btn.getAttribute('data-cat');
-    cards.forEach(function(c){
-      c.style.display=(cat==='all'||c.getAttribute('data-cat')===cat)?'':'none';
-    });
+    VISIBLE=3;
+    applyVisibility();
   });
+
+  loadBtn.addEventListener('click',function(){
+    VISIBLE=cards.length;
+    applyVisibility();
+  });
+
+  applyVisibility();
 });
 </script>
 <script src="assets/chrome.js"></script>
