@@ -13,9 +13,9 @@
   --blue:#CC0000; --logo-blue:#AA0000;   /* accent aliases -> brand red */
   --charcoal:#111111; --navy:#111111;
   /* surfaces & text */
-  --ink:#171312; --text:#444444; --text-mid:#8A8180; --mid:#8A8180;
-  --bg:#F4F1F0; --white:#FFFFFF; --surface-2:#FBF9F9;
-  --light-grey:#F4F1F0; --tint:#FBF9F9; --line:#E6DEDD;
+  --ink:#111111; --text:#444444; --text-mid:#999999; --mid:#999999;
+  --bg:#F8F8F8; --white:#FFFFFF; --surface-2:#F8F8F8;
+  --light-grey:#F8F8F8; --tint:#F8F8F8; --line:#E6DEDD;
   /* layout */
   --nav-h:92px; --logo-h:52px;
   --font-head:'Barlow Condensed',"Arial Narrow",system-ui,sans-serif;
@@ -106,7 +106,6 @@ p{margin:0}
   transition:background .18s,border-color .18s}
 .icon-btn:hover{background:var(--tint);color:var(--blue)}
 .icon-btn svg{width:20px;height:20px}
-.lang-btn{width:auto;padding:0 12px;gap:6px;font-weight:600;font-size:.85rem}
 .nav-cta{margin-left:6px}
 
 /* mega menu panel */
@@ -204,8 +203,9 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .trusted{padding:34px 0;border-bottom:1px solid var(--line);background:#fff}
 .trusted .lbl{text-align:center;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;
   color:var(--text-mid);font-weight:700;margin-bottom:22px}
-.logos{display:flex;gap:56px;align-items:center;justify-content:center;flex-wrap:wrap;opacity:.7}
-.logos span{font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--mid);letter-spacing:.02em}
+.logos{display:flex;gap:56px;align-items:center;flex-wrap:nowrap;overflow:hidden;position:relative}
+.logos span{display:flex;align-items:center;justify-content:center;height:48px;flex-shrink:0}
+.logos span img{max-height:40px;max-width:120px;width:auto;height:auto;object-fit:contain}
 
 /* =========================================================================
    CARDS / GRIDS
@@ -261,6 +261,23 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .cert{border:1px solid var(--line);background:#fff;border-radius:12px;padding:16px 24px;text-align:center;min-width:150px}
 .cert .t{font-family:var(--font-head);font-weight:700;color:var(--ink);font-size:1.05rem}
 .cert .d{font-size:.72rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+/* Spec table (product detail) */
+.spec-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.spec-table td{padding:10px 14px;border-bottom:1px solid var(--line)}
+.spec-table tr:last-child td{border-bottom:none}
+.spec-table tr:hover{background:var(--tint)}
+
+/* Timeline */
+.timeline{position:relative;padding-left:36px;margin-top:28px}
+.timeline::before{content:"";position:absolute;left:13px;top:0;bottom:0;width:2px;background:var(--blue);opacity:.3}
+.tl-item{position:relative;margin-bottom:32px;display:flex;gap:20px;align-items:flex-start}
+.tl-item:last-child{margin-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--blue);border:3px solid var(--white);z-index:1}
+.tl-year{font-family:var(--font-head);font-weight:700;font-size:1.6rem;color:var(--blue);min-width:70px;line-height:1.2}
+.tl-body h3{margin-bottom:4px}
+.tl-body p{color:var(--text);font-size:.95rem;max-width:50ch}
+@media(max-width:600px){.timeline{padding-left:28px}.tl-item{flex-direction:column;gap:4px}.tl-year{font-size:1.3rem}}
 
 /* CTA band */
 .cta{background:linear-gradient(120deg,var(--logo-blue),var(--blue));color:#fff}
@@ -451,8 +468,8 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .site-header{background:#fff}
 .nav{gap:22px}
 
-/* footer logo on light chip */
-.foot-logo{display:inline-flex;background:#fff;border-radius:10px;padding:12px 16px}
+/* footer logo */
+.foot-logo{display:inline-flex;padding:0}
 .foot-logo img{height:40px;width:auto;display:block}
 
 /* ---------- PHOTOGRAPHIC HERO ---------- */
@@ -637,8 +654,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 .fcol a{transition:color .2s,padding-left .2s var(--ease)}
 .fcol a:hover{padding-left:6px;color:#fff}
 
-/* trusted-brands marquee (infinite) */
-.logos{flex-wrap:nowrap;overflow:hidden;position:relative}
+/* trusted-brands marquee */
 .logos-track{display:flex;gap:56px;align-items:center;animation:marqueeA 26s linear infinite;flex:none}
 .trusted:hover .logos-track{animation-play-state:paused}
 
@@ -697,7 +713,6 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 :root[data-theme="dark"] .card,:root[data-theme="dark"] .pcard,
 :root[data-theme="dark"] .calc,:root[data-theme="dark"] .cert,:root[data-theme="dark"] .std{background:#161313}
 :root[data-theme="dark"] .section.grey{background:#0C0A0A}
-:root[data-theme="dark"] .foot-logo{background:#fff}
 
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
