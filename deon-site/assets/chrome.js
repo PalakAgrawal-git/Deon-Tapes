@@ -7,10 +7,9 @@
 
   /* ---- data ---- */
   var MARKETS = [
-    ['transportation','Transportation'],['electrical','Electrical'],['building','Building components'],
-    ['renewable','Renewable energy'],['metal','Metal manufacturing'],['hvacr','HVAC & Insulation'],
-    ['appliance','Appliance manufacturing'],['packaging','Packaging & logistics'],
-    ['electronics','Electronics'],['automotive','Automotive'],['print','Print & Paper']
+    ['automotive','Automotive'],['building','Construction'],['electrical','Electrical'],
+    ['electronics','Electronics'],['hvacr','HVAC & Insulation'],['metal','Metal Manufacturing'],
+    ['packaging','Packaging & Logistics'],['renewable','Renewable Energy'],['appliance','Appliance Manufacturing']
   ];
   function link(href,t,d){return '<a class="mega-link" href="'+href+'"><span class="t">'+t+'</span>'+(d?'<span class="d">'+d+'</span>':'')+'</a>';}
   function feat(href,t){return '<div class="mega-feature"><span class="muted" style="font-size:.82rem">'+t+'</span><a class="arrow" href="'+href+'">Explore <span class="a">→</span></a></div>';}
@@ -84,10 +83,13 @@
     '<div class="mega-grid">'+
       '<div class="mega-col"><h4>Resources</h4>'+
         link('knowledge-center.html','Knowledge Center','Guides, datasheets, FAQs')+
+        link('blog.html','Blog','Insights, guides & case studies')+
         link('tools.html','Tools & Calculators','Roll, weight, consumption')+
         link('certifications.html','Certifications','ISO, UL, BIS')+
       '</div>'+
       '<div class="mega-col"><h4>Company</h4>'+
+        link('about.html','About DEON','The DEON journey')+
+        link('manufacturing-technology.html','Infrastructure','Factory, labs & capacity')+
         link('press.html','Press')+
         link('careers.html','Careers')+
         link('partners.html','Partner programs')+
@@ -99,12 +101,12 @@
     ['markets','Markets',megaMarkets],
     ['applications','Applications',megaApplications],
     ['products','Products',megaProducts],
-    ['manufacturing','Manufacturing',megaManufacturing],
+    ['manufacturing','Infrastructure',megaManufacturing],
     ['knowledge','Knowledge Center',megaKnowledge]
   ];
 
   var logoIMG =
-    '<img class="mark" src="assets/brand/logo.svg" alt="DEON — It\'s Power-Strong" width="150" height="63">';
+    '<img class="mark" src="assets/brand/Deon Logo CC.svg" alt="DEON — It\'s Power-Strong" width="150" height="63">';
 
   var utilBar =
     '<div class="utilbar"><div class="utilbar-in">'+
@@ -124,6 +126,7 @@
             '<button class="nav-trigger" aria-expanded="false" data-nav="'+it[0]+'">'+it[1]+'<span class="chev"></span></button>'+
             '<div class="mega">'+it[2]+'</div></div>';
         }).join('')+
+        '<div class="nav-item"><a class="nav-trigger" href="blog.html" data-nav="blog">Blog</a></div>'+
       '</div>'+
       '<div class="nav-right">'+
         '<button class="icon-btn" id="btnSearch" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg></button>'+
@@ -179,6 +182,7 @@
       '<button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
       '<div style="overflow:auto">'+
         NAV.map(function(it){return '<a class="mega-link" href="'+({markets:'markets.html',applications:'applications.html',products:'products.html',manufacturing:'manufacturing-technology.html',knowledge:'knowledge-center.html'})[it[0]]+'"><span class="t">'+it[1]+'</span></a>';}).join('')+
+        '<a class="mega-link" href="blog.html"><span class="t">Blog</span></a>'+
         '<a class="mega-link" href="about.html"><span class="t">About us</span></a>'+
         '<a class="mega-link" href="contact.html"><span class="t">Contact</span></a>'+
         '<a class="btn btn-primary" style="margin-top:16px;width:100%" href="contact.html?type=sample">Request samples</a>'+
@@ -189,14 +193,14 @@
   function fcol(title,items){return '<div class="fcol"><h5>'+title+'</h5>'+items.map(function(i){return '<a href="'+i[0]+'">'+i[1]+'</a>';}).join('')+'</div>';}
   var footerHTML =
     '<footer class="site-footer"><div class="footer-top">'+
-      '<div class="footer-brand"><span class="foot-logo"><img src="assets/brand/logo.svg" alt="DEON — It\'s Power-Strong"></span>'+
+      '<div class="footer-brand"><span class="foot-logo"><img src="assets/brand/logo-white.png" alt="DEON — It\'s Power-Strong" style="max-width:150px;height:auto"></span>'+
         '<p>Indian manufacturer of pressure-sensitive adhesive tapes and soft PVC films — formulated, coated and converted in-house. Plants in Silvassa &amp; Vadodara.</p>'+
         '<a class="btn btn-light" style="margin-top:18px" href="contact.html">Contact DEON</a>'+
       '</div>'+
       fcol('Products',[['products.html','All products'],['products.html?sided=double','Double-sided & foam'],['products.html?backing=foil','Foil & sealing'],['application.html?group=masking','Masking'],['application.html?group=bundling','Harness & bundling'],['products.html?family=electrical-insulation','Insulation']])+
-      fcol('Markets',[['markets.html','All markets'],['market.html?m=electrical','Electrical'],['market.html?m=automotive','Automotive'],['market.html?m=hvacr','HVAC & Insulation'],['market.html?m=packaging','Packaging']])+
-      fcol('Company',[['about.html','About us'],['manufacturing-technology.html','Manufacturing'],['careers.html','Careers'],['press.html','Press'],['partners.html','Partners']])+
-      fcol('Resources',[['knowledge-center.html','Knowledge Center'],['tools.html','Tools & Calculators'],['certifications.html','Certifications'],['contact.html?type=quote','Request a quote'],['contact.html?type=sample','Request samples']])+
+      fcol('Markets',[['markets.html','All markets'],['market.html?m=automotive','Automotive'],['market.html?m=electrical','Electrical'],['market.html?m=construction','Construction'],['market.html?m=packaging','Packaging'],['market.html?m=healthcare','Healthcare']])+
+      fcol('Company',[['about.html','About us'],['manufacturing-technology.html','Infrastructure & Manufacturing'],['certifications.html','Quality & Certifications'],['careers.html','Careers'],['press.html','Press'],['partners.html','Partners']])+
+      fcol('Resources',[['knowledge-center.html','Knowledge Center'],['blog.html','Blog'],['tools.html','Tools & Calculators'],['contact.html?type=quote','Request a quote'],['contact.html?type=sample','Request samples']])+
     '</div>'+
     '<div class="footer-bottom"><div class="wrap">'+
       '<span>© '+(new Date().getFullYear())+' DEON Tapes Industries Pvt. Ltd.</span>'+

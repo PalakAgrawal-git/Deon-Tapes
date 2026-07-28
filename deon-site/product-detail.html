@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product Detail | DEON&#174;</title>
+<meta name="description" content="Product specifications, datasheet and enquiry — DEON Tapes.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="products">
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">&#8250;</span><a href="products.html">Products</a><span class="sep">&#8250;</span><span id="crumbCat">Category</span><span class="sep">&#8250;</span><b id="crumbName">Product</b></div>
+  <div class="wrap">
+    <span class="eyebrow" id="pdCat">Category</span>
+    <h1 style="margin-top:14px" id="pdName">Product Name</h1>
+    <p class="lead" id="pdCode">Deon SKU</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split2">
+      <!-- LEFT: IMAGE GALLERY -->
+      <div>
+        <div class="reveal" id="pdMainImg" style="background:var(--tint);border-radius:8px;overflow:hidden;min-height:350px;display:flex;align-items:center;justify-content:center">
+          <img id="pdImg" src="" alt="" style="width:100%;height:auto;display:block">
+        </div>
+        <div id="pdThumbs" class="reveal" style="display:flex;gap:8px;margin-top:12px"></div>
+      </div>
+      <!-- RIGHT: INFO -->
+      <div>
+        <p id="pdDesc" style="font-size:1.05rem;line-height:1.6;margin-bottom:24px"></p>
+
+        <!-- SPECS TABLE -->
+        <h3 style="margin-bottom:12px">Technical specifications</h3>
+        <table class="spec-table" id="pdSpecs">
+          <tbody></tbody>
+        </table>
+
+        <!-- INDUSTRY TAGS -->
+        <div style="margin-top:24px" id="pdIndustries"></div>
+
+        <!-- ACTIONS -->
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" id="pdSample" href="#">Request sample</a>
+          <a class="btn" id="pdQuote" href="#">Request a quote</a>
+          <a class="btn" id="pdDatasheet" href="#" style="background:var(--tint);border-color:var(--rule)">Download datasheet</a>
+        </div>
+
+        <!-- WHATSAPP -->
+        <div style="margin-top:20px">
+          <a id="pdWhatsapp" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#25D366;font-weight:600;font-size:.95rem;text-decoration:none">
+            <svg viewBox="0 0 24 24" fill="#25D366" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Enquire on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section class="section tint">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Related products</span>
+      <h2>More from the same category.</h2>
+    </div>
+    <div class="grid grid-3 reveal-stagger" id="pdRelated"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div>
+      <h2>Need help choosing the right tape?</h2>
+      <p>Send us the application and our team will recommend a product.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-light" href="contact.html">Contact DEON</a>
+      <a class="btn btn-light" href="products.html">Browse all products</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var PRODUCTS = [
+    ['31700','PVC Electrical Insulation Tape','electrical-insulation','rubber','pvc','single','PVC film with rubber adhesive — reliable insulation, strong bond, UL 510 / IS 7809.'],
+    ['50W13','Wire Harness Tape','harness','rubber','pvc','single','PVC harnessing tape for automotive looms — secure bundling and abrasion protection.'],
+    ['DT1111','Class B Polyester Insulation Tape','electrical-insulation','rubber','pet','single','PET film, thermosetting rubber adhesive, Class B (130°C), ≥5 kV dielectric.'],
+    ['DT1113','Class B Polyester Fleece Insulation Tape','electrical-insulation','rubber','cloth','single','Fleece backing for varnish impregnation — Class B, high adhesion.'],
+    ['DT1123','Class F Polyester Fleece Insulation Tape','electrical-insulation','acrylic','cloth','single','Fleece + acrylic adhesive, Class F (155°C) for motor coil insulation.'],
+    ['DT2131','Class H Polyimide Insulation Tape','electrical-insulation','silicone','polyimide','single','Polyimide film, silicone adhesive, Class H (180°C) — PCB & coil masking.'],
+    ['DT3121L','Class F Glass Cloth Insulation Tape','electrical-insulation','acrylic','cloth','single','Woven glass fabric, acrylic adhesive, Class F, high tensile with PET liner.'],
+    ['DT3124L','Polyglass Waterproofing Tape','foil-sealing','acrylic','cloth','single','LDPE-coated glass fabric — waterproof barrier, weather-resistant sealing.'],
+    ['41860','Floor Marking Tape','floor-marking','rubber','pvc','single','High-visibility PVC lane and hazard marking — clean removal, 6 colours.'],
+    ['DT3131','High-Temperature Glass Cloth Tape','masking','silicone','cloth','single','Glass fabric, silicone adhesive, –40°C to 300°C — heat tracing & duct.'],
+    ['DT4021','Aluminium Foil Tape — Acrylic Series','foil-sealing','acrylic','foil','single','Soft aluminium foil, acrylic adhesive — HVAC seaming and heat reflection.'],
+    ['DT4041','Aluminium Foil Tape — Hot Melt Series','foil-sealing','hotmelt','foil','single','Soft aluminium foil, hot-melt adhesive — high tack for irregular surfaces.'],
+    ['M5001','Masking Tape','masking','rubber','paper','single','Crepe paper masking, clean removal, easy tear — paint and surface protection.'],
+    ['PW6001','PVC Pipe Wrapping Tape','foil-sealing','rubber','pvc','single','PVC pipe wrap — corrosion protection and moisture sealing, conformable.'],
+    ['DT1142','Double-Sided Polyester Bonding Tape','bonding','hotmelt','pet','double','PET film, hot-melt — bonds low-surface-energy plastics, high initial tack.'],
+    ['DT1221H','Polyester Holding & Splicing Tape','bonding','acrylic','pet','single','Translucent blue PET, acrylic — clean-removal holding and splicing.'],
+    ['DT1231','High-Temperature Polyester Masking Tape','masking','silicone','pet','single','PET, silicone adhesive, –40°C to 200°C — powder-coat and wave soldering.'],
+    ['DT5142','Double-Sided PE Foam Bonding Tape','bonding','hotmelt','foam','double','PE foam, hot-melt — high steel adhesion, conformable structural bonding.'],
+    ['DT6041','Adhesive Transfer Tape','bonding','hotmelt','tissue','double','Carrierless hot-melt film (~50 µm) — ultra-thin, high-conformability bonding.'],
+    ['DT6122','Double-Sided Tissue Bonding Tape','bonding','acrylic','tissue','double','Ultra-thin tissue (~70 µm) — fast tack, dimensional stability, mounting.'],
+    ['DT3741L','HDPE Fabric Tape','packaging','hotmelt','hdpe','single','Woven HDPE, hot-melt — heavy-duty packaging, abrasion and moisture resistant.'],
+    ['DT7143','Monofilament Reinforced Packaging Tape','packaging','hotmelt','filament','single','PET + glass filaments, ≥120 N/cm tensile — bundle and load securing.'],
+    ['DT7243','Cross Filament Reinforced Packaging Tape','packaging','hotmelt','filament','single','Bi-directional glass filaments — multi-directional strength, palletising.'],
+    ['DT9151','BOPP Packaging Tape','packaging','acrylic','bopp','single','BOPP, water-based acrylic — carton sealing, custom print, e-commerce.']
+  ];
+  var FAMNAME={'electrical-insulation':'Electrical & Insulation','bonding':'Bonding & Double-sided','masking':'Masking','foil-sealing':'Foil & Sealing','packaging':'Packaging','harness':'Harness & Bundling','floor-marking':'Floor Marking'};
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+  var sku=new URLSearchParams(location.search).get('sku');
+  var p=PRODUCTS.find(function(x){return x[0]===sku;});
+  if(!p){document.getElementById('pdName').textContent='Product not found';return;}
+
+  var cat=FAMNAME[p[2]]||cap(p[2]);
+  document.title=p[1]+' — Deon '+p[0]+' | DEON®';
+  document.getElementById('pdName').textContent=p[1];
+  document.getElementById('pdCode').textContent='Deon '+p[0];
+  document.getElementById('pdCat').textContent=cat;
+  document.getElementById('pdDesc').textContent=p[6];
+  document.getElementById('crumbCat').textContent=cat;
+  document.getElementById('crumbName').textContent='Deon '+p[0];
+
+  var img='assets/img/'+p[0].toLowerCase()+'.jpeg';
+  document.getElementById('pdImg').src=img;
+  document.getElementById('pdImg').alt=p[1];
+
+  // Specs table
+  var specs=[
+    ['Product code','Deon '+p[0]],
+    ['Product name',p[1]],
+    ['Adhesive system',cap(p[3])],
+    ['Backing material',cap(p[4])],
+    ['Construction',cap(p[5])+'-sided'],
+    ['Category',cat],
+    ['Certifications','Available on request'],
+    ['Colour options','Contact for options'],
+    ['Width options','Standard and custom widths available'],
+    ['Lead time','Contact sales for lead time']
+  ];
+  document.getElementById('pdSpecs').querySelector('tbody').innerHTML=specs.map(function(s){
+    return '<tr><td style="font-weight:600;width:40%;color:var(--ink)">'+s[0]+'</td><td>'+s[1]+'</td></tr>';
+  }).join('');
+
+  // Industry tags
+  var indMap={'electrical-insulation':['Electrical','Automotive','Renewable Energy'],'bonding':['Automotive','Construction','Packaging'],'masking':['Automotive','Construction','Paints & Carpentry'],'foil-sealing':['Construction','Packaging','HVAC'],'packaging':['Packaging','Construction'],'harness':['Automotive','Electrical'],'floor-marking':['Automotive','Construction','Healthcare']};
+  var industries=indMap[p[2]]||['General industrial'];
+  document.getElementById('pdIndustries').innerHTML='<h4 style="margin-bottom:8px;font-size:.9rem;color:var(--text-mid)">Industries served</h4>'+industries.map(function(i){return '<span class="chip">'+i+'</span>';}).join('');
+
+  // Action links
+  document.getElementById('pdSample').href='contact.html?type=sample&sku='+p[0];
+  document.getElementById('pdQuote').href='contact.html?type=quote&sku='+p[0];
+  document.getElementById('pdWhatsapp').href='https://wa.me/917700085050?text='+encodeURIComponent('Hi, I\'d like to enquire about Deon '+p[0]+' — '+p[1]);
+
+  // Related products (same family, excluding current)
+  var related=PRODUCTS.filter(function(x){return x[2]===p[2]&&x[0]!==p[0];}).slice(0,3);
+  if(!related.length)related=PRODUCTS.filter(function(x){return x[0]!==p[0];}).slice(0,3);
+  document.getElementById('pdRelated').innerHTML=related.map(function(r){
+    var rimg='assets/img/'+r[0].toLowerCase()+'.jpeg';
+    return '<a class="card has-img" href="product-detail.html?sku='+r[0]+'">'+
+      '<div class="cimg"><img src="'+rimg+'" alt="'+r[1]+'" loading="lazy"></div>'+
+      '<div class="cbody"><span class="tag">'+(FAMNAME[r[2]]||r[2])+'</span><h3>'+r[1]+'</h3>'+
+      '<p class="muted" style="font-size:.85rem">Deon '+r[0]+'</p>'+
+      '<span class="arrow">View details <span class="a">→</span></span></div></a>';
+  }).join('');
+})();
+</script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

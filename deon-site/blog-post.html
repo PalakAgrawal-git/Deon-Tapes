@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog Post | DEON&#174;</title>
+<meta name="description" content="Industry insights and application guides from DEON Tapes.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="knowledge">
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">&#8250;</span><a href="blog.html">Blog</a><span class="sep">&#8250;</span><b id="postTitle">Article</b></div>
+  <div class="wrap">
+    <span class="eyebrow" id="postCat">Category</span>
+    <h1 style="margin-top:14px" id="postHeading">Loading…</h1>
+    <p class="muted" id="postMeta"></p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="wrap" style="max-width:780px">
+    <div class="reveal" style="border-radius:6px;margin-bottom:32px;overflow:hidden"><img id="postImg" src="" alt="" style="width:100%;height:auto;display:block"></div>
+
+    <article class="reveal" id="postBody"></article>
+
+    <div class="info-card reveal" style="margin-top:40px;display:flex;gap:16px;align-items:center">
+      <div style="width:56px;height:56px;border-radius:50%;background:var(--tint);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--text-mid);font-size:1.2em">D</div>
+      <div>
+        <h3 style="font-size:1rem;margin-bottom:2px">DEON Technical Team</h3>
+        <p class="muted" style="font-size:.85rem">Application guides and industry insights from the DEON Tapes technical and product development team.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:48px">
+      <h2>Related posts</h2>
+      <div class="grid grid-3 reveal-stagger" style="margin-top:16px" id="relatedPosts"></div>
+    </div>
+
+    <div class="info-card reveal" style="margin-top:40px;text-align:center;padding:32px 24px;background:var(--tint)">
+      <h3>Need help choosing the right tape?</h3>
+      <p style="margin:8px 0 16px">Our technical sales team can recommend a product for your specific application.</p>
+      <a class="btn btn-primary" href="contact.html">Contact DEON</a>
+      <a class="btn" href="products.html" style="margin-left:10px">Browse products</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var POSTS = [
+    {
+      id:'1', cat:'Applications', date:'15 Jul 2026', read:'5 min read',
+      title:'How to choose the right masking tape for automotive paint shops',
+      img:'assets/img/m5001.jpeg',
+      body:'<p>Temperature resistance, clean removal and adhesion level — these are the three factors that determine which masking tape works in a paint booth. Get any one of them wrong and you\'re dealing with residue, bleed-through or tape failure mid-cycle.</p>'+
+        '<h2>Why masking tape matters in automotive</h2>'+
+        '<p>Automotive paint processes involve high temperatures (up to 150°C in some powder-coat lines), aggressive solvents and precise masking geometries. Standard office masking tape won\'t survive these conditions — it leaves residue, loses adhesion or tears during removal.</p>'+
+        '<p>Purpose-built automotive masking tapes use heat-resistant backings (crepe paper or PET film) with specially formulated adhesives that maintain bond during the paint cycle but release cleanly afterwards.</p>'+
+        '<h2>Key specifications to look for</h2>'+
+        '<p><strong>Temperature resistance:</strong> Look for tapes rated to at least 120°C for water-based paint systems, or 150°C+ for powder coat. The rating should reflect sustained exposure, not peak temperature.</p>'+
+        '<p><strong>Clean removal:</strong> The adhesive must not leave residue or transfer onto the painted surface. This is especially critical on fresh clear-coat finishes where any contamination is visible.</p>'+
+        '<p><strong>Adhesion level:</strong> Too high and the tape damages the surface on removal. Too low and paint bleeds underneath. The right balance depends on the substrate — metal, plastic or glass.</p>'+
+        '<h2>DEON masking tapes for automotive</h2>'+
+        '<p>DEON manufactures a range of masking tapes specifically formulated for automotive paint applications — from high-temperature crepe masking to fine-line PET masking for two-tone and detail work.</p>',
+      related:['4','3','5']
+    },
+    {
+      id:'2', cat:'Industry Trends', date:'8 Jul 2026', read:'4 min read',
+      title:'The shift to acrylic adhesives in electrical insulation',
+      img:'assets/img/dt2131.jpeg',
+      body:'<p>Across the electrical and electronics industry, OEMs are increasingly specifying acrylic adhesive systems over traditional rubber-based formulations for insulation tapes. The shift is driven by performance at elevated temperatures and longer service life.</p>'+
+        '<h2>Why the shift is happening</h2>'+
+        '<p>Rubber-based adhesives have served the industry well for decades, but they degrade faster under sustained heat — particularly above 130°C. As motors become more compact and power-dense, operating temperatures are rising, and rubber adhesives soften, lose tack, or leave residue.</p>'+
+        '<p>Acrylic adhesives maintain their bond strength across a wider temperature range (typically –40°C to 180°C), resist UV and chemical exposure better, and do not yellow or become brittle with age.</p>'+
+        '<h2>What this means for procurement</h2>'+
+        '<p>If your current insulation tape spec uses rubber adhesive and your application sees sustained temperatures above 120°C, it may be time to evaluate an acrylic alternative. The upfront cost is slightly higher, but field failure rates drop significantly.</p>'+
+        '<h2>DEON acrylic insulation tapes</h2>'+
+        '<p>DEON manufactures Class F and Class H insulation tapes with acrylic adhesive systems — including polyester fleece (DT1123) and glass cloth (DT3121L) constructions designed for motor and transformer applications.</p>',
+      related:['1','3','6']
+    },
+    {
+      id:'3', cat:'Case Studies', date:'1 Jul 2026', read:'6 min read',
+      title:'Wire harness taping for a leading automotive OEM',
+      img:'assets/img/50w13.jpeg',
+      body:'<p>When a leading Indian automotive OEM needed a wire harness tape that could withstand under-hood temperatures, resist abrasion from engine vibration, and maintain flexibility across a –20°C to 105°C range, they turned to DEON.</p>'+
+        '<h2>The challenge</h2>'+
+        '<p>The OEM\'s existing tape was failing at harness bends — cracking after thermal cycling and allowing moisture ingress. The tape also left adhesive residue during rework, adding cost to the assembly line.</p>'+
+        '<h2>The solution</h2>'+
+        '<p>DEON\'s technical team recommended the 50W13 PVC harness tape — a soft PVC backing with a rubber-based adhesive system specifically formulated for automotive wire bundling. The tape conforms tightly around harness bends without lifting, and removes cleanly during rework.</p>'+
+        '<h2>The result</h2>'+
+        '<p>After a 3-month qualification trial across 12,000 harness assemblies, the OEM reported zero field failures related to tape performance. The 50W13 is now specified as the standard harness tape across three vehicle platforms.</p>',
+      related:['1','2','6']
+    },
+    {
+      id:'4', cat:'How-To Guides', date:'25 Jun 2026', read:'7 min read',
+      title:'Understanding adhesive tape specifications: a buyer’s guide',
+      img:'assets/brand/factory-coating.jpg',
+      body:'<p>Peel adhesion, tensile strength, elongation, dielectric breakdown — tape datasheets are packed with numbers, but what do they actually mean for your application? This guide breaks down the key specifications.</p>'+
+        '<h2>Peel adhesion</h2>'+
+        '<p>Measured in N/cm or oz/in, peel adhesion tells you how strongly the tape bonds to a surface. Higher is not always better — a harness tape needs moderate adhesion for reworkability, while a permanent bonding tape needs maximum hold.</p>'+
+        '<h2>Tensile strength</h2>'+
+        '<p>The force required to break the tape by pulling it lengthwise. Important for packaging and strapping tapes where the tape bears load. Measured in N/cm width.</p>'+
+        '<h2>Elongation at break</h2>'+
+        '<p>How much the tape stretches before breaking, expressed as a percentage. High elongation means the tape conforms well around curves and irregular surfaces — critical for harness and insulation applications.</p>'+
+        '<h2>Dielectric breakdown voltage</h2>'+
+        '<p>For electrical insulation tapes, this is the voltage at which the tape fails as an insulator. Measured in kV. A higher value means better insulation performance. Always check whether the spec refers to the tape alone or the adhesive-backing system.</p>'+
+        '<h2>How to read a DEON datasheet</h2>'+
+        '<p>Every DEON product datasheet lists test method references (ASTM, IS, IEC) alongside each specification. If you need help interpreting a datasheet for your specific application, contact our technical sales team.</p>',
+      related:['1','2','5']
+    },
+    {
+      id:'5', cat:'Applications', date:'18 Jun 2026', read:'4 min read',
+      title:'Aluminium foil tape in HVAC duct sealing',
+      img:'assets/img/dt4021.jpeg',
+      body:'<p>In HVAC installations, the quality of duct sealing directly affects energy efficiency, air quality, and system longevity. Aluminium foil tape has become the standard for permanent duct joints — here\'s why, and what to specify.</p>'+
+        '<h2>Why foil tape over cloth duct tape</h2>'+
+        '<p>Cloth "duct tape" — despite its name — is not suitable for actual ductwork. It degrades under temperature cycling, loses adhesion over time, and does not provide an airtight seal. Aluminium foil tape maintains its bond and barrier performance for decades.</p>'+
+        '<h2>What to specify</h2>'+
+        '<p><strong>Foil thickness:</strong> 30–50 µm for standard residential HVAC. Thicker foils (60–80 µm) for industrial or high-pressure systems.</p>'+
+        '<p><strong>Adhesive type:</strong> Acrylic for long-term bonding and temperature resistance. Hot-melt for high initial tack on irregular surfaces.</p>'+
+        '<p><strong>Width:</strong> 48mm or 72mm for standard duct seams. Custom widths available for specific applications.</p>'+
+        '<h2>DEON foil tapes</h2>'+
+        '<p>DEON manufactures both acrylic (DT4021) and hot-melt (DT4041) aluminium foil tapes — tested for HVAC seaming, heat reflection, and moisture barrier applications.</p>',
+      related:['4','6','1']
+    },
+    {
+      id:'6', cat:'Industry Trends', date:'10 Jun 2026', read:'3 min read',
+      title:'Floor marking tape standards for Indian manufacturing',
+      img:'assets/img/41860.jpeg',
+      body:'<p>5S, lean manufacturing and safety compliance all depend on clear, durable floor marking. But which colours mean what, and what durability standards should your floor tape meet? Here\'s what Indian manufacturers need to know.</p>'+
+        '<h2>Colour codes</h2>'+
+        '<p><strong>Yellow:</strong> Aisles, walkways, and traffic lanes. The most common floor marking colour.</p>'+
+        '<p><strong>Red:</strong> Defect areas, scrap zones, and fire equipment locations.</p>'+
+        '<p><strong>Green:</strong> Finished goods, first aid, and safety equipment areas.</p>'+
+        '<p><strong>Blue:</strong> Raw materials and work-in-progress zones.</p>'+
+        '<p><strong>Black &amp; white stripes:</strong> Areas to keep clear for operational reasons.</p>'+
+        '<p><strong>Red &amp; white stripes:</strong> Areas to keep clear for safety reasons.</p>'+
+        '<h2>Durability requirements</h2>'+
+        '<p>Floor marking tape in a manufacturing environment must withstand forklift traffic, pallet jack wheels, foot traffic, and regular cleaning. Look for tapes with a thickness of at least 0.3mm and a strong rubber-based adhesive that bonds to concrete and epoxy-coated floors.</p>'+
+        '<h2>DEON floor marking tape</h2>'+
+        '<p>DEON 41860 is a high-visibility PVC floor marking tape available in 6 standard colours. It withstands forklift traffic, removes cleanly when lines need to be updated, and meets lean manufacturing marking requirements.</p>',
+      related:['3','1','4']
+    }
+  ];
+
+  var id = new URLSearchParams(location.search).get('id') || '1';
+  var post = POSTS.find(function(p){ return p.id === id; });
+  if(!post){ document.getElementById('postHeading').textContent = 'Post not found'; return; }
+
+  document.title = post.title + ' | DEON®';
+  document.getElementById('postTitle').textContent = post.title;
+  document.getElementById('postCat').textContent = post.cat;
+  document.getElementById('postHeading').textContent = post.title;
+  document.getElementById('postMeta').textContent = post.date + ' · ' + post.read;
+  document.getElementById('postImg').src = post.img;
+  document.getElementById('postImg').alt = post.title;
+  document.getElementById('postBody').innerHTML = post.body;
+
+  var related = post.related.map(function(rid){
+    return POSTS.find(function(p){ return p.id === rid; });
+  }).filter(Boolean);
+  document.getElementById('relatedPosts').innerHTML = related.map(function(r){
+    return '<a class="card has-img" href="blog-post.html?id='+r.id+'">'+
+      '<div class="cimg"><img src="'+r.img+'" alt="'+r.title+'" loading="lazy"></div>'+
+      '<div class="cbody"><span class="tag">'+r.cat+'</span><h3 style="font-size:.95rem">'+r.title+'</h3></div></a>';
+  }).join('');
+})();
+</script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
