@@ -359,6 +359,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 @media (max-width:1080px){
   .nav-main{display:none}
   #btnMenu{display:flex}
+  .nav-cta{display:none}
   .hero-in{grid-template-columns:1fr;gap:36px}
   .hero-visual{max-width:440px}
   .grid-4{grid-template-columns:repeat(2,1fr)}
