@@ -144,7 +144,7 @@
   var revealIO=null;
   if(!reduce && 'IntersectionObserver' in window){
     revealIO=new IntersectionObserver(function(en){
-      en.forEach(function(x){x.target.classList.toggle('in',x.isIntersecting);});
+      en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');revealIO.unobserve(x.target);}});
     },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
   }
   // (re)observe reveals — callable after dynamic content renders
