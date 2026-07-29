@@ -383,18 +383,8 @@
     else img.addEventListener('load',function(){img.classList.add('loaded');});
   });
 
-  /* ---------------- 3D tilt on cards (repeats every hover) ------------- */
-  function bindTilt(root){
-    $$('.card, .pcard, .calc', root||document).forEach(function(c){
-      if(c.__tilt) return; c.__tilt=1;
-      c.addEventListener('mousemove',function(e){
-        var r=c.getBoundingClientRect();
-        var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
-        c.style.transform='translateY(-5px) rotateX('+(-py*5).toFixed(2)+'deg) rotateY('+(px*5).toFixed(2)+'deg)';
-      });
-      c.addEventListener('mouseleave',function(){c.style.transform='';});
-    });
-  }
+  /* ---------------- 3D tilt on cards — disabled ------------- */
+  function bindTilt(){}
   bindTilt();
 
   /* ---------------- magnetic buttons + ripple (repeat) ----------------- */
