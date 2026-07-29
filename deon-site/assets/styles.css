@@ -452,7 +452,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
    ========================================================================= */
 /* logo */
 .brand .mark{height:44px;width:auto}
-@media (max-width:640px){.brand .mark{height:44px}}
+@media (max-width:640px){.brand .mark{height:54px}}
 
 /* top utility bar */
 .utilbar{background:var(--ink);color:#CFC7C6;font-size:.78rem}
