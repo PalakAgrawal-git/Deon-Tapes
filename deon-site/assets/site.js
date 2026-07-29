@@ -167,13 +167,15 @@
     var target=parseFloat(el.getAttribute('data-count'));
     var suffix=el.getAttribute('data-suffix')||'';
     var dp=parseInt(el.getAttribute('data-dp')||'0',10);
+    var isYear=target>=1900&&target<=2099;
+    function fmtVal(n){return isYear?String(Math.floor(n)):n.toLocaleString(undefined,{minimumFractionDigits:dp,maximumFractionDigits:dp});}
     var start=null,dur=1300;
     function step(ts){
       if(!start)start=ts;
       var p=Math.min((ts-start)/dur,1), val=(1-Math.pow(1-p,3))*target;
-      el.textContent=val.toLocaleString(undefined,{minimumFractionDigits:dp,maximumFractionDigits:dp})+suffix;
+      el.textContent=fmtVal(val)+suffix;
       if(p<1)requestAnimationFrame(step);
-      else el.textContent=target.toLocaleString(undefined,{minimumFractionDigits:dp,maximumFractionDigits:dp})+suffix;
+      else el.textContent=fmtVal(target)+suffix;
     }
     requestAnimationFrame(step);
   }

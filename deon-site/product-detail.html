@@ -84,6 +84,7 @@
   </div>
 </section>
 
+<script src="assets/data.js"></script>
 <script>
 (function(){
   var PRODUCTS = [
@@ -99,6 +100,8 @@
     ['DT3131','High-Temperature Glass Cloth Tape','masking','silicone','cloth','single','Glass fabric, silicone adhesive, –40°C to 300°C — heat tracing & duct.'],
     ['DT4021','Aluminium Foil Tape — Acrylic Series','foil-sealing','acrylic','foil','single','Soft aluminium foil, acrylic adhesive — HVAC seaming and heat reflection.'],
     ['DT4041','Aluminium Foil Tape — Hot Melt Series','foil-sealing','hotmelt','foil','single','Soft aluminium foil, hot-melt adhesive — high tack for irregular surfaces.'],
+    ['DT4121','Aluminium Foil Tape — Acrylic (Heavy)','foil-sealing','acrylic','foil','single','Heavy-gauge aluminium foil, thermosetting acrylic — elevated temperature up to 150°C.'],
+    ['DT4141','Aluminium Foil Tape — Hot Melt (Heavy)','foil-sealing','hotmelt','foil','single','Heavy-gauge aluminium foil, hot-melt — high bond strength for HVAC and industrial.'],
     ['M5001','Masking Tape','masking','rubber','paper','single','Crepe paper masking, clean removal, easy tear — paint and surface protection.'],
     ['PW6001','PVC Pipe Wrapping Tape','foil-sealing','rubber','pvc','single','PVC pipe wrap — corrosion protection and moisture sealing, conformable.'],
     ['DT1142','Double-Sided Polyester Bonding Tape','bonding','hotmelt','pet','double','PET film, hot-melt — bonds low-surface-energy plastics, high initial tack.'],
@@ -107,6 +110,7 @@
     ['DT5142','Double-Sided PE Foam Bonding Tape','bonding','hotmelt','foam','double','PE foam, hot-melt — high steel adhesion, conformable structural bonding.'],
     ['DT6041','Adhesive Transfer Tape','bonding','hotmelt','tissue','double','Carrierless hot-melt film (~50 µm) — ultra-thin, high-conformability bonding.'],
     ['DT6122','Double-Sided Tissue Bonding Tape','bonding','acrylic','tissue','double','Ultra-thin tissue (~70 µm) — fast tack, dimensional stability, mounting.'],
+    ['DT6142','Double-Sided Tissue Tape — Hot Melt','bonding','hotmelt','tissue','double','Ultra-thin tissue (~70 µm) — hot-melt, high initial tack, precision bonding.'],
     ['DT3741L','HDPE Fabric Tape','packaging','hotmelt','hdpe','single','Woven HDPE, hot-melt — heavy-duty packaging, abrasion and moisture resistant.'],
     ['DT7143','Monofilament Reinforced Packaging Tape','packaging','hotmelt','filament','single','PET + glass filaments, ≥120 N/cm tensile — bundle and load securing.'],
     ['DT7243','Cross Filament Reinforced Packaging Tape','packaging','hotmelt','filament','single','Bi-directional glass filaments — multi-directional strength, palletising.'],
@@ -119,45 +123,76 @@
   var p=PRODUCTS.find(function(x){return x[0]===sku;});
   if(!p){document.getElementById('pdName').textContent='Product not found';return;}
 
-  var cat=FAMNAME[p[2]]||cap(p[2]);
-  document.title=p[1]+' — Deon '+p[0]+' | DEON®';
-  document.getElementById('pdName').textContent=p[1];
+  var dp=DEON_PRODUCTS&&DEON_PRODUCTS[sku];
+  var cat=dp?dp.family:(FAMNAME[p[2]]||cap(p[2]));
+  var desc=dp?dp.desc:p[6];
+  var name=dp?dp.name:p[1];
+
+  document.title=name+' — Deon '+p[0]+' | DEON®';
+  document.getElementById('pdName').textContent=name;
   document.getElementById('pdCode').textContent='Deon '+p[0];
   document.getElementById('pdCat').textContent=cat;
-  document.getElementById('pdDesc').textContent=p[6];
+  document.getElementById('pdDesc').textContent=desc;
   document.getElementById('crumbCat').textContent=cat;
   document.getElementById('crumbName').textContent='Deon '+p[0];
 
   var img='assets/img/'+p[0].toLowerCase()+'.jpeg';
   document.getElementById('pdImg').src=img;
-  document.getElementById('pdImg').alt=p[1];
+  document.getElementById('pdImg').alt=name;
 
-  // Specs table
-  var specs=[
-    ['Product code','Deon '+p[0]],
-    ['Product name',p[1]],
-    ['Adhesive system',cap(p[3])],
-    ['Backing material',cap(p[4])],
-    ['Construction',cap(p[5])+'-sided'],
-    ['Category',cat],
-    ['Certifications','Available on request'],
-    ['Colour options','Contact for options'],
-    ['Width options','Standard and custom widths available'],
-    ['Lead time','Contact sales for lead time']
-  ];
+  // Specs table — use real specs from DEON_PRODUCTS when available
+  var specs;
+  if(dp&&dp.specs){
+    specs=dp.specs;
+  } else {
+    specs=[
+      ['Product code','Deon '+p[0]],['Product name',p[1]],
+      ['Adhesive system',cap(p[3])],['Backing material',cap(p[4])],
+      ['Construction',cap(p[5])+'-sided'],['Category',cat],
+      ['Certifications','Available on request'],['Colour options','Contact for options'],
+      ['Width options','Standard and custom widths available'],['Lead time','Contact sales for lead time']
+    ];
+  }
   document.getElementById('pdSpecs').querySelector('tbody').innerHTML=specs.map(function(s){
     return '<tr><td style="font-weight:600;width:40%;color:var(--ink)">'+s[0]+'</td><td>'+s[1]+'</td></tr>';
   }).join('');
 
-  // Industry tags
-  var indMap={'electrical-insulation':['Electrical','Automotive','Renewable Energy'],'bonding':['Automotive','Construction','Packaging'],'masking':['Automotive','Construction','Paints & Carpentry'],'foil-sealing':['Construction','Packaging','HVAC'],'packaging':['Packaging','Construction'],'harness':['Automotive','Electrical'],'floor-marking':['Automotive','Construction','Healthcare']};
-  var industries=indMap[p[2]]||['General industrial'];
-  document.getElementById('pdIndustries').innerHTML='<h4 style="margin-bottom:8px;font-size:.9rem;color:var(--text-mid)">Industries served</h4>'+industries.map(function(i){return '<span class="chip">'+i+'</span>';}).join('');
+  // Features & applications from DEON_PRODUCTS
+  var indEl=document.getElementById('pdIndustries');
+  if(dp&&dp.features&&dp.features.length){
+    var html='<h4 style="margin-bottom:10px;font-size:.95rem;color:var(--ink)">Features</h4>'+
+      '<ul style="list-style:none;padding:0;margin:0 0 20px">'+dp.features.map(function(f){
+        return '<li style="display:flex;gap:8px;margin-bottom:6px;font-size:.92rem"><span style="color:var(--blue);font-weight:700;flex-shrink:0">✓</span><span>'+f+'</span></li>';
+      }).join('')+'</ul>';
+    if(dp.apps&&dp.apps.length){
+      html+='<h4 style="margin-bottom:10px;font-size:.95rem;color:var(--ink)">Applications</h4>'+
+        '<ul style="list-style:none;padding:0;margin:0 0 20px">'+dp.apps.map(function(a){
+          return '<li style="display:flex;gap:8px;margin-bottom:6px;font-size:.92rem"><span style="color:var(--blue);font-weight:700;flex-shrink:0">→</span><span>'+a+'</span></li>';
+        }).join('')+'</ul>';
+    }
+    if(dp.colors&&dp.colors.length){
+      html+='<h4 style="margin-bottom:8px;font-size:.95rem;color:var(--ink)">Available colours</h4>'+
+        '<div style="display:flex;flex-wrap:wrap;gap:6px">'+dp.colors.map(function(c){
+          return '<span class="chip">'+c+'</span>';
+        }).join('')+'</div>';
+    }
+    if(dp.standards&&dp.standards.length){
+      html+='<h4 style="margin:16px 0 8px;font-size:.95rem;color:var(--ink)">Standards & certifications</h4>'+
+        '<div style="display:flex;flex-wrap:wrap;gap:6px">'+dp.standards.map(function(s){
+          return '<span class="chip" style="background:var(--blue);color:#fff;font-weight:600">'+s+'</span>';
+        }).join('')+'</div>';
+    }
+    indEl.innerHTML=html;
+  } else {
+    var indMap={'electrical-insulation':['Electrical','Automotive','Renewable Energy'],'bonding':['Automotive','Construction','Packaging'],'masking':['Automotive','Construction','Paints & Carpentry'],'foil-sealing':['Construction','Packaging','HVAC'],'packaging':['Packaging','Construction'],'harness':['Automotive','Electrical'],'floor-marking':['Automotive','Construction','Healthcare']};
+    var industries=indMap[p[2]]||['General industrial'];
+    indEl.innerHTML='<h4 style="margin-bottom:8px;font-size:.9rem;color:var(--text-mid)">Industries served</h4>'+industries.map(function(i){return '<span class="chip">'+i+'</span>';}).join('');
+  }
 
   // Action links
   document.getElementById('pdSample').href='contact.html?type=sample&sku='+p[0];
   document.getElementById('pdQuote').href='contact.html?type=quote&sku='+p[0];
-  document.getElementById('pdWhatsapp').href='https://wa.me/917700085050?text='+encodeURIComponent('Hi, I\'d like to enquire about Deon '+p[0]+' — '+p[1]);
+  document.getElementById('pdWhatsapp').href='https://wa.me/917700085050?text='+encodeURIComponent('Hi, I\'d like to enquire about Deon '+p[0]+' — '+name);
 
   // Related products (same family, excluding current)
   var related=PRODUCTS.filter(function(x){return x[2]===p[2]&&x[0]!==p[0];}).slice(0,3);
@@ -165,6 +200,8 @@
   if(!related.length){
     related=PRODUCTS.filter(function(x){return x[0]!==p[0];}).slice(0,3);
     relHead.querySelector('h2').textContent='You might also like.';
+  } else {
+    relHead.querySelector('h2').textContent='More in '+cat+'.';
   }
   document.getElementById('pdRelated').innerHTML=related.map(function(r){
     var rimg='assets/img/'+r[0].toLowerCase()+'.jpeg';
