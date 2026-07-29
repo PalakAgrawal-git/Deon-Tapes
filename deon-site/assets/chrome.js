@@ -7,9 +7,10 @@
 
   /* ---- data ---- */
   var MARKETS = [
-    ['automotive','Automotive'],['building','Construction'],['electrical','Electrical'],
+    ['automotive','Automotive'],['building','Building & Construction'],['electrical','Electrical'],
     ['electronics','Electronics'],['hvacr','HVAC & Insulation'],['metal','Metal Manufacturing'],
-    ['packaging','Packaging & Logistics'],['renewable','Renewable Energy'],['appliance','Appliance Manufacturing']
+    ['packaging','Packaging & Logistics'],['renewable','Renewable Energy'],['appliance','Appliance Manufacturing'],
+    ['transportation','Transportation'],['print','Print & Paper']
   ];
   function link(href,t,d){return '<a class="mega-link" href="'+href+'"><span class="t">'+t+'</span>'+(d?'<span class="d">'+d+'</span>':'')+'</a>';}
   function feat(href,t){return '<div class="mega-feature"><span class="muted" style="font-size:.82rem">'+t+'</span><a class="arrow" href="'+href+'">Explore <span class="a">→</span></a></div>';}
@@ -35,6 +36,8 @@
         link('application.html?group=mounting','Mounting','Fastener replacement')+
         link('application.html?app=floor-and-safety-marking','Floor & safety marking','Lane and hazard')+
         link('application.html?app=thermal-management','Thermal management','Heat and HVAC')+
+        link('application.html?group=packaging','Packaging','Carton sealing and bundling')+
+        link('application.html?group=assembly','Assembly','Component holding and splicing')+
       '</div>'+
       feat('applications.html','Start from the job the tape has to do')+
     '</div>';
@@ -46,6 +49,7 @@
         link('products.html?backing=foil','Foil & sealing')+
         link('application.html?group=masking','Masking')+
         link('application.html?group=bundling','Bundling & harness')+
+        link('products.html?family=electrical-insulation','Insulation')+
       '</div>'+
       '<div class="mega-col"><h4>By adhesive</h4>'+
         link('products.html?adhesive=acrylic','Acrylic')+
@@ -135,7 +139,7 @@
           '<span class="theme-lbl">Light mode</span>'+
         '</button>'+
         '<a class="btn btn-primary nav-cta" href="contact.html">Contact</a>'+
-        '<button class="icon-btn" id="btnMenu" aria-label="Menu" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>'+
+        '<button class="icon-btn" id="btnMenu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>'+
       '</div>'+
     '</nav></header>';
 
@@ -177,7 +181,7 @@
         '<a class="btn btn-light" style="margin-top:18px" href="contact.html">Contact DEON</a>'+
       '</div>'+
       fcol('Products',[['products.html','All products'],['products.html?sided=double','Double-sided & foam'],['products.html?backing=foil','Foil & sealing'],['application.html?group=masking','Masking'],['application.html?group=bundling','Harness & bundling'],['products.html?family=electrical-insulation','Insulation']])+
-      fcol('Markets',[['markets.html','All markets'],['market.html?m=automotive','Automotive'],['market.html?m=electrical','Electrical'],['market.html?m=construction','Construction'],['market.html?m=packaging','Packaging'],['market.html?m=healthcare','Healthcare']])+
+      fcol('Markets',[['markets.html','All markets'],['market.html?m=automotive','Automotive'],['market.html?m=electrical','Electrical'],['market.html?m=building','Building & Construction'],['market.html?m=packaging','Packaging'],['market.html?m=hvacr','HVAC & Insulation']])+
       fcol('Company',[['about.html','About us'],['manufacturing-technology.html','Infrastructure & Manufacturing'],['certifications.html','Quality & Certifications'],['careers.html','Careers'],['press.html','Press'],['partners.html','Partners']])+
       fcol('Resources',[['knowledge-center.html','Knowledge Center'],['blog.html','Blog'],['tools.html','Tools & Calculators'],['contact.html?type=quote','Request a quote'],['contact.html?type=sample','Request samples']])+
     '</div>'+

@@ -44,7 +44,7 @@
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
           <a class="btn btn-primary" id="pdSample" href="#">Request sample</a>
           <a class="btn" id="pdQuote" href="#">Request a quote</a>
-          <a class="btn" id="pdDatasheet" href="#" style="background:var(--tint);border-color:var(--rule)">Download datasheet</a>
+          <a class="btn" id="pdDatasheet" href="#" style="background:var(--tint);border-color:var(--rule);display:none">Download datasheet</a>
         </div>
 
         <!-- WHATSAPP -->
@@ -161,7 +161,11 @@
 
   // Related products (same family, excluding current)
   var related=PRODUCTS.filter(function(x){return x[2]===p[2]&&x[0]!==p[0];}).slice(0,3);
-  if(!related.length)related=PRODUCTS.filter(function(x){return x[0]!==p[0];}).slice(0,3);
+  var relHead=document.querySelector('#pdRelated').parentElement.querySelector('.sec-head');
+  if(!related.length){
+    related=PRODUCTS.filter(function(x){return x[0]!==p[0];}).slice(0,3);
+    relHead.querySelector('h2').textContent='You might also like.';
+  }
   document.getElementById('pdRelated').innerHTML=related.map(function(r){
     var rimg='assets/img/'+r[0].toLowerCase()+'.jpeg';
     return '<a class="card has-img" href="product-detail.html?sku='+r[0]+'">'+
