@@ -369,40 +369,6 @@ window.DEON_PRODUCTS = {
     standards: ['ASTM D1000']
   },
 
-  'DT4121': {
-    name: 'Aluminium Foil Tape — Acrylic (Heavy)',
-    family: 'Foil & Sealing',
-    backing: 'Soft Aluminium Foil',
-    adhesive: 'Thermosetting Acrylic',
-    desc: 'Heavy-gauge (80 µm) soft aluminium foil tape with thermosetting acrylic adhesive for elevated temperature applications up to 150°C.',
-    features: [
-      'Thermosetting variant for elevated temperature (up to 150°C)',
-      'Higher adhesion & tensile than 50 µm grade',
-      'Available with or without release liner',
-      'Good adhesion on metal surfaces (≈5 N/cm)'
-    ],
-    apps: [
-      'HVAC duct seaming & insulation seam sealing',
-      'Refrigerator & freezer coil mounting',
-      'Glass wool & rock wool vapour barrier sealing',
-      'Insulation puncture repair & mending'
-    ],
-    specs: [
-      ['Backing Material', 'Soft Aluminium Foil'],
-      ['Adhesive', 'Thermosetting Acrylic'],
-      ['Thickness', '80 ± 5 µm'],
-      ['Width', '48 mm'],
-      ['Length', '50 m'],
-      ['Adhesion to Steel', '5.0 N/cm'],
-      ['Tensile Strength', '50 N/cm'],
-      ['Elongation at Break', '6%'],
-      ['Temperature Range', 'Up to 150°C'],
-      ['Release Liner', 'Optional']
-    ],
-    colors: ['Metallic'],
-    standards: ['ASTM D1000']
-  },
-
   'DT4041': {
     name: 'Aluminium Foil Tape — Hot Melt',
     family: 'Foil & Sealing',
@@ -429,40 +395,6 @@ window.DEON_PRODUCTS = {
       ['Length', '20 / 50 m'],
       ['Adhesion to Steel', '10 N/cm'],
       ['Tensile Strength', '10 N/cm'],
-      ['Elongation at Break', '6%'],
-      ['Temperature Range', 'Ambient'],
-      ['Release Liner', 'None / Single side paper']
-    ],
-    colors: ['Metallic'],
-    standards: ['ASTM D1000']
-  },
-
-  'DT4141': {
-    name: 'Aluminium Foil Tape — Hot Melt (Heavy)',
-    family: 'Foil & Sealing',
-    backing: 'Soft Aluminium Foil',
-    adhesive: 'Synthetic Hot Melt',
-    desc: 'Heavy-gauge (80 µm) soft aluminium foil tape with synthetic hot melt adhesive for HVAC and general-purpose industrial applications requiring high bond strength.',
-    features: [
-      'High adhesion (10–20 N/cm) and tensile (20–50 N/cm)',
-      'Conformable aluminium foil',
-      'Available with or without release liner',
-      'Suitable for ambient temperature service'
-    ],
-    apps: [
-      'HVAC duct seaming & insulation seam sealing',
-      'Refrigerator & freezer coil mounting',
-      'Glass wool & rock wool vapour barrier sealing',
-      'Insulation puncture repair & mending'
-    ],
-    specs: [
-      ['Backing Material', 'Soft Aluminium Foil'],
-      ['Adhesive', 'Synthetic Hot Melt'],
-      ['Thickness', '80 ± 5 µm'],
-      ['Width', '48 mm'],
-      ['Length', '20 / 50 m'],
-      ['Adhesion to Steel', '10–20 N/cm'],
-      ['Tensile Strength', '20–50 N/cm'],
       ['Elongation at Break', '6%'],
       ['Temperature Range', 'Ambient'],
       ['Release Liner', 'None / Single side paper']
@@ -743,41 +675,6 @@ window.DEON_PRODUCTS = {
     standards: ['ASTM D1000']
   },
 
-  'DT6142': {
-    name: 'Double-Sided Tissue Tape — Hot Melt',
-    family: 'Bonding & Double-sided',
-    backing: 'Tissue Paper',
-    adhesive: 'Synthetic Hot Melt',
-    desc: 'Ultra-thin double-sided tissue tape with synthetic hot melt adhesive for precision bonding and low-profile assembly.',
-    features: [
-      'Ultra-thin construction (≈70 µm total thickness)',
-      'High initial tack for fast bond formation',
-      'Good adhesion on metal & LSE surfaces (10 N/cm)',
-      'Low elongation (≈5%) for dimensional stability'
-    ],
-    apps: [
-      'Metal-to-metal bonding & assembly support',
-      'Label & nameplate fixing in appliances',
-      'Foam lamination for gasket manufacturing',
-      'Bonding in sanitary & industrial components'
-    ],
-    specs: [
-      ['Backing Material', 'Tissue Paper'],
-      ['Adhesive', 'Synthetic Hot Melt'],
-      ['Adhesive Coating', 'Double-sided'],
-      ['Thickness', '70 ± 5 µm'],
-      ['Width', '25 mm'],
-      ['Length', '50 m'],
-      ['Adhesion to Steel', '10.0 N/cm'],
-      ['Tensile Strength', '2.0 N/cm'],
-      ['Elongation at Break', '5%'],
-      ['Release Liner Thickness', '60 µm'],
-      ['Release Liner', 'Double side release paper']
-    ],
-    colors: ['White'],
-    standards: ['ASTM D1000']
-  },
-
   'DT3741L': {
     name: 'HDPE Fabric Tape',
     family: 'Packaging',
@@ -928,7 +825,7 @@ window.DEON_MARKETS = {
   electrical:{name:'Electrical',intro:'The insulation backbone for motors, transformers, switchgear and coils — dielectric strength and thermal class you can specify.',
     needs:['Coil and layer insulation (Class B/F/H)','Motor and transformer winding','Terminal and busbar insulation','Wave-soldering and coil masking'],
     products:['DT1111','DT1123','DT2131','DT3121L','31700']},
-  building:{name:'Building components',intro:'Sealing, mounting and protection tapes for façade, glazing and construction components.',
+  building:{name:'Building & Construction',intro:'Sealing, mounting and protection tapes for façade, glazing and construction components.',
     needs:['Panel and profile mounting','Weatherproof seam sealing','Surface protection during transit','Glazing and spacer bonding'],
     products:['DT5142','DT3124L','DT4021','PW6001']},
   renewable:{name:'Renewable energy',intro:'Bonding and insulation tapes for solar module assembly, battery packs and power electronics.',
