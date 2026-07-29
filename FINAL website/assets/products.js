@@ -1,178 +1,149 @@
-// DEON Tapes — Products module (filtering & catalog)
+// DEON Tapes — Products catalog (populated from DEON_PRODUCTS in data.js)
 (function() {
   'use strict';
 
-  // Sample product data structure
-  const products = [
-    // This will be populated from the backend
-    // Format: { code, name, category, family, backing, application, image, description }
-  ];
+  if (typeof DEON_PRODUCTS === 'undefined') return;
 
-  // Facets/filters
-  const facets = {
-    family: [],
-    backing: [],
-    adhesive: [],
-    application: [],
-    industry: []
-  };
-
-  // Get unique values from products
-  function extractFacets() {
-    const result = {
-      family: new Set(),
-      backing: new Set(),
-      adhesive: new Set(),
-      application: new Set(),
-      industry: new Set()
+  var allProducts = Object.keys(DEON_PRODUCTS).map(function(code) {
+    var p = DEON_PRODUCTS[code];
+    return {
+      code: code,
+      name: p.name,
+      family: p.family,
+      backing: p.backing,
+      adhesive: p.adhesive,
+      desc: p.desc
     };
+  });
 
-    products.forEach(product => {
-      if (product.family) result.family.add(product.family);
-      if (product.backing) result.backing.add(product.backing);
-      if (product.adhesive) result.adhesive.add(product.adhesive);
-      if (product.application) result.application.add(product.application);
-      if (product.industry) result.industry.add(product.industry);
-    });
+  var activeFilters = {};
 
-    // Convert to arrays
-    Object.keys(result).forEach(key => {
-      facets[key] = Array.from(result[key]).sort();
-    });
+  function uniqueValues(key) {
+    var s = {};
+    allProducts.forEach(function(p) { if (p[key]) s[p[key]] = 1; });
+    return Object.keys(s).sort();
   }
 
-  // Render facet filters
   function renderFacets() {
-    const facetsEl = document.getElementById('facets');
-    if (!facetsEl) return;
-
-    let html = '<div class="facets-list">';
-
-    Object.keys(facets).forEach(facetKey => {
-      const values = facets[facetKey];
-      if (values.length === 0) return;
-
-      html += `<div class="facet-group">
-        <h3>${facetKey.charAt(0).toUpperCase() + facetKey.slice(1)}</h3>`;
-
-      values.forEach(value => {
-        html += `<label class="facet-item">
-          <input type="checkbox" name="${facetKey}" value="${value}">
-          <span>${value}</span>
-        </label>`;
+    var el = document.getElementById('facets');
+    if (!el) return;
+    var groups = [
+      { key: 'family',   label: 'Product family' },
+      { key: 'backing',  label: 'Backing' },
+      { key: 'adhesive', label: 'Adhesive' }
+    ];
+    var html = '<div class="facets-list">';
+    groups.forEach(function(g) {
+      var vals = uniqueValues(g.key);
+      if (!vals.length) return;
+      html += '<div class="facet-group"><h3>' + g.label + '</h3>';
+      vals.forEach(function(v) {
+        html += '<label class="facet-item"><input type="checkbox" name="' + g.key + '" value="' + v + '"><span>' + v + '</span></label>';
       });
-
       html += '</div>';
     });
-
     html += '</div>';
-    facetsEl.innerHTML = html;
-
-    // Add event listeners
-    document.querySelectorAll('.facet-item input').forEach(input => {
-      input.addEventListener('change', filterProducts);
-    });
+    el.innerHTML = html;
+    el.addEventListener('change', applyFilters);
   }
 
-  // Filter products
-  function filterProducts() {
-    const activeFilters = {};
-
-    // Collect all active filters
-    document.querySelectorAll('.facet-item input:checked').forEach(input => {
-      const facet = input.name;
-      if (!activeFilters[facet]) {
-        activeFilters[facet] = [];
-      }
-      activeFilters[facet].push(input.value);
+  function applyFilters() {
+    activeFilters = {};
+    document.querySelectorAll('.facet-item input:checked').forEach(function(inp) {
+      if (!activeFilters[inp.name]) activeFilters[inp.name] = [];
+      activeFilters[inp.name].push(inp.value);
     });
 
-    // Filter products
-    let filtered = products;
+    var q = new URLSearchParams(location.search).get('q') || '';
+    renderProducts(filterList(q));
+    renderChips();
+  }
 
-    Object.keys(activeFilters).forEach(facetKey => {
-      filtered = filtered.filter(product => {
-        return activeFilters[facetKey].includes(product[facetKey]);
+  function filterList(query) {
+    var list = allProducts;
+    Object.keys(activeFilters).forEach(function(key) {
+      list = list.filter(function(p) {
+        return activeFilters[key].indexOf(p[key]) !== -1;
       });
     });
-
-    // Display filtered products
-    renderProducts(filtered);
-    updateChips(activeFilters);
+    if (query) {
+      var lq = query.toLowerCase();
+      list = list.filter(function(p) {
+        return p.code.toLowerCase().indexOf(lq) !== -1 ||
+               p.name.toLowerCase().indexOf(lq) !== -1 ||
+               p.family.toLowerCase().indexOf(lq) !== -1 ||
+               p.backing.toLowerCase().indexOf(lq) !== -1 ||
+               p.adhesive.toLowerCase().indexOf(lq) !== -1;
+      });
+    }
+    return list;
   }
 
-  // Render product grid
-  function renderProducts(productList = products) {
-    const pgrid = document.getElementById('pgrid');
-    if (!pgrid) return;
+  function renderProducts(list) {
+    var grid = document.getElementById('pgrid');
+    if (!grid) return;
 
-    const pcount = document.getElementById('pcount');
-    const ptotal = document.getElementById('ptotal');
+    var pcount = document.getElementById('pcount');
+    var ptotal = document.getElementById('ptotal');
+    if (pcount) pcount.textContent = list.length;
+    if (ptotal) ptotal.textContent = allProducts.length;
 
-    if (pcount) pcount.textContent = productList.length;
-    if (ptotal) ptotal.textContent = products.length;
-
-    if (productList.length === 0) {
-      pgrid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;">No products match your filters.</div>';
+    if (!list.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px"><p>No products match your filters.</p><button class="btn btn-ghost" onclick="location.href=\'products.html\'">Clear filters</button></div>';
       return;
     }
 
-    let html = '';
-    productList.forEach(product => {
-      html += `
-        <a href="product.html?code=${product.code}" class="card has-img">
-          <div class="cimg">
-            <img src="${product.image}" alt="${product.name}" loading="lazy">
-          </div>
-          <div class="cbody">
-            <span class="tag">${product.family}</span>
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <span class="arrow">View details <span class="a">→</span></span>
-          </div>
-        </a>`;
-    });
-
-    pgrid.innerHTML = html;
+    grid.innerHTML = list.map(function(p) {
+      return '<a class="card" href="product.html?code=' + p.code + '">' +
+        '<span class="tag">' + p.family + '</span>' +
+        '<h3 style="font-size:1.05rem">DEON ' + p.code + '</h3>' +
+        '<p style="font-size:.88rem;font-weight:500;margin:2px 0 6px">' + p.name + '</p>' +
+        '<p style="font-size:.82rem;color:var(--muted,#666)">' + p.backing + ' / ' + p.adhesive + '</p>' +
+        '<span class="arrow" style="margin-top:8px">View details <span class="a">&rarr;</span></span>' +
+      '</a>';
+    }).join('');
   }
 
-  // Update active filter chips
-  function updateChips(activeFilters) {
-    const chipsEl = document.getElementById('activeChips');
-    if (!chipsEl) return;
-
-    let html = '';
-    Object.keys(activeFilters).forEach(facet => {
-      activeFilters[facet].forEach(value => {
-        html += `<span class="chip on">${value}</span>`;
+  function renderChips() {
+    var el = document.getElementById('activeChips');
+    if (!el) return;
+    var html = '';
+    Object.keys(activeFilters).forEach(function(f) {
+      activeFilters[f].forEach(function(v) {
+        html += '<span class="chip on">' + v + '</span>';
       });
     });
-
-    chipsEl.innerHTML = html;
+    el.innerHTML = html;
   }
 
-  // Search functionality
-  const searchInput = document.querySelector('input[type="search"]');
-  if (searchInput) {
-    searchInput.addEventListener('input', function(e) {
-      const query = e.target.value.toLowerCase();
-      const filtered = products.filter(p =>
-        p.code.toLowerCase().includes(query) ||
-        p.name.toLowerCase().includes(query)
-      );
-      renderProducts(filtered);
-    });
-  }
-
-  // Initialize
   function init() {
-    extractFacets();
+    var params = new URLSearchParams(location.search);
+    var familyParam = params.get('family');
+    var q = params.get('q') || '';
+
     renderFacets();
-    renderProducts();
-    console.log('✓ Products module loaded');
+
+    if (familyParam) {
+      var slug = familyParam.toLowerCase().replace(/-/g, ' ');
+      document.querySelectorAll('.facet-item input[name="family"]').forEach(function(inp) {
+        if (inp.value.toLowerCase().replace(/&/g, '&').indexOf(slug) !== -1 ||
+            slug.indexOf(inp.value.toLowerCase().replace(/ & /g, ' ').replace(/-/g, ' ')) !== -1) {
+          inp.checked = true;
+        }
+      });
+      applyFilters();
+    } else {
+      renderProducts(filterList(q));
+    }
+
+    var searchInput = document.querySelector('input[type="search"]');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        renderProducts(filterList(this.value));
+      });
+    }
   }
 
-  // Wait for DOM
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

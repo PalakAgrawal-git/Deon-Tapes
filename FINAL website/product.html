@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product | DEON&#174;</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.product-hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.product-img{background:var(--card-bg,#f5f5f5);border-radius:12px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.product-img img{width:100%;height:100%;object-fit:contain;padding:24px}
+.product-meta{display:flex;flex-direction:column;gap:20px}
+.product-code{font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent,#0055a5)}
+.product-title{font-size:1.8rem;line-height:1.2;font-weight:700;margin:0}
+.product-desc{font-size:1rem;line-height:1.65;color:var(--muted,#666)}
+.product-badges{display:flex;flex-wrap:wrap;gap:8px}
+.product-badges .chip{font-size:.78rem;padding:4px 12px;border-radius:20px;background:var(--tint,#f0f4f8);color:var(--text,#1a1a1a);border:1px solid var(--border,#ddd)}
+.product-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.spec-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.spec-table th,.spec-table td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border,#e5e5e5)}
+.spec-table th{font-weight:600;width:40%;color:var(--muted,#555)}
+.spec-table td{color:var(--text,#1a1a1a)}
+.spec-table tr:last-child th,.spec-table tr:last-child td{border-bottom:none}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feat-item{display:flex;gap:8px;font-size:.92rem;line-height:1.4}
+.feat-item .mark{color:var(--accent,#0055a5);font-weight:700;flex-shrink:0}
+.color-swatches{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.color-swatch{display:flex;align-items:center;gap:6px;font-size:.82rem;padding:4px 10px;border-radius:16px;background:var(--tint,#f0f4f8);border:1px solid var(--border,#ddd)}
+.standards-list{display:flex;flex-wrap:wrap;gap:8px}
+.standards-list .chip{font-size:.8rem;padding:4px 12px;border-radius:16px;background:var(--accent,#0055a5);color:#fff;font-weight:600}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+@media(max-width:768px){
+  .product-hero{grid-template-columns:1fr;gap:24px}
+  .product-title{font-size:1.4rem}
+  .feat-grid{grid-template-columns:1fr}
+  .related-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .related-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body data-page="products">
+
+<div class="page-head">
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">&#8250;</span><a href="products.html">Products</a><span class="sep">&#8250;</span><b id="crumb">Product</b></div>
+  <div class="wrap">
+    <div class="product-hero" id="hero"></div>
+  </div>
+</div>
+
+<section class="section" id="secSpecs">
+  <div class="wrap">
+    <div class="grid grid-2" style="gap:48px;align-items:start">
+      <div class="reveal">
+        <div class="sec-head" style="margin-bottom:20px"><span class="eyebrow">Technical data</span><h2>Specifications</h2></div>
+        <div style="overflow-x:auto"><table class="spec-table" id="specTable"></table></div>
+        <div id="standardsWrap" style="margin-top:20px"></div>
+      </div>
+      <div class="reveal">
+        <div class="sec-head" style="margin-bottom:20px"><span class="eyebrow">Performance</span><h2>Features</h2></div>
+        <div class="feat-grid" id="featGrid"></div>
+        <div class="sec-head" style="margin:32px 0 16px"><span class="eyebrow">Where it's used</span><h2>Applications</h2></div>
+        <div class="feat-grid" id="appGrid"></div>
+        <div id="colorsWrap" style="margin-top:24px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tint" id="secRelated">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:24px"><span class="eyebrow">Same family</span><h2 id="relatedTitle">Related products</h2></div>
+    <div class="related-grid reveal-stagger" id="relatedGrid"></div>
+  </div>
+</section>
+
+<section class="cta"><div class="wrap">
+  <div><h2>Need this product?</h2><p>Request samples, a datasheet or a quote — our team will respond within one business day.</p></div>
+  <div class="cta-actions">
+    <a class="btn btn-light" href="contact.html?type=sample" id="ctaSample">Request samples</a>
+    <a class="btn btn-light" href="contact.html?type=quote" id="ctaQuote">Request a quote</a>
+  </div>
+</div></section>
+
+<script src="assets/data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var code = new URLSearchParams(location.search).get('code') || '';
+  var p = DEON_PRODUCTS[code];
+
+  if (!p) {
+    document.getElementById('hero').innerHTML =
+      '<div style="grid-column:1/-1;text-align:center;padding:60px 0">' +
+      '<h1 style="font-size:1.6rem">Product not found</h1>' +
+      '<p style="margin-top:12px">The product code <b>' + code + '</b> was not found in our catalogue.</p>' +
+      '<a class="btn btn-primary" href="products.html" style="margin-top:20px">Browse all products</a></div>';
+    document.getElementById('secSpecs').style.display = 'none';
+    document.getElementById('secRelated').style.display = 'none';
+    return;
+  }
+
+  document.title = 'DEON ' + code + ' — ' + p.name + ' | DEON®';
+  document.getElementById('crumb').textContent = 'DEON ' + code;
+
+  // Hero
+  var heroHTML =
+    '<div class="product-img">' +
+      '<img src="assets/img/' + code.toLowerCase() + '.jpeg" alt="DEON ' + code + ' ' + p.name + '" onerror="this.style.display=\'none\'">' +
+    '</div>' +
+    '<div class="product-meta">' +
+      '<span class="product-code">DEON ' + code + '</span>' +
+      '<h1 class="product-title">' + p.name + '</h1>' +
+      '<p class="product-desc">' + p.desc + '</p>' +
+      '<div class="product-badges">' +
+        '<span class="chip">' + p.family + '</span>' +
+        '<span class="chip">' + p.backing + '</span>' +
+        '<span class="chip">' + p.adhesive + ' adhesive</span>' +
+      '</div>' +
+      '<div class="product-actions">' +
+        '<a class="btn btn-primary" href="contact.html?type=sample&sku=' + code + '">Request samples</a>' +
+        '<a class="btn btn-ghost" href="contact.html?type=quote&sku=' + code + '">Request datasheet</a>' +
+      '</div>' +
+    '</div>';
+  document.getElementById('hero').innerHTML = heroHTML;
+
+  // CTA links
+  document.getElementById('ctaSample').href = 'contact.html?type=sample&sku=' + code;
+  document.getElementById('ctaQuote').href = 'contact.html?type=quote&sku=' + code;
+
+  // Specs table
+  var specHTML = '';
+  p.specs.forEach(function(row) {
+    specHTML += '<tr><th>' + row[0] + '</th><td>' + row[1] + '</td></tr>';
+  });
+  document.getElementById('specTable').innerHTML = specHTML;
+
+  // Standards
+  if (p.standards && p.standards.length) {
+    document.getElementById('standardsWrap').innerHTML =
+      '<div class="sec-head" style="margin-bottom:12px"><span class="eyebrow">Quality</span><h3 style="font-size:1rem">Standards & certifications</h3></div>' +
+      '<div class="standards-list">' + p.standards.map(function(s) {
+        return '<span class="chip">' + s + '</span>';
+      }).join('') + '</div>';
+  }
+
+  // Features
+  document.getElementById('featGrid').innerHTML = p.features.map(function(f) {
+    return '<div class="feat-item"><span class="mark">&check;</span><span>' + f + '</span></div>';
+  }).join('');
+
+  // Applications
+  document.getElementById('appGrid').innerHTML = p.apps.map(function(a) {
+    return '<div class="feat-item"><span class="mark">&rarr;</span><span>' + a + '</span></div>';
+  }).join('');
+
+  // Colors
+  if (p.colors && p.colors.length) {
+    document.getElementById('colorsWrap').innerHTML =
+      '<div class="sec-head" style="margin-bottom:8px"><span class="eyebrow">Options</span><h3 style="font-size:1rem">Available colours</h3></div>' +
+      '<div class="color-swatches">' + p.colors.map(function(c) {
+        return '<span class="color-swatch">' + c + '</span>';
+      }).join('') + '</div>';
+  }
+
+  // Related products (same family, excluding current)
+  var family = p.family;
+  var related = Object.keys(DEON_PRODUCTS).filter(function(k) {
+    return k !== code && DEON_PRODUCTS[k].family === family;
+  });
+  document.getElementById('relatedTitle').textContent = 'More in ' + family;
+
+  if (related.length === 0) {
+    document.getElementById('secRelated').style.display = 'none';
+  } else {
+    document.getElementById('relatedGrid').innerHTML = related.map(function(k) {
+      var rp = DEON_PRODUCTS[k];
+      return '<a class="card" href="product.html?code=' + k + '">' +
+        '<span class="tag">' + k + '</span>' +
+        '<h3 style="font-size:1rem">' + rp.name + '</h3>' +
+        '<p style="font-size:.85rem;margin-top:4px;color:var(--muted,#666)">' + rp.backing + ' / ' + rp.adhesive + '</p>' +
+        '<span class="arrow" style="margin-top:8px">View details <span class="a">&rarr;</span></span>' +
+      '</a>';
+    }).join('');
+  }
+
+  if (window.deonAnimRefresh) window.deonAnimRefresh();
+});
+</script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

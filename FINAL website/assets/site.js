@@ -27,14 +27,19 @@
     const start = 0;
     const increment = target / (duration / 16);
     let current = start;
+    const isYear = target >= 1900 && target <= 2099;
+
+    function fmt(n) {
+      return isYear ? String(n) : n.toLocaleString();
+    }
 
     function update() {
       current += increment;
       if (current < target) {
-        element.textContent = Math.floor(current).toLocaleString();
+        element.textContent = fmt(Math.floor(current));
         requestAnimationFrame(update);
       } else {
-        element.textContent = target.toLocaleString();
+        element.textContent = fmt(target);
       }
     }
 
