@@ -14,7 +14,7 @@
     <span class="eyebrow" id="eyebrow">Market</span>
     <h1 id="title" style="margin-top:14px">Market</h1>
     <p class="lead" id="intro"></p>
-    <div class="hero-actions" style="margin-top:26px"><a class="btn btn-primary" href="contact.html?type=sample">Request samples</a><a class="btn btn-ghost" href="products.html">Browse products</a></div>
+    <div class="hero-actions" style="margin-top:26px"><a class="btn btn-primary" href="contact.html?type=sample">Request samples</a><a class="btn btn-ghost" href="products.html">Browse all products</a></div>
   </div>
 </div>
 
@@ -27,7 +27,21 @@
       </div>
       <div class="reveal">
         <div class="sec-head" style="margin-bottom:24px"><span class="eyebrow">Recommended</span><h2>Products for this market</h2></div>
-        <div class="pgrid" id="products" style="grid-template-columns:1fr"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="catalog">
+      <aside class="facets" id="facets"></aside>
+      <div class="catalog-main">
+        <div class="toolbar">
+          <div class="count">Showing <b id="pcount">0</b> of <span id="ptotal">0</span> products</div>
+          <div class="active-chips" id="activeChips" style="margin-left:auto"></div>
+        </div>
+        <div class="pgrid" id="products"></div>
       </div>
     </div>
   </div>
@@ -53,29 +67,126 @@
 
 <script src="assets/data.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded',function(){
-  var key=new URLSearchParams(location.search).get('m')||'electrical';
-  var m=DEON_MARKETS[key]||DEON_MARKETS.electrical;
-  document.title=m.name+' | DEON®';
-  document.getElementById('crumb').textContent=m.name;
-  document.getElementById('eyebrow').textContent='Market · '+m.name;
-  document.getElementById('title').textContent='Tape for '+m.name.toLowerCase()+'.';
-  document.getElementById('intro').textContent=m.intro;
-  document.getElementById('ctaTitle').textContent='Building for '+m.name.toLowerCase()+'?';
-  document.getElementById('needs').innerHTML=m.needs.map(function(n){
-    return '<li><span class="li-mark">→</span><span>'+n+'</span></li>';}).join('');
-  document.getElementById('products').innerHTML=m.products.map(function(code){
-    var name=DEON_PNAME[code]||code;
-    var hasDetail=!!DEON_PRODUCTS[code];
-    var href=hasDetail?'product-detail.html?sku='+code:'contact.html?type=sample&sku='+code;
-    var cta=hasDetail?'View details':'Request sample';
-    return '<a class="pcard" href="'+href+'">'+
-      '<div class="pimg"><img src="assets/img/'+code.toLowerCase()+'.jpeg" alt="'+name+'" loading="lazy"></div>'+
-      '<div class="pbody"><div class="pcard-top"><span class="pcode">Deon '+code+'</span></div>'+
-      '<h3 style="font-size:1.05rem">'+name+'</h3><span class="arrow" style="margin-top:6px">'+cta+' <span class="a">→</span></span></div></a>';
-  }).join('');
-  if(window.deonAnimRefresh) window.deonAnimRefresh();
-});
+(function(){
+  var FAMKEY={'Electrical & Insulation':'electrical-insulation','Harness & Bundling':'harness',
+    'Foil & Sealing':'foil-sealing','Bonding & Double-sided':'bonding','Masking':'masking',
+    'Floor Marking':'floor-marking','Packaging':'packaging'};
+  var FAMNAME={};Object.keys(FAMKEY).forEach(function(k){FAMNAME[FAMKEY[k]]=k;});
+  var ADHKEY={'Rubber':'rubber','Modified Acrylic':'acrylic','Thermosetting Rubber':'rubber',
+    'Thermosetting Acrylic':'acrylic','Thermosetting Polysiloxane':'silicone','Synthetic Hot Melt':'hotmelt',
+    'Water-based Acrylic':'acrylic','Cross-linked Solvent Acrylic':'acrylic'};
+  var BKKEY={'PVC Film':'pvc','Polyester Film':'pet','Polyester Reinforced Fleece':'cloth',
+    'Polyimide Film':'polyimide','Woven Glass Fabric':'cloth','Polycoated Glass Fabric':'cloth',
+    'Soft Aluminium Foil':'foil','Crepe Paper':'paper','PE Foam':'foam','Tissue Paper':'tissue',
+    'Carrierless':'tissue','Woven HDPE Fabric':'hdpe','PET / Glass Fibre Laminate':'filament',
+    'PET / Cross-woven Glass Fibre Laminate':'filament','BOPP Film':'bopp'};
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var key=new URLSearchParams(location.search).get('m')||'electrical';
+    var m=DEON_MARKETS[key]||DEON_MARKETS.electrical;
+    document.title=m.name+' | DEON®';
+    document.getElementById('crumb').textContent=m.name;
+    document.getElementById('eyebrow').textContent='Market · '+m.name;
+    document.getElementById('title').textContent='Tape for '+m.name.toLowerCase()+'.';
+    document.getElementById('intro').textContent=m.intro;
+    document.getElementById('ctaTitle').textContent='Building for '+m.name.toLowerCase()+'?';
+    document.getElementById('needs').innerHTML=m.needs.map(function(n){
+      return '<li><span class="li-mark">→</span><span>'+n+'</span></li>';}).join('');
+
+    var PRODUCTS=[];
+    m.products.forEach(function(code){
+      var dp=DEON_PRODUCTS[code];
+      if(!dp)return;
+      var fk=FAMKEY[dp.family]||dp.family.toLowerCase().replace(/\s+/g,'-');
+      var ak=ADHKEY[dp.adhesive]||dp.adhesive.toLowerCase();
+      var bk=BKKEY[dp.backing]||dp.backing.toLowerCase();
+      var sd=dp.desc.indexOf('Double')>-1||dp.desc.indexOf('double')>-1||dp.desc.indexOf('Carrierless')>-1?'double':'single';
+      PRODUCTS.push([code,dp.name,fk,ak,bk,sd,dp.desc]);
+    });
+
+    var FAMILIES=[],ADHESIVES=[],BACKINGS=[];
+    var seenF={},seenA={},seenB={};
+    PRODUCTS.forEach(function(p){
+      if(!seenF[p[2]]){seenF[p[2]]=1;FAMILIES.push([p[2],FAMNAME[p[2]]||cap(p[2])]);}
+      if(!seenA[p[3]]){seenA[p[3]]=1;ADHESIVES.push([p[3],cap(p[3])]);}
+      if(!seenB[p[4]]){seenB[p[4]]=1;BACKINGS.push([p[4],cap(p[4])]);}
+    });
+
+    var active={family:[],adhesive:[],backing:[]};
+
+    function facetGroup(title,fkey,opts){
+      return '<div class="facet"><h4>'+title+'</h4>'+opts.map(function(o){
+        var on=active[fkey].indexOf(o[0])>-1;
+        return '<label class="facet-opt"><input type="checkbox" data-key="'+fkey+'" value="'+o[0]+'"'+(on?' checked':'')+'><span>'+o[1]+'</span></label>';
+      }).join('')+'</div>';
+    }
+
+    function matches(p){
+      return (!active.family.length||active.family.indexOf(p[2])>-1)
+        &&(!active.adhesive.length||active.adhesive.indexOf(p[3])>-1)
+        &&(!active.backing.length||active.backing.indexOf(p[4])>-1);
+    }
+
+    function card(p){
+      var img='assets/img/'+p[0].toLowerCase()+'.jpeg';
+      return '<article class="pcard reveal">'+
+        '<a class="pimg" href="product-detail.html?sku='+p[0]+'"><img src="'+img+'" alt="'+p[1]+'" loading="lazy"></a>'+
+        '<div class="pbody"><div class="pcard-top">'+
+        '<span class="pcode">Deon '+p[0]+'</span>'+
+        '<span class="ptag">'+(FAMNAME[p[2]]||p[2])+'</span></div>'+
+        '<h3>'+p[1]+'</h3><p>'+p[6]+'</p>'+
+        '<div class="pmeta"><span>'+cap(p[3])+' adhesive</span><span>'+cap(p[4])+' backing</span><span>'+cap(p[5])+'-sided</span></div>'+
+        '<div class="pcard-foot"><a class="arrow" href="product-detail.html?sku='+p[0]+'">View details <span class="a">→</span></a>'+
+        '<a class="btn btn-ghost btn-sm" href="contact.html?type=sample&sku='+p[0]+'">Request sample</a></div></div></article>';
+    }
+
+    function render(){
+      var list=PRODUCTS.filter(matches);
+      var grid=document.getElementById('products');
+      grid.innerHTML=list.length?list.map(card).join(''):'<p class="muted" style="grid-column:1/-1;padding:40px 0">No products match these filters. <button onclick="location.reload()" style="background:none;border:none;color:var(--blue);cursor:pointer;text-decoration:underline">Clear all</button></p>';
+      document.getElementById('pcount').textContent=list.length;
+      document.getElementById('ptotal').textContent=PRODUCTS.length;
+      if(window.deonAnimRefresh) window.deonAnimRefresh();
+      else if(window.deonReveal) window.deonReveal();
+    }
+
+    function chips(){
+      var all=[];Object.keys(active).forEach(function(k){active[k].forEach(function(v){all.push([k,v]);});});
+      var box=document.getElementById('activeChips');
+      if(!all.length){box.innerHTML='';return;}
+      box.innerHTML=all.map(function(a){
+        return '<button class="active-chip" data-key="'+a[0]+'" data-val="'+a[1]+'">'+labelFor(a[0],a[1])+' ✕</button>';
+      }).join('')+'<button class="active-clear" onclick="location.reload()">Clear all</button>';
+    }
+    function labelFor(k,v){
+      var src={family:FAMILIES,adhesive:ADHESIVES,backing:BACKINGS}[k];
+      var f=src.find(function(o){return o[0]===v;});return f?f[1]:v;
+    }
+
+    var side=document.getElementById('facets');
+    side.innerHTML=facetGroup('Product family','family',FAMILIES)+
+      facetGroup('Adhesive','adhesive',ADHESIVES)+
+      facetGroup('Backing','backing',BACKINGS);
+
+    side.addEventListener('change',function(e){
+      var cb=e.target.closest('input[type="checkbox"]');if(!cb)return;
+      var k=cb.getAttribute('data-key'),v=cb.value;
+      if(cb.checked){if(active[k].indexOf(v)<0)active[k].push(v);}
+      else active[k]=active[k].filter(function(x){return x!==v;});
+      chips();render();
+    });
+    document.getElementById('activeChips').addEventListener('click',function(e){
+      var b=e.target.closest('.active-chip');if(!b)return;
+      var k=b.getAttribute('data-key'),v=b.getAttribute('data-val');
+      active[k]=active[k].filter(function(x){return x!==v;});
+      var cb=side.querySelector('input[data-key="'+k+'"][value="'+v+'"]');if(cb)cb.checked=false;
+      chips();render();
+    });
+
+    chips();render();
+  });
+})();
 </script>
 <script src="assets/chrome.js"></script>
 <script src="assets/site.js"></script>
