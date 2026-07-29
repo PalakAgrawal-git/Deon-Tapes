@@ -788,8 +788,9 @@ footer, .footer {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 8px 12px;
-  font-size: 0.9rem;
+  padding: 8px 10px;
+  font-size: 0.88rem;
+  white-space: nowrap;
   color: var(--ink);
   text-decoration: none;
   border-radius: 6px;

@@ -101,7 +101,7 @@
             '</div>' +
 
             '<div class="nav-item has-drop">' +
-              navLink('knowledge-center.html', 'Resources <span class="caret">&#9662;</span>', 'knowledge') +
+              navLink('knowledge-center.html', 'Knowledge Center <span class="caret">&#9662;</span>', 'knowledge') +
               '<div class="drop">' +
                 '<a href="knowledge-center.html">Overview</a>' +
                 '<a href="tools.html">Tools &amp; Calculators</a>' +
