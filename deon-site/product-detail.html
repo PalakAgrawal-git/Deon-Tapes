@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Product Detail | DEON&#174;</title>
 <meta name="description" content="Product specifications, datasheet and enquiry — DEON Tapes.">
-<link rel="stylesheet" href="assets/styles.css?v=20260731">
+<link rel="stylesheet" href="assets/styles.css?v=20260731g">
 </head>
 <body data-page="products">
 <div class="page-head">
@@ -20,12 +20,22 @@
 <section class="section">
   <div class="wrap">
     <div class="split2">
-      <!-- LEFT: IMAGE GALLERY -->
+      <!-- LEFT: IMAGE GALLERY WITH SLIDER -->
       <div>
-        <div class="reveal" id="pdMainImg" style="background:var(--tint);border-radius:8px;overflow:hidden;min-height:350px;display:flex;align-items:center;justify-content:center">
-          <img id="pdImg" src="" alt="" style="width:100%;height:auto;display:block">
+        <div class="pd-slider reveal" id="pdSlider">
+          <div class="pd-slide active" id="pdSlide0">
+            <img id="pdImg0" src="" alt="" draggable="false">
+          </div>
+          <div class="pd-slide" id="pdSlide1">
+            <img id="pdImg1" src="" alt="" draggable="false">
+          </div>
+          <button class="pd-arrow pd-prev" id="pdPrev" type="button" aria-label="Previous angle">&#8249;</button>
+          <button class="pd-arrow pd-next" id="pdNext" type="button" aria-label="Next angle">&#8250;</button>
+          <div class="pd-dots" id="pdDots">
+            <button class="pd-dot active" data-idx="0" type="button" aria-label="View 1"></button>
+            <button class="pd-dot" data-idx="1" type="button" aria-label="View 2"></button>
+          </div>
         </div>
-        <div id="pdThumbs" class="reveal" style="display:flex;gap:8px;margin-top:12px"></div>
       </div>
       <!-- RIGHT: INFO -->
       <div>
@@ -134,8 +144,37 @@
   document.getElementById('crumbName').textContent='Deon '+p[0];
 
   var img='assets/img/'+p[0].toLowerCase()+'.jpeg';
-  document.getElementById('pdImg').src=img;
-  document.getElementById('pdImg').alt=name;
+  var slide0=document.getElementById('pdSlide0');
+  var slide1=document.getElementById('pdSlide1');
+  var img0=document.getElementById('pdImg0');
+  var img1=document.getElementById('pdImg1');
+  slide0.setAttribute('data-pos','left');
+  slide1.setAttribute('data-pos','right');
+  img0.src=img; img0.alt=name+' — angle 1';
+  img1.src=img; img1.alt=name+' — angle 2';
+
+  // Slider logic
+  var cur=0, slides=[slide0,slide1];
+  var dots=document.querySelectorAll('.pd-dot');
+  function goTo(i){
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur=i;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+  document.getElementById('pdPrev').addEventListener('click',function(){goTo(cur===0?1:0);});
+  document.getElementById('pdNext').addEventListener('click',function(){goTo(cur===0?1:0);});
+  dots.forEach(function(d){d.addEventListener('click',function(){goTo(parseInt(d.getAttribute('data-idx')));});});
+
+  // If image is not wide (single photo), hide slider controls
+  img0.addEventListener('load',function(){
+    if(img0.naturalWidth/img0.naturalHeight < 1.5){
+      document.getElementById('pdSlider').classList.add('single');
+      slide0.removeAttribute('data-pos');
+      img0.style.width='100%';
+    }
+  });
 
   // Specs table — use real specs from DEON_PRODUCTS when available
   var specs;

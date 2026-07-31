@@ -503,16 +503,32 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 /* ---------- product / what-we-make cards with images ---------- */
 .card.has-img{padding:0;overflow:hidden}
 .card.has-img .cimg{aspect-ratio:16/10;overflow:hidden;background:var(--light-grey)}
-.card.has-img .cimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.card.has-img .cimg img{width:200%;height:100%;object-fit:cover;object-position:left center;transition:transform .5s var(--ease)}
 .card.has-img:hover .cimg img{transform:scale(1.05)}
 .card.has-img .cbody{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px}
 .card.has-img .cbody .tag{align-self:flex-start}
 .card.has-img h3{font-size:1.2rem}
 
+/* product detail slider */
+.pd-slider{position:relative;background:var(--tint);border-radius:10px;overflow:hidden;aspect-ratio:1/1}
+.pd-slide{position:absolute;inset:0;opacity:0;transition:opacity .35s ease}
+.pd-slide.active{opacity:1;position:relative}
+.pd-slide img{width:200%;height:100%;object-fit:cover;display:block}
+.pd-slide[data-pos="left"] img{object-position:left center}
+.pd-slide[data-pos="right"] img{object-position:right center}
+.pd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;font-size:1.4rem;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.pd-arrow:hover{background:rgba(0,0,0,.7)}
+.pd-prev{left:12px}
+.pd-next{right:12px}
+.pd-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+.pd-dot{width:10px;height:10px;border-radius:50%;border:2px solid #fff;background:transparent;cursor:pointer;padding:0;transition:background .2s}
+.pd-dot.active{background:#fff}
+.pd-slider.single .pd-arrow,.pd-slider.single .pd-dots{display:none}
+
 /* product catalog cards: add photo */
 .pcard{padding:0;overflow:hidden}
 .pcard .pimg{aspect-ratio:16/11;overflow:hidden;background:var(--light-grey);position:relative}
-.pcard .pimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.pcard .pimg img{width:200%;height:100%;object-fit:cover;object-position:left center;transition:transform .5s var(--ease)}
 .pcard:hover .pimg img{transform:scale(1.05)}
 .pcard .pbody{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px}
 .pcard .pbody .pcard-foot{margin-top:4px}
