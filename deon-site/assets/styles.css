@@ -627,9 +627,7 @@ html,body{overflow-x:hidden}
 .btn .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);
   transform:scale(0);animation:rippleA .6s ease-out;pointer-events:none}
 
-/* cards: tilt surface + image zoom + border glow */
-.grid,.pgrid,.calc-grid{perspective:1200px}
-.card,.pcard,.calc{transform-style:preserve-3d;will-change:transform}
+/* cards: image zoom + border glow */
 .card:hover,.pcard:hover{border-color:var(--red)}
 .card .cimg img,.pcard .pimg img{transition:transform .6s var(--ease)}
 .card:hover .cimg img,.pcard:hover .pimg img{transform:scale(1.07)}
@@ -665,7 +663,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 
 /* stats + badges */
 .stat .v{display:inline-block}
-.stat:hover .v{animation:floatA 1.6s ease-in-out infinite}
+.stat:hover .v{}
 .hero-badges .b{transition:transform .25s var(--ease),background .25s}
 .hero-badges .b:hover{transform:translateY(-3px);background:rgba(255,255,255,.2)}
 
@@ -681,8 +679,6 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 
 /* nav shrink on scroll */
 .site-header{transition:box-shadow .3s var(--ease)}
-.nav{transition:height .3s var(--ease)}
-.brand .mark{transition:height .3s var(--ease)}
 .site-header.scrolled{box-shadow:0 6px 24px rgba(20,10,10,.10)}
 .site-header.scrolled .nav{height:72px}
 .site-header.scrolled .brand .mark{height:38px}
