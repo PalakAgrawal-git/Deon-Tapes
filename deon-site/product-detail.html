@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Product Detail | DEON&#174;</title>
 <meta name="description" content="Product specifications, datasheet and enquiry — DEON Tapes.">
-<link rel="stylesheet" href="assets/styles.css?v=20260731n">
+<link rel="stylesheet" href="assets/styles.css?v=20260801a">
 </head>
 <body data-page="products">
 <div class="page-head">
@@ -20,20 +20,15 @@
 <section class="section">
   <div class="wrap">
     <div class="split2">
-      <!-- LEFT: IMAGE GALLERY WITH SLIDER -->
+      <!-- LEFT: IMAGE WITH SLIDER -->
       <div>
-        <div class="pd-slider reveal" id="pdSlider">
-          <div class="pd-slide active" id="pdSlide0">
-            <img id="pdImg0" src="" alt="" draggable="false">
-          </div>
-          <div class="pd-slide" id="pdSlide1">
-            <img id="pdImg1" src="" alt="" draggable="false">
-          </div>
-          <button class="pd-arrow pd-prev" id="pdPrev" type="button" aria-label="Previous angle">&#8249;</button>
-          <button class="pd-arrow pd-next" id="pdNext" type="button" aria-label="Next angle">&#8250;</button>
-          <div class="pd-dots" id="pdDots">
-            <button class="pd-dot active" data-idx="0" type="button" aria-label="View 1"></button>
-            <button class="pd-dot" data-idx="1" type="button" aria-label="View 2"></button>
+        <div class="pd-slider" id="pdSlider">
+          <img id="pdImg" src="" alt="" draggable="false">
+          <button class="pd-arrow pd-prev" id="pdPrev" type="button">&#8249;</button>
+          <button class="pd-arrow pd-next" id="pdNext" type="button">&#8250;</button>
+          <div class="pd-dots">
+            <span class="pd-dot active" id="dot0"></span>
+            <span class="pd-dot" id="dot1"></span>
           </div>
         </div>
       </div>
@@ -143,36 +138,31 @@
   document.getElementById('crumbCat').textContent=cat;
   document.getElementById('crumbName').textContent='Deon '+p[0];
 
-  var img='assets/img/'+p[0].toLowerCase()+'.jpeg';
-  var slide0=document.getElementById('pdSlide0');
-  var slide1=document.getElementById('pdSlide1');
-  var img0=document.getElementById('pdImg0');
-  var img1=document.getElementById('pdImg1');
-  slide0.setAttribute('data-pos','left');
-  slide1.setAttribute('data-pos','right');
-  img0.src=img; img0.alt=name+' — angle 1';
-  img1.src=img; img1.alt=name+' — angle 2';
+  var imgSrc='assets/img/'+p[0].toLowerCase()+'.jpeg';
+  var pdImg=document.getElementById('pdImg');
+  var slider=document.getElementById('pdSlider');
+  var dot0=document.getElementById('dot0');
+  var dot1=document.getElementById('dot1');
+  pdImg.src=imgSrc; pdImg.alt=name;
 
-  // Slider logic
-  var cur=0, slides=[slide0,slide1];
-  var dots=document.querySelectorAll('.pd-dot');
-  function goTo(i){
-    slides[cur].classList.remove('active');
-    dots[cur].classList.remove('active');
-    cur=i;
-    slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
+  // Slider: toggle between left half and right half
+  var showing=0;
+  function toggle(){
+    showing=showing===0?1:0;
+    slider.classList.toggle('show-right',showing===1);
+    dot0.classList.toggle('active',showing===0);
+    dot1.classList.toggle('active',showing===1);
   }
-  document.getElementById('pdPrev').addEventListener('click',function(){goTo(cur===0?1:0);});
-  document.getElementById('pdNext').addEventListener('click',function(){goTo(cur===0?1:0);});
-  dots.forEach(function(d){d.addEventListener('click',function(){goTo(parseInt(d.getAttribute('data-idx')));});});
+  document.getElementById('pdPrev').addEventListener('click',toggle);
+  document.getElementById('pdNext').addEventListener('click',toggle);
+  dot0.addEventListener('click',function(){if(showing!==0){toggle();}});
+  dot1.addEventListener('click',function(){if(showing!==1){toggle();}});
 
   // If image is not wide (single photo), hide slider controls
-  img0.addEventListener('load',function(){
-    if(img0.naturalWidth/img0.naturalHeight < 1.5){
-      document.getElementById('pdSlider').classList.add('single');
-      slide0.removeAttribute('data-pos');
-      img0.style.width='100%';
+  pdImg.addEventListener('load',function(){
+    if(pdImg.naturalWidth/pdImg.naturalHeight<1.5){
+      slider.classList.add('single');
+      pdImg.style.width='100%';
     }
   });
 
@@ -250,6 +240,6 @@
 })();
 </script>
 <script src="assets/chrome.js"></script>
-<script src="assets/site.js?v=20260731b"></script>
+<script src="assets/site.js?v=20260801a"></script>
 </body>
 </html>

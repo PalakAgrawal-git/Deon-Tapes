@@ -511,10 +511,8 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 
 /* product detail slider */
 .pd-slider{position:relative;background:var(--tint);border-radius:10px;overflow:hidden}
-.pd-slide{overflow:hidden;display:none}
-.pd-slide.active{display:block}
-.pd-slide img{width:200%;height:auto;display:block}
-.pd-slide[data-pos="right"] img{margin-left:-100%}
+.pd-slider img{width:200%;height:auto;display:block;transition:transform .4s ease}
+.pd-slider.show-right img{transform:translateX(-50%)}
 .pd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;font-size:1.4rem;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .pd-arrow:hover{background:rgba(0,0,0,.7)}
 .pd-prev{left:12px}
