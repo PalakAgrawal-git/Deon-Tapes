@@ -374,7 +374,6 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
   .grid-4,.grid-3,.grid-2,.pillars,.build,.market-list,.stats,.footer-top{grid-template-columns:1fr}
   .cta-actions{margin-left:0;width:100%}
   .hero-in{padding:60px var(--edge)}
-  .hero-photo .lead,.hero-badges{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -488,11 +487,11 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .hero-photo .eyebrow{color:#fff;opacity:.95;display:inline-flex;align-items:center;gap:10px}
 .hero-photo .eyebrow::before{content:"";width:26px;height:3px;background:var(--red);display:inline-block}
 .hero-photo h1{color:#fff;max-width:20ch;margin:20px 0 0;text-shadow:0 2px 30px rgba(0,0,0,.3)}
-.hero-photo .lead{color:#EDE7E6;max-width:56ch;margin-top:20px;font-size:1.18rem}
+.hero-photo .lead{display:none}
 .hero-photo .hero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
 .hero-photo .btn-primary{background:var(--red);border-color:var(--red)}
 .hero-photo .btn-primary:hover{background:#b91219;box-shadow:0 12px 26px rgba(215,25,32,.4)}
-.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.hero-badges{display:none}
 .hero-badges .b{display:inline-flex;align-items:center;gap:9px;font-size:.82rem;font-weight:600;
   background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:40px;
   padding:8px 15px;backdrop-filter:blur(3px)}
