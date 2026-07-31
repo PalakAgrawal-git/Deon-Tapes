@@ -349,11 +349,6 @@
   document.body.appendChild(btt);
   btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 
-  /* ---------------- continuous parallax layers ------------------------- */
-  var layers = $$('.sec-head, .hl, .stdgrid, .certs, .hero-badges, .imgband').map(function(el){
-    return {el:el, s: el.classList.contains('hero-badges') ? 20 : 12};
-  });
-
   var ticking=false;
   function onScroll(){
     if(ticking) return; ticking=true;
@@ -363,13 +358,6 @@
       bar.style.transform = 'scaleX('+(h>0?Math.min(y/h,1):0)+')';
       if(header) header.classList.toggle('scrolled', y>40);
       btt.classList.toggle('show', y>500);
-      var vh = window.innerHeight||1;
-      layers.forEach(function(L){
-        var r = L.el.getBoundingClientRect();
-        if(r.bottom<-200||r.top>vh+200) return;
-        var d = ((r.top+r.height/2)-vh/2)/vh;
-        L.el.style.translate = '0 '+(-d*L.s).toFixed(1)+'px';
-      });
       ticking=false;
     });
   }
