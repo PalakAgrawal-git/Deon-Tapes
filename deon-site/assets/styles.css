@@ -502,8 +502,8 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 
 /* ---------- product / what-we-make cards with images ---------- */
 .card.has-img{padding:0;overflow:hidden}
-.card.has-img .cimg{aspect-ratio:4/3;overflow:hidden;background:var(--light-grey)}
-.card.has-img .cimg img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s var(--ease)}
+.card.has-img .cimg{aspect-ratio:1/1;overflow:hidden;background:var(--light-grey)}
+.card.has-img .cimg img{width:100%;height:100%;object-fit:cover;object-position:25% center;transition:transform .5s var(--ease)}
 .card.has-img:hover .cimg img{transform:scale(1.05)}
 .card.has-img .cbody{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px}
 .card.has-img .cbody .tag{align-self:flex-start}
@@ -527,8 +527,8 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 
 /* product catalog cards: add photo */
 .pcard{padding:0;overflow:hidden}
-.pcard .pimg{aspect-ratio:4/3;overflow:hidden;background:var(--light-grey);position:relative}
-.pcard .pimg img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s var(--ease)}
+.pcard .pimg{aspect-ratio:1/1;overflow:hidden;background:var(--light-grey);position:relative}
+.pcard .pimg img{width:100%;height:100%;object-fit:cover;object-position:25% center;transition:transform .5s var(--ease)}
 .pcard:hover .pimg img{transform:scale(1.05)}
 .pcard .pbody{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px}
 .pcard .pbody .pcard-foot{margin-top:4px}
