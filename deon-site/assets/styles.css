@@ -200,12 +200,12 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .hero-badge span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-mid)}
 
 /* trusted-by marquee */
-.trusted{padding:34px 0;border-bottom:1px solid var(--line);background:#fff}
+.trusted{padding:44px 0;border-bottom:1px solid var(--line);background:#fff}
 .trusted .lbl{text-align:center;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;
   color:var(--text-mid);font-weight:700;margin-bottom:22px}
 .logos{display:flex;gap:56px;align-items:center;flex-wrap:nowrap;overflow:hidden;position:relative}
-.logos span{display:flex;align-items:center;justify-content:center;height:48px;flex-shrink:0}
-.logos span img{max-height:40px;max-width:120px;width:auto;height:auto;object-fit:contain}
+.logos span{display:flex;align-items:center;justify-content:center;height:72px;flex-shrink:0}
+.logos span img{max-height:64px;max-width:180px;width:auto;height:auto;object-fit:contain}
 
 /* =========================================================================
    CARDS / GRIDS
@@ -658,7 +658,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 .fcol a:hover{padding-left:6px;color:#fff}
 
 /* trusted-brands marquee */
-.logos-track{display:flex;gap:56px;align-items:center;animation:marqueeA 26s linear infinite;flex:none}
+.logos-track{display:flex;gap:72px;align-items:center;animation:marqueeA 20s linear infinite;flex:none}
 .trusted:hover .logos-track{animation-play-state:paused}
 
 /* stats + badges */
