@@ -374,6 +374,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
   .grid-4,.grid-3,.grid-2,.pillars,.build,.market-list,.stats,.footer-top{grid-template-columns:1fr}
   .cta-actions{margin-left:0;width:100%}
   .hero-in{padding:60px var(--edge)}
+  .hero-photo .lead,.hero-badges{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
