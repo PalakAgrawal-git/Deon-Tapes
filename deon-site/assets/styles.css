@@ -491,8 +491,8 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .hero-photo .hero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
 .hero-photo .btn-primary{background:var(--red);border-color:var(--red)}
 .hero-photo .btn-primary:hover{background:#b91219;box-shadow:0 12px 26px rgba(215,25,32,.4)}
-.watch-more{display:inline-flex;align-items:center;gap:10px;margin-top:20px;font-size:.95rem;font-weight:700;color:#fff;text-decoration:none;background:rgba(204,0,0,.85);padding:12px 24px;border-radius:8px;transition:background .2s,transform .2s}
-.watch-more:hover{background:rgba(204,0,0,1);transform:translateY(-2px)}
+.watch-more{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.9);text-decoration:none;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);padding:9px 18px;border-radius:40px;backdrop-filter:blur(4px);transition:background .2s,border-color .2s}
+.watch-more:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
 .hero-badges{display:none}
 .hero-badges .b{display:inline-flex;align-items:center;gap:9px;font-size:.82rem;font-weight:600;
   background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:40px;
