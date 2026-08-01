@@ -109,11 +109,11 @@ p{margin:0}
 .nav-cta{margin-left:6px}
 
 /* mega menu panel */
-.mega{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);margin-top:10px;
+.mega{position:absolute;top:100%;right:0;transform:translateY(8px);margin-top:10px;
   background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);
   padding:20px 24px;opacity:0;visibility:hidden;
   transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s;z-index:120}
-.nav-item:hover .mega,.mega.open{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-item:hover .mega,.mega.open{opacity:1;visibility:visible;transform:translateY(0)}
 .mega-grid{display:grid;grid-template-columns:auto auto;gap:2px 32px}
 .mega-wide{grid-template-columns:repeat(5,auto);gap:2px 32px}
 .mega-col h4{font-family:var(--font-body);text-transform:uppercase;font-size:.62rem;letter-spacing:.13em;
