@@ -108,7 +108,7 @@
     '</div>';
 
   var NAV = [
-    ['products','Industries',megaProducts],
+    ['products','Products',megaProducts],
     ['manufacturing','Infrastructure',megaManufacturing],
     ['knowledge','Knowledge Center',megaKnowledge]
   ];
