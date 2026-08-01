@@ -405,14 +405,15 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .pcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:#E2CFCF}
 .pcard-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .pcode{font-family:var(--font-head);font-weight:700;color:var(--blue);font-size:.85rem;letter-spacing:.02em}
-.ptag{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--text-mid);
-  background:var(--light-grey);padding:4px 9px;border-radius:20px}
+.ptag{font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--text-mid);
+  background:var(--light-grey);padding:3px 8px;border-radius:20px;white-space:nowrap}
 .pcard h3{font-size:1.12rem;line-height:1.15}
 .pcard p{color:var(--text-mid);font-size:.86rem;flex:1}
 .pmeta{display:flex;flex-wrap:wrap;gap:6px}
 .pmeta span{font-size:.7rem;color:var(--mid);background:var(--tint);border:1px solid var(--line);
   padding:4px 9px;border-radius:6px}
-.pcard-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;padding-top:12px;border-top:1px solid var(--line)}
+.pcard-foot{margin-top:6px;padding-top:12px;border-top:1px solid var(--line)}
+.pcard-foot .arrow{white-space:nowrap}
 .btn-sm{padding:.55em 1em;font-size:.78rem}
 @media (max-width:1080px){.catalog{grid-template-columns:1fr}.facets{position:static}
   .facet{display:inline-block;vertical-align:top;width:46%;margin-right:4%}.pgrid{grid-template-columns:1fr 1fr}}
