@@ -109,22 +109,22 @@ p{margin:0}
 .nav-cta{margin-left:6px}
 
 /* mega menu panel */
-.mega{position:absolute;top:100%;left:0;margin-top:10px;min-width:640px;
-  background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);
-  padding:26px;opacity:0;visibility:hidden;transform:translateY(8px);
+.mega{position:absolute;top:100%;left:0;margin-top:10px;min-width:480px;
+  background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);
+  padding:18px 20px;opacity:0;visibility:hidden;transform:translateY(8px);
   transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s;z-index:120}
 .nav-item:hover .mega,.mega.open{opacity:1;visibility:visible;transform:translateY(0)}
-.mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 34px}
-.mega-wide{grid-template-columns:1fr 1fr 1fr}
-.mega-col h4{font-family:var(--font-body);text-transform:uppercase;font-size:.68rem;letter-spacing:.14em;
-  color:var(--text-mid);font-weight:700;margin:6px 0 10px;padding-left:10px}
-.mega-link{display:flex;flex-direction:column;gap:2px;padding:9px 10px;border-radius:9px;transition:background .15s}
+.mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}
+.mega-wide{grid-template-columns:repeat(5,1fr)}
+.mega-col h4{font-family:var(--font-body);text-transform:uppercase;font-size:.62rem;letter-spacing:.13em;
+  color:var(--text-mid);font-weight:700;margin:4px 0 6px;padding-left:8px}
+.mega-link{display:flex;flex-direction:column;gap:1px;padding:5px 8px;border-radius:7px;transition:background .15s}
 .mega-link:hover{background:var(--tint)}
-.mega-link .t{font-weight:600;color:var(--ink);font-size:.96rem}
-.mega-link .d{font-size:.8rem;color:var(--text-mid);line-height:1.35}
-.mega-feature{grid-column:1/-1;margin-top:12px;padding-top:16px;border-top:1px solid var(--line);
-  display:flex;align-items:center;justify-content:space-between;gap:16px}
-.mega-feature .arrow{font-size:.85rem}
+.mega-link .t{font-weight:600;color:var(--ink);font-size:.82rem}
+.mega-link .d{font-size:.72rem;color:var(--text-mid);line-height:1.3}
+.mega-feature{grid-column:1/-1;margin-top:8px;padding-top:10px;border-top:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mega-feature .arrow{font-size:.78rem}
 
 /* backdrop when a menu / overlay is open */
 .scrim{position:fixed;inset:0;background:rgba(12,35,59,.32);opacity:0;visibility:hidden;
