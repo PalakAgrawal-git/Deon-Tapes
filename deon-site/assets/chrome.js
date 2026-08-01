@@ -47,21 +47,26 @@
       '<div class="mega-col"><h4>By type</h4>'+
         link('products.html?sided=double','Double-sided & foam')+
         link('products.html?backing=foil','Foil & sealing')+
-        link('application.html?group=masking','Masking')+
-        link('application.html?group=bundling','Bundling & harness')+
         link('products.html?family=electrical-insulation','Insulation')+
-      '</div>'+
-      '<div class="mega-col"><h4>By adhesive</h4>'+
         link('products.html?adhesive=acrylic','Acrylic')+
         link('products.html?adhesive=rubber','Rubber')+
-        link('products.html?adhesive=hotmelt','Hot-melt')+
-        link('products.html?adhesive=silicone','Silicone')+
       '</div>'+
       '<div class="mega-col"><h4>By backing</h4>'+
         link('products.html?backing=pvc,pet,polyimide,bopp','Film / BOPP')+
         link('products.html?backing=foam','Foam')+
         link('products.html?backing=cloth','Cloth')+
         link('products.html?backing=filament','Filament')+
+        link('products.html?adhesive=hotmelt','Hot-melt')+
+        link('products.html?adhesive=silicone','Silicone')+
+      '</div>'+
+      '<div class="mega-col"><h4>Applications</h4>'+
+        link('application.html?group=masking','Masking')+
+        link('application.html?group=bundling','Bundling & harnessing')+
+        link('application.html?group=insulation','Insulation')+
+        link('application.html?group=protection','Surface protection')+
+        link('application.html?group=bonding','Bonding')+
+        link('application.html?group=mounting','Mounting')+
+        link('application.html?group=packaging','Packaging')+
       '</div>'+
       '<div class="mega-col"><h4>Industries</h4>'+
         MARKETS.slice(0,6).map(function(m){return link('market.html?m='+m[0],m[1]);}).join('')+
