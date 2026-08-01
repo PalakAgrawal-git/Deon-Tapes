@@ -70,10 +70,7 @@
       '</div>'+
       '<div class="mega-col"><h4>Industries</h4>'+
         MARKETS.slice(0,6).map(function(m){return link('market.html?m='+m[0],m[1]);}).join('')+
-      '</div>'+
-      '<div class="mega-col"><h4>&nbsp;</h4>'+
-        MARKETS.slice(6).map(function(m){return link('market.html?m='+m[0],m[1]);}).join('')+
-        link('markets.html','All industries →')+
+        link('markets.html','Explore all industries →')+
       '</div>'+
       feat('products.html','See the full product range')+
     '</div>';
