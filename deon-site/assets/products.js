@@ -70,7 +70,7 @@
       '<div class="pbody"><div class="pcard-top">'+
       '<span class="pcode">Deon '+p[0]+'</span>'+
       '<span class="ptag">'+(FAMNAME[p[2]]||p[2])+'</span></div>'+
-      '<h3>'+p[1]+'</h3><p>'+p[6]+'</p>'+
+      '<h3><a href="product-detail.html?sku='+p[0]+'">'+p[1]+'</a></h3><p>'+p[6]+'</p>'+
       '<div class="pmeta"><span>'+cap(p[3])+' adhesive</span><span>'+cap(p[4])+' backing</span><span>'+cap(p[5])+'-sided</span></div>'+
       '<div class="pcard-foot"><a class="arrow" href="product-detail.html?sku='+p[0]+'">View details <span class="a">→</span></a></div></div></article>';
   }
