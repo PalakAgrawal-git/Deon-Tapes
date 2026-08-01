@@ -21,7 +21,7 @@
   --font-head:'Barlow Condensed',"Arial Narrow",system-ui,sans-serif;
   --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
   --body-size:16px; --body-lh:1.6; --head-tracking:.01em;
-  --content-max:1180px; --edge:2.5rem;
+  --content-max:1320px; --edge:2.5rem;
   --gutter:max(var(--edge),calc((100% - var(--content-max)) / 2));
   --ease:cubic-bezier(.2,.8,.2,1);
   --shadow-sm:0 1px 2px rgba(20,10,10,.06),0 6px 18px rgba(20,10,10,.07);
@@ -384,7 +384,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 /* =========================================================================
    PRODUCTS CATALOG
    ========================================================================= */
-.catalog{display:grid;grid-template-columns:260px 1fr;gap:40px;padding:44px 0 90px}
+.catalog{display:grid;grid-template-columns:230px 1fr;gap:24px;padding:44px 0 90px}
 .facets{align-self:start;position:sticky;top:calc(var(--nav-h) + 16px)}
 .facet{margin-bottom:24px}
 .facet h4{font-family:var(--font-body);text-transform:uppercase;font-size:.68rem;letter-spacing:.13em;
@@ -400,7 +400,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .active-chip:hover{background:#F6E7E7}
 .active-clear{font-size:.82rem;color:var(--text-mid);font-weight:600;margin-left:4px}
 .active-clear:hover{color:var(--blue)}
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .pcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;
   display:flex;flex-direction:column;gap:10px;transition:transform .2s var(--ease),box-shadow .2s,border-color .2s}
 .pcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:#E2CFCF}
