@@ -453,7 +453,6 @@ a.pcard{color:inherit;text-decoration:none;cursor:pointer}
    VISUAL OVERHAUL — real logo, utility bar, photographic hero, depth
    ========================================================================= */
 /* logo */
-.brand .mark{height:44px;width:auto}
 @media (max-width:640px){.brand .mark{height:54px}}
 
 /* top utility bar */
@@ -696,7 +695,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 .site-header{transition:box-shadow .3s var(--ease)}
 .site-header.scrolled{box-shadow:0 6px 24px rgba(20,10,10,.10)}
 .site-header.scrolled .nav{height:72px}
-.site-header.scrolled .brand .mark{height:38px}
+.site-header.scrolled .brand .mark{height:68px}
 
 /* section rule draw */
 .rule{max-width:var(--content-max);margin:0 auto;padding:6px var(--edge)}
