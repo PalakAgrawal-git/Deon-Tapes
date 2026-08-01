@@ -87,7 +87,7 @@ p{margin:0}
 .nav{max-width:var(--content-max);margin:0 auto;height:var(--nav-h);padding:0 var(--edge);
   display:flex;align-items:center;gap:28px}
 .brand{display:flex;align-items:center;gap:12px;flex:0 0 auto}
-.brand .mark{height:var(--logo-h);width:auto;display:block}
+.brand .mark{height:var(--nav-h);width:auto;display:block;padding:2px 0}
 .brand .word{font-family:var(--font-head);font-weight:800;font-size:1.7rem;color:var(--logo-blue);
   letter-spacing:-.02em;line-height:1}
 .brand .word sup{color:var(--red);font-size:.6em;top:-.5em}
