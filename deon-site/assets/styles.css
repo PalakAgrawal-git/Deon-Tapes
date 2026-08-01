@@ -513,16 +513,17 @@ a.pcard{color:inherit;text-decoration:none;cursor:pointer}
 
 /* product detail slider */
 .pd-slider{position:relative;background:var(--tint);border-radius:10px;overflow:hidden}
-.pd-slider img{width:200%;height:auto;display:block;transition:transform .4s ease}
-.pd-slider.show-right img{transform:translateX(-50%)}
+.pd-slider .pd-main{width:100%;aspect-ratio:1/1;object-fit:contain;display:block;transition:opacity .3s ease}
 .pd-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:rgba(0,0,0,.45);color:#fff;font-size:1.4rem;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;transition:background .2s}
 .pd-arrow:hover{background:rgba(0,0,0,.7)}
 .pd-prev{left:12px}
 .pd-next{right:12px}
-.pd-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
-.pd-dot{width:10px;height:10px;border-radius:50%;border:2px solid #fff;background:transparent;cursor:pointer;padding:0;transition:background .2s}
-.pd-dot.active{background:#fff}
-.pd-slider.single .pd-arrow,.pd-slider.single .pd-dots{display:none}
+.pd-thumbs{display:flex;gap:8px;margin-top:10px;overflow-x:auto;padding:4px 0}
+.pd-thumb{width:64px;height:64px;border-radius:8px;border:2px solid var(--line);object-fit:contain;background:var(--tint);cursor:pointer;opacity:.6;transition:opacity .2s,border-color .2s;flex-shrink:0}
+.pd-thumb.active{border-color:var(--blue);opacity:1}
+.pd-thumb:hover{opacity:1}
+.pd-slider.single .pd-arrow{display:none}
+.pd-slider.single+.pd-thumbs{display:none}
 
 /* product catalog cards: add photo */
 .pcard{padding:0;overflow:hidden;display:flex;flex-direction:column}

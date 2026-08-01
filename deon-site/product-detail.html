@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Product Detail | DEON&#174;</title>
 <meta name="description" content="Product specifications, datasheet and enquiry — DEON Tapes.">
-<link rel="stylesheet" href="assets/styles.css?v=2026080118">
+<link rel="stylesheet" href="assets/styles.css?v=2026080119">
 </head>
 <body data-page="products">
 <div class="page-head">
@@ -23,14 +23,11 @@
       <!-- LEFT: IMAGE WITH SLIDER -->
       <div>
         <div class="pd-slider" id="pdSlider">
-          <img id="pdImg" src="" alt="" draggable="false">
+          <img class="pd-main" id="pdImg" src="" alt="" draggable="false">
           <button class="pd-arrow pd-prev" id="pdPrev" type="button">&#8249;</button>
           <button class="pd-arrow pd-next" id="pdNext" type="button">&#8250;</button>
-          <div class="pd-dots">
-            <span class="pd-dot active" id="dot0"></span>
-            <span class="pd-dot" id="dot1"></span>
-          </div>
         </div>
+        <div class="pd-thumbs" id="pdThumbs"></div>
       </div>
       <!-- RIGHT: INFO -->
       <div>
@@ -138,32 +135,56 @@
   document.getElementById('crumbCat').textContent=cat;
   document.getElementById('crumbName').textContent='Deon '+p[0];
 
-  var imgSrc='assets/img/'+p[0].toLowerCase()+'.jpeg';
+  var GALLERY={
+    '31700':6,'50W13':5,'41860':6,'DT1142':4,'DT3121L':4,
+    'DT3124L':6,'DT3131':6,'DT4021':5,'M5001':5,'PW6001':5
+  };
+
   var pdImg=document.getElementById('pdImg');
   var slider=document.getElementById('pdSlider');
-  var dot0=document.getElementById('dot0');
-  var dot1=document.getElementById('dot1');
-  pdImg.src=imgSrc; pdImg.alt=name;
+  var thumbsEl=document.getElementById('pdThumbs');
+  var count=GALLERY[p[0]]||0;
+  var images=[];
+  var cur=0;
 
-  // Slider: toggle between left half and right half
-  var showing=0;
-  function toggle(){
-    showing=showing===0?1:0;
-    slider.classList.toggle('show-right',showing===1);
-    dot0.classList.toggle('active',showing===0);
-    dot1.classList.toggle('active',showing===1);
-  }
-  document.getElementById('pdPrev').addEventListener('click',toggle);
-  document.getElementById('pdNext').addEventListener('click',toggle);
-  dot0.addEventListener('click',function(){if(showing!==0){toggle();}});
-  dot1.addEventListener('click',function(){if(showing!==1){toggle();}});
-
-  // If image is not wide (single photo), hide slider controls
-  pdImg.addEventListener('load',function(){
-    if(pdImg.naturalWidth/pdImg.naturalHeight<1.5){
-      slider.classList.add('single');
-      pdImg.style.width='100%';
+  if(count>0){
+    for(var i=1;i<=count;i++){
+      images.push('assets/img/products/'+p[0]+'/'+p[0].toLowerCase()+'_'+i+'.png');
     }
+  } else {
+    images.push('assets/img/'+p[0].toLowerCase()+'.jpeg');
+  }
+
+  pdImg.src=images[0]; pdImg.alt=name;
+
+  if(images.length>1){
+    thumbsEl.innerHTML=images.map(function(src,idx){
+      return '<img class="pd-thumb'+(idx===0?' active':'')+'" src="'+src+'" alt="'+name+' image '+(idx+1)+'" data-idx="'+idx+'">';
+    }).join('');
+  } else {
+    slider.classList.add('single');
+  }
+
+  function showSlide(idx){
+    cur=idx;
+    pdImg.style.opacity='0';
+    setTimeout(function(){
+      pdImg.src=images[cur];
+      pdImg.style.opacity='1';
+    },150);
+    var thumbs=thumbsEl.querySelectorAll('.pd-thumb');
+    thumbs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
+  }
+
+  document.getElementById('pdPrev').addEventListener('click',function(){
+    showSlide(cur<=0?images.length-1:cur-1);
+  });
+  document.getElementById('pdNext').addEventListener('click',function(){
+    showSlide(cur>=images.length-1?0:cur+1);
+  });
+  thumbsEl.addEventListener('click',function(e){
+    var t=e.target.closest('.pd-thumb');
+    if(t) showSlide(parseInt(t.getAttribute('data-idx'),10));
   });
 
   // Specs table — use real specs from DEON_PRODUCTS when available
