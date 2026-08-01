@@ -116,7 +116,7 @@
   ];
 
   var logoIMG =
-    '<img class="mark" src="assets/brand/Deon Logo CC.svg" alt="DEON — It\'s Power-Strong" width="150" height="63">';
+    '<img class="mark" src="assets/brand/Deon Logo CC.svg" alt="DEON — It\'s Power-Strong" width="220" height="92">';
 
   var utilBar =
     '<div class="utilbar"><div class="utilbar-in">'+
