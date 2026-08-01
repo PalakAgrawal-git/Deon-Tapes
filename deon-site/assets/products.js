@@ -63,8 +63,9 @@
       &&(!active.sided.length||active.sided.indexOf(sd)>-1);
   }
 
+  var HAS_GALLERY={'31700':1,'50W13':1,'41860':1,'DT1142':1,'DT3121L':1,'DT3124L':1,'DT3131':1,'DT4021':1,'M5001':1,'PW6001':1};
   function card(p){
-    var img='assets/img/'+p[0].toLowerCase()+'.jpeg';
+    var img=HAS_GALLERY[p[0]]?'assets/img/products/'+p[0]+'/'+p[0].toLowerCase()+'_1.png':'assets/img/'+p[0].toLowerCase()+'.jpeg';
     return '<a class="pcard reveal" href="product-detail.html?sku='+p[0]+'">'+
       '<div class="pimg"><img src="'+img+'" alt="'+p[1]+'" loading="lazy"></div>'+
       '<div class="pbody"><div class="pcard-top">'+
