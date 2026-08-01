@@ -403,12 +403,12 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .pcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;
   display:flex;flex-direction:column;gap:10px;transition:transform .2s var(--ease),box-shadow .2s,border-color .2s}
 .pcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:#E2CFCF}
-.pcard-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.pcode{font-family:var(--font-head);font-weight:700;color:var(--blue);font-size:.85rem;letter-spacing:.02em}
+.pcard-top{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.pcode{font-family:var(--font-head);font-weight:700;color:var(--blue);font-size:.82rem;letter-spacing:.02em}
 .ptag{font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--text-mid);
   background:var(--light-grey);padding:3px 8px;border-radius:20px;white-space:nowrap}
-.pcard h3{font-size:1.12rem;line-height:1.15}
-.pcard p{color:var(--text-mid);font-size:.86rem;flex:1}
+.pcard h3{font-size:1.05rem;line-height:1.2}
+.pcard p{color:var(--text-mid);font-size:.84rem;flex:1}
 .pmeta{display:flex;flex-wrap:wrap;gap:6px}
 .pmeta span{font-size:.7rem;color:var(--mid);background:var(--tint);border:1px solid var(--line);
   padding:4px 9px;border-radius:6px}
