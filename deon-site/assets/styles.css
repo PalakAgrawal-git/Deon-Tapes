@@ -109,13 +109,13 @@ p{margin:0}
 .nav-cta{margin-left:6px}
 
 /* mega menu panel */
-.mega{position:absolute;top:100%;left:0;margin-top:10px;min-width:480px;
+.mega{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);margin-top:10px;
   background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);
-  padding:18px 20px;opacity:0;visibility:hidden;transform:translateY(8px);
+  padding:18px 20px;opacity:0;visibility:hidden;white-space:nowrap;
   transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s;z-index:120}
-.nav-item:hover .mega,.mega.open{opacity:1;visibility:visible;transform:translateY(0)}
-.mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}
-.mega-wide{grid-template-columns:repeat(5,1fr)}
+.nav-item:hover .mega,.mega.open{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.mega-grid{display:inline-grid;grid-template-columns:1fr 1fr;gap:4px 24px;white-space:normal}
+.mega-wide{grid-template-columns:repeat(5,auto);width:max-content}
 .mega-col h4{font-family:var(--font-body);text-transform:uppercase;font-size:.62rem;letter-spacing:.13em;
   color:var(--text-mid);font-weight:700;margin:4px 0 6px;padding-left:8px}
 .mega-link{display:flex;flex-direction:column;gap:1px;padding:5px 8px;border-radius:7px;transition:background .15s}
