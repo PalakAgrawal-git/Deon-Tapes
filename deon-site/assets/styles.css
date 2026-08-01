@@ -407,9 +407,8 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .pcode{font-family:var(--font-head);font-weight:700;color:var(--blue);font-size:.82rem;letter-spacing:.02em}
 .ptag{font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--text-mid);
   white-space:nowrap}
+a.pcard{color:inherit;text-decoration:none;cursor:pointer}
 .pcard h3{font-size:1.05rem;line-height:1.2}
-.pcard h3 a{color:inherit;text-decoration:none}
-.pcard h3 a:hover{color:var(--red)}
 .pcard p{color:var(--text-mid);font-size:.84rem;flex:1}
 .pmeta{display:flex;flex-wrap:wrap;gap:6px}
 .pmeta span{font-size:.7rem;color:var(--mid);background:var(--tint);border:1px solid var(--line);
