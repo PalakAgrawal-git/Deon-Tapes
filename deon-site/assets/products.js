@@ -63,7 +63,7 @@
       &&(!active.sided.length||active.sided.indexOf(sd)>-1);
   }
 
-  var HAS_GALLERY={'31700':1,'50W13':1,'41860':1,'DT1142':1,'DT3121L':1,'DT3124L':1,'DT3131':1,'DT4021':1,'M5001':1,'PW6001':1};
+  var HAS_GALLERY={'31700':1,'41860':1,'50W13':1,'DT1111':1,'DT1113':1,'DT1123':1,'DT1142':1,'DT1221H':1,'DT1231':1,'DT2131':1,'DT3121L':1,'DT3124L':1,'DT3131':1,'DT3741L':1,'DT4021':1,'DT4041':1,'DT5142':1,'DT6041':1,'DT6122':1,'DT7143':1,'DT7243':1,'DT9151':1,'M5001':1,'PW6001':1};
   function card(p){
     var img=HAS_GALLERY[p[0]]?'assets/img/products/'+p[0]+'/'+p[0].toLowerCase()+'_1.png':'assets/img/'+p[0].toLowerCase()+'.jpeg';
     return '<a class="pcard reveal" href="product-detail.html?sku='+p[0]+'">'+
