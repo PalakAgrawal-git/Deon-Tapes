@@ -17,7 +17,7 @@
   --bg:#F8F8F8; --white:#FFFFFF; --surface-2:#F8F8F8;
   --light-grey:#F8F8F8; --tint:#F8F8F8; --line:#E6DEDD;
   /* layout */
-  --nav-h:100px; --logo-h:80px;
+  --nav-h:62px; --logo-h:74px;
   --font-head:'Barlow Condensed',"Arial Narrow",system-ui,sans-serif;
   --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
   --body-size:16px; --body-lh:1.6; --head-tracking:.01em;
