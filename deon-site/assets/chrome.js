@@ -63,6 +63,13 @@
         link('products.html?backing=cloth','Cloth')+
         link('products.html?backing=filament','Filament')+
       '</div>'+
+      '<div class="mega-col"><h4>Industries</h4>'+
+        MARKETS.slice(0,6).map(function(m){return link('market.html?m='+m[0],m[1]);}).join('')+
+      '</div>'+
+      '<div class="mega-col"><h4>&nbsp;</h4>'+
+        MARKETS.slice(6).map(function(m){return link('market.html?m='+m[0],m[1]);}).join('')+
+        link('markets.html','All industries →')+
+      '</div>'+
       feat('products.html','See the full product range')+
     '</div>';
 
@@ -101,9 +108,7 @@
     '</div>';
 
   var NAV = [
-    ['markets','Markets',megaMarkets],
-    ['applications','Applications',megaApplications],
-    ['products','Products',megaProducts],
+    ['products','Industries',megaProducts],
     ['manufacturing','Infrastructure',megaManufacturing],
     ['knowledge','Knowledge Center',megaKnowledge]
   ];
@@ -164,7 +169,7 @@
     '<aside class="panel" id="mobilePanel" aria-label="Menu"><div class="panel-head"><h3>Menu</h3>'+
       '<button class="icon-btn" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>'+
       '<div style="overflow:auto">'+
-        NAV.map(function(it){return '<a class="mega-link" href="'+({markets:'markets.html',applications:'applications.html',products:'products.html',manufacturing:'manufacturing-technology.html',knowledge:'knowledge-center.html'})[it[0]]+'"><span class="t">'+it[1]+'</span></a>';}).join('')+
+        NAV.map(function(it){return '<a class="mega-link" href="'+({products:'products.html',manufacturing:'manufacturing-technology.html',knowledge:'knowledge-center.html'})[it[0]]+'"><span class="t">'+it[1]+'</span></a>';}).join('')+
         '<a class="mega-link" href="blog.html"><span class="t">Blog</span></a>'+
         '<a class="mega-link" href="about.html"><span class="t">About us</span></a>'+
         '<a class="mega-link" href="contact.html"><span class="t">Contact</span></a>'+
@@ -181,7 +186,7 @@
         '<a class="btn btn-light" style="margin-top:18px" href="contact.html">Contact DEON</a>'+
       '</div>'+
       fcol('Products',[['products.html','All products'],['products.html?sided=double','Double-sided & foam'],['products.html?backing=foil','Foil & sealing'],['application.html?group=masking','Masking'],['application.html?group=bundling','Harness & bundling'],['products.html?family=electrical-insulation','Insulation']])+
-      fcol('Markets',[['markets.html','All markets'],['market.html?m=automotive','Automotive'],['market.html?m=electrical','Electrical'],['market.html?m=building','Building & Construction'],['market.html?m=packaging','Packaging'],['market.html?m=hvacr','HVAC & Insulation']])+
+      fcol('Industries',[['markets.html','All industries'],['market.html?m=automotive','Automotive'],['market.html?m=electrical','Electrical'],['market.html?m=building','Building & Construction'],['market.html?m=packaging','Packaging'],['market.html?m=hvacr','HVAC & Insulation']])+
       fcol('Company',[['about.html','About us'],['manufacturing-technology.html','Infrastructure & Manufacturing'],['certifications.html','Quality & Certifications'],['careers.html','Careers'],['press.html','Press'],['partners.html','Partners']])+
       fcol('Resources',[['knowledge-center.html','Knowledge Center'],['blog.html','Blog'],['tools.html','Tools & Calculators'],['contact.html?type=quote','Request a quote'],['contact.html?type=sample','Request samples']])+
     '</div>'+
@@ -204,8 +209,8 @@
   if(act){act.style.color='var(--blue)';}
 
   // interior photographic page-head (by page)
-  var HEROMAP = {products:'factory-cutting',markets:'factory-team',applications:'factory-coating',
-    manufacturing:'factory-coating',about:'factory-shed',contact:'factory-team',knowledge:'factory-adhesive'};
+  var HEROMAP = {products:'factory-cutting',manufacturing:'factory-coating',about:'factory-shed',
+    contact:'factory-team',knowledge:'factory-adhesive',markets:'factory-team',applications:'factory-coating'};
   var ph = document.querySelector('.page-head');
   var hk = HEROMAP[page];
   if(ph && hk && !ph.classList.contains('photo')){
