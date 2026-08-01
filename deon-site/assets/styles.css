@@ -524,12 +524,12 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .pd-slider.single .pd-arrow,.pd-slider.single .pd-dots{display:none}
 
 /* product catalog cards: add photo */
-.pcard{padding:0;overflow:hidden}
+.pcard{padding:0;overflow:hidden;display:flex;flex-direction:column}
 .pcard .pimg{aspect-ratio:3/4;overflow:hidden;background:var(--light-grey);position:relative}
 .pcard .pimg img{width:100%;height:100%;object-fit:cover;object-position:left center;transition:transform .5s var(--ease)}
 .pcard:hover .pimg img{transform:scale(1.05)}
-.pcard .pbody{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px}
-.pcard .pbody .pcard-foot{margin-top:4px}
+.pcard .pbody{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pcard .pbody .pcard-foot{margin-top:auto;text-align:center}
 
 /* section imagery band */
 .imgband{position:relative;overflow:hidden;border-radius:20px;min-height:340px;display:flex;align-items:flex-end;
