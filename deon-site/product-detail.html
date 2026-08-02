@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Product Detail | DEON&#174;</title>
 <meta name="description" content="Product specifications, datasheet and enquiry — DEON Tapes.">
-<link rel="stylesheet" href="assets/styles.css?v=2026080123">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body data-page="products">
 <div class="page-head">
@@ -20,14 +20,12 @@
 <section class="section">
   <div class="wrap">
     <div class="split2">
-      <!-- LEFT: IMAGE WITH SLIDER -->
+      <!-- LEFT: IMAGE GALLERY -->
       <div>
-        <div class="pd-slider" id="pdSlider">
-          <img class="pd-main" id="pdImg" src="" alt="" draggable="false">
-          <button class="pd-arrow pd-prev" id="pdPrev" type="button">&#8249;</button>
-          <button class="pd-arrow pd-next" id="pdNext" type="button">&#8250;</button>
+        <div class="reveal" id="pdMainImg" style="background:var(--tint);border-radius:8px;overflow:hidden;min-height:350px;display:flex;align-items:center;justify-content:center">
+          <img id="pdImg" src="" alt="" style="width:100%;height:auto;display:block">
         </div>
-        <div class="pd-thumbs" id="pdThumbs"></div>
+        <div id="pdThumbs" class="reveal" style="display:flex;gap:8px;margin-top:12px"></div>
       </div>
       <!-- RIGHT: INFO -->
       <div>
@@ -86,7 +84,6 @@
   </div>
 </section>
 
-<script src="assets/data.js"></script>
 <script>
 (function(){
   var PRODUCTS = [
@@ -122,127 +119,65 @@
   var p=PRODUCTS.find(function(x){return x[0]===sku;});
   if(!p){document.getElementById('pdName').textContent='Product not found';return;}
 
-  var dp=DEON_PRODUCTS&&DEON_PRODUCTS[sku];
-  var cat=dp?dp.family:(FAMNAME[p[2]]||cap(p[2]));
-  var desc=dp?dp.desc:p[6];
-  var name=dp?dp.name:p[1];
-
-  document.title=name+' — Deon '+p[0]+' | DEON®';
-  document.getElementById('pdName').textContent=name;
+  var cat=FAMNAME[p[2]]||cap(p[2]);
+  document.title=p[1]+' — Deon '+p[0]+' | DEON®';
+  document.getElementById('pdName').textContent=p[1];
   document.getElementById('pdCode').textContent='Deon '+p[0];
   document.getElementById('pdCat').textContent=cat;
-  document.getElementById('pdDesc').textContent=desc;
+  document.getElementById('pdDesc').textContent=p[6];
   document.getElementById('crumbCat').textContent=cat;
   document.getElementById('crumbName').textContent='Deon '+p[0];
 
-  var GALLERY={
-    '31700':2,'41860':6,'50W13':5,'DT1111':4,'DT1113':3,'DT1123':4,
-    'DT1142':4,'DT1221H':5,'DT1231':5,'DT2131':4,'DT3121L':4,
-    'DT3124L':6,'DT3131':6,'DT3741L':6,'DT4021':5,'DT4041':4,
-    'DT5142':6,'DT6041':6,'DT6122':6,'DT7143':4,'DT7243':6,
-    'DT9151':8,'M5001':5,'PW6001':5
-  };
+  var sku=p[0];
+  var skuL=sku.toLowerCase();
+  var imgDir='assets/img/products/'+sku+'/';
+  var IMG_COUNTS={'31700':6,'41860':10,'50W13':5,'DT1111':4,'DT1113':4,'DT1123':4,'DT1142':4,'DT1221H':5,'DT1231':10,'DT2131':4,'DT3121L':4,'DT3124L':6,'DT3131':6,'DT3741L':12,'DT4021':5,'DT4041':4,'DT5142':10,'DT6041':10,'DT6122':10,'DT7143':4,'DT7243':12,'DT9151':8,'M5001':11,'PW6001':5};
+  var count=IMG_COUNTS[sku]||1;
+  var img=imgDir+'1.png';
+  document.getElementById('pdImg').src=img;
+  document.getElementById('pdImg').alt=p[1];
 
-  var pdImg=document.getElementById('pdImg');
-  var slider=document.getElementById('pdSlider');
-  var thumbsEl=document.getElementById('pdThumbs');
-  var count=GALLERY[p[0]]||0;
-  var images=[];
-  var cur=0;
-
-  if(count>0){
+  if(count>1){
+    var thumbs=[];
     for(var i=1;i<=count;i++){
-      images.push('assets/img/products/'+p[0]+'/'+p[0].toLowerCase()+'_'+i+'.png');
+      thumbs.push('<img src="'+imgDir+i+'.png" alt="'+p[1]+' view '+i+'" loading="lazy" style="width:64px;height:64px;object-fit:cover;border-radius:4px;cursor:pointer;border:2px solid '+(i===1?'var(--blue)':'transparent')+'" data-i="'+i+'">');
     }
-  } else {
-    images.push('assets/img/'+p[0].toLowerCase()+'.jpeg');
+    var thumbEl=document.getElementById('pdThumbs');
+    thumbEl.innerHTML=thumbs.join('');
+    thumbEl.addEventListener('click',function(e){
+      var t=e.target;if(t.tagName!=='IMG')return;
+      document.getElementById('pdImg').src=t.src;
+      thumbEl.querySelectorAll('img').forEach(function(im){im.style.borderColor='transparent';});
+      t.style.borderColor='var(--blue)';
+    });
   }
 
-  pdImg.src=images[0]; pdImg.alt=name;
-
-  if(images.length>1){
-    thumbsEl.innerHTML=images.map(function(src,idx){
-      return '<img class="pd-thumb'+(idx===0?' active':'')+'" src="'+src+'" alt="'+name+' image '+(idx+1)+'" data-idx="'+idx+'">';
-    }).join('');
-  } else {
-    slider.classList.add('single');
-  }
-
-  function showSlide(idx){
-    cur=idx;
-    pdImg.style.opacity='0';
-    setTimeout(function(){
-      pdImg.src=images[cur];
-      pdImg.style.opacity='1';
-    },150);
-    var thumbs=thumbsEl.querySelectorAll('.pd-thumb');
-    thumbs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
-  }
-
-  document.getElementById('pdPrev').addEventListener('click',function(){
-    showSlide(cur<=0?images.length-1:cur-1);
-  });
-  document.getElementById('pdNext').addEventListener('click',function(){
-    showSlide(cur>=images.length-1?0:cur+1);
-  });
-  thumbsEl.addEventListener('click',function(e){
-    var t=e.target.closest('.pd-thumb');
-    if(t) showSlide(parseInt(t.getAttribute('data-idx'),10));
-  });
-
-  // Specs table — use real specs from DEON_PRODUCTS when available
-  var specs;
-  if(dp&&dp.specs){
-    specs=dp.specs;
-  } else {
-    specs=[
-      ['Product code','Deon '+p[0]],['Product name',p[1]],
-      ['Adhesive system',cap(p[3])],['Backing material',cap(p[4])],
-      ['Construction',cap(p[5])+'-sided'],['Category',cat],
-      ['Certifications','Available on request'],['Colour options','Contact for options'],
-      ['Width options','Standard and custom widths available'],['Lead time','Contact sales for lead time']
-    ];
-  }
+  // Specs table
+  var specs=[
+    ['Product code','Deon '+p[0]],
+    ['Product name',p[1]],
+    ['Adhesive system',cap(p[3])],
+    ['Backing material',cap(p[4])],
+    ['Construction',cap(p[5])+'-sided'],
+    ['Category',cat],
+    ['Certifications','Available on request'],
+    ['Colour options','Contact for options'],
+    ['Width options','Standard and custom widths available'],
+    ['Lead time','Contact sales for lead time']
+  ];
   document.getElementById('pdSpecs').querySelector('tbody').innerHTML=specs.map(function(s){
     return '<tr><td style="font-weight:600;width:40%;color:var(--ink)">'+s[0]+'</td><td>'+s[1]+'</td></tr>';
   }).join('');
 
-  // Features & applications from DEON_PRODUCTS
-  var indEl=document.getElementById('pdIndustries');
-  if(dp&&dp.features&&dp.features.length){
-    var html='<h4 style="margin-bottom:10px;font-size:.95rem;color:var(--ink)">Features</h4>'+
-      '<ul style="list-style:none;padding:0;margin:0 0 20px">'+dp.features.map(function(f){
-        return '<li style="display:flex;gap:8px;margin-bottom:6px;font-size:.92rem"><span style="color:var(--blue);font-weight:700;flex-shrink:0">✓</span><span>'+f+'</span></li>';
-      }).join('')+'</ul>';
-    if(dp.apps&&dp.apps.length){
-      html+='<h4 style="margin-bottom:10px;font-size:.95rem;color:var(--ink)">Applications</h4>'+
-        '<ul style="list-style:none;padding:0;margin:0 0 20px">'+dp.apps.map(function(a){
-          return '<li style="display:flex;gap:8px;margin-bottom:6px;font-size:.92rem"><span style="color:var(--blue);font-weight:700;flex-shrink:0">→</span><span>'+a+'</span></li>';
-        }).join('')+'</ul>';
-    }
-    if(dp.colors&&dp.colors.length){
-      html+='<h4 style="margin-bottom:8px;font-size:.95rem;color:var(--ink)">Available colours</h4>'+
-        '<div style="display:flex;flex-wrap:wrap;gap:6px">'+dp.colors.map(function(c){
-          return '<span class="chip">'+c+'</span>';
-        }).join('')+'</div>';
-    }
-    if(dp.standards&&dp.standards.length){
-      html+='<h4 style="margin:16px 0 8px;font-size:.95rem;color:var(--ink)">Standards & certifications</h4>'+
-        '<div style="display:flex;flex-wrap:wrap;gap:6px">'+dp.standards.map(function(s){
-          return '<span class="chip" style="background:var(--blue);color:#fff;font-weight:600">'+s+'</span>';
-        }).join('')+'</div>';
-    }
-    indEl.innerHTML=html;
-  } else {
-    var indMap={'electrical-insulation':['Electrical','Automotive','Renewable Energy'],'bonding':['Automotive','Construction','Packaging'],'masking':['Automotive','Construction','Paints & Carpentry'],'foil-sealing':['Construction','Packaging','HVAC'],'packaging':['Packaging','Construction'],'harness':['Automotive','Electrical'],'floor-marking':['Automotive','Construction','Healthcare']};
-    var industries=indMap[p[2]]||['General industrial'];
-    indEl.innerHTML='<h4 style="margin-bottom:8px;font-size:.9rem;color:var(--text-mid)">Industries served</h4>'+industries.map(function(i){return '<span class="chip">'+i+'</span>';}).join('');
-  }
+  // Industry tags
+  var indMap={'electrical-insulation':['Electrical','Automotive','Renewable Energy'],'bonding':['Automotive','Construction','Packaging'],'masking':['Automotive','Construction','Paints & Carpentry'],'foil-sealing':['Construction','Packaging','HVAC'],'packaging':['Packaging','Construction'],'harness':['Automotive','Electrical'],'floor-marking':['Automotive','Construction','Healthcare']};
+  var industries=indMap[p[2]]||['General industrial'];
+  document.getElementById('pdIndustries').innerHTML='<h4 style="margin-bottom:8px;font-size:.9rem;color:var(--text-mid)">Industries served</h4>'+industries.map(function(i){return '<span class="chip">'+i+'</span>';}).join('');
 
   // Action links
   document.getElementById('pdSample').href='contact.html?type=sample&sku='+p[0];
   document.getElementById('pdQuote').href='contact.html?type=quote&sku='+p[0];
-  document.getElementById('pdWhatsapp').href='https://wa.me/917700085050?text='+encodeURIComponent('Hi, I\'d like to enquire about Deon '+p[0]+' — '+name);
+  document.getElementById('pdWhatsapp').href='https://wa.me/917700085050?text='+encodeURIComponent('Hi, I\'d like to enquire about Deon '+p[0]+' — '+p[1]);
 
   // Related products (same family, excluding current)
   var related=PRODUCTS.filter(function(x){return x[2]===p[2]&&x[0]!==p[0];}).slice(0,3);
@@ -250,11 +185,9 @@
   if(!related.length){
     related=PRODUCTS.filter(function(x){return x[0]!==p[0];}).slice(0,3);
     relHead.querySelector('h2').textContent='You might also like.';
-  } else {
-    relHead.querySelector('h2').textContent='More in '+cat+'.';
   }
   document.getElementById('pdRelated').innerHTML=related.map(function(r){
-    var rimg='assets/img/'+r[0].toLowerCase()+'.jpeg';
+    var rimg='assets/img/'+r[0].toLowerCase()+'.png';
     return '<a class="card has-img" href="product-detail.html?sku='+r[0]+'">'+
       '<div class="cimg"><img src="'+rimg+'" alt="'+r[1]+'" loading="lazy"></div>'+
       '<div class="cbody"><span class="tag">'+(FAMNAME[r[2]]||r[2])+'</span><h3>'+r[1]+'</h3>'+
@@ -263,7 +196,7 @@
   }).join('');
 })();
 </script>
-<script src="assets/chrome.js?v=2026080104"></script>
-<script src="assets/site.js?v=20260801a"></script>
+<script src="assets/chrome.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>

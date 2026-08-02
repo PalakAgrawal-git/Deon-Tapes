@@ -63,17 +63,17 @@
       &&(!active.sided.length||active.sided.indexOf(sd)>-1);
   }
 
-  var HAS_GALLERY={'31700':1,'41860':1,'50W13':1,'DT1111':1,'DT1113':1,'DT1123':1,'DT1142':1,'DT1221H':1,'DT1231':1,'DT2131':1,'DT3121L':1,'DT3124L':1,'DT3131':1,'DT3741L':1,'DT4021':1,'DT4041':1,'DT5142':1,'DT6041':1,'DT6122':1,'DT7143':1,'DT7243':1,'DT9151':1,'M5001':1,'PW6001':1};
   function card(p){
-    var img=HAS_GALLERY[p[0]]?'assets/img/products/'+p[0]+'/'+p[0].toLowerCase()+'_1.png':'assets/img/'+p[0].toLowerCase()+'.jpeg';
-    return '<a class="pcard reveal" href="product-detail.html?sku='+p[0]+'">'+
-      '<div class="pimg"><img src="'+img+'" alt="'+p[1]+'" loading="lazy"></div>'+
+    var img='assets/img/'+p[0].toLowerCase()+'.png';
+    return '<article class="pcard reveal">'+
+      '<a class="pimg" href="product-detail.html?sku='+p[0]+'"><img src="'+img+'" alt="'+p[1]+'" loading="lazy"></a>'+
       '<div class="pbody"><div class="pcard-top">'+
       '<span class="pcode">Deon '+p[0]+'</span>'+
       '<span class="ptag">'+(FAMNAME[p[2]]||p[2])+'</span></div>'+
       '<h3>'+p[1]+'</h3><p>'+p[6]+'</p>'+
       '<div class="pmeta"><span>'+cap(p[3])+' adhesive</span><span>'+cap(p[4])+' backing</span><span>'+cap(p[5])+'-sided</span></div>'+
-      '<div class="pcard-foot"><span class="arrow">View details <span class="a">→</span></span></div></div></a>';
+      '<div class="pcard-foot"><a class="arrow" href="product-detail.html?sku='+p[0]+'">View details <span class="a">→</span></a>'+
+      '<a class="btn btn-ghost btn-sm" href="contact.html?type=sample&sku='+p[0]+'">Request sample</a></div></div></article>';
   }
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 
