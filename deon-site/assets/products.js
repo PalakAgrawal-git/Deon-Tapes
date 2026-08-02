@@ -64,7 +64,7 @@
   }
 
   function card(p){
-    var img='assets/img/'+p[0].toLowerCase()+'.png';
+    var img='assets/img/products/'+p[0]+'/1.png';
     return '<article class="pcard reveal">'+
       '<a class="pimg" href="product-detail.html?sku='+p[0]+'"><img src="'+img+'" alt="'+p[1]+'" loading="lazy"></a>'+
       '<div class="pbody"><div class="pcard-top">'+
