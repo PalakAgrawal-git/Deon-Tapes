@@ -81,12 +81,27 @@ document.addEventListener('DOMContentLoaded',function(){
   if(sku){document.getElementById('skuField').value='Deon '+sku;}
   document.getElementById('contactForm').addEventListener('submit',function(e){
     e.preventDefault();
+    var form=this;
+    var btn=document.getElementById('submitBtn');
     var ok=document.getElementById('formOk');
-    ok.textContent='Thanks — your '+(type==='quote'?'quote request':type==='general'?'enquiry':'sample request')+' has been received. Our team will reply within one business day.';
-    ok.classList.remove('hide');
-    this.querySelectorAll('input,textarea').forEach(function(f){f.value='';});
-    if(sku)document.getElementById('skuField').value='Deon '+sku;
-    ok.scrollIntoView({behavior:'smooth',block:'center'});
+    btn.disabled=true;btn.textContent='Sending…';
+    var body={type:type,first:form.first.value,last:form.last.value,company:form.company.value,country:form.country.value,email:form.email.value,phone:form.phone.value,sku:form.sku.value,message:form.message.value};
+    fetch('https://script.google.com/macros/s/AKfycbwA8X8-E8YrqP46Gp8loeD7FeSxxzimMj4rXbB_veKJ2Q2SNKIB6imBeqKi0lxjGJL8/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    .then(function(){
+      ok.textContent='Thanks — your '+(type==='quote'?'quote request':type==='general'?'enquiry':'sample request')+' has been received. Our team will reply within one business day.';
+      ok.classList.remove('hide');
+      form.querySelectorAll('input,textarea').forEach(function(f){f.value='';});
+      if(sku)document.getElementById('skuField').value='Deon '+sku;
+      ok.scrollIntoView({behavior:'smooth',block:'center'});
+    })
+    .catch(function(){
+      ok.textContent='Something went wrong — please email info@deontapes.com directly.';
+      ok.classList.remove('hide');
+    })
+    .finally(function(){
+      btn.disabled=false;
+      btn.textContent={sample:'Request samples',quote:'Request a quote',general:'Send enquiry'}[type];
+    });
   });
 });
 </script>
