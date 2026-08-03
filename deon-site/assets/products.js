@@ -72,8 +72,7 @@
       '<span class="ptag">'+(FAMNAME[p[2]]||p[2])+'</span></div>'+
       '<h3>'+p[1]+'</h3><p>'+p[6]+'</p>'+
       '<div class="pmeta"><span>'+cap(p[3])+' adhesive</span><span>'+cap(p[4])+' backing</span><span>'+cap(p[5])+'-sided</span></div>'+
-      '<div class="pcard-foot"><a class="arrow" href="product-detail.html?sku='+p[0]+'">View details <span class="a">→</span></a>'+
-      '<a class="btn btn-ghost btn-sm" href="contact.html?type=sample&sku='+p[0]+'">Request sample</a></div></div></article>';
+      '<div class="pcard-foot" style="justify-content:center"><a class="arrow" href="product-detail.html?sku='+p[0]+'">View details <span class="a">→</span></a></div></div></article>';
   }
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 
