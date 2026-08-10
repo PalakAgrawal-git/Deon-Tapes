@@ -35,7 +35,21 @@
             <div class="form-row"><label>Country</label><input name="country"></div>
             <div class="form-row"><label>Work email</label><input type="email" name="email" required></div>
             <div class="form-row"><label>Phone</label><input name="phone"></div>
-            <div class="form-row full"><label>Product / SKU of interest</label><input name="sku" id="skuField" placeholder="e.g. Deon 31700"></div>
+            <div class="form-row full"><label>Product / SKU of interest</label>
+              <div id="skuPicker" style="position:relative">
+                <div id="skuDisplay" style="min-height:44px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--white)">
+                  <span id="skuPlaceholder" style="color:var(--text-mid)">Select products or type your own</span>
+                </div>
+                <div id="skuDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;max-height:280px;overflow-y:auto;background:var(--white);border:1px solid var(--line);border-radius:8px;margin-top:4px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:10;padding:8px 0">
+                  <div style="padding:4px 12px;margin-bottom:4px"><input id="skuSearch" type="text" placeholder="Search or type custom product..." style="width:100%;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:.9rem"></div>
+                  <div id="skuOptions"></div>
+                  <div id="skuCustomWrap" style="display:none;padding:6px 12px">
+                    <button type="button" id="skuAddCustom" style="background:none;border:none;color:var(--blue);font-weight:600;font-size:.85rem;cursor:pointer;padding:4px 0">+ Add "<span id="skuCustomText"></span>"</button>
+                  </div>
+                </div>
+                <input type="hidden" name="sku" id="skuField">
+              </div>
+            </div>
             <div class="form-row full"><label id="msgLabel">Application &amp; specification</label>
               <textarea name="message" rows="5" placeholder="Tell us the application, substrate, width, length and volume."></textarea></div>
           </div>
@@ -67,6 +81,88 @@
 
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+  var PRODUCTS=[
+    ['31700','PVC Electrical Insulation Tape'],['50W13','Wire Harness Tape'],
+    ['DT1111','Class B Polyester Insulation Tape'],['DT1113','Class B Polyester Fleece Insulation Tape'],
+    ['DT1123','Class F Polyester Fleece Insulation Tape'],['DT2131','Class H Polyimide Insulation Tape'],
+    ['DT3121L','Class F Glass Cloth Insulation Tape'],['DT3124L','Polyglass Waterproofing Tape'],
+    ['41860','Floor Marking Tape'],['DT3131','High-Temperature Glass Cloth Tape'],
+    ['DT4021','Aluminium Foil Tape — Acrylic'],['DT4041','Aluminium Foil Tape — Hot Melt'],
+    ['M5001','Masking Tape'],['PW6001','PVC Pipe Wrapping Tape'],
+    ['DT1142','Double-Sided Polyester Bonding Tape'],['DT1221H','Polyester Holding & Splicing Tape'],
+    ['DT1231','High-Temperature Polyester Masking Tape'],['DT5142','Double-Sided PE Foam Bonding Tape'],
+    ['DT6041','Adhesive Transfer Tape'],['DT6122','Double-Sided Tissue Bonding Tape'],
+    ['DT3741L','HDPE Fabric Tape'],['DT7143','Monofilament Reinforced Packaging Tape'],
+    ['DT7243','Cross Filament Reinforced Packaging Tape'],['DT9151','BOPP Packaging Tape']
+  ];
+
+  var selected=[];
+  var display=document.getElementById('skuDisplay');
+  var placeholder=document.getElementById('skuPlaceholder');
+  var dropdown=document.getElementById('skuDropdown');
+  var optionsWrap=document.getElementById('skuOptions');
+  var searchBox=document.getElementById('skuSearch');
+  var customWrap=document.getElementById('skuCustomWrap');
+  var customText=document.getElementById('skuCustomText');
+  var hiddenField=document.getElementById('skuField');
+
+  function renderOptions(filter){
+    var f=(filter||'').toLowerCase();
+    var html='';
+    PRODUCTS.forEach(function(p){
+      var label='Deon '+p[0]+' — '+p[1];
+      if(f&&label.toLowerCase().indexOf(f)<0)return;
+      var checked=selected.indexOf(p[0])>-1;
+      html+='<label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:.9rem;transition:background .15s'+(checked?';background:var(--tint)':'')+'" onmouseover="this.style.background=\'var(--tint)\'" onmouseout="this.style.background=\''+(checked?'var(--tint)':'')+'\'">'+
+        '<input type="checkbox" data-sku="'+p[0]+'" style="accent-color:#CC0000;width:16px;height:16px;flex-shrink:0"'+(checked?' checked':'')+'>'+
+        '<span><b>Deon '+p[0]+'</b> <span style="color:var(--text-mid)">'+p[1]+'</span></span></label>';
+    });
+    optionsWrap.innerHTML=html||'<div style="padding:8px 12px;color:var(--text-mid);font-size:.9rem">No matching products</div>';
+    if(f&&!PRODUCTS.some(function(p){return('Deon '+p[0]+' — '+p[1]).toLowerCase().indexOf(f)>-1;})){
+      customText.textContent=filter;customWrap.style.display='';
+    }else{customWrap.style.display='none';}
+  }
+
+  function renderChips(){
+    var html='';
+    selected.forEach(function(s){
+      html+='<span style="display:inline-flex;align-items:center;gap:4px;background:var(--tint);border:1px solid var(--line);border-radius:6px;padding:3px 8px;font-size:.8rem;font-weight:600;color:var(--ink)">'+s+'<span data-remove="'+s+'" style="cursor:pointer;color:var(--text-mid);font-size:1rem;line-height:1">&times;</span></span>';
+    });
+    if(selected.length){placeholder.style.display='none';display.innerHTML=html;}
+    else{display.innerHTML='';display.appendChild(placeholder);placeholder.style.display='';}
+    hiddenField.value=selected.join(', ');
+  }
+
+  function toggle(sku){
+    var i=selected.indexOf(sku);
+    if(i>-1)selected.splice(i,1);else selected.push(sku);
+    renderChips();renderOptions(searchBox.value);
+  }
+
+  display.addEventListener('click',function(e){
+    if(e.target.hasAttribute('data-remove')){toggle(e.target.getAttribute('data-remove'));return;}
+    dropdown.style.display=dropdown.style.display==='none'?'':'none';
+    if(dropdown.style.display!=='none'){searchBox.value='';renderOptions('');searchBox.focus();}
+  });
+
+  optionsWrap.addEventListener('change',function(e){
+    var cb=e.target;if(!cb.hasAttribute('data-sku'))return;
+    toggle(cb.getAttribute('data-sku'));
+  });
+
+  searchBox.addEventListener('input',function(){renderOptions(this.value);});
+
+  document.getElementById('skuAddCustom').addEventListener('click',function(){
+    var val=searchBox.value.trim();
+    if(val&&selected.indexOf(val)<0){selected.push(val);renderChips();renderOptions('');searchBox.value='';}
+  });
+
+  document.addEventListener('click',function(e){
+    if(!document.getElementById('skuPicker').contains(e.target))dropdown.style.display='none';
+  });
+
+  renderOptions('');
+
   var q=new URLSearchParams(location.search);
   var type=q.get('type')||'sample', sku=q.get('sku');
   function setType(t){
@@ -78,20 +174,21 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('.tab');if(b)setType(b.getAttribute('data-type'));});
   setType(type);
-  if(sku){document.getElementById('skuField').value='Deon '+sku;}
+  if(sku){selected.push(sku);renderChips();}
   document.getElementById('contactForm').addEventListener('submit',function(e){
     e.preventDefault();
     var form=this;
     var btn=document.getElementById('submitBtn');
     var ok=document.getElementById('formOk');
     btn.disabled=true;btn.textContent='Sending…';
-    var body={type:type,first:form.first.value,last:form.last.value,company:form.company.value,country:form.country.value,email:form.email.value,phone:form.phone.value,sku:form.sku.value,message:form.message.value};
+    var body={type:type,first:form.first.value,last:form.last.value,company:form.company.value,country:form.country.value,email:form.email.value,phone:form.phone.value,sku:hiddenField.value,message:form.message.value};
     fetch('https://script.google.com/macros/s/AKfycbwA8X8-E8YrqP46Gp8loeD7FeSxxzimMj4rXbB_veKJ2Q2SNKIB6imBeqKi0lxjGJL8/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
     .then(function(){
       ok.textContent='Thanks — your '+(type==='quote'?'quote request':type==='general'?'enquiry':'sample request')+' has been received. Our team will reply within one business day.';
       ok.classList.remove('hide');
-      form.querySelectorAll('input,textarea').forEach(function(f){f.value='';});
-      if(sku)document.getElementById('skuField').value='Deon '+sku;
+      selected=[];renderChips();
+      form.querySelectorAll('input:not([type=hidden]),textarea').forEach(function(f){f.value='';});
+      if(sku){selected.push(sku);renderChips();}
       ok.scrollIntoView({behavior:'smooth',block:'center'});
     })
     .catch(function(){
