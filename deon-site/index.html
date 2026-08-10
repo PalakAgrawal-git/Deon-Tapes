@@ -246,8 +246,8 @@
       <h2>Manufactured to recognised quality standards.</h2>
       <p>Products are tested and documented under controlled production conditions, and supplied with batch traceability. Full certification list confirmed on request.</p>
     </div>
-    <div class="reveal" style="position:relative;padding:0 50px">
-      <div style="overflow:hidden">
+    <div class="reveal" style="position:relative">
+      <div id="certViewport" style="overflow:hidden;margin:0 56px">
         <div id="certTrack" style="display:flex;gap:24px;transition:transform .4s ease">
           <div style="flex:0 0 calc(33.333% - 16px);text-align:center">
             <img src="assets/img/certs/iso-9001.jpg" alt="ISO 9001:2015" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
@@ -271,24 +271,24 @@
           </div>
         </div>
       </div>
-      <button id="certPrev" aria-label="Previous" style="position:absolute;left:0;top:45%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.25);z-index:2">&larr;</button>
-      <button id="certNext" aria-label="Next" style="position:absolute;right:0;top:45%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.25);z-index:2">&rarr;</button>
+      <button id="certPrev" aria-label="Previous" style="position:absolute;left:0;top:50%;margin-top:-20px;width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:#fff;color:#111;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.15);z-index:2;transition:background .2s,color .2s">&larr;</button>
+      <button id="certNext" aria-label="Next" style="position:absolute;right:0;top:50%;margin-top:-20px;width:44px;height:44px;border-radius:50%;border:2px solid var(--line);background:#fff;color:#111;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.15);z-index:2;transition:background .2s,color .2s">&rarr;</button>
     </div>
     <script>
     (function(){
       var track=document.getElementById('certTrack');
+      var vp=document.getElementById('certViewport');
       var prev=document.getElementById('certPrev'),next=document.getElementById('certNext');
-      var pos=0,total=5,visible=3,max=total-visible;
+      var pos=0,total=5,visible=3,max=total-visible,gap=24;
+      function getItemW(){return(vp.offsetWidth-gap*(visible-1))/visible;}
       function slide(){
-        var pct=pos*(100/visible+24*100/(track.parentElement.offsetWidth*visible));
-        track.style.transform='translateX(-'+pos*(100/visible)+'%)';
-        var gap=24;var w=track.parentElement.offsetWidth;var itemW=(w-gap*(visible-1))/visible;
-        track.style.transform='translateX(-'+(pos*(itemW+gap))+'px)';
-        prev.style.opacity=pos<=0?'.4':'1';prev.style.pointerEvents=pos<=0?'none':'auto';
-        next.style.opacity=pos>=max?'.4':'1';next.style.pointerEvents=pos>=max?'none':'auto';
+        track.style.transform='translateX(-'+(pos*(getItemW()+gap))+'px)';
+        prev.style.opacity=pos<=0?'.35':'1';prev.style.pointerEvents=pos<=0?'none':'auto';
+        next.style.opacity=pos>=max?'.35':'1';next.style.pointerEvents=pos>=max?'none':'auto';
       }
       prev.addEventListener('click',function(){if(pos>0){pos--;slide();}});
       next.addEventListener('click',function(){if(pos<max){pos++;slide();}});
+      window.addEventListener('resize',slide);
       slide();
     })();
     </script>
