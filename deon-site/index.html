@@ -101,76 +101,51 @@
       <h2>DEON's Journey</h2>
       <p>From a single PVC coating line to a multi-technology, international-grade manufacturing facility.</p>
     </div>
-    <div class="timeline reveal" style="position:relative;padding:60px 0 60px;overflow-x:auto">
+    <div class="timeline reveal" style="position:relative;overflow:hidden">
       <style>
-        .tl-line{position:absolute;top:50%;left:0;right:0;height:4px;background:#CC0000;transform:translateY(-50%);z-index:0}
-        .tl-track{display:flex;position:relative;z-index:1;min-width:max-content;gap:0}
-        .tl-item{position:relative;flex:0 0 200px;display:flex;flex-direction:column;align-items:center}
-        .tl-dot{width:18px;height:18px;border-radius:50%;background:var(--white);border:4px solid #CC0000;position:absolute;top:50%;transform:translateY(-50%);z-index:2}
-        .tl-card{background:var(--ink);color:var(--white);border-radius:10px;padding:16px 18px;width:190px;position:absolute;line-height:1.45}
-        .tl-card h4{font-family:var(--font-head);font-size:1.1rem;margin:0 0 6px;color:#CC0000}
-        .tl-card p{font-size:.78rem;margin:0;opacity:.85}
-        .tl-item.above .tl-card{bottom:calc(50% + 22px)}
-        .tl-item.below .tl-card{top:calc(50% + 22px)}
-        .tl-card::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:2px;height:14px;background:#CC0000}
-        .tl-item.above .tl-card::after{bottom:-14px}
-        .tl-item.below .tl-card::after{top:-14px}
-        @media(max-width:768px){
-          .tl-track{flex-direction:column;align-items:flex-start;gap:0;min-width:auto}
-          .tl-line{display:none}
-          .tl-item{flex:none;width:100%;flex-direction:row;align-items:flex-start;padding:0 0 0 36px;min-height:auto;margin-bottom:24px}
-          .tl-item::before{content:'';position:absolute;left:8px;top:0;bottom:-24px;width:4px;background:#CC0000}
-          .tl-item:last-child::before{bottom:0}
-          .tl-dot{position:absolute;left:0;top:4px;transform:none}
-          .tl-card{position:relative;top:auto!important;bottom:auto!important;width:100%}
-          .tl-item.above .tl-card,.tl-item.below .tl-card{top:auto;bottom:auto}
-          .tl-card::after{display:none}
+        .tl-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:auto 4px auto;gap:0;align-items:end}
+        .tl-grid .tl-line-cell{background:#CC0000;position:relative}
+        .tl-grid .tl-line-cell::after{content:'';position:absolute;top:50%;left:50%;width:16px;height:16px;border-radius:50%;background:var(--white,#fff);border:4px solid #CC0000;transform:translate(-50%,-50%);z-index:2}
+        .tl-card{border-radius:10px;padding:14px 16px;line-height:1.45;margin:0 4px}
+        .tl-card h4{font-family:var(--font-head);font-size:1rem;margin:0 0 5px;color:#CC0000}
+        .tl-card p{font-size:.76rem;margin:0;color:var(--ink);opacity:.75}
+        .tl-top{align-self:end;padding-bottom:20px}
+        .tl-bottom{align-self:start;padding-top:20px}
+        .tl-top .tl-card{border-bottom:2px solid #CC0000}
+        .tl-bottom .tl-card{border-top:2px solid #CC0000}
+        .tl-empty{visibility:hidden}
+        .tl-empty .tl-card{padding:14px 16px}
+        @media(max-width:900px){
+          .tl-grid{grid-template-columns:4px 1fr;grid-template-rows:none;gap:0}
+          .tl-grid .tl-line-cell{grid-column:1;min-height:0;background:#CC0000}
+          .tl-grid .tl-line-cell::after{top:18px;left:50%}
+          .tl-top,.tl-bottom,.tl-empty{grid-column:2;padding:12px 0 12px 20px;align-self:auto}
+          .tl-top .tl-card,.tl-bottom .tl-card{border-left:2px solid #CC0000;border-top:none;border-bottom:none;margin:0}
+          .tl-empty{display:none}
         }
       </style>
-      <div class="tl-line"></div>
-      <div class="tl-track">
-        <div class="tl-item above" style="flex:0 0 16.66%">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <h4>2017</h4>
-            <p>Established manufacturing of PVC products &#8212; Electrical Insulation, Floor Marking and Wire Harness Tapes with 17M sqm/month capacity.</p>
-          </div>
-        </div>
-        <div class="tl-item below" style="flex:0 0 16.66%">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <h4>2019</h4>
-            <p>Production capacity increased to 25M sqm/month.</p>
-          </div>
-        </div>
-        <div class="tl-item above" style="flex:0 0 16.66%">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <h4>2020</h4>
-            <p>Introduced production of Masking Tapes.</p>
-          </div>
-        </div>
-        <div class="tl-item below" style="flex:0 0 16.66%">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <h4>2022</h4>
-            <p>Increased production capacity to 51M sqm/month. Started construction of a new state-of-the-art facility at Vadodara, Gujarat.</p>
-          </div>
-        </div>
-        <div class="tl-item above" style="flex:0 0 16.66%">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <h4>2024</h4>
-            <p>Extended capabilities with BOPP, high-speed PVC, speciality tapes and hot-melt coating lines &#8212; producing aluminium foil, double-sided polyester, tissue, HDPE fabric and more.</p>
-          </div>
-        </div>
-        <div class="tl-item below" style="flex:0 0 16.66%">
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <h4>2026</h4>
-            <p>Serving 100+ OEM brands across 9 industries with 500+ employees and international-grade manufacturing at two plants.</p>
-          </div>
-        </div>
+      <div class="tl-grid">
+        <!-- Row 1: top cards (above line) — 2017, 2020, 2024 in cols 1,3,5 -->
+        <div class="tl-top"><div class="tl-card"><h4>2017</h4><p>Established manufacturing of PVC products &#8212; Electrical Insulation, Floor Marking and Wire Harness Tapes with 17M sqm/month capacity.</p></div></div>
+        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
+        <div class="tl-top"><div class="tl-card"><h4>2020</h4><p>Introduced production of Masking Tapes.</p></div></div>
+        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
+        <div class="tl-top"><div class="tl-card"><h4>2024</h4><p>Extended capabilities with BOPP, high-speed PVC, speciality and hot-melt coating lines.</p></div></div>
+        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
+        <!-- Row 2: the red line with dots -->
+        <div class="tl-line-cell"></div>
+        <div class="tl-line-cell"></div>
+        <div class="tl-line-cell"></div>
+        <div class="tl-line-cell"></div>
+        <div class="tl-line-cell"></div>
+        <div class="tl-line-cell"></div>
+        <!-- Row 3: bottom cards (below line) — 2019, 2022, 2026 in cols 2,4,6 -->
+        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
+        <div class="tl-bottom"><div class="tl-card"><h4>2019</h4><p>Production capacity increased to 25M sqm/month.</p></div></div>
+        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
+        <div class="tl-bottom"><div class="tl-card"><h4>2022</h4><p>Capacity to 51M sqm/month. New state-of-the-art facility at Vadodara, Gujarat.</p></div></div>
+        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
+        <div class="tl-bottom"><div class="tl-card"><h4>2026</h4><p>100+ OEM brands, 500+ employees, international-grade manufacturing at two plants.</p></div></div>
       </div>
     </div>
   </div>
