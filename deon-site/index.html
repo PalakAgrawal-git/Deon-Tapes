@@ -246,30 +246,48 @@
       <h2>Manufactured to recognised quality standards.</h2>
       <p>Products are tested and documented under controlled production conditions, and supplied with batch traceability. Full certification list confirmed on request.</p>
     </div>
-    <div class="grid grid-3 reveal-stagger" style="gap:24px">
-      <div style="text-align:center">
-        <img src="assets/img/certs/iso-9001.jpg" alt="ISO 9001:2015 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-        <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 9001:2015</div>
+    <div class="cert-slider reveal" style="position:relative">
+      <div id="certTrack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;overflow:hidden">
+        <div class="cert-slide" style="text-align:center">
+          <img src="assets/img/certs/iso-9001.jpg" alt="ISO 9001:2015 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 9001:2015</div>
+        </div>
+        <div class="cert-slide" style="text-align:center">
+          <img src="assets/img/certs/iso-45001.jpg" alt="ISO 45001:2018 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 45001:2018</div>
+        </div>
+        <div class="cert-slide" style="text-align:center">
+          <img src="assets/img/certs/iso-14001.jpg" alt="ISO 14001:2015 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 14001:2015</div>
+        </div>
+        <div class="cert-slide" style="text-align:center;display:none">
+          <img src="assets/img/certs/ul-certification.jpg" alt="UL Certification" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">UL Recognised</div>
+        </div>
+        <div class="cert-slide" style="text-align:center;display:none">
+          <img src="assets/img/certs/bis-licence.jpg" alt="BIS IS 7809 Licence" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">BIS &middot; IS 7809</div>
+        </div>
       </div>
-      <div style="text-align:center">
-        <img src="assets/img/certs/iso-45001.jpg" alt="ISO 45001:2018 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-        <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 45001:2018</div>
-      </div>
-      <div style="text-align:center">
-        <img src="assets/img/certs/iso-14001.jpg" alt="ISO 14001:2015 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-        <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 14001:2015</div>
-      </div>
+      <button id="certPrev" style="position:absolute;left:-20px;top:45%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:2;opacity:.5;pointer-events:none" aria-label="Previous">&larr;</button>
+      <button id="certNext" style="position:absolute;right:-20px;top:45%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:2" aria-label="Next">&rarr;</button>
     </div>
-    <div class="grid grid-2 reveal-stagger" style="gap:24px;margin-top:24px;max-width:66%;margin-left:auto;margin-right:auto">
-      <div style="text-align:center">
-        <img src="assets/img/certs/ul-certification.jpg" alt="UL Certification" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-        <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">UL Recognised</div>
-      </div>
-      <div style="text-align:center">
-        <img src="assets/img/certs/bis-licence.jpg" alt="BIS IS 7809 Licence" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-        <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">BIS &middot; IS 7809</div>
-      </div>
-    </div>
+    <script>
+    (function(){
+      var slides=document.querySelectorAll('.cert-slide');
+      var per=3,page=0,total=slides.length,pages=Math.ceil(total/per);
+      var prev=document.getElementById('certPrev'),next=document.getElementById('certNext');
+      function show(){
+        var start=page*per;
+        slides.forEach(function(s,i){s.style.display=(i>=start&&i<start+per)?'':'none';});
+        prev.style.opacity=page===0?'.5':'1';prev.style.pointerEvents=page===0?'none':'auto';
+        next.style.opacity=page>=pages-1?'.5':'1';next.style.pointerEvents=page>=pages-1?'none':'auto';
+      }
+      prev.addEventListener('click',function(){if(page>0){page--;show();}});
+      next.addEventListener('click',function(){if(page<pages-1){page++;show();}});
+      show();
+    })();
+    </script>
     <div style="margin-top:24px"><a class="arrow" href="certifications.html">Datasheets, test reports &amp; certifications <span class="a">→</span></a></div>
   </div>
 </section>
