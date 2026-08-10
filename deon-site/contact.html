@@ -37,8 +37,9 @@
             <div class="form-row"><label>Phone</label><input name="phone"></div>
             <div class="form-row full"><label>Product / SKU of interest</label>
               <div id="skuPicker" style="position:relative">
-                <div id="skuDisplay" style="min-height:44px;border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--white)">
+                <div id="skuDisplay" style="min-height:44px;border:1px solid var(--line);border-radius:8px;padding:8px 12px 8px 12px;cursor:pointer;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--white);position:relative;padding-right:36px">
                   <span id="skuPlaceholder" style="color:var(--text-mid)">Select products or type your own</span>
+                  <span id="skuArrow" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:.7rem;color:var(--text-mid);pointer-events:none;transition:transform .2s">&#9660;</span>
                 </div>
                 <div id="skuDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;max-height:280px;overflow-y:auto;background:var(--white);border:1px solid var(--line);border-radius:8px;margin-top:4px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:10;padding:8px 0">
                   <div style="padding:4px 12px;margin-bottom:4px"><input id="skuSearch" type="text" placeholder="Search or type custom product..." style="width:100%;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:.9rem"></div>
@@ -139,9 +140,13 @@ document.addEventListener('DOMContentLoaded',function(){
     renderChips();renderOptions(searchBox.value);
   }
 
+  var arrow=document.getElementById('skuArrow');
+  function syncArrow(){arrow.style.transform=dropdown.style.display==='none'?'translateY(-50%)':'translateY(-50%) rotate(180deg)';}
+
   display.addEventListener('click',function(e){
     if(e.target.hasAttribute('data-remove')){toggle(e.target.getAttribute('data-remove'));return;}
     dropdown.style.display=dropdown.style.display==='none'?'':'none';
+    syncArrow();
     if(dropdown.style.display!=='none'){searchBox.value='';renderOptions('');searchBox.focus();}
   });
 
@@ -158,7 +163,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 
   document.addEventListener('click',function(e){
-    if(!document.getElementById('skuPicker').contains(e.target))dropdown.style.display='none';
+    if(!document.getElementById('skuPicker').contains(e.target)){dropdown.style.display='none';syncArrow();}
   });
 
   renderOptions('');
