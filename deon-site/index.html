@@ -94,58 +94,47 @@
 </section>
 
 <!-- DEON'S JOURNEY -->
-<section class="section tint">
+<section class="section dark">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Our journey</span>
+      <span class="eyebrow" style="color:#7fb2e6">Our journey</span>
       <h2>DEON's Journey</h2>
       <p>From a single PVC coating line to a multi-technology, international-grade manufacturing facility.</p>
     </div>
-    <div class="timeline reveal" style="position:relative;overflow:hidden">
-      <style>
-        .tl-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:auto 4px auto;gap:0;align-items:end}
-        .tl-grid .tl-line-cell{background:#CC0000;position:relative}
-        .tl-grid .tl-line-cell::after{content:'';position:absolute;top:50%;left:50%;width:16px;height:16px;border-radius:50%;background:var(--white,#fff);border:4px solid #CC0000;transform:translate(-50%,-50%);z-index:2}
-        .tl-card{border-radius:10px;padding:14px 16px;line-height:1.45;margin:0 4px}
-        .tl-card h4{font-family:var(--font-head);font-size:1rem;margin:0 0 5px;color:#CC0000}
-        .tl-card p{font-size:.76rem;margin:0;color:var(--ink);opacity:.75}
-        .tl-top{align-self:end;padding-bottom:20px}
-        .tl-bottom{align-self:start;padding-top:20px}
-        .tl-top .tl-card{border-bottom:2px solid #CC0000}
-        .tl-bottom .tl-card{border-top:2px solid #CC0000}
-        .tl-empty{visibility:hidden}
-        .tl-empty .tl-card{padding:14px 16px}
-        @media(max-width:900px){
-          .tl-grid{grid-template-columns:4px 1fr;grid-template-rows:none;gap:0}
-          .tl-grid .tl-line-cell{grid-column:1;min-height:0;background:#CC0000}
-          .tl-grid .tl-line-cell::after{top:18px;left:50%}
-          .tl-top,.tl-bottom,.tl-empty{grid-column:2;padding:12px 0 12px 20px;align-self:auto}
-          .tl-top .tl-card,.tl-bottom .tl-card{border-left:2px solid #CC0000;border-top:none;border-bottom:none;margin:0}
-          .tl-empty{display:none}
-        }
-      </style>
-      <div class="tl-grid">
-        <!-- Row 1: top cards (above line) — 2017, 2020, 2024 in cols 1,3,5 -->
-        <div class="tl-top"><div class="tl-card"><h4>2017</h4><p>Established manufacturing of PVC products &#8212; Electrical Insulation, Floor Marking and Wire Harness Tapes with 17M sqm/month capacity.</p></div></div>
-        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
-        <div class="tl-top"><div class="tl-card"><h4>2020</h4><p>Introduced production of Masking Tapes.</p></div></div>
-        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
-        <div class="tl-top"><div class="tl-card"><h4>2024</h4><p>Extended capabilities with BOPP, high-speed PVC, speciality and hot-melt coating lines.</p></div></div>
-        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
-        <!-- Row 2: the red line with dots -->
-        <div class="tl-line-cell"></div>
-        <div class="tl-line-cell"></div>
-        <div class="tl-line-cell"></div>
-        <div class="tl-line-cell"></div>
-        <div class="tl-line-cell"></div>
-        <div class="tl-line-cell"></div>
-        <!-- Row 3: bottom cards (below line) — 2019, 2022, 2026 in cols 2,4,6 -->
-        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
-        <div class="tl-bottom"><div class="tl-card"><h4>2019</h4><p>Production capacity increased to 25M sqm/month.</p></div></div>
-        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
-        <div class="tl-bottom"><div class="tl-card"><h4>2022</h4><p>Capacity to 51M sqm/month. New state-of-the-art facility at Vadodara, Gujarat.</p></div></div>
-        <div class="tl-empty"><div class="tl-card"><h4>&nbsp;</h4><p>&nbsp;</p></div></div>
-        <div class="tl-bottom"><div class="tl-card"><h4>2026</h4><p>100+ OEM brands, 500+ employees, international-grade manufacturing at two plants.</p></div></div>
+    <style>
+      .journey-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+      .jn-item{position:relative;padding:28px 24px 28px 32px;border-left:3px solid #CC0000}
+      .jn-item::before{content:'';position:absolute;left:-7px;top:32px;width:11px;height:11px;border-radius:50%;background:#CC0000}
+      .jn-item:hover{background:rgba(255,255,255,.04)}
+      .jn-year{font-family:var(--font-head);font-size:1.3rem;font-weight:800;color:#CC0000;margin:0 0 8px;line-height:1}
+      .jn-desc{font-size:.88rem;line-height:1.55;margin:0;color:rgba(255,255,255,.7)}
+      @media(max-width:900px){.journey-grid{grid-template-columns:1fr 1fr}}
+      @media(max-width:600px){.journey-grid{grid-template-columns:1fr}}
+    </style>
+    <div class="journey-grid reveal-stagger">
+      <div class="jn-item">
+        <div class="jn-year">2017</div>
+        <p class="jn-desc">Established manufacturing of PVC products &#8212; Electrical Insulation, Floor Marking and Wire Harness Tapes with 17M sqm/month capacity.</p>
+      </div>
+      <div class="jn-item">
+        <div class="jn-year">2019</div>
+        <p class="jn-desc">Production capacity increased to 25M sqm/month.</p>
+      </div>
+      <div class="jn-item">
+        <div class="jn-year">2020</div>
+        <p class="jn-desc">Introduced production of Masking Tapes.</p>
+      </div>
+      <div class="jn-item">
+        <div class="jn-year">2022</div>
+        <p class="jn-desc">Increased production capacity to 51M sqm/month. Started construction of new state-of-the-art facility at Vadodara, Gujarat.</p>
+      </div>
+      <div class="jn-item">
+        <div class="jn-year">2024</div>
+        <p class="jn-desc">Extended capabilities with BOPP, high-speed PVC, speciality tapes and hot-melt coating lines &#8212; producing aluminium foil, double-sided polyester, tissue and HDPE fabric tapes.</p>
+      </div>
+      <div class="jn-item">
+        <div class="jn-year">2026</div>
+        <p class="jn-desc">Serving 100+ OEM brands across 9 industries with 500+ employees and international-grade manufacturing at two plants.</p>
       </div>
     </div>
   </div>
