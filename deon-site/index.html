@@ -246,46 +246,50 @@
       <h2>Manufactured to recognised quality standards.</h2>
       <p>Products are tested and documented under controlled production conditions, and supplied with batch traceability. Full certification list confirmed on request.</p>
     </div>
-    <div class="cert-slider reveal" style="position:relative">
-      <div id="certTrack" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;overflow:hidden">
-        <div class="cert-slide" style="text-align:center">
-          <img src="assets/img/certs/iso-9001.jpg" alt="ISO 9001:2015 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 9001:2015</div>
-        </div>
-        <div class="cert-slide" style="text-align:center">
-          <img src="assets/img/certs/iso-45001.jpg" alt="ISO 45001:2018 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 45001:2018</div>
-        </div>
-        <div class="cert-slide" style="text-align:center">
-          <img src="assets/img/certs/iso-14001.jpg" alt="ISO 14001:2015 Certificate" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 14001:2015</div>
-        </div>
-        <div class="cert-slide" style="text-align:center;display:none">
-          <img src="assets/img/certs/ul-certification.jpg" alt="UL Certification" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">UL Recognised</div>
-        </div>
-        <div class="cert-slide" style="text-align:center;display:none">
-          <img src="assets/img/certs/bis-licence.jpg" alt="BIS IS 7809 Licence" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
-          <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">BIS &middot; IS 7809</div>
+    <div class="reveal" style="position:relative;padding:0 50px">
+      <div style="overflow:hidden">
+        <div id="certTrack" style="display:flex;gap:24px;transition:transform .4s ease">
+          <div style="flex:0 0 calc(33.333% - 16px);text-align:center">
+            <img src="assets/img/certs/iso-9001.jpg" alt="ISO 9001:2015" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+            <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 9001:2015</div>
+          </div>
+          <div style="flex:0 0 calc(33.333% - 16px);text-align:center">
+            <img src="assets/img/certs/iso-45001.jpg" alt="ISO 45001:2018" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+            <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 45001:2018</div>
+          </div>
+          <div style="flex:0 0 calc(33.333% - 16px);text-align:center">
+            <img src="assets/img/certs/iso-14001.jpg" alt="ISO 14001:2015" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+            <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">ISO 14001:2015</div>
+          </div>
+          <div style="flex:0 0 calc(33.333% - 16px);text-align:center">
+            <img src="assets/img/certs/ul-certification.jpg" alt="UL Certification" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+            <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">UL Recognised</div>
+          </div>
+          <div style="flex:0 0 calc(33.333% - 16px);text-align:center">
+            <img src="assets/img/certs/bis-licence.jpg" alt="BIS IS 7809" loading="lazy" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.12)">
+            <div style="margin-top:10px;font-family:var(--font-head);font-weight:700;font-size:.85rem;color:var(--ink)">BIS &middot; IS 7809</div>
+          </div>
         </div>
       </div>
-      <button id="certPrev" style="position:absolute;left:-20px;top:45%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:2;opacity:.5;pointer-events:none" aria-label="Previous">&larr;</button>
-      <button id="certNext" style="position:absolute;right:-20px;top:45%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:2" aria-label="Next">&rarr;</button>
+      <button id="certPrev" aria-label="Previous" style="position:absolute;left:0;top:45%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.25);z-index:2">&larr;</button>
+      <button id="certNext" aria-label="Next" style="position:absolute;right:0;top:45%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:none;background:var(--ink);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.25);z-index:2">&rarr;</button>
     </div>
     <script>
     (function(){
-      var slides=document.querySelectorAll('.cert-slide');
-      var per=3,page=0,total=slides.length,pages=Math.ceil(total/per);
+      var track=document.getElementById('certTrack');
       var prev=document.getElementById('certPrev'),next=document.getElementById('certNext');
-      function show(){
-        var start=page*per;
-        slides.forEach(function(s,i){s.style.display=(i>=start&&i<start+per)?'':'none';});
-        prev.style.opacity=page===0?'.5':'1';prev.style.pointerEvents=page===0?'none':'auto';
-        next.style.opacity=page>=pages-1?'.5':'1';next.style.pointerEvents=page>=pages-1?'none':'auto';
+      var pos=0,total=5,visible=3,max=total-visible;
+      function slide(){
+        var pct=pos*(100/visible+24*100/(track.parentElement.offsetWidth*visible));
+        track.style.transform='translateX(-'+pos*(100/visible)+'%)';
+        var gap=24;var w=track.parentElement.offsetWidth;var itemW=(w-gap*(visible-1))/visible;
+        track.style.transform='translateX(-'+(pos*(itemW+gap))+'px)';
+        prev.style.opacity=pos<=0?'.4':'1';prev.style.pointerEvents=pos<=0?'none':'auto';
+        next.style.opacity=pos>=max?'.4':'1';next.style.pointerEvents=pos>=max?'none':'auto';
       }
-      prev.addEventListener('click',function(){if(page>0){page--;show();}});
-      next.addEventListener('click',function(){if(page<pages-1){page++;show();}});
-      show();
+      prev.addEventListener('click',function(){if(pos>0){pos--;slide();}});
+      next.addEventListener('click',function(){if(pos<max){pos++;slide();}});
+      slide();
     })();
     </script>
     <div style="margin-top:24px"><a class="arrow" href="certifications.html">Datasheets, test reports &amp; certifications <span class="a">→</span></a></div>
