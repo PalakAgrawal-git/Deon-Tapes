@@ -96,47 +96,44 @@
 <!-- DEON'S JOURNEY -->
 <section class="jn-section" style="overflow:hidden">
   <style>
-    .jn-section{position:relative;background:linear-gradient(90deg,#111 42%,var(--tint,#f5f5f5) 42%);min-height:620px}
-    .jn-wrap{display:flex;max-width:1200px;margin:0 auto;min-height:620px}
-    .jn-left{width:42%;flex-shrink:0;padding:64px 40px 64px 32px;display:flex;flex-direction:column;position:relative}
-    .jn-left .jn-head{margin-bottom:32px}
+    .jn-section{position:relative;background:linear-gradient(90deg,#0a0a0a 35%,#f4f4f4 35%);min-height:680px}
+    .jn-wrap{display:flex;max-width:1200px;margin:0 auto;min-height:680px}
+    .jn-left{width:35%;flex-shrink:0;padding:56px 0 56px 32px;display:flex;flex-direction:column;position:relative}
+    .jn-left .jn-head{margin-bottom:28px}
     .jn-left .jn-head .eyebrow{color:#CC0000;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;display:block}
-    .jn-left .jn-head h2{color:#fff;font-family:var(--font-head);font-size:1.8rem;font-weight:900;margin:0;line-height:1.15}
-    .jn-tabs{display:flex;flex-direction:column;gap:2px;flex:1}
-    .jn-tab{background:none;border:none;cursor:pointer;padding:10px 16px;text-align:right;transition:all .25s;border-radius:6px;position:relative}
-    .jn-tab .yr-top{display:block;font-family:var(--font-head);font-size:.9rem;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:-.02em;line-height:1;transition:all .25s}
-    .jn-tab .yr-bot{display:block;font-family:var(--font-head);font-size:2.2rem;font-weight:900;color:rgba(255,255,255,.15);letter-spacing:-.03em;line-height:1;transition:all .25s}
-    .jn-tab:hover .yr-top{color:rgba(255,255,255,.5)}
-    .jn-tab:hover .yr-bot{color:rgba(255,255,255,.4)}
-    .jn-tab.on{background:rgba(204,0,0,.12)}
-    .jn-tab.on .yr-top{color:#CC0000;opacity:1}
-    .jn-tab.on .yr-bot{color:#fff}
-    .jn-tab.on::after{content:'';position:absolute;right:-40px;top:50%;transform:translateY(-50%);border:8px solid transparent;border-left-color:#CC0000;z-index:3}
-    .jn-right{flex:1;padding:64px 32px 64px 56px;display:flex;flex-direction:column;justify-content:center;position:relative}
-    .jn-right::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:4px;background:#CC0000;border-radius:2px}
-    .jn-panel{display:none;animation:jnSlideIn .35s ease}
+    .jn-left .jn-head h2{color:#fff;font-family:var(--font-head);font-size:1.6rem;font-weight:900;margin:0;line-height:1.15}
+    .jn-tabs{display:flex;flex-direction:column;align-items:flex-start;gap:0;flex:1;position:relative}
+    .jn-tab{background:none;border:none;cursor:pointer;padding:4px 0;text-align:left;transition:all .4s ease;position:relative;display:block;width:100%}
+    .jn-tab span{display:block;font-family:var(--font-head);font-weight:900;line-height:1;transition:all .4s ease;-webkit-text-stroke:1px rgba(255,255,255,.12);color:transparent;font-size:2.8rem;letter-spacing:-.03em}
+    .jn-tab:hover span{-webkit-text-stroke-color:rgba(255,255,255,.35)}
+    .jn-tab.on span{-webkit-text-stroke:none;color:#fff;font-size:5rem;letter-spacing:-.04em}
+    .jn-right{flex:1;padding:56px 40px 56px 60px;display:flex;flex-direction:column;justify-content:center;position:relative}
+    .jn-panel{display:none;animation:jnSlideIn .4s ease}
     .jn-panel.on{display:block}
-    @keyframes jnSlideIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-    .jn-panel .jn-big{font-family:var(--font-head);font-size:4.5rem;font-weight:900;color:#CC0000;line-height:1;margin:0 0 6px;letter-spacing:-.04em}
-    .jn-panel .jn-title{font-family:var(--font-head);font-size:1.35rem;font-weight:700;color:var(--ink);margin:0 0 16px;line-height:1.25}
-    .jn-panel .jn-text{font-size:.95rem;line-height:1.7;color:var(--text-mid);margin:0}
+    @keyframes jnSlideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    .jn-panel .jn-accent{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:#CC0000;margin:0 0 16px;letter-spacing:.02em}
+    .jn-panel .jn-title{font-family:var(--font-head);font-size:2rem;font-weight:900;color:#111;margin:0 0 18px;line-height:1.2}
+    .jn-panel .jn-text{font-size:1rem;line-height:1.75;color:#444;margin:0}
+    .jn-panel .jn-text ul{padding-left:18px;margin:8px 0 0}
     .jn-panel .jn-text li{margin-bottom:6px}
-    .jn-nav{display:flex;gap:10px;margin-top:32px}
-    .jn-nav button{width:44px;height:44px;border-radius:50%;border:2px solid var(--line,#ddd);background:transparent;color:var(--ink);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .jn-nav{position:absolute;top:56px;right:40px;display:flex;gap:10px}
+    .jn-nav button{width:44px;height:44px;border-radius:8px;border:2px solid #ddd;background:#fff;color:#111;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
     .jn-nav button:hover{border-color:#CC0000;background:#CC0000;color:#fff}
-    .jn-nav button:disabled{opacity:.3;pointer-events:none}
+    .jn-nav button:disabled{opacity:.25;pointer-events:none}
+    .jn-progress{position:absolute;bottom:56px;right:40px;display:flex;align-items:center;gap:12px;font-size:.85rem;color:#888}
+    .jn-progress .jn-bar{width:120px;height:3px;background:#ddd;border-radius:2px;overflow:hidden}
+    .jn-progress .jn-fill{height:100%;background:#CC0000;transition:width .4s ease;border-radius:2px}
     @media(max-width:900px){
-      .jn-section{background:#111!important;min-height:auto}
+      .jn-section{background:#0a0a0a!important;min-height:auto}
       .jn-wrap{flex-direction:column}
-      .jn-left{width:100%;padding:48px 24px 24px}
-      .jn-tabs{flex-direction:row;flex-wrap:wrap;gap:4px}
-      .jn-tab{padding:8px 14px;text-align:center}
-      .jn-tab .yr-top{display:none}
-      .jn-tab .yr-bot{font-size:1.1rem}
-      .jn-tab.on::after{display:none}
-      .jn-right{padding:24px;background:var(--tint,#f5f5f5);border-radius:12px 12px 0 0}
-      .jn-right::before{display:none}
-      .jn-panel .jn-big{font-size:3rem}
+      .jn-left{width:100%;padding:40px 24px 20px}
+      .jn-tabs{flex-direction:row;flex-wrap:wrap;gap:6px 12px}
+      .jn-tab span{font-size:1.2rem!important;-webkit-text-stroke-width:.5px}
+      .jn-tab.on span{font-size:1.8rem!important}
+      .jn-right{padding:28px 24px 40px;background:#f4f4f4;border-radius:16px 16px 0 0}
+      .jn-nav{position:static;margin-bottom:20px}
+      .jn-progress{position:static;margin-top:24px}
+      .jn-panel .jn-title{font-size:1.5rem}
     }
   </style>
   <div class="jn-wrap">
@@ -146,26 +143,30 @@
         <h2>DEON's Journey</h2>
       </div>
       <div class="jn-tabs" id="jnTabs">
-        <button class="jn-tab on" data-i="0"><span class="yr-top">20</span><span class="yr-bot">16</span></button>
-        <button class="jn-tab" data-i="1"><span class="yr-top">20</span><span class="yr-bot">17</span></button>
-        <button class="jn-tab" data-i="2"><span class="yr-top">20</span><span class="yr-bot">18</span></button>
-        <button class="jn-tab" data-i="3"><span class="yr-top">20</span><span class="yr-bot">19</span></button>
-        <button class="jn-tab" data-i="4"><span class="yr-top">20</span><span class="yr-bot">20</span></button>
-        <button class="jn-tab" data-i="5"><span class="yr-top">20</span><span class="yr-bot">21</span></button>
-        <button class="jn-tab" data-i="6"><span class="yr-top">20</span><span class="yr-bot">22</span></button>
-        <button class="jn-tab" data-i="7"><span class="yr-top">20</span><span class="yr-bot">23</span></button>
-        <button class="jn-tab" data-i="8"><span class="yr-top">20</span><span class="yr-bot">24</span></button>
-        <button class="jn-tab" data-i="9"><span class="yr-top">20</span><span class="yr-bot">25</span></button>
-        <button class="jn-tab" data-i="10"><span class="yr-top">20</span><span class="yr-bot">26</span></button>
-        <button class="jn-tab" data-i="11"><span class="yr-top">20</span><span class="yr-bot">30</span></button>
+        <button class="jn-tab on" data-i="0"><span>2016</span></button>
+        <button class="jn-tab" data-i="1"><span>2017</span></button>
+        <button class="jn-tab" data-i="2"><span>2018</span></button>
+        <button class="jn-tab" data-i="3"><span>2019</span></button>
+        <button class="jn-tab" data-i="4"><span>2020</span></button>
+        <button class="jn-tab" data-i="5"><span>2021</span></button>
+        <button class="jn-tab" data-i="6"><span>2022</span></button>
+        <button class="jn-tab" data-i="7"><span>2023</span></button>
+        <button class="jn-tab" data-i="8"><span>2024</span></button>
+        <button class="jn-tab" data-i="9"><span>2025</span></button>
+        <button class="jn-tab" data-i="10"><span>2026</span></button>
+        <button class="jn-tab" data-i="11"><span>2030</span></button>
       </div>
     </div>
     <div class="jn-right reveal">
+      <div class="jn-nav">
+        <button id="jnPrev" disabled>&larr; Previous</button>
+        <button id="jnNext">Next &rarr;</button>
+      </div>
       <div class="jn-panel on" data-i="0">
-        <div class="jn-big">2016</div>
+        <div class="jn-accent">2016</div>
         <div class="jn-title">Plant launched in Silvassa</div>
         <div class="jn-text">
-          <ul style="padding-left:18px;margin:0">
+          <ul>
             <li>First plant launched in Silvassa (20,000 sq. mtr).</li>
             <li>Capacity: ~16 Lakh sq. mtrs per month.</li>
             <li>Products: Electrical insulation, wire harness, floor marking tapes.</li>
@@ -173,65 +174,65 @@
         </div>
       </div>
       <div class="jn-panel" data-i="1">
-        <div class="jn-big">2017</div>
+        <div class="jn-accent">2017</div>
         <div class="jn-title">BIS certification secured</div>
         <div class="jn-text"><p>Secured official BIS certification for core tape lines, clearing domestic tender filters and enabling participation in government and institutional procurement.</p></div>
       </div>
       <div class="jn-panel" data-i="2">
-        <div class="jn-big">2018</div>
+        <div class="jn-accent">2018</div>
         <div class="jn-title">ISO &amp; UL certified</div>
         <div class="jn-text"><p>Achieved international ISO and UL certifications, establishing compliance credibility for MNC procurement and global export markets.</p></div>
       </div>
       <div class="jn-panel" data-i="3">
-        <div class="jn-big">2019</div>
+        <div class="jn-accent">2019</div>
         <div class="jn-title">Paper core plant commissioned</div>
         <div class="jn-text"><p>Backward integration: commissioned an in-house paper core plant, enabling precision winding control and eliminating third-party dependency for core supply.</p></div>
       </div>
       <div class="jn-panel" data-i="4">
-        <div class="jn-big">2020</div>
+        <div class="jn-accent">2020</div>
         <div class="jn-title">Masking tape launched</div>
         <div class="jn-text"><p>Expanded product portfolio with masking tape (painter&#8217;s tape), entering the commercial painting and surface protection market.</p></div>
       </div>
       <div class="jn-panel" data-i="5">
-        <div class="jn-big">2021</div>
+        <div class="jn-accent">2021</div>
         <div class="jn-title">Packaging corrugation plant added</div>
         <div class="jn-text"><p>Backward integration: added an in-house packaging corrugation plant, enabling self-sufficient packaging and zero delivery delays.</p></div>
       </div>
       <div class="jn-panel" data-i="6">
-        <div class="jn-big">2022</div>
+        <div class="jn-accent">2022</div>
         <div class="jn-title">&#8377;100 Crore revenue milestone</div>
         <div class="jn-text">
-          <ul style="padding-left:18px;margin:0">
+          <ul>
             <li>Added 4 coating lines; capacity hit 50 Lakh sq. mtrs per month.</li>
             <li>Revenue crossed &#8377;100 Crore.</li>
           </ul>
         </div>
       </div>
       <div class="jn-panel" data-i="7">
-        <div class="jn-big">2023</div>
+        <div class="jn-accent">2023</div>
         <div class="jn-title">Vadodara facility launched</div>
         <div class="jn-text">
-          <ul style="padding-left:18px;margin:0">
+          <ul>
             <li>Launched DEON Technology in Vadodara (+40,000 sq. mtr).</li>
             <li>Total area: 60,000 sq. mtrs; capacity: 2 Crore sq. mtrs per month.</li>
           </ul>
         </div>
       </div>
       <div class="jn-panel" data-i="8">
-        <div class="jn-big">2024</div>
+        <div class="jn-accent">2024</div>
         <div class="jn-title">PVC calendering lines added</div>
         <div class="jn-text"><p>Backward integration: added 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.</p></div>
       </div>
       <div class="jn-panel" data-i="9">
-        <div class="jn-big">2025</div>
+        <div class="jn-accent">2025</div>
         <div class="jn-title">30+ specialty tape types launched</div>
         <div class="jn-text"><p>Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.</p></div>
       </div>
       <div class="jn-panel" data-i="10">
-        <div class="jn-big">2026</div>
+        <div class="jn-accent">2026</div>
         <div class="jn-title">&#8377;330 Crore revenue &amp; 500+ employees</div>
         <div class="jn-text">
-          <ul style="padding-left:18px;margin:0">
+          <ul>
             <li>Active 60,000 sq. mtr infrastructure across two plants.</li>
             <li>Revenue: &#8377;330 Crore | Net Worth: &#8377;250 Crore.</li>
             <li>Workforce expanded past 500+ employees.</li>
@@ -239,20 +240,17 @@
         </div>
       </div>
       <div class="jn-panel" data-i="11">
-        <div class="jn-big">2030</div>
+        <div class="jn-accent">2030</div>
         <div class="jn-title">Next-gen expansion &amp; IPO</div>
         <div class="jn-text">
-          <ul style="padding-left:18px;margin:0">
+          <ul>
             <li>Next-gen plant expansion planned.</li>
             <li>IPO public stock listing.</li>
             <li>Target revenue: &#8377;1,000 Crore.</li>
           </ul>
         </div>
       </div>
-      <div class="jn-nav">
-        <button id="jnPrev" disabled>&larr;</button>
-        <button id="jnNext">&rarr;</button>
-      </div>
+      <div class="jn-progress"><span id="jnCount">01 / 12</span><div class="jn-bar"><div class="jn-fill" id="jnFill" style="width:8.33%"></div></div></div>
     </div>
   </div>
   <script>
@@ -260,17 +258,23 @@
     var tabs=document.querySelectorAll('.jn-tab');
     var panels=document.querySelectorAll('.jn-panel');
     var prev=document.getElementById('jnPrev'),next=document.getElementById('jnNext');
-    var cur=0,total=tabs.length;
+    var counter=document.getElementById('jnCount'),fill=document.getElementById('jnFill');
+    var cur=0,total=tabs.length,autoTimer;
     function go(i){
       if(i<0||i>=total)return;
       cur=i;
       tabs.forEach(function(t){t.classList.toggle('on',+t.getAttribute('data-i')===i);});
       panels.forEach(function(p){p.classList.toggle('on',+p.getAttribute('data-i')===i);});
       prev.disabled=i<=0;next.disabled=i>=total-1;
+      counter.textContent=String(i+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
+      fill.style.width=((i+1)/total*100)+'%';
+      var active=tabs[i];if(active)active.scrollIntoView({block:'nearest',behavior:'smooth'});
     }
-    tabs.forEach(function(t){t.addEventListener('click',function(){go(+this.getAttribute('data-i'));});});
-    prev.addEventListener('click',function(){go(cur-1);});
-    next.addEventListener('click',function(){go(cur+1);});
+    tabs.forEach(function(t){t.addEventListener('click',function(){clearInterval(autoTimer);go(+this.getAttribute('data-i'));startAuto();});});
+    prev.addEventListener('click',function(){clearInterval(autoTimer);go(cur-1);startAuto();});
+    next.addEventListener('click',function(){clearInterval(autoTimer);go(cur+1);startAuto();});
+    function startAuto(){autoTimer=setInterval(function(){go(cur<total-1?cur+1:0);},4500);}
+    startAuto();
   })();
   </script>
 </section>
