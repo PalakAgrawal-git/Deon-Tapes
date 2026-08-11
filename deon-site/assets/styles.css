@@ -244,7 +244,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
   padding:7px 13px;border-radius:20px}
 
 /* markets list */
-.market-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.market-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .market-row{display:flex;align-items:center;gap:16px;padding:20px 24px;border-bottom:1px solid var(--line);
   border-right:1px solid var(--line);transition:background .16s;cursor:pointer}
 .market-row:hover{background:var(--tint)}
