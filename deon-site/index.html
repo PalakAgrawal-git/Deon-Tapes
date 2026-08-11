@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026081109">
+<link rel="stylesheet" href="assets/styles.css?v=2026081110">
 </head>
 <body data-page="home">
 
@@ -291,43 +291,8 @@
   </script>
 </section>
 
-<!-- HOW A TAPE IS BUILT + MANUFACTURING -->
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">How a DEON tape is built</span>
-      <h2>Every tape combines three elements.</h2>
-      <p>An adhesive system, a backing material and converting precision — selected according to the application.</p>
-    </div>
-    <style>
-      .tape-elements{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:48px}
-      .tape-el{padding:28px 24px;border-left:3px solid #CC0000;position:relative}
-      .tape-el h3{font-size:1.2rem;margin:0 0 16px;color:var(--ink)}
-      .tape-el ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
-      .tape-el ul li{font-size:.95rem;color:var(--text-mid);padding-left:16px;position:relative}
-      .tape-el ul li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:#CC0000}
-      @media(max-width:700px){.tape-elements{grid-template-columns:1fr}}
-    </style>
-    <div class="tape-elements reveal-stagger">
-      <div class="tape-el">
-        <h3>Adhesive system</h3>
-        <ul><li>Acrylic</li><li>Rubber</li><li>Hot-melt</li><li>Silicone</li></ul>
-      </div>
-      <div class="tape-el">
-        <h3>Backing material</h3>
-        <ul><li>Film / BOPP</li><li>Foam</li><li>Foil</li><li>Paper</li><li>Cloth</li><li>Filament</li></ul>
-      </div>
-      <div class="tape-el">
-        <h3>Converting precision</h3>
-        <ul><li>Slitting</li><li>Printed cores</li><li>Private label</li></ul>
-      </div>
-    </div>
-    <div><a class="arrow" href="applications.html">Or start from the job the tape has to do <span class="a">→</span></a></div>
-  </div>
-</section>
-
 <!-- MARKETS -->
-<section class="section" style="padding-top:0">
+<section class="section tint">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Markets</span>
@@ -340,107 +305,133 @@
 </section>
 
 <!-- THE DEON FACTORY ADVANTAGE -->
-<section class="section dark">
+<section class="section">
+  <style>
+    .fa-intro{max-width:820px;font-size:1.05rem;line-height:1.7;color:var(--text-mid);margin-bottom:48px}
+    .fa-step{display:grid;grid-template-columns:360px 1fr;gap:32px;align-items:start;padding:36px 0;border-top:1px solid var(--line)}
+    .fa-step:last-child{padding-bottom:0}
+    .fa-step .fa-img{border-radius:10px;overflow:hidden;aspect-ratio:16/10}
+    .fa-step .fa-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .fa-step .fa-content h3{font-size:1.2rem;margin:0 0 8px}
+    .fa-step .fa-content p{font-size:.95rem;line-height:1.65;color:var(--text-mid);margin:0 0 10px}
+    .fa-sub{margin-top:64px}
+    .fa-sub .sec-head{margin-bottom:32px}
+    .fa-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .fa-card{padding:28px;border:1px solid var(--line);border-radius:10px;background:var(--white)}
+    .fa-card h3{font-size:1.1rem;margin:0 0 10px;color:var(--ink)}
+    .fa-card p{font-size:.95rem;line-height:1.65;color:var(--text-mid);margin:0}
+    @media(max-width:800px){
+      .fa-step{grid-template-columns:1fr}
+      .fa-cards{grid-template-columns:1fr}
+    }
+  </style>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow" style="color:#7fb2e6">The DEON Factory Advantage</span>
-      <h2>Vertical integration: every step in-house.</h2>
-      <p style="color:#B0A8A7">From PVC film calendaring to final packing — we manufacture tapes from the ground up, eliminating third-party dependencies for strict quality and fast delivery.</p>
+      <span class="eyebrow">The DEON Factory Advantage</span>
+      <h2>Vertical Integration: Total Quality Control &amp; Rapid Delivery</h2>
     </div>
+    <p class="fa-intro reveal">At our state-of-the-art DEON factory, we do not just assemble tapes &#8212; we manufacture them from the ground up. Every single step of the development and production process is handled 100% in-house. By eliminating third-party dependencies, we maintain strict quality standards and guarantee exceptionally fast delivery times for our global clients.</p>
 
-    <div class="grid grid-3 reveal-stagger" style="margin-bottom:0">
-      <a class="card has-img" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none">
-        <div class="cimg"><img src="assets/brand/factory-pvc-coating.jpg" alt="PVC film calendaring line" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag" style="background:#005CAB22;color:#005CAB">Step 01</span>
+    <h3 class="reveal" style="margin-bottom:8px;font-size:1.4rem">Our Complete In-House Manufacturing Loop</h3>
+    <p class="reveal" style="color:var(--text-mid);margin-bottom:32px">We control every component of the final product under one roof:</p>
+
+    <div class="reveal-stagger">
+      <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none;color:inherit">
+        <div class="fa-img"><img src="assets/brand/factory-pvc-coating.jpg" alt="PVC film calendaring line" loading="lazy"></div>
+        <div class="fa-content">
           <h3>Raw PVC film calendaring</h3>
-          <p>Processing and rolling out our own high-quality, high-precision PVC backing materials from scratch, with full support for customised branding, printing and embossing directly on the film.</p>
+          <p>Processing and rolling out our own high-quality, high-precision PVC backing materials from scratch, with full support for customized branding, printing, and embossing directly on the film.</p>
           <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
         </div>
       </a>
-      <a class="card has-img" href="manufacturing-technology.html#adhesive-technologies" style="text-decoration:none">
-        <div class="cimg"><img src="assets/brand/factory-adhesive-plant.jpg" alt="Adhesive synthesis plant" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag" style="background:#005CAB22;color:#005CAB">Step 02</span>
+      <a class="fa-step" href="manufacturing-technology.html#adhesive-technologies" style="text-decoration:none;color:inherit">
+        <div class="fa-img"><img src="assets/brand/factory-adhesive-plant.jpg" alt="Adhesive synthesis plant" loading="lazy"></div>
+        <div class="fa-content">
           <h3>Advanced adhesive synthesis</h3>
-          <p>Formulating and mixing more than 4 distinct adhesive technologies &#8212; including specialised acrylics, high-tack rubbers and performance silicones &#8212; to meet exact application needs.</p>
+          <p>Formulating and mixing more than 4 distinct types of adhesive technologies (including specialized acrylics, high-tack rubbers, and performance silicones) to meet exact application needs.</p>
           <span class="arrow">See adhesive tech <span class="a">&rarr;</span></span>
         </div>
       </a>
-      <a class="card has-img" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none">
-        <div class="cimg"><img src="assets/brand/factory-machinery.jpg" alt="Core production machinery" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag" style="background:#005CAB22;color:#005CAB">Step 03</span>
-          <h3>Paper core production</h3>
-          <p>Manufacturing internal cardboard cores to exact structural tolerances, completely customised with your branded inner liners or logos.</p>
+      <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none;color:inherit">
+        <div class="fa-img"><img src="assets/brand/factory-machinery.jpg" alt="Core production machinery" loading="lazy"></div>
+        <div class="fa-content">
+          <h3>Heavy-duty paper core production</h3>
+          <p>Manufacturing internal cardboard cores to exact structural tolerances, completely customized with your branded inner liners or logos.</p>
           <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
         </div>
       </a>
-      <a class="card has-img" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none">
-        <div class="cimg"><img src="assets/brand/factory-coating.jpg" alt="Adhesive web coating line" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag" style="background:#005CAB22;color:#005CAB">Step 04</span>
+      <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none;color:inherit">
+        <div class="fa-img"><img src="assets/brand/factory-coating.jpg" alt="Adhesive web coating line" loading="lazy"></div>
+        <div class="fa-content">
           <h3>Precision adhesive web coating</h3>
-          <p>Applying uniform adhesive layers onto backings and winding them into master logrolls on our own coating lines.</p>
+          <p>Applying uniform adhesive layers onto backings and winding them into master logrolls.</p>
           <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
         </div>
       </a>
-      <a class="card has-img" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none">
-        <div class="cimg"><img src="assets/brand/factory-printing.jpg" alt="In-house packaging and printing" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag" style="background:#005CAB22;color:#005CAB">Step 05</span>
-          <h3>In-house packaging &amp; artwork</h3>
-          <p>Designing and manufacturing custom protective materials on-site &#8212; fully branded tags, mono boxes and heavy-duty shippers &#8212; with an in-house artwork team for any graphic design or branding.</p>
+      <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none;color:inherit">
+        <div class="fa-img"><img src="assets/brand/factory-printing.jpg" alt="In-house packaging and printing" loading="lazy"></div>
+        <div class="fa-content">
+          <h3>In-house packaging &amp; artwork plant</h3>
+          <p>Designing and manufacturing custom protective materials on-site, including fully branded tags, mono boxes, and heavy-duty shippers (outer cartons). This includes our in-house artwork development team capable of creating or modifying any kind of graphic design or artwork for your brand.</p>
           <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
         </div>
       </a>
-      <a class="card has-img" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none">
-        <div class="cimg"><img src="assets/brand/factory-cutting-packing.jpg" alt="Logroll slitting and packing" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag" style="background:#005CAB22;color:#005CAB">Step 06</span>
-          <h3>Logroll slitting &amp; packing</h3>
-          <p>High-speed precision cutting of master logrolls into custom tape widths, followed by automated retail or industrial packing &#8212; ready for immediate global shipment.</p>
+      <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none;color:inherit">
+        <div class="fa-img"><img src="assets/brand/factory-cutting-packing.jpg" alt="High-speed logroll slitting" loading="lazy"></div>
+        <div class="fa-content">
+          <h3>High-speed logroll slitting &amp; automated packing</h3>
+          <p>Precision cutting of master logrolls into custom tape widths, followed by final retail or industrial packing and sealing &#8212; ready for immediate global shipment.</p>
           <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
         </div>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- TESTING + SCALE — continuous dark section -->
-<section class="section dark" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" style="color:#7fb2e6">Testing, Traceability &amp; Compliance</span>
-      <h2>Performance verified. Globally compliant.</h2>
-    </div>
-    <div class="grid grid-4 reveal-stagger">
-      <div class="card" style="background:#1A1515;border:1px solid #2A2423">
-        <h3 style="color:#fff">Extreme condition simulation</h3>
-        <p style="color:#B0A8A7">Every tape formulation is rigorously tested for peel adhesion, static shear and long-term ageing under extreme heat, freezing temperatures, high humidity and heavy UV exposure.</p>
-      </div>
-      <div class="card" style="background:#1A1515;border:1px solid #2A2423">
-        <h3 style="color:#fff">Digital traceability</h3>
-        <p style="color:#B0A8A7">Strict batch-tracking protocols &#8212; every roll traces back to its specific raw material batch, adhesive mix and production timestamp for absolute accountability.</p>
-      </div>
-      <div class="card" style="background:#1A1515;border:1px solid #2A2423">
-        <h3 style="color:#fff">Global market readiness</h3>
-        <p style="color:#B0A8A7">Manufacturing processes and raw materials align with strict global compliance standards, making our tapes fully eligible for export to the Americas, Europe, Asia and beyond.</p>
-      </div>
-      <div class="card" style="background:#1A1515;border:1px solid #2A2423">
-        <h3 style="color:#fff">Eco-conscious safety</h3>
-        <p style="color:#B0A8A7">In-house PVC film calendaring and chemical adhesive synthesis focus on eliminating toxic hazards, ensuring safe usage in commercial and sensitive industrial environments.</p>
-      </div>
     </div>
 
-    <div style="margin-top:64px">
+    <!-- Advanced Testing & Traceability -->
+    <div class="fa-sub">
       <div class="sec-head reveal">
-        <span class="eyebrow" style="color:#7fb2e6">Scale &amp; Speed</span>
+        <span class="eyebrow">Advanced Testing &amp; Full Traceability</span>
+        <h2>We take the guesswork out of product performance.</h2>
+        <p>State-of-the-art in-house laboratory testing and modern tracking infrastructure.</p>
+      </div>
+      <div class="fa-cards reveal-stagger">
+        <div class="fa-card">
+          <h3>Extreme condition simulation</h3>
+          <p>Every tape formulation is rigorously tested for peel adhesion, static shear, and long-term aging under extreme heat, freezing temperatures, high humidity, and heavy UV exposure.</p>
+        </div>
+        <div class="fa-card">
+          <h3>End-to-end digital traceability</h3>
+          <p>We implement strict batch-tracking protocols. Every roll can be traced back to its specific raw material batch, adhesive mix, and production timestamp for absolute accountability.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Regulatory & Compliance -->
+    <div class="fa-sub">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Global Regulatory &amp; Compliance Standards</span>
+        <h2>Safe, compliant, and ready for any market worldwide.</h2>
+      </div>
+      <div class="fa-cards reveal-stagger">
+        <div class="fa-card">
+          <h3>Global market readiness</h3>
+          <p>Our manufacturing processes and raw materials align with strict global compliance standards, making our tapes fully eligible for export to the Americas, Europe, Asia, and beyond.</p>
+        </div>
+        <div class="fa-card">
+          <h3>Eco-conscious safety profiles</h3>
+          <p>Our in-house PVC film calendaring and chemical adhesive synthesis focus on eliminating toxic hazards, ensuring safe usage in both commercial and sensitive industrial environments.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unmatched Scale -->
+    <div class="fa-sub">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Unmatched Scale, Capacity &amp; Speed</span>
         <h2>From concept to finished product.</h2>
       </div>
       <div class="stats reveal">
-        <div class="stat"><div class="v"><span data-count="25" data-suffix=" days">0</span></div><div class="k">Concept to finished product &#8212; starting from scratch</div></div>
-        <div class="stat"><div class="v"><span data-count="5" data-suffix="-6 Cr">0</span></div><div class="k">Tapes per month &#8212; international-level factory capacity</div></div>
+        <div class="stat"><div class="v"><span data-count="25" data-suffix=" days">0</span></div><div class="k">Concept to finished product &#8212; starting completely from scratch</div></div>
+        <div class="stat"><div class="v"><span data-count="5" data-suffix="-6 Cr">0</span></div><div class="k">Tapes per month &#8212; international-level factory capacity for high-volume global demands</div></div>
       </div>
     </div>
   </div>
