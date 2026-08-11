@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026081108">
+<link rel="stylesheet" href="assets/styles.css?v=2026081109">
 </head>
 <body data-page="home">
 
@@ -291,7 +291,7 @@
   </script>
 </section>
 
-<!-- HOW A TAPE IS BUILT -->
+<!-- HOW A TAPE IS BUILT + MANUFACTURING -->
 <section class="section">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -299,17 +299,35 @@
       <h2>Every tape combines three elements.</h2>
       <p>An adhesive system, a backing material and converting precision — selected according to the application.</p>
     </div>
-    <div class="build reveal-stagger">
-      <div class="col"><div class="n">01</div><h3>Adhesive system</h3><div class="chips"><span class="chip">Acrylic</span><span class="chip">Rubber</span><span class="chip">Hot-melt</span><span class="chip">Silicone</span></div></div>
-      <div class="col"><div class="n">02</div><h3>Backing material</h3><div class="chips"><span class="chip">Film / BOPP</span><span class="chip">Foam</span><span class="chip">Foil</span><span class="chip">Paper</span><span class="chip">Cloth</span><span class="chip">Filament</span></div></div>
-      <div class="col"><div class="n">03</div><h3>Converting precision</h3><div class="chips"><span class="chip">Slitting</span><span class="chip">Printed cores</span><span class="chip">Private label</span></div></div>
+    <style>
+      .tape-elements{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:48px}
+      .tape-el{padding:28px 24px;border-left:3px solid #CC0000;position:relative}
+      .tape-el h3{font-size:1.2rem;margin:0 0 16px;color:var(--ink)}
+      .tape-el ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+      .tape-el ul li{font-size:.95rem;color:var(--text-mid);padding-left:16px;position:relative}
+      .tape-el ul li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:#CC0000}
+      @media(max-width:700px){.tape-elements{grid-template-columns:1fr}}
+    </style>
+    <div class="tape-elements reveal-stagger">
+      <div class="tape-el">
+        <h3>Adhesive system</h3>
+        <ul><li>Acrylic</li><li>Rubber</li><li>Hot-melt</li><li>Silicone</li></ul>
+      </div>
+      <div class="tape-el">
+        <h3>Backing material</h3>
+        <ul><li>Film / BOPP</li><li>Foam</li><li>Foil</li><li>Paper</li><li>Cloth</li><li>Filament</li></ul>
+      </div>
+      <div class="tape-el">
+        <h3>Converting precision</h3>
+        <ul><li>Slitting</li><li>Printed cores</li><li>Private label</li></ul>
+      </div>
     </div>
-    <div style="margin-top:28px"><a class="arrow" href="applications.html">Or start from the job the tape has to do <span class="a">→</span></a></div>
+    <div><a class="arrow" href="applications.html">Or start from the job the tape has to do <span class="a">→</span></a></div>
   </div>
 </section>
 
 <!-- MARKETS -->
-<section class="section tint">
+<section class="section" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Markets</span>
@@ -322,15 +340,14 @@
 </section>
 
 <!-- THE DEON FACTORY ADVANTAGE -->
-<section class="section">
+<section class="section dark">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">The DEON Factory Advantage</span>
-      <h2>Vertical Integration: Total Quality Control &amp; Rapid Delivery</h2>
-      <p>At our state-of-the-art DEON factory, we do not just assemble tapes &#8212; we manufacture them from the ground up. Every single step of the development and production process is handled 100% in-house, eliminating third-party dependencies to maintain strict quality standards and guarantee exceptionally fast delivery.</p>
+      <span class="eyebrow" style="color:#7fb2e6">The DEON Factory Advantage</span>
+      <h2>Vertical integration: every step in-house.</h2>
+      <p style="color:#B0A8A7">From PVC film calendaring to final packing — we manufacture tapes from the ground up, eliminating third-party dependencies for strict quality and fast delivery.</p>
     </div>
 
-    <h3 class="reveal" style="margin-bottom:24px">Our Complete In-House Manufacturing Loop</h3>
     <div class="grid grid-3 reveal-stagger" style="margin-bottom:0">
       <a class="card has-img" href="manufacturing-technology.html#manufacturing-capabilities" style="text-decoration:none">
         <div class="cimg"><img src="assets/brand/factory-pvc-coating.jpg" alt="PVC film calendaring line" loading="lazy"></div>
@@ -390,48 +407,41 @@
   </div>
 </section>
 
-<!-- TESTING, COMPLIANCE & SCALE -->
-<section class="section tint">
+<!-- TESTING + SCALE — continuous dark section -->
+<section class="section dark" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Testing, Traceability &amp; Compliance</span>
+      <span class="eyebrow" style="color:#7fb2e6">Testing, Traceability &amp; Compliance</span>
       <h2>Performance verified. Globally compliant.</h2>
     </div>
     <div class="grid grid-4 reveal-stagger">
-      <div class="card">
-        <div class="num-index" style="color:#005CAB">01</div>
-        <h3>Extreme condition simulation</h3>
-        <p>Every tape formulation is rigorously tested for peel adhesion, static shear and long-term ageing under extreme heat, freezing temperatures, high humidity and heavy UV exposure.</p>
+      <div class="card" style="background:#1A1515;border:1px solid #2A2423">
+        <h3 style="color:#fff">Extreme condition simulation</h3>
+        <p style="color:#B0A8A7">Every tape formulation is rigorously tested for peel adhesion, static shear and long-term ageing under extreme heat, freezing temperatures, high humidity and heavy UV exposure.</p>
       </div>
-      <div class="card">
-        <div class="num-index" style="color:#005CAB">02</div>
-        <h3>Digital traceability</h3>
-        <p>Strict batch-tracking protocols &#8212; every roll traces back to its specific raw material batch, adhesive mix and production timestamp for absolute accountability.</p>
+      <div class="card" style="background:#1A1515;border:1px solid #2A2423">
+        <h3 style="color:#fff">Digital traceability</h3>
+        <p style="color:#B0A8A7">Strict batch-tracking protocols &#8212; every roll traces back to its specific raw material batch, adhesive mix and production timestamp for absolute accountability.</p>
       </div>
-      <div class="card">
-        <div class="num-index" style="color:#005CAB">03</div>
-        <h3>Global market readiness</h3>
-        <p>Manufacturing processes and raw materials align with strict global compliance standards, making our tapes fully eligible for export to the Americas, Europe, Asia and beyond.</p>
+      <div class="card" style="background:#1A1515;border:1px solid #2A2423">
+        <h3 style="color:#fff">Global market readiness</h3>
+        <p style="color:#B0A8A7">Manufacturing processes and raw materials align with strict global compliance standards, making our tapes fully eligible for export to the Americas, Europe, Asia and beyond.</p>
       </div>
-      <div class="card">
-        <div class="num-index" style="color:#005CAB">04</div>
-        <h3>Eco-conscious safety</h3>
-        <p>In-house PVC film calendaring and chemical adhesive synthesis focus on eliminating toxic hazards, ensuring safe usage in commercial and sensitive industrial environments.</p>
+      <div class="card" style="background:#1A1515;border:1px solid #2A2423">
+        <h3 style="color:#fff">Eco-conscious safety</h3>
+        <p style="color:#B0A8A7">In-house PVC film calendaring and chemical adhesive synthesis focus on eliminating toxic hazards, ensuring safe usage in commercial and sensitive industrial environments.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- SCALE & SPEED -->
-<section class="section dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" style="color:#7fb2e6">Unmatched Scale, Capacity &amp; Speed</span>
-      <h2>From concept to finished product.</h2>
-    </div>
-    <div class="stats reveal">
-      <div class="stat"><div class="v"><span data-count="25" data-suffix=" days">0</span></div><div class="k">Concept to finished product &#8212; starting from scratch</div></div>
-      <div class="stat"><div class="v"><span data-count="5" data-suffix="-6 Cr">0</span></div><div class="k">Tapes per month &#8212; international-level factory capacity</div></div>
+    <div style="margin-top:64px">
+      <div class="sec-head reveal">
+        <span class="eyebrow" style="color:#7fb2e6">Scale &amp; Speed</span>
+        <h2>From concept to finished product.</h2>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="v"><span data-count="25" data-suffix=" days">0</span></div><div class="k">Concept to finished product &#8212; starting from scratch</div></div>
+        <div class="stat"><div class="v"><span data-count="5" data-suffix="-6 Cr">0</span></div><div class="k">Tapes per month &#8212; international-level factory capacity</div></div>
+      </div>
     </div>
   </div>
 </section>
