@@ -107,17 +107,17 @@
     .jn-tab span{display:block;font-family:var(--font-head);font-weight:900;line-height:1;transition:all .4s ease;-webkit-text-stroke:1px rgba(255,255,255,.12);color:transparent;font-size:2.8rem;letter-spacing:-.03em}
     .jn-tab:hover span{-webkit-text-stroke-color:rgba(255,255,255,.35)}
     .jn-tab.on span{-webkit-text-stroke:none;color:#fff;font-size:5rem;letter-spacing:-.04em}
-    .jn-right{flex:1;padding:56px 40px 56px 60px;display:flex;flex-direction:column;position:relative}
-    .jn-panel{display:none;animation:jnSlideIn .4s ease;flex:1}
-    .jn-panel.on{display:flex;flex-direction:column}
+    .jn-right{flex:1;padding:56px 40px 56px 60px;display:flex;flex-direction:column;justify-content:center;position:relative}
+    .jn-panel{display:none;animation:jnSlideIn .4s ease}
+    .jn-panel.on{display:block}
     @keyframes jnSlideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
     .jn-panel .jn-accent{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:#CC0000;margin:0 0 10px;letter-spacing:.02em}
-    .jn-panel .jn-title{font-family:var(--font-head);font-size:1.8rem;font-weight:900;color:#111;margin:0 0 12px;line-height:1.2}
-    .jn-panel .jn-text{font-size:.95rem;line-height:1.65;color:#444;margin:0}
-    .jn-panel .jn-text ul{padding-left:18px;margin:6px 0 0}
-    .jn-panel .jn-text li{margin-bottom:4px}
-    .jn-panel .jn-img{margin-top:18px;border-radius:10px;overflow:hidden;flex:1;min-height:0}
-    .jn-panel .jn-img img{width:100%;height:100%;object-fit:cover;display:block;border-radius:10px}
+    .jn-panel .jn-title{font-family:var(--font-head);font-size:1.6rem;font-weight:900;color:#111;margin:0 0 10px;line-height:1.2}
+    .jn-panel .jn-text{font-size:.92rem;line-height:1.6;color:#444;margin:0}
+    .jn-panel .jn-text ul{padding-left:18px;margin:4px 0 0}
+    .jn-panel .jn-text li{margin-bottom:3px}
+    .jn-panel .jn-img{margin-top:16px;border-radius:10px;overflow:hidden;height:240px}
+    .jn-panel .jn-img img{width:100%;height:100%;object-fit:cover;display:block}
     .jn-nav{position:absolute;top:56px;right:40px;display:flex;gap:10px}
     .jn-nav button{width:44px;height:44px;border-radius:8px;border:2px solid #ddd;background:#fff;color:#111;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
     .jn-nav button:hover{border-color:#CC0000;background:#CC0000;color:#fff}
@@ -136,8 +136,7 @@
       .jn-nav{position:static;margin-bottom:20px}
       .jn-progress{position:static;margin-top:24px}
       .jn-panel .jn-title{font-size:1.5rem}
-      .jn-panel.on{display:flex;flex-direction:column}
-      .jn-panel .jn-img{margin-top:16px;max-height:200px;flex:none}
+      .jn-panel .jn-img{margin-top:14px;height:180px}
     }
   </style>
   <div class="jn-wrap">
@@ -176,37 +175,37 @@
             <li>Products: Electrical insulation, wire harness, floor marking tapes.</li>
           </ul>
         </div>
-        <div class="jn-img"><img src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view"></div>
       </div>
       <div class="jn-panel" data-i="1">
         <div class="jn-accent">2017</div>
         <div class="jn-title">BIS certification secured</div>
         <div class="jn-text"><p>Secured official BIS certification for core tape lines, clearing domestic tender filters and enabling participation in government and institutional procurement.</p></div>
-        <div class="jn-img"><img src="assets/img/journey/2017.jpg" alt="DEON coating team" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2017.jpg" alt="DEON coating team"></div>
       </div>
       <div class="jn-panel" data-i="2">
         <div class="jn-accent">2018</div>
         <div class="jn-title">ISO &amp; UL certified</div>
         <div class="jn-text"><p>Achieved international ISO and UL certifications, establishing compliance credibility for MNC procurement and global export markets.</p></div>
-        <div class="jn-img"><img src="assets/img/journey/2018.jpg" alt="DEON in-house adhesive plant" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2018.jpg" alt="DEON in-house adhesive plant"></div>
       </div>
       <div class="jn-panel" data-i="3">
         <div class="jn-accent">2019</div>
         <div class="jn-title">Paper core plant commissioned</div>
         <div class="jn-text"><p>Backward integration: commissioned an in-house paper core plant, enabling precision winding control and eliminating third-party dependency for core supply.</p></div>
-        <div class="jn-img"><img src="assets/img/journey/2019.jpg" alt="DEON in-house paper core plant" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2019.jpg" alt="DEON in-house paper core plant"></div>
       </div>
       <div class="jn-panel" data-i="4">
         <div class="jn-accent">2020</div>
         <div class="jn-title">Masking tape launched</div>
         <div class="jn-text"><p>Expanded product portfolio with masking tape (painter&#8217;s tape), entering the commercial painting and surface protection market.</p></div>
-        <div class="jn-img"><img src="assets/img/journey/2020.jpg" alt="Masking tape on cutting line" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2020.jpg" alt="Masking tape on cutting line"></div>
       </div>
       <div class="jn-panel" data-i="5">
         <div class="jn-accent">2021</div>
         <div class="jn-title">Packaging corrugation plant added</div>
         <div class="jn-text"><p>Backward integration: added an in-house packaging corrugation plant, enabling self-sufficient packaging and zero delivery delays.</p></div>
-        <div class="jn-img"><img src="assets/img/journey/2021.jpg" alt="DEON in-house corrugation plant" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2021.jpg" alt="DEON in-house corrugation plant"></div>
       </div>
       <div class="jn-panel" data-i="6">
         <div class="jn-accent">2022</div>
@@ -217,7 +216,7 @@
             <li>Revenue crossed &#8377;100 Crore.</li>
           </ul>
         </div>
-        <div class="jn-img"><img src="assets/img/journey/2022.jpg" alt="DEON cutting and packing floor" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2022.jpg" alt="DEON cutting and packing floor"></div>
       </div>
       <div class="jn-panel" data-i="7">
         <div class="jn-accent">2023</div>
@@ -228,19 +227,19 @@
             <li>Total area: 60,000 sq. mtrs; capacity: 2 Crore sq. mtrs per month.</li>
           </ul>
         </div>
-        <div class="jn-img"><img src="assets/img/journey/2023.jpg" alt="DEON Vadodara BOPP coating line" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2023.jpg" alt="DEON Vadodara BOPP coating line"></div>
       </div>
       <div class="jn-panel" data-i="8">
         <div class="jn-accent">2024</div>
         <div class="jn-title">PVC calendering lines added</div>
         <div class="jn-text"><p>Backward integration: added 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.</p></div>
-        <div class="jn-img"><img src="assets/img/journey/2024.jpg" alt="DEON PVC calendering lines" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2024.jpg" alt="DEON PVC calendering lines"></div>
       </div>
       <div class="jn-panel" data-i="9">
         <div class="jn-accent">2025</div>
         <div class="jn-title">30+ specialty tape types launched</div>
         <div class="jn-text"><p>Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.</p></div>
-        <div class="jn-img"><img src="assets/img/journey/2025.jpg" alt="DEON BOPP printing machine" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2025.jpg" alt="DEON BOPP printing machine"></div>
       </div>
       <div class="jn-panel" data-i="10">
         <div class="jn-accent">2026</div>
@@ -252,7 +251,7 @@
             <li>Workforce expanded past 500+ employees.</li>
           </ul>
         </div>
-        <div class="jn-img"><img src="assets/img/journey/2026.jpg" alt="DEON Tapes full team photo" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2026.jpg" alt="DEON Tapes full team photo"></div>
       </div>
       <div class="jn-panel" data-i="11">
         <div class="jn-accent">2030</div>
@@ -264,7 +263,7 @@
             <li>Target revenue: &#8377;1,000 Crore.</li>
           </ul>
         </div>
-        <div class="jn-img"><img src="assets/img/journey/2030.jpg" alt="DEON warehouse at scale" loading="lazy"></div>
+        <div class="jn-img"><img src="assets/img/journey/2030.jpg" alt="DEON warehouse at scale"></div>
       </div>
       <div class="jn-progress"><span id="jnCount">01 / 12</span><div class="jn-bar"><div class="jn-fill" id="jnFill" style="width:8.33%"></div></div></div>
     </div>
@@ -275,7 +274,7 @@
     var panels=document.querySelectorAll('.jn-panel');
     var prev=document.getElementById('jnPrev'),next=document.getElementById('jnNext');
     var counter=document.getElementById('jnCount'),fill=document.getElementById('jnFill');
-    var cur=0,total=tabs.length,autoTimer;
+    var cur=0,total=tabs.length;
     function go(i){
       if(i<0||i>=total)return;
       cur=i;
@@ -286,11 +285,9 @@
       fill.style.width=((i+1)/total*100)+'%';
       var active=tabs[i];if(active)active.scrollIntoView({block:'nearest',behavior:'smooth'});
     }
-    tabs.forEach(function(t){t.addEventListener('click',function(){clearInterval(autoTimer);go(+this.getAttribute('data-i'));startAuto();});});
-    prev.addEventListener('click',function(){clearInterval(autoTimer);go(cur-1);startAuto();});
-    next.addEventListener('click',function(){clearInterval(autoTimer);go(cur+1);startAuto();});
-    function startAuto(){autoTimer=setInterval(function(){go(cur<total-1?cur+1:0);},4500);}
-    startAuto();
+    tabs.forEach(function(t){t.addEventListener('click',function(){go(+this.getAttribute('data-i'));});});
+    prev.addEventListener('click',function(){go(cur-1);});
+    next.addEventListener('click',function(){go(cur+1);});
   })();
   </script>
 </section>
