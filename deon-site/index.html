@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026081107">
+<link rel="stylesheet" href="assets/styles.css?v=2026081108">
 </head>
 <body data-page="home">
 
@@ -107,7 +107,8 @@
     .jn-tab span{display:block;font-family:var(--font-head);font-weight:900;line-height:1;transition:all .4s ease;-webkit-text-stroke:1px rgba(255,255,255,.12);color:transparent;font-size:2.8rem;letter-spacing:-.03em}
     .jn-tab:hover span{-webkit-text-stroke-color:rgba(255,255,255,.35)}
     .jn-tab.on span{-webkit-text-stroke:none;color:#fff;font-size:5rem;letter-spacing:-.04em}
-    .jn-right{flex:1;position:relative;overflow:hidden}
+    .jn-right{flex:1;display:flex;flex-direction:column;overflow:hidden}
+    .jn-panels{flex:1;position:relative;overflow:hidden}
     .jn-panel{display:none;animation:jnSlideIn .4s ease;position:absolute;inset:0}
     .jn-panel.on{display:block}
     @keyframes jnSlideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -117,13 +118,12 @@
     .jn-panel .jn-accent{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:#CC0000;margin:0 0 8px;letter-spacing:.02em}
     .jn-panel .jn-title{font-family:var(--font-head);font-size:2.6rem;font-weight:900;color:#fff;margin:0 0 10px;line-height:1.15}
     .jn-panel .jn-text{font-size:1.15rem;line-height:1.65;color:rgba(255,255,255,.9);margin:0}
-    .jn-nav{position:absolute;bottom:14px;right:16px;display:flex;gap:6px;z-index:2}
-    .jn-nav button{height:28px;padding:0 10px;border-radius:6px;border:none;background:rgba(255,255,255,.85);color:#111;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(4px);white-space:nowrap}
-    .jn-nav button:hover{background:#CC0000;color:#fff}
+    .jn-nav{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:10px 16px;background:#0a0a0a}
+    .jn-nav button{height:28px;padding:0 12px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.7);font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;white-space:nowrap}
+    .jn-nav button:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.4)}
     .jn-nav button:disabled{opacity:.3;pointer-events:none}
-    .jn-progress{position:absolute;bottom:12px;right:40px;display:flex;align-items:center;gap:12px;font-size:.8rem;color:rgba(255,255,255,.6);z-index:2}
-    .jn-progress .jn-bar{width:100px;height:2px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden}
-    .jn-progress .jn-fill{height:100%;background:#CC0000;transition:width .4s ease;border-radius:2px}
+    .jn-nav .jn-count{font-size:.75rem;color:rgba(255,255,255,.5);margin-right:auto}
+    .jn-progress{display:none}
     @media(max-width:900px){
       .jn-section{min-height:auto}
       .jn-wrap{flex-direction:column}
@@ -138,8 +138,7 @@
       .jn-panel .jn-title{font-size:1.6rem}
       .jn-panel .jn-accent{font-size:1.1rem}
       .jn-panel .jn-text{font-size:1rem}
-      .jn-nav{bottom:8px;right:12px}
-      .jn-progress{bottom:8px;right:24px}
+      .jn-nav{padding:8px 12px}
     }
   </style>
   <div class="jn-wrap">
@@ -164,10 +163,7 @@
       </div>
     </div>
     <div class="jn-right reveal">
-      <div class="jn-nav">
-        <button id="jnPrev" disabled>&larr; Previous</button>
-        <button id="jnNext">Next &rarr;</button>
-      </div>
+      <div class="jn-panels">
       <div class="jn-panel on" data-i="0">
         <div class="jn-img"><img src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view"></div>
         <div class="jn-body">
@@ -264,7 +260,12 @@
           <div class="jn-text"><p>Next-gen plant expansion planned. IPO public stock listing. Target revenue: &#8377;1,000 Crore.</p></div>
         </div>
       </div>
-      <div class="jn-progress"><span id="jnCount">01 / 12</span><div class="jn-bar"><div class="jn-fill" id="jnFill" style="width:8.33%"></div></div></div>
+      </div>
+      <div class="jn-nav">
+        <span class="jn-count" id="jnCount">01 / 12</span>
+        <button id="jnPrev" disabled>&larr; Previous</button>
+        <button id="jnNext">Next &rarr;</button>
+      </div>
     </div>
   </div>
   <script>
@@ -272,7 +273,7 @@
     var tabs=document.querySelectorAll('.jn-tab');
     var panels=document.querySelectorAll('.jn-panel');
     var prev=document.getElementById('jnPrev'),next=document.getElementById('jnNext');
-    var counter=document.getElementById('jnCount'),fill=document.getElementById('jnFill');
+    var counter=document.getElementById('jnCount');
     var cur=0,total=tabs.length;
     function go(i){
       if(i<0||i>=total)return;
@@ -281,7 +282,6 @@
       panels.forEach(function(p){p.classList.toggle('on',+p.getAttribute('data-i')===i);});
       prev.disabled=i<=0;next.disabled=i>=total-1;
       counter.textContent=String(i+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
-      fill.style.width=((i+1)/total*100)+'%';
       var active=tabs[i];if(active)active.scrollIntoView({block:'nearest',behavior:'smooth'});
     }
     tabs.forEach(function(t){t.addEventListener('click',function(){go(+this.getAttribute('data-i'));});});
