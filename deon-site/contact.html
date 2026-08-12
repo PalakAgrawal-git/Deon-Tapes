@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var btn=document.getElementById('submitBtn');
     var ok=document.getElementById('formOk');
     btn.disabled=true;btn.textContent='Sending…';
-    var CONTACT_URL='https://script.google.com/macros/s/AKfycbwA8X8-E8YrqP46Gp8loeD7FeSxxzimMj4rXbB_veKJ2Q2SNKIB6imBeqKi0lxjGJL8/exec';
+    var CONTACT_URL='https://script.google.com/macros/s/AKfycbyYTPE7cO_H9B2u8nJRSij0vriD2OIo5Q_BezqPOvJcY7YsnOIr0SUzbTGmEXbBIWtSHQ/exec';
     var SUPPLY_URL='https://script.google.com/macros/s/AKfycbxnNMYKV-hS3D2wgjLQAN71cAXFfkDc9jsJAe4m_7qfpkzzwSvf37ZXz0FyM8i2k8TO/exec';
     var url=type==='supply'?SUPPLY_URL:CONTACT_URL;
     var body={type:type,first:form.first.value,last:form.last.value,company:form.company.value,country:form.country.value,email:form.email.value,phone:form.phone.value,sku:hiddenField.value,message:form.message.value};
