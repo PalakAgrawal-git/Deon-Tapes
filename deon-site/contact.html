@@ -189,9 +189,11 @@ document.addEventListener('DOMContentLoaded',function(){
     var btn=document.getElementById('submitBtn');
     var ok=document.getElementById('formOk');
     btn.disabled=true;btn.textContent='Sending…';
-    var emailTo={sample:'info@deontapes.com,admin.mumbai@deontapes.com',quote:'info@deontapes.com,admin.mumbai@deontapes.com',general:'info@deontapes.com,admin.mumbai@deontapes.com',supply:'info@deontapes.com,purchase.ho1@deontapes.com'};
-    var body={type:type,to:emailTo[type]||emailTo.general,first:form.first.value,last:form.last.value,company:form.company.value,country:form.country.value,email:form.email.value,phone:form.phone.value,sku:hiddenField.value,message:form.message.value};
-    fetch('https://script.google.com/macros/s/AKfycbwA8X8-E8YrqP46Gp8loeD7FeSxxzimMj4rXbB_veKJ2Q2SNKIB6imBeqKi0lxjGJL8/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+    var CONTACT_URL='https://script.google.com/macros/s/AKfycbwA8X8-E8YrqP46Gp8loeD7FeSxxzimMj4rXbB_veKJ2Q2SNKIB6imBeqKi0lxjGJL8/exec';
+    var SUPPLY_URL='https://script.google.com/macros/s/AKfycbxnNMYKV-hS3D2wgjLQAN71cAXFfkDc9jsJAe4m_7qfpkzzwSvf37ZXz0FyM8i2k8TO/exec';
+    var url=type==='supply'?SUPPLY_URL:CONTACT_URL;
+    var body={type:type,first:form.first.value,last:form.last.value,company:form.company.value,country:form.country.value,email:form.email.value,phone:form.phone.value,sku:hiddenField.value,message:form.message.value};
+    fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
     .then(function(){
       var msg={sample:'sample request',quote:'quote request',general:'enquiry',supply:'supply enquiry'};
       ok.textContent='Thanks — your '+(msg[type]||'request')+' has been received. Our team will reply within one business day.';
