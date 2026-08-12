@@ -771,6 +771,9 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 :root[data-theme="dark"] .form-row input,
 :root[data-theme="dark"] .form-row select,
 :root[data-theme="dark"] .form-row textarea{background:#0C0A0A;color:var(--ink);border-color:#2A2423}
+:root[data-theme="dark"] .form-row input:focus,
+:root[data-theme="dark"] .form-row select:focus,
+:root[data-theme="dark"] .form-row textarea:focus{background:#fff;color:#0F1B2D;border-color:var(--blue)}
 :root[data-theme="dark"] input::placeholder,
 :root[data-theme="dark"] textarea::placeholder{color:#8A7F7E}
 :root[data-theme="dark"] .search-box input{background:#161313;color:var(--ink)}
