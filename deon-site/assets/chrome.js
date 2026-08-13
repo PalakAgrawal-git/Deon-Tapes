@@ -134,7 +134,7 @@
             '<button class="nav-trigger" aria-expanded="false" data-nav="'+it[0]+'">'+it[1]+'<span class="chev"></span></button>'+
             '<div class="mega">'+it[2]+'</div></div>';
         }).join('')+
-        '<div class="nav-item"><a class="nav-trigger" href="about.html" data-nav="about">About</a></div>'+
+        '<div class="nav-item"><a class="nav-trigger" href="about.html" data-nav="about">About Us</a></div>'+
         '<div class="nav-item"><a class="nav-trigger" href="blog.html" data-nav="blog">Blog</a></div>'+
       '</div>'+
       '<div class="nav-right">'+
