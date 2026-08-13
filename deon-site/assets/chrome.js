@@ -183,7 +183,7 @@
   function fcol(title,items){return '<div class="fcol"><h5>'+title+'</h5>'+items.map(function(i){return '<a href="'+i[0]+'">'+i[1]+'</a>';}).join('')+'</div>';}
   var footerHTML =
     '<footer class="site-footer"><div class="footer-top">'+
-      '<div class="footer-brand"><span class="foot-logo"><img src="assets/brand/logo.png" alt="DEON — It\'s Power-Strong" style="max-width:150px;height:auto"></span>'+
+      '<div class="footer-brand"><span class="foot-logo"><img src="assets/brand/logo.png" alt="DEON — It\'s Power-Strong" style="max-width:220px;height:auto"></span>'+
         '<p>Indian manufacturer of pressure-sensitive adhesive tapes and soft PVC films — formulated, coated and converted in-house. Plants in Silvassa &amp; Vadodara.</p>'+
         '<a class="btn btn-light" style="margin-top:18px" href="contact.html">Contact DEON</a>'+
       '</div>'+
