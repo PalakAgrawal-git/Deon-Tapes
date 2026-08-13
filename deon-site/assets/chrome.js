@@ -87,7 +87,6 @@
         link('films.html','Soft PVC films')+
         link('about.html#our-presence','Plants & presence')+
         link('certifications.html','Quality & certifications')+
-        link('about.html','About DEON')+
       '</div>'+
       feat('manufacturing-technology.html','Coated, converted and qualified under one roof')+
     '</div>';
@@ -100,7 +99,6 @@
         link('certifications.html','Certifications','ISO, UL, BIS')+
       '</div>'+
       '<div class="mega-col"><h4>Company</h4>'+
-        link('about.html','About DEON','The DEON journey')+
         link('manufacturing-technology.html','Infrastructure','Factory, labs & capacity')+
         link('press.html','Press')+
         link('careers.html','Careers')+
@@ -136,6 +134,7 @@
             '<button class="nav-trigger" aria-expanded="false" data-nav="'+it[0]+'">'+it[1]+'<span class="chev"></span></button>'+
             '<div class="mega">'+it[2]+'</div></div>';
         }).join('')+
+        '<div class="nav-item"><a class="nav-trigger" href="about.html" data-nav="about">About</a></div>'+
         '<div class="nav-item"><a class="nav-trigger" href="blog.html" data-nav="blog">Blog</a></div>'+
       '</div>'+
       '<div class="nav-right">'+
