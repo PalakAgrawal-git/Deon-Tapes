@@ -85,7 +85,7 @@
       '</div>'+
       '<div class="mega-col"><h4>More</h4>'+
         link('films.html','Soft PVC films')+
-        link('about.html#our-presence','Plants & presence')+
+        link('about.html','Plants & presence')+
         link('certifications.html','Quality & certifications')+
       '</div>'+
       feat('manufacturing-technology.html','Coated, converted and qualified under one roof')+

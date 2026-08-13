@@ -27,10 +27,6 @@
 .val-card h4::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#CC0000;margin-right:10px;vertical-align:middle}
 .val-card p{font-size:.88rem;line-height:1.7;color:var(--text)}
 
-.infra-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
-.infra-item{padding:24px 20px;border:1px solid var(--line);border-radius:10px;background:var(--white);text-align:center}
-.infra-item .infra-icon{width:44px;height:44px;border-radius:10px;background:#CC000010;color:#CC0000;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
-.infra-item h4{font-size:.9rem;margin:0;color:var(--ink)}
 
 .leaders{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:40px}
 .leader{display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -42,21 +38,12 @@
 .leader p{font-size:.9rem;line-height:1.7;color:var(--text);max-width:480px;text-align:left}
 .leader p+p{margin-top:10px}
 
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
-.team-slot{aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--tint);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--text-mid);font-size:.85rem;flex-direction:column;gap:8px}
-.team-slot svg{width:40px;height:40px;opacity:.3}
 
 @media (max-width:900px){
   .about-intro{grid-template-columns:1fr}
   .mv-grid{grid-template-columns:1fr}
   .val-grid{grid-template-columns:1fr}
   .leaders{grid-template-columns:1fr}
-  .infra-grid{grid-template-columns:1fr 1fr}
-  .team-grid{grid-template-columns:1fr 1fr}
-}
-@media (max-width:640px){
-  .infra-grid{grid-template-columns:1fr}
-  .team-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -146,50 +133,6 @@
   </div>
 </section>
 
-<!-- Infrastructure -->
-<section class="section tint">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Infrastructure</span>
-      <h2>Built for scale and precision.</h2>
-    </div>
-    <div class="infra-grid reveal-stagger">
-      <div class="infra-item">
-        <div class="infra-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M11 7v4l3 3"/></svg></div>
-        <h4>Paper Tube Plant</h4>
-      </div>
-      <div class="infra-item">
-        <div class="infra-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="12" rx="2"/><path d="M6 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></svg></div>
-        <h4>6 Coating Lines</h4>
-      </div>
-      <div class="infra-item">
-        <div class="infra-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-        <h4>Boiler &amp; Glue Plant</h4>
-      </div>
-      <div class="infra-item">
-        <div class="infra-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h4>Solvent Saving System</h4>
-      </div>
-      <div class="infra-item">
-        <div class="infra-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-        <h4>Quality Control Department</h4>
-      </div>
-      <div class="infra-item">
-        <div class="infra-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="20" height="16" rx="2"/><path d="M1 9h20"/></svg></div>
-        <h4>Corrugation Plant</h4>
-      </div>
-      <div class="infra-item">
-        <div class="infra-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-        <h4>Packing</h4>
-      </div>
-      <div class="infra-item">
-        <div class="infra-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M6 9v12"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M18 19l-3-3 3-3"/></svg></div>
-        <h4>Cutting</h4>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Leadership -->
 <section class="section">
   <div class="wrap">
@@ -219,39 +162,6 @@
         <p>With a rich professional background rooted in the steel industry and global import-export trade, Mr. Doshi brings a wealth of industrial insight to the executive team. His deep expertise in navigating complex international markets and managing heavy industrial supply chains has allowed the company to successfully scale operations and effectively manage resource allocation.</p>
         <p>By seamlessly merging his trading acumen with a passion for manufacturing, he continues to guide the company through shifting market dynamics. His visionary leadership and long-term commitment remain vital forces in expanding our market presence and positioning the company for enduring excellence.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Stats -->
-<section class="section tint" id="our-presence">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Our presence</span>
-      <h2>Manufacturing since 2016.</h2>
-    </div>
-    <div class="stats" style="color:var(--ink)">
-      <div class="stat"><div class="v" style="color:var(--ink)"><span data-count="2016">2016</span></div><div class="k" style="color:var(--text-mid)">Making tape since</div></div>
-      <div class="stat"><div class="v" style="color:var(--ink)"><span data-count="100" data-suffix="+">0</span></div><div class="k" style="color:var(--text-mid)">Customers &amp; brands</div></div>
-      <div class="stat"><div class="v" style="color:var(--ink)"><span data-count="89000">0</span></div><div class="k" style="color:var(--text-mid)">m&#178; built-up area</div></div>
-      <div class="stat"><div class="v" style="color:var(--ink)"><span data-count="2">0</span></div><div class="k" style="color:var(--text-mid)">Plants in India</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Team -->
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head reveal" style="text-align:center">
-      <span class="eyebrow">Our people</span>
-      <h2>The team that makes it happen.</h2>
-      <p>From the factory floor to the laboratory, our team of skilled professionals ensures every roll meets the DEON standard.</p>
-    </div>
-    <div class="team-grid reveal-stagger">
-      <div class="team-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Team photo</span></div>
-      <div class="team-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Team photo</span></div>
-      <div class="team-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Team photo</span></div>
-      <div class="team-slot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Team photo</span></div>
     </div>
   </div>
 </section>
