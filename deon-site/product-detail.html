@@ -179,6 +179,14 @@
   document.getElementById('pdQuote').href='contact.html?type=quote&sku='+p[0];
   document.getElementById('pdWhatsapp').href='https://wa.me/917700085050?text='+encodeURIComponent('Hi, I\'d like to enquire about Deon '+p[0]+' — '+p[1]);
 
+  // Datasheet PDF link
+  var dsBtn=document.getElementById('pdDatasheet');
+  var dsPath='assets/datasheets/DEON-'+p[0]+'-Datasheet.pdf';
+  var xhr=new XMLHttpRequest();
+  xhr.open('HEAD',dsPath,true);
+  xhr.onload=function(){if(xhr.status>=200&&xhr.status<400){dsBtn.href=dsPath;dsBtn.setAttribute('download','');dsBtn.style.display='';}};
+  xhr.send();
+
   // Related products (same family, excluding current)
   var related=PRODUCTS.filter(function(x){return x[2]===p[2]&&x[0]!==p[0];}).slice(0,3);
   var relHead=document.querySelector('#pdRelated').parentElement.querySelector('.sec-head');
