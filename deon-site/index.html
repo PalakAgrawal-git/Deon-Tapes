@@ -94,198 +94,156 @@
 </section>
 
 <!-- DEON'S JOURNEY -->
-<section style="padding:48px 0 0;overflow:hidden">
+<section class="jn-section" style="overflow:hidden">
+  <style>
+    .jn-section{position:relative;background:#0a0a0a;padding:80px 0 60px}
+    .jn-header{text-align:center;margin-bottom:48px}
+    .jn-header .eyebrow{color:rgba(255,255,255,.5);font-size:.85rem;text-transform:uppercase;letter-spacing:.15em}
+    .jn-header h2{color:#fff;font-family:var(--font-head);font-size:2.4rem;font-weight:800;margin:10px 0 0}
+    .jn-wrap{display:flex;max-width:var(--content-max,1320px);margin:0 auto;padding:0 var(--edge,2.5rem);gap:0;min-height:520px}
+    /* LEFT: year list + big year */
+    .jn-left{width:45%;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:40px 0}
+    .jn-year-list{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin-bottom:40px}
+    .jn-yr{background:none;border:none;cursor:pointer;font-family:var(--font-head);font-size:1rem;font-weight:600;color:rgba(255,255,255,.3);padding:6px 10px;border-radius:6px;transition:all .3s ease;position:relative}
+    .jn-yr:hover{color:rgba(255,255,255,.6)}
+    .jn-yr.on{color:#CC0000;background:rgba(204,0,0,.1)}
+    /* Big year display */
+    .jn-big-year{position:relative;height:160px;overflow:hidden;width:100%}
+    .jn-big-num{position:absolute;width:100%;text-align:center;font-family:var(--font-head);font-size:9rem;font-weight:900;line-height:1;color:#fff;letter-spacing:-.06em;transition:none}
+    .jn-big-num.slide-up-out{animation:jnBigOut .4s ease forwards}
+    .jn-big-num.slide-up-in{animation:jnBigIn .4s ease forwards}
+    @keyframes jnBigOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-80px)}}
+    @keyframes jnBigIn{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:translateY(0)}}
+    /* Content below big year */
+    .jn-info{text-align:center;margin-top:32px;min-height:100px;position:relative;overflow:hidden}
+    .jn-info-inner{transition:none}
+    .jn-info-inner.slide-up-out{animation:jnInfoOut .35s ease forwards}
+    .jn-info-inner.slide-up-in{animation:jnInfoIn .35s ease .05s both}
+    @keyframes jnInfoOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-30px)}}
+    @keyframes jnInfoIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .jn-info h3{font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#fff;margin:0 0 10px}
+    .jn-info p{font-size:1rem;line-height:1.65;color:rgba(255,255,255,.75);margin:0;max-width:420px;display:inline-block}
+    /* RIGHT: image */
+    .jn-right{width:55%;position:relative;overflow:hidden;border-radius:12px;min-height:520px}
+    .jn-img-wrap{position:absolute;inset:0}
+    .jn-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:none}
+    .jn-img-wrap.slide-up-out{animation:jnImgOut .4s ease forwards}
+    .jn-img-wrap.slide-up-in{animation:jnImgIn .45s ease .05s both}
+    @keyframes jnImgOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-40px) scale(.97)}}
+    @keyframes jnImgIn{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+    /* Nav arrows */
+    .jn-arrows{display:flex;justify-content:center;gap:12px;margin-top:28px}
+    .jn-arrows button{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .jn-arrows button:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.5)}
+    .jn-arrows button:disabled{opacity:.25;pointer-events:none}
+    .jn-arrows .jn-count{font-size:.8rem;color:rgba(255,255,255,.4);display:flex;align-items:center;margin:0 4px}
+    @media(max-width:900px){
+      .jn-section{padding:60px 0 40px}
+      .jn-wrap{flex-direction:column;min-height:auto}
+      .jn-left{width:100%;padding:0 0 24px}
+      .jn-big-year{height:100px}
+      .jn-big-num{font-size:5.5rem}
+      .jn-right{width:100%;min-height:320px;border-radius:10px}
+      .jn-year-list{gap:4px 10px;margin-bottom:24px}
+      .jn-yr{font-size:.85rem;padding:4px 8px}
+      .jn-info h3{font-size:1.2rem}
+      .jn-info p{font-size:.92rem}
+    }
+  </style>
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="jn-header reveal">
       <span class="eyebrow">Our journey</span>
       <h2>DEON's Journey</h2>
     </div>
   </div>
-</section>
-<section class="jn-section" style="overflow:hidden">
-  <style>
-    .jn-section{position:relative;background:#0a0a0a;min-height:680px}
-    .jn-wrap{display:flex;max-width:var(--content-max,1320px);margin:0 auto;padding:0 var(--edge,2.5rem);min-height:680px}
-    .jn-left{width:320px;flex-shrink:0;padding:16px 0 32px 0;display:flex;flex-direction:column;position:relative}
-    .jn-tabs{display:flex;flex-direction:column;align-items:flex-start;gap:0;flex:1;position:relative}
-    .jn-tab{background:none;border:none;cursor:pointer;padding:4px 0;text-align:left;transition:all .4s ease;position:relative;display:block;width:100%}
-    .jn-tab span{display:block;font-family:var(--font-head);font-weight:900;line-height:1;transition:all .4s ease;-webkit-text-stroke:1px rgba(255,255,255,.12);color:transparent;font-size:2.8rem;letter-spacing:-.03em}
-    .jn-tab:hover span{-webkit-text-stroke-color:rgba(255,255,255,.35)}
-    .jn-tab.on span{-webkit-text-stroke:none;color:#fff;font-size:5rem;letter-spacing:-.04em}
-    .jn-right{flex:1;display:flex;flex-direction:column;overflow:hidden}
-    .jn-panels{flex:1;position:relative;overflow:hidden}
-    .jn-panel{display:none;animation:jnSlideIn .4s ease;position:absolute;inset:0}
-    .jn-panel.on{display:block}
-    @keyframes jnSlideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-    .jn-panel .jn-img{position:absolute;inset:0}
-    .jn-panel .jn-img img{width:100%;height:100%;object-fit:cover;display:block}
-    .jn-panel .jn-body{position:absolute;bottom:0;left:0;right:0;padding:100px 48px 44px;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;text-align:left}
-    .jn-panel .jn-accent{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:#CC0000;margin:0 0 8px;letter-spacing:.02em}
-    .jn-panel .jn-title{font-family:var(--font-head);font-size:2.6rem;font-weight:900;color:#fff;margin:0 0 10px;line-height:1.15}
-    .jn-panel .jn-text{font-size:1.15rem;line-height:1.65;color:rgba(255,255,255,.9);margin:0}
-    .jn-nav{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:10px 16px;background:#0a0a0a}
-    .jn-nav button{height:28px;padding:0 12px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.7);font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;white-space:nowrap}
-    .jn-nav button:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.4)}
-    .jn-nav button:disabled{opacity:.3;pointer-events:none}
-    .jn-nav .jn-count{font-size:.75rem;color:rgba(255,255,255,.5);margin-right:auto}
-    .jn-progress{display:none}
-    @media(max-width:900px){
-      .jn-section{min-height:auto}
-      .jn-wrap{flex-direction:column}
-      .jn-left{width:100%;padding:40px 24px 20px}
-      .jn-tabs{flex-direction:row;flex-wrap:wrap;gap:6px 12px}
-      .jn-tab span{font-size:1.2rem!important;-webkit-text-stroke-width:.5px}
-      .jn-tab.on span{font-size:1.8rem!important}
-      .jn-right{min-height:420px}
-      .jn-panel{position:relative;min-height:420px}
-      .jn-panel .jn-img{position:absolute;inset:0}
-      .jn-panel .jn-body{padding:70px 24px 28px}
-      .jn-panel .jn-title{font-size:1.6rem}
-      .jn-panel .jn-accent{font-size:1.1rem}
-      .jn-panel .jn-text{font-size:1rem}
-      .jn-nav{padding:8px 12px}
-    }
-  </style>
   <div class="jn-wrap">
     <div class="jn-left reveal">
-      <div class="jn-tabs" id="jnTabs">
-        <button class="jn-tab on" data-i="0"><span>2016</span></button>
-        <button class="jn-tab" data-i="1"><span>2017</span></button>
-        <button class="jn-tab" data-i="2"><span>2018</span></button>
-        <button class="jn-tab" data-i="3"><span>2019</span></button>
-        <button class="jn-tab" data-i="4"><span>2020</span></button>
-        <button class="jn-tab" data-i="5"><span>2021</span></button>
-        <button class="jn-tab" data-i="6"><span>2022</span></button>
-        <button class="jn-tab" data-i="7"><span>2023</span></button>
-        <button class="jn-tab" data-i="8"><span>2024</span></button>
-        <button class="jn-tab" data-i="9"><span>2025</span></button>
-        <button class="jn-tab" data-i="10"><span>2026</span></button>
-        <button class="jn-tab" data-i="11"><span>2030</span></button>
+      <div class="jn-year-list" id="jnYears"></div>
+      <div class="jn-big-year"><div class="jn-big-num" id="jnBigYear">2016</div></div>
+      <div class="jn-info"><div class="jn-info-inner" id="jnInfo"><h3 id="jnTitle">Plant launched in Silvassa</h3><p id="jnText">First plant launched in Silvassa (20,000 sq. mtr). Capacity: ~16 Lakh sq. mtrs/month. Products: Electrical insulation, wire harness, floor marking tapes.</p></div></div>
+      <div class="jn-arrows">
+        <button id="jnPrev" disabled>&#8592;</button>
+        <span class="jn-count" id="jnCount">01 / 12</span>
+        <button id="jnNext">&#8594;</button>
       </div>
     </div>
     <div class="jn-right reveal">
-      <div class="jn-panels">
-      <div class="jn-panel on" data-i="0">
-        <div class="jn-img"><img src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2016</div>
-          <div class="jn-title">Plant launched in Silvassa</div>
-          <div class="jn-text"><p>First plant launched in Silvassa (20,000 sq. mtr). Capacity: ~16 Lakh sq. mtrs/month. Products: Electrical insulation, wire harness, floor marking tapes.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="1">
-        <div class="jn-img"><img src="assets/img/journey/2017.jpg" alt="DEON PVC calendering production line"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2017</div>
-          <div class="jn-title">BIS certification secured</div>
-          <div class="jn-text"><p>Secured official BIS certification for core tape lines, clearing domestic tender filters and enabling participation in government and institutional procurement.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="2">
-        <div class="jn-img"><img src="assets/img/journey/2018.jpg" alt="DEON in-house adhesive plant"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2018</div>
-          <div class="jn-title">ISO &amp; UL certified</div>
-          <div class="jn-text"><p>Achieved international ISO and UL certifications, establishing compliance credibility for MNC procurement and global export markets.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="3">
-        <div class="jn-img"><img src="assets/img/journey/2019.jpg" alt="DEON in-house paper core plant"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2019</div>
-          <div class="jn-title">Paper core plant commissioned</div>
-          <div class="jn-text"><p>Backward integration: commissioned an in-house paper core plant, enabling precision winding control and eliminating third-party dependency for core supply.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="4">
-        <div class="jn-img"><img src="assets/img/journey/2020.jpg" alt="Masking tape on cutting line"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2020</div>
-          <div class="jn-title">Masking tape launched</div>
-          <div class="jn-text"><p>Expanded product portfolio with masking tape (painter&#8217;s tape), entering the commercial painting and surface protection market.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="5">
-        <div class="jn-img"><img src="assets/img/journey/2021.jpg" alt="DEON in-house corrugation plant"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2021</div>
-          <div class="jn-title">Packaging corrugation plant added</div>
-          <div class="jn-text"><p>Backward integration: added an in-house packaging corrugation plant, enabling self-sufficient packaging and zero delivery delays.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="6">
-        <div class="jn-img"><img src="assets/img/journey/2022.jpg" alt="DEON cutting and packing floor"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2022</div>
-          <div class="jn-title">&#8377;100 Crore revenue milestone</div>
-          <div class="jn-text"><p>Added 4 coating lines; capacity hit 50 Lakh sq. mtrs/month. Revenue crossed &#8377;100 Crore.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="7">
-        <div class="jn-img"><img src="assets/img/journey/2023.jpg" alt="DEON Vadodara BOPP coating line"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2023</div>
-          <div class="jn-title">Vadodara facility launched</div>
-          <div class="jn-text"><p>Launched DEON Technology in Vadodara (+40,000 sq. mtr). Total area: 60,000 sq. mtrs; capacity: 2 Crore sq. mtrs/month.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="8">
-        <div class="jn-img"><img src="assets/img/journey/2024.jpg" alt="DEON PVC calendering lines"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2024</div>
-          <div class="jn-title">PVC calendering lines added</div>
-          <div class="jn-text"><p>Backward integration: added 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="9">
-        <div class="jn-img"><img src="assets/img/journey/2025.jpg" alt="DEON BOPP printing machine"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2025</div>
-          <div class="jn-title">30+ specialty tape types launched</div>
-          <div class="jn-text"><p>Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="10">
-        <div class="jn-img"><img src="assets/img/journey/2026.jpg" alt="DEON Tapes full team photo"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2026</div>
-          <div class="jn-title">&#8377;330 Crore revenue &amp; 500+ employees</div>
-          <div class="jn-text"><p>Active 60,000 sq. mtr infrastructure across two plants. Revenue: &#8377;330 Crore | Net Worth: &#8377;250 Crore. 500+ employees.</p></div>
-        </div>
-      </div>
-      <div class="jn-panel" data-i="11">
-        <div class="jn-img"><img src="assets/img/journey/2030.jpg" alt="DEON warehouse at scale"></div>
-        <div class="jn-body">
-          <div class="jn-accent">2030</div>
-          <div class="jn-title">Next-gen expansion &amp; IPO</div>
-          <div class="jn-text"><p>Next-gen plant expansion planned. IPO public stock listing. Target revenue: &#8377;1,000 Crore.</p></div>
-        </div>
-      </div>
-      </div>
-      <div class="jn-nav">
-        <span class="jn-count" id="jnCount">01 / 12</span>
-        <button id="jnPrev" disabled>&larr; Previous</button>
-        <button id="jnNext">Next &rarr;</button>
-      </div>
+      <div class="jn-img-wrap" id="jnImg"><img src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view"></div>
     </div>
   </div>
   <script>
   (function(){
-    var tabs=document.querySelectorAll('.jn-tab');
-    var panels=document.querySelectorAll('.jn-panel');
+    var DATA=[
+      {y:'2016',t:'Plant launched in Silvassa',d:'First plant launched in Silvassa (20,000 sq. mtr). Capacity: ~16 Lakh sq. mtrs/month. Products: Electrical insulation, wire harness, floor marking tapes.',img:'2016.jpg',alt:'DEON Silvassa plant aerial view'},
+      {y:'2017',t:'BIS certification secured',d:'Secured official BIS certification for core tape lines, clearing domestic tender filters and enabling participation in government and institutional procurement.',img:'2017.jpg',alt:'DEON PVC calendering production line'},
+      {y:'2018',t:'ISO & UL certified',d:'Achieved international ISO and UL certifications, establishing compliance credibility for MNC procurement and global export markets.',img:'2018.jpg',alt:'DEON in-house adhesive plant'},
+      {y:'2019',t:'Paper core plant commissioned',d:'Backward integration: commissioned an in-house paper core plant, enabling precision winding control and eliminating third-party dependency for core supply.',img:'2019.jpg',alt:'DEON in-house paper core plant'},
+      {y:'2020',t:'Masking tape launched',d:'Expanded product portfolio with masking tape (painter’s tape), entering the commercial painting and surface protection market.',img:'2020.jpg',alt:'Masking tape on cutting line'},
+      {y:'2021',t:'Packaging corrugation plant added',d:'Backward integration: added an in-house packaging corrugation plant, enabling self-sufficient packaging and zero delivery delays.',img:'2021.jpg',alt:'DEON in-house corrugation plant'},
+      {y:'2022',t:'₹100 Crore revenue milestone',d:'Added 4 coating lines; capacity hit 50 Lakh sq. mtrs/month. Revenue crossed ₹100 Crore.',img:'2022.jpg',alt:'DEON cutting and packing floor'},
+      {y:'2023',t:'Vadodara facility launched',d:'Launched DEON Technology in Vadodara (+40,000 sq. mtr). Total area: 60,000 sq. mtrs; capacity: 2 Crore sq. mtrs/month.',img:'2023.jpg',alt:'DEON Vadodara BOPP coating line'},
+      {y:'2024',t:'PVC calendering lines added',d:'Backward integration: added 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.',img:'2024.jpg',alt:'DEON PVC calendering lines'},
+      {y:'2025',t:'30+ specialty tape types launched',d:'Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.',img:'2025.jpg',alt:'DEON BOPP printing machine'},
+      {y:'2026',t:'₹330 Crore revenue & 500+ employees',d:'Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹330 Crore | Net Worth: ₹250 Crore. 500+ employees.',img:'2026.jpg',alt:'DEON Tapes full team photo'},
+      {y:'2030',t:'Next-gen expansion & IPO',d:'Next-gen plant expansion planned. IPO public stock listing. Target revenue: ₹1,000 Crore.',img:'2030.jpg',alt:'DEON warehouse at scale'}
+    ];
+    var total=DATA.length,cur=0,animating=false;
+    var yearList=document.getElementById('jnYears');
+    var bigYear=document.getElementById('jnBigYear');
+    var infoWrap=document.getElementById('jnInfo');
+    var titleEl=document.getElementById('jnTitle');
+    var textEl=document.getElementById('jnText');
+    var imgWrap=document.getElementById('jnImg');
     var prev=document.getElementById('jnPrev'),next=document.getElementById('jnNext');
     var counter=document.getElementById('jnCount');
-    var cur=0,total=tabs.length;
+
+    DATA.forEach(function(d,i){
+      var btn=document.createElement('button');
+      btn.className='jn-yr'+(i===0?' on':'');
+      btn.setAttribute('data-i',i);
+      btn.textContent=d.y;
+      btn.addEventListener('click',function(){go(i);});
+      yearList.appendChild(btn);
+    });
+
     function go(i){
-      if(i<0||i>=total)return;
-      cur=i;
-      tabs.forEach(function(t){t.classList.toggle('on',+t.getAttribute('data-i')===i);});
-      panels.forEach(function(p){p.classList.toggle('on',+p.getAttribute('data-i')===i);});
+      if(i<0||i>=total||i===cur||animating)return;
+      animating=true;
+      var d=DATA[i];
+      // Update year buttons
+      yearList.querySelectorAll('.jn-yr').forEach(function(b){b.classList.toggle('on',+b.getAttribute('data-i')===i);});
       prev.disabled=i<=0;next.disabled=i>=total-1;
       counter.textContent=String(i+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
-      var active=tabs[i];if(active)active.scrollIntoView({block:'nearest',behavior:'smooth'});
+
+      // Animate big year out then in
+      bigYear.classList.add('slide-up-out');
+      infoWrap.classList.add('slide-up-out');
+      imgWrap.classList.add('slide-up-out');
+
+      setTimeout(function(){
+        bigYear.classList.remove('slide-up-out');
+        bigYear.textContent=d.y;
+        bigYear.classList.add('slide-up-in');
+
+        titleEl.textContent=d.t;
+        textEl.textContent=d.d;
+        infoWrap.classList.remove('slide-up-out');
+        infoWrap.classList.add('slide-up-in');
+
+        imgWrap.innerHTML='<img src="assets/img/journey/'+d.img+'" alt="'+d.alt+'">';
+        imgWrap.classList.remove('slide-up-out');
+        imgWrap.classList.add('slide-up-in');
+
+        cur=i;
+      },350);
+
+      setTimeout(function(){
+        bigYear.classList.remove('slide-up-in');
+        infoWrap.classList.remove('slide-up-in');
+        imgWrap.classList.remove('slide-up-in');
+        animating=false;
+      },800);
     }
-    tabs.forEach(function(t){t.addEventListener('click',function(){go(+this.getAttribute('data-i'));});});
     prev.addEventListener('click',function(){go(cur-1);});
     next.addEventListener('click',function(){go(cur+1);});
   })();
