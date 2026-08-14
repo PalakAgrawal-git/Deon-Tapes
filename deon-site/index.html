@@ -143,7 +143,20 @@
     </div>
   </div>
   <div class="jn-wrap">
-    <div class="jn-years" id="jnYears"></div>
+    <div class="jn-years" id="jnYears">
+      <button class="jn-yr on" data-i="0">2016</button>
+      <button class="jn-yr" data-i="1">2017</button>
+      <button class="jn-yr" data-i="2">2018</button>
+      <button class="jn-yr" data-i="3">2019</button>
+      <button class="jn-yr" data-i="4">2020</button>
+      <button class="jn-yr" data-i="5">2021</button>
+      <button class="jn-yr" data-i="6">2022</button>
+      <button class="jn-yr" data-i="7">2023</button>
+      <button class="jn-yr" data-i="8">2024</button>
+      <button class="jn-yr" data-i="9">2025</button>
+      <button class="jn-yr" data-i="10">2026</button>
+      <button class="jn-yr" data-i="11">2030</button>
+    </div>
     <div class="jn-right">
       <div class="jn-img-wrap" id="jnImg"><img src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view"></div>
       <div class="jn-overlay" id="jnOverlay">
@@ -177,13 +190,8 @@
     var titleEl=document.getElementById(‘jnTitle’);
     var textEl=document.getElementById(‘jnText’);
 
-    DATA.forEach(function(d,i){
-      var btn=document.createElement(‘button’);
-      btn.className=’jn-yr’+(i===0?’ on’:’’);
-      btn.setAttribute(‘data-i’,i);
-      btn.textContent=d.y;
-      btn.addEventListener(‘click’,function(){go(i);});
-      yearList.appendChild(btn);
+    yearList.querySelectorAll(‘.jn-yr’).forEach(function(btn){
+      btn.addEventListener(‘click’,function(){go(+this.getAttribute(‘data-i’));});
     });
 
     function go(i){
