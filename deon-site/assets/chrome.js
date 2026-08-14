@@ -98,6 +98,12 @@
         link('tools.html','Tools & Calculators','Roll, weight, consumption')+
         link('certifications.html','Certifications','ISO, UL, BIS')+
       '</div>'+
+      '<div class="mega-col"><h4>Company</h4>'+
+        link('manufacturing-technology.html','Infrastructure','Factory, labs & capacity')+
+        link('press.html','Press')+
+        link('careers.html','Careers')+
+        link('partners.html','Partner programs')+
+      '</div>'+
       feat('knowledge-center.html','Visit the Knowledge Center')+
     '</div>';
 
