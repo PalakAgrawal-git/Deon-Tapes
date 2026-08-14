@@ -102,28 +102,25 @@
   <div id="jnWrap" style="display:flex;max-width:1320px;margin:0 auto;padding:0 2.5rem;gap:0">
     <!-- YEAR LIST -->
     <style>
-      #jnScroll{width:160px;flex-shrink:0;height:550px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;display:flex;flex-direction:column;align-items:center}
+      #jnScroll{width:160px;flex-shrink:0;height:550px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;padding:230px 0}
       #jnScroll::-webkit-scrollbar{display:none}
-      .jnY{background:none;border:none;cursor:pointer;padding:8px 20px;text-align:center;font-family:var(--font-head);font-weight:700;font-size:1.1rem;color:rgba(255,255,255,.3);transition:all .4s;display:block;width:100%}
-      .jnY:hover{color:rgba(255,255,255,.6)}
-      .jnY.jnActive{font-weight:900;font-size:2.8rem;color:#CC0000}
-      .jnSpacer{height:220px;flex-shrink:0}
+      #jnScroll button{background:none;border:none;cursor:pointer;padding:10px 20px;text-align:center;font-family:var(--font-head);font-weight:700;font-size:1.1rem;color:rgba(255,255,255,.3);transition:all .4s;display:block;width:100%;outline:none}
+      #jnScroll button:hover{color:rgba(255,255,255,.6)}
+      #jnScroll button.active{font-weight:900;font-size:2.8rem;color:#CC0000}
     </style>
     <div id="jnScroll">
-      <div class="jnSpacer"></div>
-      <button class="jnY jnActive" id="jnYr0" onclick="jnGo(0)">2016</button>
-      <button class="jnY" id="jnYr1" onclick="jnGo(1)">2017</button>
-      <button class="jnY" id="jnYr2" onclick="jnGo(2)">2018</button>
-      <button class="jnY" id="jnYr3" onclick="jnGo(3)">2019</button>
-      <button class="jnY" id="jnYr4" onclick="jnGo(4)">2020</button>
-      <button class="jnY" id="jnYr5" onclick="jnGo(5)">2021</button>
-      <button class="jnY" id="jnYr6" onclick="jnGo(6)">2022</button>
-      <button class="jnY" id="jnYr7" onclick="jnGo(7)">2023</button>
-      <button class="jnY" id="jnYr8" onclick="jnGo(8)">2024</button>
-      <button class="jnY" id="jnYr9" onclick="jnGo(9)">2025</button>
-      <button class="jnY" id="jnYr10" onclick="jnGo(10)">2026</button>
-      <button class="jnY" id="jnYr11" onclick="jnGo(11)">2030</button>
-      <div class="jnSpacer"></div>
+      <button data-j="0" class="active">2016</button>
+      <button data-j="1">2017</button>
+      <button data-j="2">2018</button>
+      <button data-j="3">2019</button>
+      <button data-j="4">2020</button>
+      <button data-j="5">2021</button>
+      <button data-j="6">2022</button>
+      <button data-j="7">2023</button>
+      <button data-j="8">2024</button>
+      <button data-j="9">2025</button>
+      <button data-j="10">2026</button>
+      <button data-j="11">2030</button>
     </div>
     <!-- IMAGE -->
     <div style="flex:1;position:relative;border-radius:14px;overflow:hidden;min-height:550px">
@@ -137,50 +134,67 @@
   </div>
   <style>@media(max-width:900px){#jnWrap{flex-direction:column!important;gap:20px!important}#jnScroll{width:100%!important;height:auto!important;overflow-x:auto!important;overflow-y:hidden!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important}.jnY{white-space:nowrap}.jnActive{font-size:1.6rem!important}#jnScroll>div:first-child,#jnScroll>div:last-child{display:none}}</style>
   <script>
-  var jnDATA=[
-    {y:’2016’,t:’Plant launched in Silvassa’,d:’First plant launched in Silvassa (20,000 sq. mtr). Capacity: ~16 Lakh sq. mtrs/month. Products: Electrical insulation, wire harness, floor marking tapes.’,img:’2016.jpg’},
-    {y:’2017’,t:’BIS certification secured’,d:’Secured official BIS certification for core tape lines, clearing domestic tender filters and enabling participation in government and institutional procurement.’,img:’2017.jpg’},
-    {y:’2018’,t:’ISO & UL certified’,d:’Achieved international ISO and UL certifications, establishing compliance credibility for MNC procurement and global export markets.’,img:’2018.jpg’},
-    {y:’2019’,t:’Paper core plant commissioned’,d:’Backward integration: commissioned an in-house paper core plant, enabling precision winding control and eliminating third-party dependency for core supply.’,img:’2019.jpg’},
-    {y:’2020’,t:’Masking tape launched’,d:"Expanded product portfolio with masking tape (painter’s tape), entering the commercial painting and surface protection market.",img:’2020.jpg’},
-    {y:’2021’,t:’Packaging corrugation plant added’,d:’Backward integration: added an in-house packaging corrugation plant, enabling self-sufficient packaging and zero delivery delays.’,img:’2021.jpg’},
-    {y:’2022’,t:’₹100 Crore revenue milestone’,d:’Added 4 coating lines; capacity hit 50 Lakh sq. mtrs/month. Revenue crossed ₹100 Crore.’,img:’2022.jpg’},
-    {y:’2023’,t:’Vadodara facility launched’,d:’Launched DEON Technology in Vadodara (+40,000 sq. mtr). Total area: 60,000 sq. mtrs; capacity: 2 Crore sq. mtrs/month.’,img:’2023.jpg’},
-    {y:’2024’,t:’PVC calendering lines added’,d:’Backward integration: added 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.’,img:’2024.jpg’},
-    {y:’2025’,t:’30+ specialty tape types launched’,d:’Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.’,img:’2025.jpg’},
-    {y:’2026’,t:’₹330 Crore revenue & 500+ employees’,d:’Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹330 Crore | Net Worth: ₹250 Crore. 500+ employees.’,img:’2026.jpg’},
-    {y:’2030’,t:’Next-gen expansion & IPO’,d:’Next-gen plant expansion planned. IPO public stock listing. Target revenue: ₹1,000 Crore.’,img:’2030.jpg’}
-  ];
-  var jnCur=0,jnBusy=false;
-  function jnGo(i){
-    if(i===jnCur||jnBusy)return;
-    jnBusy=true;
-    var d=jnDATA[i];
-    for(var k=0;k<12;k++){
-      var el=document.getElementById(‘jnYr’+k);
-      el.className=k===i?’jnY jnActive’:’jnY’;
-    }
-    // Scroll year to center
-    var sc=document.getElementById(‘jnScroll’),yr=document.getElementById(‘jnYr’+i);
-    sc.scrollTo({top:yr.offsetTop-sc.clientHeight/2+yr.offsetHeight/2,behavior:’smooth’});
-    // Fade image
+  (function(){
+    var DATA=[
+      {t:’Plant launched in Silvassa’,d:’First plant launched in Silvassa (20,000 sq. mtr). Capacity: ~16 Lakh sq. mtrs/month. Products: Electrical insulation, wire harness, floor marking tapes.’,img:’2016.jpg’},
+      {t:’BIS certification secured’,d:’Secured official BIS certification for core tape lines, clearing domestic tender filters and enabling participation in government and institutional procurement.’,img:’2017.jpg’},
+      {t:’ISO & UL certified’,d:’Achieved international ISO and UL certifications, establishing compliance credibility for MNC procurement and global export markets.’,img:’2018.jpg’},
+      {t:’Paper core plant commissioned’,d:’Backward integration: commissioned an in-house paper core plant, enabling precision winding control and eliminating third-party dependency for core supply.’,img:’2019.jpg’},
+      {t:’Masking tape launched’,d:"Expanded product portfolio with masking tape (painter’s tape), entering the commercial painting and surface protection market.",img:’2020.jpg’},
+      {t:’Packaging corrugation plant added’,d:’Backward integration: added an in-house packaging corrugation plant, enabling self-sufficient packaging and zero delivery delays.’,img:’2021.jpg’},
+      {t:’₹100 Crore revenue milestone’,d:’Added 4 coating lines; capacity hit 50 Lakh sq. mtrs/month. Revenue crossed ₹100 Crore.’,img:’2022.jpg’},
+      {t:’Vadodara facility launched’,d:’Launched DEON Technology in Vadodara (+40,000 sq. mtr). Total area: 60,000 sq. mtrs; capacity: 2 Crore sq. mtrs/month.’,img:’2023.jpg’},
+      {t:’PVC calendering lines added’,d:’Backward integration: added 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.’,img:’2024.jpg’},
+      {t:’30+ specialty tape types launched’,d:’Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.’,img:’2025.jpg’},
+      {t:’₹330 Crore revenue & 500+ employees’,d:’Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹330 Crore | Net Worth: ₹250 Crore. 500+ employees.’,img:’2026.jpg’},
+      {t:’Next-gen expansion & IPO’,d:’Next-gen plant expansion planned. IPO public stock listing. Target revenue: ₹1,000 Crore.’,img:’2030.jpg’}
+    ];
+    var sc=document.getElementById(‘jnScroll’);
+    var btns=sc.querySelectorAll(‘button’);
     var img=document.getElementById(‘jnImage’);
     var cap=document.getElementById(‘jnCaption’);
-    img.style.opacity=’0’;cap.style.opacity=’0’;
-    setTimeout(function(){
-      img.src=’assets/img/journey/’+d.img;
-      document.getElementById(‘jnCY’).textContent=d.y;
-      document.getElementById(‘jnCT’).textContent=d.t;
-      document.getElementById(‘jnCD’).textContent=d.d;
-      img.style.opacity=’1’;cap.style.opacity=’1’;
-      jnCur=i;jnBusy=false;
-    },350);
-  }
-  // Initial scroll to center first year
-  window.addEventListener(‘load’,function(){
-    var sc=document.getElementById(‘jnScroll’),yr=document.getElementById(‘jnYr0’);
-    if(sc&&yr)sc.scrollTop=yr.offsetTop-sc.clientHeight/2+yr.offsetHeight/2;
-  });
+    var cy=document.getElementById(‘jnCY’);
+    var ct=document.getElementById(‘jnCT’);
+    var cd=document.getElementById(‘jnCD’);
+    var cur=0;
+
+    function go(i){
+      if(i===cur)return;
+      var d=DATA[i];
+      // Update active button
+      btns.forEach(function(b){b.classList.remove(‘active’);});
+      btns[i].classList.add(‘active’);
+      // Scroll clicked year to center of container
+      var btnTop=btns[i].offsetTop;
+      var btnH=btns[i].offsetHeight;
+      var scH=sc.clientHeight;
+      sc.scrollTo({top:btnTop-scH/2+btnH/2,behavior:’smooth’});
+      // Fade out image+caption, swap, fade in
+      img.style.opacity=’0’;
+      cap.style.opacity=’0’;
+      setTimeout(function(){
+        img.src=’assets/img/journey/’+d.img;
+        cy.textContent=btns[i].textContent;
+        ct.textContent=d.t;
+        cd.textContent=d.d;
+        img.style.opacity=’1’;
+        cap.style.opacity=’1’;
+      },350);
+      cur=i;
+    }
+
+    // Attach click to each button
+    btns.forEach(function(btn,idx){
+      btn.addEventListener(‘click’,function(e){
+        e.preventDefault();
+        go(idx);
+      });
+    });
+
+    // Center first year on load
+    var first=btns[0];
+    sc.scrollTop=first.offsetTop-sc.clientHeight/2+first.offsetHeight/2;
+  })();
   </script>
 </section>
 
