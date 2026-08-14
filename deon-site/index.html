@@ -102,25 +102,27 @@
   <div id="jnWrap" style="display:flex;max-width:1320px;margin:0 auto;padding:0 2.5rem;gap:0">
     <!-- YEAR LIST -->
     <style>
-      #jnScroll{width:160px;flex-shrink:0;height:550px;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;padding:230px 0}
-      #jnScroll::-webkit-scrollbar{display:none}
-      #jnScroll button{background:none;border:none;cursor:pointer;padding:10px 20px;text-align:center;font-family:var(--font-head);font-weight:700;font-size:1.1rem;color:rgba(255,255,255,.3);transition:all .4s;display:block;width:100%;outline:none}
-      #jnScroll button:hover{color:rgba(255,255,255,.6)}
-      #jnScroll button.active{font-weight:900;font-size:2.8rem;color:#CC0000}
+      .jn-clip{width:160px;flex-shrink:0;height:550px;overflow:hidden;position:relative}
+      .jn-track{position:absolute;left:0;right:0;transition:transform .5s ease}
+      .jn-track button{background:none;border:none;cursor:pointer;padding:10px 20px;text-align:center;font-family:var(--font-head);font-weight:700;font-size:1.1rem;color:rgba(255,255,255,.3);transition:color .4s,font-size .4s;display:block;width:100%;outline:none}
+      .jn-track button:hover{color:rgba(255,255,255,.6)}
+      .jn-track button.active{font-weight:900;font-size:2.8rem;color:#CC0000}
     </style>
-    <div id="jnScroll">
-      <button data-j="0" class="active">2016</button>
-      <button data-j="1">2017</button>
-      <button data-j="2">2018</button>
-      <button data-j="3">2019</button>
-      <button data-j="4">2020</button>
-      <button data-j="5">2021</button>
-      <button data-j="6">2022</button>
-      <button data-j="7">2023</button>
-      <button data-j="8">2024</button>
-      <button data-j="9">2025</button>
-      <button data-j="10">2026</button>
-      <button data-j="11">2030</button>
+    <div class="jn-clip" id="jnClip">
+      <div class="jn-track" id="jnTrack">
+        <button>2016</button>
+        <button>2017</button>
+        <button>2018</button>
+        <button>2019</button>
+        <button>2020</button>
+        <button>2021</button>
+        <button>2022</button>
+        <button>2023</button>
+        <button>2024</button>
+        <button>2025</button>
+        <button>2026</button>
+        <button>2030</button>
+      </div>
     </div>
     <!-- IMAGE -->
     <div style="flex:1;position:relative;border-radius:14px;overflow:hidden;min-height:550px">
@@ -132,7 +134,7 @@
       </div>
     </div>
   </div>
-  <style>@media(max-width:900px){#jnWrap{flex-direction:column!important;gap:20px!important}#jnScroll{width:100%!important;height:auto!important;overflow-x:auto!important;overflow-y:hidden!important;display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important}.jnY{white-space:nowrap}.jnActive{font-size:1.6rem!important}#jnScroll>div:first-child,#jnScroll>div:last-child{display:none}}</style>
+  <style>@media(max-width:900px){#jnWrap{flex-direction:column!important;gap:20px!important}.jn-clip{width:100%!important;height:60px!important}.jn-track{flex-direction:row!important;position:relative!important;transform:none!important}.jn-track button{font-size:.9rem!important;padding:6px 10px!important;white-space:nowrap}.jn-track button.active{font-size:1.4rem!important}}</style>
   <script>
   (function(){
     var DATA=[
@@ -149,8 +151,9 @@
       {t:’₹330 Crore revenue & 500+ employees’,d:’Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹330 Crore | Net Worth: ₹250 Crore. 500+ employees.’,img:’2026.jpg’},
       {t:’Next-gen expansion & IPO’,d:’Next-gen plant expansion planned. IPO public stock listing. Target revenue: ₹1,000 Crore.’,img:’2030.jpg’}
     ];
-    var sc=document.getElementById(‘jnScroll’);
-    var btns=sc.querySelectorAll(‘button’);
+    var clip=document.getElementById(‘jnClip’);
+    var track=document.getElementById(‘jnTrack’);
+    var btns=track.querySelectorAll(‘button’);
     var img=document.getElementById(‘jnImage’);
     var cap=document.getElementById(‘jnCaption’);
     var cy=document.getElementById(‘jnCY’);
@@ -158,18 +161,23 @@
     var cd=document.getElementById(‘jnCD’);
     var cur=0;
 
+    function center(i){
+      var clipH=clip.offsetHeight;
+      var btn=btns[i];
+      var btnMid=btn.offsetTop+btn.offsetHeight/2;
+      var shift=clipH/2-btnMid;
+      track.style.transform=’translateY(‘+shift+’px)’;
+    }
+
     function go(i){
       if(i===cur)return;
       var d=DATA[i];
-      // Update active button
-      btns.forEach(function(b){b.classList.remove(‘active’);});
+      btns[cur].classList.remove(‘active’);
       btns[i].classList.add(‘active’);
-      // Scroll clicked year to center of container
-      var btnTop=btns[i].offsetTop;
-      var btnH=btns[i].offsetHeight;
-      var scH=sc.clientHeight;
-      sc.scrollTo({top:btnTop-scH/2+btnH/2,behavior:’smooth’});
-      // Fade out image+caption, swap, fade in
+      cur=i;
+      // Slide track so clicked year is centered
+      center(i);
+      // Fade image + caption
       img.style.opacity=’0’;
       cap.style.opacity=’0’;
       setTimeout(function(){
@@ -180,20 +188,15 @@
         img.style.opacity=’1’;
         cap.style.opacity=’1’;
       },350);
-      cur=i;
     }
 
-    // Attach click to each button
     btns.forEach(function(btn,idx){
-      btn.addEventListener(‘click’,function(e){
-        e.preventDefault();
-        go(idx);
-      });
+      btn.addEventListener(‘click’,function(){go(idx);});
     });
 
-    // Center first year on load
-    var first=btns[0];
-    sc.scrollTop=first.offsetTop-sc.clientHeight/2+first.offsetHeight/2;
+    // Set first year active and centered
+    btns[0].classList.add(‘active’);
+    center(0);
   })();
   </script>
 </section>
