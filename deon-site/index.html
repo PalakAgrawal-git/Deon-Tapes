@@ -100,54 +100,51 @@
     .jn-header{text-align:center;margin-bottom:48px}
     .jn-header .eyebrow{color:rgba(255,255,255,.5);font-size:.85rem;text-transform:uppercase;letter-spacing:.15em}
     .jn-header h2{color:#fff;font-family:var(--font-head);font-size:2.4rem;font-weight:800;margin:10px 0 0}
-    .jn-wrap{display:flex;max-width:var(--content-max,1320px);margin:0 auto;padding:0 var(--edge,2.5rem);gap:0;min-height:520px}
-    /* LEFT: year list + big year */
-    .jn-left{width:45%;flex-shrink:0;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;padding:40px 0}
-    .jn-year-list{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;margin-bottom:40px}
-    .jn-yr{background:none;border:none;cursor:pointer;font-family:var(--font-head);font-size:1rem;font-weight:600;color:rgba(255,255,255,.3);padding:6px 10px;border-radius:6px;transition:all .3s ease;position:relative}
-    .jn-yr:hover{color:rgba(255,255,255,.6)}
-    .jn-yr.on{color:#CC0000;background:rgba(204,0,0,.1)}
-    /* Big year display */
-    .jn-big-year{position:relative;height:160px;overflow:hidden;width:100%}
-    .jn-big-num{position:absolute;width:100%;text-align:center;font-family:var(--font-head);font-size:9rem;font-weight:900;line-height:1;color:#fff;letter-spacing:-.06em;transition:none}
-    .jn-big-num.slide-up-out{animation:jnBigOut .4s ease forwards}
-    .jn-big-num.slide-up-in{animation:jnBigIn .4s ease forwards}
-    @keyframes jnBigOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-80px)}}
-    @keyframes jnBigIn{from{opacity:0;transform:translateY(80px)}to{opacity:1;transform:translateY(0)}}
-    /* Content below big year */
-    .jn-info{text-align:center;margin-top:32px;min-height:100px;position:relative;overflow:hidden}
-    .jn-info-inner{transition:none}
-    .jn-info-inner.slide-up-out{animation:jnInfoOut .35s ease forwards}
-    .jn-info-inner.slide-up-in{animation:jnInfoIn .35s ease .05s both}
-    @keyframes jnInfoOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-30px)}}
-    @keyframes jnInfoIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .jn-info h3{font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:#fff;margin:0 0 10px}
-    .jn-info p{font-size:1rem;line-height:1.65;color:rgba(255,255,255,.75);margin:0;max-width:420px;display:inline-block}
+    .jn-wrap{display:flex;max-width:var(--content-max,1320px);margin:0 auto;padding:0 var(--edge,2.5rem);gap:0;min-height:560px}
+    /* LEFT: vertical year list */
+    .jn-left{display:flex;gap:0;width:50%;position:relative}
+    .jn-year-col{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:20px 0;flex-shrink:0;width:80px;overflow-y:auto;max-height:560px}
+    .jn-yr{background:none;border:none;cursor:pointer;font-family:var(--font-head);font-size:1.05rem;font-weight:700;color:rgba(255,255,255,.25);padding:8px 12px;text-align:center;transition:all .3s ease;position:relative;border-radius:0}
+    .jn-yr:hover{color:rgba(255,255,255,.5)}
+    .jn-yr.on{color:#fff;font-size:1.15rem}
+    .jn-yr.on::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:60%;background:#CC0000;border-radius:2px}
+    /* Content area: big year + title + desc */
+    .jn-content{flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 40px 40px 32px;position:relative;overflow:hidden}
+    .jn-content-inner{transition:none}
+    .jn-content-inner.slide-up-out{animation:jnContentOut .35s ease forwards}
+    .jn-content-inner.slide-up-in{animation:jnContentIn .4s ease forwards}
+    @keyframes jnContentOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-50px)}}
+    @keyframes jnContentIn{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
+    .jn-big-num{font-family:var(--font-head);font-size:7rem;font-weight:900;line-height:1;color:#fff;letter-spacing:-.05em;margin:0 0 16px}
+    .jn-content h3{font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:#fff;margin:0 0 14px;line-height:1.2}
+    .jn-content p{font-size:1.05rem;line-height:1.7;color:rgba(255,255,255,.7);margin:0}
+    /* Nav arrows */
+    .jn-arrows{display:flex;gap:10px;margin-top:32px}
+    .jn-arrows button{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);background:transparent;color:rgba(255,255,255,.6);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .jn-arrows button:hover{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.4)}
+    .jn-arrows button:disabled{opacity:.2;pointer-events:none}
+    .jn-arrows .jn-count{font-size:.8rem;color:rgba(255,255,255,.35);display:flex;align-items:center;margin:0 2px}
     /* RIGHT: image */
-    .jn-right{width:55%;position:relative;overflow:hidden;border-radius:12px;min-height:520px}
+    .jn-right{width:50%;position:relative;overflow:hidden;border-radius:12px;min-height:560px}
     .jn-img-wrap{position:absolute;inset:0}
-    .jn-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:none}
+    .jn-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
     .jn-img-wrap.slide-up-out{animation:jnImgOut .4s ease forwards}
     .jn-img-wrap.slide-up-in{animation:jnImgIn .45s ease .05s both}
-    @keyframes jnImgOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-40px) scale(.97)}}
-    @keyframes jnImgIn{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-    /* Nav arrows */
-    .jn-arrows{display:flex;justify-content:center;gap:12px;margin-top:28px}
-    .jn-arrows button{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:transparent;color:rgba(255,255,255,.7);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-    .jn-arrows button:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.5)}
-    .jn-arrows button:disabled{opacity:.25;pointer-events:none}
-    .jn-arrows .jn-count{font-size:.8rem;color:rgba(255,255,255,.4);display:flex;align-items:center;margin:0 4px}
+    @keyframes jnImgOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-50px)}}
+    @keyframes jnImgIn{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:900px){
-      .jn-section{padding:60px 0 40px}
+      .jn-section{padding:50px 0 36px}
       .jn-wrap{flex-direction:column;min-height:auto}
-      .jn-left{width:100%;padding:0 0 24px}
-      .jn-big-year{height:100px}
-      .jn-big-num{font-size:5.5rem}
-      .jn-right{width:100%;min-height:320px;border-radius:10px}
-      .jn-year-list{gap:4px 10px;margin-bottom:24px}
-      .jn-yr{font-size:.85rem;padding:4px 8px}
-      .jn-info h3{font-size:1.2rem}
-      .jn-info p{font-size:.92rem}
+      .jn-left{width:100%;flex-direction:column}
+      .jn-year-col{flex-direction:row;flex-wrap:wrap;width:100%;max-height:none;gap:0 4px;padding:0 0 16px;justify-content:flex-start;overflow-x:auto}
+      .jn-yr{padding:6px 10px;font-size:.9rem}
+      .jn-yr.on::before{display:none}
+      .jn-yr.on{border-bottom:2px solid #CC0000}
+      .jn-content{padding:0 0 24px}
+      .jn-big-num{font-size:4rem}
+      .jn-content h3{font-size:1.2rem}
+      .jn-content p{font-size:.92rem}
+      .jn-right{width:100%;min-height:300px;border-radius:10px}
     }
   </style>
   <div class="wrap">
@@ -158,13 +155,18 @@
   </div>
   <div class="jn-wrap">
     <div class="jn-left reveal">
-      <div class="jn-year-list" id="jnYears"></div>
-      <div class="jn-big-year"><div class="jn-big-num" id="jnBigYear">2016</div></div>
-      <div class="jn-info"><div class="jn-info-inner" id="jnInfo"><h3 id="jnTitle">Plant launched in Silvassa</h3><p id="jnText">First plant launched in Silvassa (20,000 sq. mtr). Capacity: ~16 Lakh sq. mtrs/month. Products: Electrical insulation, wire harness, floor marking tapes.</p></div></div>
-      <div class="jn-arrows">
-        <button id="jnPrev" disabled>&#8592;</button>
-        <span class="jn-count" id="jnCount">01 / 12</span>
-        <button id="jnNext">&#8594;</button>
+      <div class="jn-year-col" id="jnYears"></div>
+      <div class="jn-content">
+        <div class="jn-content-inner" id="jnContent">
+          <div class="jn-big-num" id="jnBigYear">2016</div>
+          <h3 id="jnTitle">Plant launched in Silvassa</h3>
+          <p id="jnText">First plant launched in Silvassa (20,000 sq. mtr). Capacity: ~16 Lakh sq. mtrs/month. Products: Electrical insulation, wire harness, floor marking tapes.</p>
+        </div>
+        <div class="jn-arrows">
+          <button id="jnPrev" disabled>&#8592;</button>
+          <span class="jn-count" id="jnCount">01 / 12</span>
+          <button id="jnNext">&#8594;</button>
+        </div>
       </div>
     </div>
     <div class="jn-right reveal">
@@ -190,7 +192,7 @@
     var total=DATA.length,cur=0,animating=false;
     var yearList=document.getElementById('jnYears');
     var bigYear=document.getElementById('jnBigYear');
-    var infoWrap=document.getElementById('jnInfo');
+    var contentWrap=document.getElementById('jnContent');
     var titleEl=document.getElementById('jnTitle');
     var textEl=document.getElementById('jnText');
     var imgWrap=document.getElementById('jnImg');
@@ -215,20 +217,15 @@
       prev.disabled=i<=0;next.disabled=i>=total-1;
       counter.textContent=String(i+1).padStart(2,'0')+' / '+String(total).padStart(2,'0');
 
-      // Animate big year out then in
-      bigYear.classList.add('slide-up-out');
-      infoWrap.classList.add('slide-up-out');
+      contentWrap.classList.add('slide-up-out');
       imgWrap.classList.add('slide-up-out');
 
       setTimeout(function(){
-        bigYear.classList.remove('slide-up-out');
         bigYear.textContent=d.y;
-        bigYear.classList.add('slide-up-in');
-
         titleEl.textContent=d.t;
         textEl.textContent=d.d;
-        infoWrap.classList.remove('slide-up-out');
-        infoWrap.classList.add('slide-up-in');
+        contentWrap.classList.remove('slide-up-out');
+        contentWrap.classList.add('slide-up-in');
 
         imgWrap.innerHTML='<img src="assets/img/journey/'+d.img+'" alt="'+d.alt+'">';
         imgWrap.classList.remove('slide-up-out');
@@ -238,8 +235,7 @@
       },350);
 
       setTimeout(function(){
-        bigYear.classList.remove('slide-up-in');
-        infoWrap.classList.remove('slide-up-in');
+        contentWrap.classList.remove('slide-up-in');
         imgWrap.classList.remove('slide-up-in');
         animating=false;
       },800);
