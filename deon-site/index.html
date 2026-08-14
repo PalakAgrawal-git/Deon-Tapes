@@ -103,8 +103,8 @@
     .jn-wrap{display:flex;max-width:var(--content-max,1320px);margin:0 auto;padding:0 var(--edge,2.5rem);gap:40px;min-height:600px}
     /* LEFT: vertical year list */
     .jn-years{width:160px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;position:relative;padding:20px 0}
-    .jn-years::before{content:’’;position:absolute;left:50%;top:20px;bottom:20px;width:1px;background:rgba(255,255,255,.06)}
-    .jn-yr{background:none;border:none;cursor:pointer;font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.18);padding:6px 16px;text-align:center;transition:all .4s ease;position:relative;font-size:1rem;z-index:1}
+    .jn-years::before{content:’’;position:absolute;left:50%;top:20px;bottom:20px;width:1px;background:rgba(255,255,255,.06);pointer-events:none;z-index:0}
+    .jn-yr{background:none;border:none;cursor:pointer;font-family:var(--font-head);font-weight:700;color:rgba(255,255,255,.35);padding:6px 16px;text-align:center;transition:all .4s ease;position:relative;font-size:1.1rem;z-index:2}
     .jn-yr:hover{color:rgba(255,255,255,.45)}
     .jn-yr.on{color:#CC0000;font-size:2.6rem;font-weight:900;letter-spacing:-.03em;padding:10px 16px}
     /* RIGHT: image with overlay text */
