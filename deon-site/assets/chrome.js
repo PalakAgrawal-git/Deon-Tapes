@@ -201,8 +201,10 @@
     '</div></div></footer>';
 
   /* ---- floating WhatsApp button ---- */
+  /* TODO: replace WA_NUMBER with the WhatsApp number (digits only, incl. country code, e.g. 917700085050) */
+  var WA_NUMBER = '';
   var waHTML =
-    '<a class="wa-float" href="https://wa.me/917700085050" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">'+
+    '<a class="wa-float" href="'+(WA_NUMBER?'https://wa.me/'+WA_NUMBER:'#')+'" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">'+
       '<svg viewBox="0 0 32 32" width="32" height="32" fill="#fff" aria-hidden="true">'+
       '<path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.8 5.5 2.2 7.9L.3 31.5l7.9-2.3c2.3 1.3 4.9 1.9 7.6 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.4 1.4-4.6-.3-.5c-1.3-2.1-2-4.5-2-7 0-7.2 5.9-13.1 13.1-13.1 3.5 0 6.8 1.4 9.3 3.8 2.5 2.5 3.8 5.8 3.8 9.3 0 7.2-5.9 13.1-13.1 13.1zm7.2-9.8c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.3-2.2-2.7-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7-.2 0-.5 0-.7 0-.2 0-.7.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.3-.9 2.6-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/>'+
       '</svg></a>';
@@ -239,4 +241,4 @@
       '<div class="ph-bg"><img src="assets/brand/'+hk+'.jpg" alt=""></div><div class="ph-scrim"></div>');
   }
 })();
-/* v2026081507 */
+/* v2026081508 */
