@@ -52,6 +52,7 @@
         link('products.html?adhesive=rubber','Rubber')+
       '</div>'+
       '<div class="mega-col"><h4>By backing</h4>'+
+        link('products.html?backing=pvc','PVC')+
         link('products.html?backing=pvc,pet,polyimide,bopp','Bopp')+
         link('products.html?backing=foam','Foam')+
         link('products.html?backing=cloth','Cloth')+
