@@ -213,11 +213,11 @@
     var waStyle = document.createElement('style');
     waStyle.id = 'wa-float-style';
     waStyle.textContent =
-      '.wa-float{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;'+
+      '.wa-float{position:fixed;bottom:82px;right:26px;width:52px;height:52px;border-radius:50%;'+
       'background:#25D366;display:flex;align-items:center;justify-content:center;z-index:9999;'+
       'box-shadow:0 4px 16px rgba(0,0,0,.25);transition:transform .2s,box-shadow .2s}'+
       '.wa-float:hover{transform:scale(1.08);box-shadow:0 6px 22px rgba(0,0,0,.35)}'+
-      '@media(max-width:600px){.wa-float{bottom:18px;right:18px;width:52px;height:52px}}';
+      '@media(max-width:740px){.wa-float{bottom:18px;right:18px;width:52px;height:52px}}';
     document.head.appendChild(waStyle);
   }
 
@@ -241,4 +241,4 @@
       '<div class="ph-bg"><img src="assets/brand/'+hk+'.jpg" alt=""></div><div class="ph-scrim"></div>');
   }
 })();
-/* v2026081508 */
+/* v2026081509 */
