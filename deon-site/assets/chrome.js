@@ -120,7 +120,7 @@
     '<div class="utilbar"><div class="utilbar-in">'+
       '<div class="util-links">'+
         '<a href="about.html">About us</a><a href="careers.html">Career</a><a href="press.html">Press</a>'+
-        '<a href="partners.html">Partner with us</a><a href="certifications.html">Quality &amp; Certifications</a>'+
+        '<a href="partners.html">Partner with us</a><a href="index.html#quality-standards">Quality &amp; Certifications</a>'+
       '</div>'+
     '</div></div>';
 
@@ -220,4 +220,4 @@
       '<div class="ph-bg"><img src="assets/brand/'+hk+'.jpg" alt=""></div><div class="ph-scrim"></div>');
   }
 })();
-/* v2026081503 */
+/* v2026081506 */
