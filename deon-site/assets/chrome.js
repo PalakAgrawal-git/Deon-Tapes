@@ -52,12 +52,11 @@
         link('products.html?adhesive=rubber','Rubber')+
       '</div>'+
       '<div class="mega-col"><h4>By backing</h4>'+
-        link('products.html?backing=pvc,pet,polyimide,bopp','Film / BOPP')+
+        link('products.html?backing=pvc,pet,polyimide,bopp','BOPP')+
         link('products.html?backing=foam','Foam')+
         link('products.html?backing=cloth','Cloth')+
         link('products.html?backing=filament','Filament')+
         link('products.html?adhesive=hotmelt','Hot-melt')+
-        link('products.html?adhesive=silicone','Silicone')+
       '</div>'+
       '<div class="mega-col"><h4>Applications</h4>'+
         link('application.html?group=masking','Masking')+
