@@ -696,7 +696,8 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 .backtop:hover{background:var(--red-deep);transform:translateY(-4px)}
 
 /* nav shrink on scroll */
-.site-header{transition:box-shadow .3s var(--ease)}
+.site-header{transition:box-shadow .3s var(--ease),transform .35s var(--ease)}
+.site-header.nav-hidden{transform:translateY(-100%)}
 .site-header.scrolled{box-shadow:0 6px 24px rgba(20,10,10,.10)}
 .site-header.scrolled .nav{height:72px}
 .site-header.scrolled .brand .mark{height:68px}
