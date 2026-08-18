@@ -41,37 +41,58 @@
     <div class="split2">
       <div>
         <div class="tabs" id="tabs">
-          <button class="tab" data-type="sample">Request samples</button>
-          <button class="tab" data-type="quote">Request a quote</button>
-          <button class="tab" data-type="general">General enquiry</button>
+          <button class="tab" data-type="samplequote">Request a Free Sample / Quote</button>
+          <button class="tab" data-type="job">Job Opportunity</button>
           <button class="tab" data-type="supply">Supply to DEON</button>
+          <button class="tab" data-type="general">General enquiry</button>
         </div>
         <form id="contactForm" class="reveal">
-          <div class="form-grid">
-            <div class="form-row"><label>First name</label><input name="first" required></div>
-            <div class="form-row"><label>Last name</label><input name="last" required></div>
-            <div class="form-row"><label>Company</label><input name="company"></div>
-            <div class="form-row"><label>Country</label><input name="country"></div>
-            <div class="form-row"><label>Work email</label><input type="email" name="email" required></div>
-            <div class="form-row"><label>Phone</label><input name="phone"></div>
-            <div class="form-row full"><label>Product / SKU of interest</label>
-              <div id="skuPicker" style="position:relative">
-                <div id="skuDisplay" style="min-height:44px;border:1px solid var(--line);border-radius:8px;padding:8px 12px 8px 12px;cursor:pointer;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--white);position:relative;padding-right:36px">
-                  <span id="skuPlaceholder" style="color:var(--text-mid)">Select products or type your own</span>
-                  <span id="skuArrow" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:.7rem;color:var(--text-mid);pointer-events:none;transition:transform .2s">&#9660;</span>
-                </div>
-                <div id="skuDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;max-height:280px;overflow-y:auto;background:var(--white);border:1px solid var(--line);border-radius:8px;margin-top:4px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:10;padding:8px 0">
-                  <div style="padding:4px 12px;margin-bottom:4px"><input id="skuSearch" type="text" placeholder="Search or type custom product..." style="width:100%;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:.9rem"></div>
-                  <div id="skuOptions"></div>
-                  <div id="skuCustomWrap" style="display:none;padding:6px 12px">
-                    <button type="button" id="skuAddCustom" style="background:none;border:none;color:var(--blue);font-weight:600;font-size:.85rem;cursor:pointer;padding:4px 0">+ Add "<span id="skuCustomText"></span>"</button>
+          <!-- STANDARD FIELDS (sample/quote, supply, general) -->
+          <div id="stdFields">
+            <div class="form-grid">
+              <div class="form-row"><label>First name</label><input name="first" required></div>
+              <div class="form-row"><label>Last name</label><input name="last" required></div>
+              <div class="form-row"><label>Company</label><input name="company"></div>
+              <div class="form-row"><label>Country</label><input name="country"></div>
+              <div class="form-row"><label>Work email</label><input type="email" name="email" required></div>
+              <div class="form-row"><label>Phone</label><input name="phone"></div>
+              <div class="form-row full" id="skuRow"><label>Product / SKU of interest</label>
+                <div id="skuPicker" style="position:relative">
+                  <div id="skuDisplay" style="min-height:44px;border:1px solid var(--line);border-radius:8px;padding:8px 12px 8px 12px;cursor:pointer;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--white);position:relative;padding-right:36px">
+                    <span id="skuPlaceholder" style="color:var(--text-mid)">Select products or type your own</span>
+                    <span id="skuArrow" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:.7rem;color:var(--text-mid);pointer-events:none;transition:transform .2s">&#9660;</span>
                   </div>
+                  <div id="skuDropdown" style="display:none;position:absolute;top:100%;left:0;right:0;max-height:280px;overflow-y:auto;background:var(--white);border:1px solid var(--line);border-radius:8px;margin-top:4px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:10;padding:8px 0">
+                    <div style="padding:4px 12px;margin-bottom:4px"><input id="skuSearch" type="text" placeholder="Search or type custom product..." style="width:100%;border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:.9rem"></div>
+                    <div id="skuOptions"></div>
+                    <div id="skuCustomWrap" style="display:none;padding:6px 12px">
+                      <button type="button" id="skuAddCustom" style="background:none;border:none;color:var(--blue);font-weight:600;font-size:.85rem;cursor:pointer;padding:4px 0">+ Add "<span id="skuCustomText"></span>"</button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="sku" id="skuField">
                 </div>
-                <input type="hidden" name="sku" id="skuField">
               </div>
+              <div class="form-row full"><label id="msgLabel">Application &amp; specification</label>
+                <textarea name="message" rows="5" placeholder="Tell us the application, substrate, width, length and volume."></textarea></div>
             </div>
-            <div class="form-row full"><label id="msgLabel">Application &amp; specification</label>
-              <textarea name="message" rows="5" placeholder="Tell us the application, substrate, width, length and volume."></textarea></div>
+          </div>
+          <!-- JOB OPPORTUNITY FIELDS -->
+          <div id="jobFields" style="display:none">
+            <div class="form-grid">
+              <div class="form-row full"><label>Full name</label><input name="jname"></div>
+              <div class="form-row"><label>Phone number</label><input name="jphone"></div>
+              <div class="form-row"><label>Personal email</label><input type="email" name="jemail"></div>
+              <div class="form-row"><label>Current designation</label><input name="jdesignation"></div>
+              <div class="form-row"><label>Highest qualification</label><input name="jqualification"></div>
+              <div class="form-row"><label>Current company</label><input name="jcompany"></div>
+              <div class="form-row"><label>Current CTC</label><input name="jcurrentctc"></div>
+              <div class="form-row"><label>Expected CTC</label><input name="jexpectedctc"></div>
+              <div class="form-row"><label>Current state</label><input name="jcurrentstate"></div>
+              <div class="form-row"><label>Preferred state</label><input name="jpreferredstate"></div>
+              <div class="form-row"><label>Notice period</label><input name="jnotice"></div>
+              <div class="form-row full"><label>Anything else? (optional)</label>
+                <textarea name="jmessage" rows="4" placeholder="Cover note, role of interest, or additional details."></textarea></div>
+            </div>
           </div>
           <div style="display:flex;align-items:center;gap:16px;margin-top:18px;flex-wrap:wrap">
             <button class="btn btn-primary" type="submit" id="submitBtn">Send request</button>
@@ -84,7 +105,7 @@
         <div class="info-card reveal">
           <h3>Sales &amp; enquiries</h3>
           <p class="muted" style="margin:6px 0 2px">Phone</p><p><a class="arrow" href="tel:+917700085050">+91 77000 85050</a></p>
-          <p class="muted" style="margin:14px 0 2px">Email</p><p><a class="arrow" href="mailto:info@deontapes.com">info@deontapes.com</a></p>
+          <p class="muted" style="margin:14px 0 2px">Email</p><p><a class="arrow" href="mailto:info@deontapes.com">info@deontapes.com</a></p><p style="margin:2px 0 0"><a class="arrow" href="mailto:admin.mumbai@deontapes.com">admin.mumbai@deontapes.com</a></p>
           <p class="muted" style="margin:14px 0 2px">Plants</p><p>Silvassa &amp; Vadodara, India</p>
         </div>
         <div class="info-card reveal" style="margin-top:18px;background:var(--white)">
@@ -244,20 +265,48 @@ document.addEventListener('DOMContentLoaded',function(){
   renderOptions('');
 
   var form=document.getElementById('contactForm');
+  var stdFields=document.getElementById('stdFields');
+  var jobFields=document.getElementById('jobFields');
+  var skuRow=document.getElementById('skuRow');
   var q=new URLSearchParams(location.search);
-  var type=q.get('type')||'sample', sku=q.get('sku');
+  var rawType=q.get('type')||'samplequote', sku=q.get('sku');
+  var type={sample:'samplequote',quote:'samplequote'}[rawType]||rawType;
+
+  var RECIPIENTS={
+    samplequote:['info@deontapes.com','admin.mumbai@deontapes.com'],
+    job:['hr@deontechnology.co.in','hr1@deontechnology.co.in','hr1@deontapes.com','hr@deontapes.com','info@deontapes.com','admin.mumbai@deontapes.com'],
+    supply:['purchase.ho1@deontapes.com','info@deontapes.com'],
+    general:['info@deontapes.com','admin.mumbai@deontapes.com']
+  };
+  var BTN={samplequote:'Send request',job:'Submit application',supply:'Submit supply enquiry',general:'Send enquiry'};
+  var DONE={samplequote:'sample / quote request',job:'application',supply:'supply enquiry',general:'enquiry'};
+
+  function setDisabled(container,state){
+    container.querySelectorAll('input,textarea,select').forEach(function(el){el.disabled=state;});
+  }
+
   function setType(t){
+    if(!BTN[t])t='samplequote';
     type=t;
     document.querySelectorAll('#tabs .tab').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-type')===t);});
-    var label={sample:'Application &amp; specification',quote:'Requirement, volume &amp; target price',general:'How can we help?',supply:'Material details &amp; pricing'}[t];
-    document.getElementById('msgLabel').innerHTML=label;
-    document.getElementById('submitBtn').textContent={sample:'Request samples',quote:'Request a quote',general:'Send enquiry',supply:'Submit supply enquiry'}[t];
-    var ph={sample:'Tell us the application, substrate, width, length and volume.',quote:'Tell us the product, quantity, target price and delivery timeline.',general:'How can we help you?',supply:'Describe the material you supply, specifications, capacity and pricing.'};
-    form.querySelector('textarea[name="message"]').placeholder=ph[t]||'';
+    var isJob=(t==='job');
+    jobFields.style.display=isJob?'':'none';
+    stdFields.style.display=isJob?'none':'';
+    setDisabled(jobFields,!isJob);
+    setDisabled(stdFields,isJob);
+    if(!isJob){
+      skuRow.style.display=(t==='supply')?'none':'';
+      var label={samplequote:'Application, specification &amp; requirement',general:'How can we help?',supply:'Material details &amp; pricing'}[t];
+      document.getElementById('msgLabel').innerHTML=label||'';
+      var ph={samplequote:'Tell us the application, substrate, width, length, quantity and target price.',general:'How can we help you?',supply:'Describe the material you supply, specifications, capacity and pricing.'};
+      form.querySelector('textarea[name="message"]').placeholder=ph[t]||'';
+    }
+    document.getElementById('submitBtn').textContent=BTN[t];
   }
   document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('.tab');if(b)setType(b.getAttribute('data-type'));});
   setType(type);
   if(sku){selected.push(sku);renderChips();}
+
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var btn=document.getElementById('submitBtn');
@@ -266,15 +315,28 @@ document.addEventListener('DOMContentLoaded',function(){
     var CONTACT_URL='https://script.google.com/macros/s/AKfycbyYTPE7cO_H9B2u8nJRSij0vriD2Olo5Q_BezqPOvJcY7YsnOlr0SUzbTGmEXbBIWtSHQ/exec';
     var SUPPLY_URL='https://script.google.com/macros/s/AKfycbxnNMYKV-hS3D2wgjLQAN71cAXFfkDc9jsJAe4m_7qfpkzzwSvf37ZXz0FyM8i2k8TO/exec';
     var url=type==='supply'?SUPPLY_URL:CONTACT_URL;
-    var body={type:type,first:form.first.value,last:form.last.value,company:form.company.value,country:form.country.value,email:form.email.value,phone:form.phone.value,sku:hiddenField.value,message:form.message.value};
+    var body;
+    if(type==='job'){
+      body={type:'job',recipients:RECIPIENTS.job.join(', '),
+        name:form.jname.value,phone:form.jphone.value,email:form.jemail.value,
+        designation:form.jdesignation.value,qualification:form.jqualification.value,
+        company:form.jcompany.value,currentCTC:form.jcurrentctc.value,expectedCTC:form.jexpectedctc.value,
+        currentState:form.jcurrentstate.value,preferredState:form.jpreferredstate.value,
+        noticePeriod:form.jnotice.value,message:form.jmessage.value};
+    }else{
+      body={type:type,recipients:(RECIPIENTS[type]||[]).join(', '),
+        first:form.first.value,last:form.last.value,company:form.company.value,country:form.country.value,
+        email:form.email.value,phone:form.phone.value,
+        sku:(type==='supply'?'':hiddenField.value),message:form.message.value};
+    }
     fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)})
     .then(function(){
-      var msg={sample:'sample request',quote:'quote request',general:'enquiry',supply:'supply enquiry'};
-      ok.textContent='Thanks — your '+(msg[type]||'request')+' has been received. Our team will reply within one business day.';
+      ok.textContent='Thanks — your '+(DONE[type]||'request')+' has been received. Our team will reply within one business day.';
       ok.classList.remove('hide');
       selected=[];renderChips();
-      form.querySelectorAll('input:not([type=hidden]),textarea').forEach(function(f){f.value='';});
-      if(sku){selected.push(sku);renderChips();}
+      var visible=(type==='job')?jobFields:stdFields;
+      visible.querySelectorAll('input:not([type=hidden]),textarea').forEach(function(f){f.value='';});
+      if(sku&&type!=='job'&&type!=='supply'){selected.push(sku);renderChips();}
       ok.scrollIntoView({behavior:'smooth',block:'center'});
     })
     .catch(function(){
@@ -283,7 +345,7 @@ document.addEventListener('DOMContentLoaded',function(){
     })
     .finally(function(){
       btn.disabled=false;
-      btn.textContent={sample:'Request samples',quote:'Request a quote',general:'Send enquiry',supply:'Submit supply enquiry'}[type];
+      btn.textContent=BTN[type];
     });
   });
 });
