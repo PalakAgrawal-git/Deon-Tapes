@@ -125,6 +125,7 @@
     <!-- IMAGE -->
     <div style="flex:1;position:relative;border-radius:14px;overflow:hidden;min-height:550px">
       <img id="jnImage" src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .4s">
+      <div id="jnThumbs" style="position:absolute;top:18px;right:18px;display:flex;gap:8px;z-index:2"></div>
       <div id="jnCaption" style="position:absolute;bottom:0;left:0;right:0;padding:80px 40px 36px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;transition:opacity .3s">
         <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:#CC0000;margin:0 0 6px" id="jnCY">2016</div>
         <h3 style="font-family:var(--font-head);font-size:2rem;font-weight:800;color:#fff;margin:0 0 10px;line-height:1.15" id="jnCT">Plant launched in Silvassa</h3>
@@ -146,7 +147,7 @@
       {t:"Vadodara facility launched",d:"Launched DEON Technology in Vadodara (+40,000 sq. mtr). Total area: 60,000 sq. mtrs; capacity: 20 Million sq. mtrs/month.",img:"2023.jpg"},
       {t:"4 new coating lines added",d:"Added 4 new coating lines. Backward integration continued with 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.",img:"2024.jpg"},
       {t:"30+ specialty tape types launched",d:"Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.",img:"2025.jpg"},
-      {t:"₹3.3 Billion revenue & 500+ employees",d:"Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹3.3 Billion | Net Worth: ₹2.5 Billion. 500+ employees.",img:"2026.jpg"},
+      {t:"₹3.3 Billion revenue & 500+ employees",d:"Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹3.3 Billion | Net Worth: ₹2.5 Billion. 500+ employees.",imgs:["2026.jpg","2026b.jpg"]},
       {t:"Next-gen expansion & IPO",d:"Next-gen plant expansion planned. IPO public stock listing. Target revenue: ₹10 Billion.",img:"2030.jpg"}
     ];
     var clip=document.getElementById("jnClip");
@@ -157,8 +158,30 @@
     var cy=document.getElementById("jnCY");
     var ct=document.getElementById("jnCT");
     var cd=document.getElementById("jnCD");
+    var thumbs=document.getElementById("jnThumbs");
     var cur=0;
-    DATA.forEach(function(d){var i=new Image();i.src="assets/img/journey/"+d.img;});
+    DATA.forEach(function(d){
+      d.imgs=d.imgs||[d.img];
+      d.imgs.forEach(function(f){var i=new Image();i.src="assets/img/journey/"+f;});
+    });
+    function shots(i){
+      var list=DATA[i].imgs;
+      thumbs.innerHTML="";
+      if(list.length<2)return;
+      list.forEach(function(f,n){
+        var b=document.createElement("button");
+        b.type="button";
+        b.style.cssText="width:56px;height:40px;padding:0;border-radius:6px;overflow:hidden;cursor:pointer;background:none;border:2px solid "+(n===0?"#CC0000":"rgba(255,255,255,.55)");
+        b.innerHTML='<img src="assets/img/journey/'+f+'" alt="" style="width:100%;height:100%;object-fit:cover;display:block">';
+        b.addEventListener("click",function(){
+          img.src="assets/img/journey/"+f;
+          thumbs.querySelectorAll("button").forEach(function(o,m){
+            o.style.borderColor=(m===n)?"#CC0000":"rgba(255,255,255,.55)";
+          });
+        });
+        thumbs.appendChild(b);
+      });
+    }
     function center(i){
       var clipH=clip.offsetHeight;
       var btn=btns[i];
@@ -173,7 +196,8 @@
       btns[i].classList.add("active");
       cur=i;
       center(i);
-      img.src="assets/img/journey/"+d.img;
+      img.src="assets/img/journey/"+d.imgs[0];
+      shots(i);
       cy.textContent=btns[i].textContent;
       ct.textContent=d.t;
       cd.textContent=d.d;
@@ -182,6 +206,7 @@
       btn.addEventListener("click",function(){go(idx);});
     });
     btns[0].classList.add("active");
+    shots(0);
     center(0);
   })();
   </script>
