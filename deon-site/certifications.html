@@ -16,7 +16,107 @@
     <p class="lead">DEON products are tested and documented under controlled production conditions and supplied with batch traceability. ISO 9001, ISO 45001, ISO 14001, UL and BIS.</p>
   </div>
 </div>
-<section class="section "><div class="wrap"><div class="sec-head reveal"><span class="eyebrow">Quality &amp; compliance</span><h2>Manufactured to recognised quality standards.</h2><p>Products are tested and documented under controlled production conditions, and supplied with batch traceability. Full certification list confirmed on request.</p></div><div class="grid grid-3 reveal-stagger"><div class="card" id="iso-9001"><span class="tag">Certified</span><h3>ISO 9001:2015</h3><p>Quality management system</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div><div class="card" id="iso-45001"><span class="tag">Certified</span><h3>ISO 45001:2018</h3><p>Occupational health &amp; safety</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div><div class="card" id="iso-14001"><span class="tag">Certified</span><h3>ISO 14001:2015</h3><p>Environmental management</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div><div class="card" id="ul"><span class="tag">Certified</span><h3>UL</h3><p>Recognised component / listing</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div><div class="card" id="bis"><span class="tag">Certified</span><h3>BIS &#183; IS 7809</h3><p>Bureau of Indian Standards</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head reveal"><span class="eyebrow">Documented &amp; audit-ready</span><h2>Datasheets, test reports and samples.</h2></div><div class="certs reveal-stagger"><div class="cert"><div class="t">Datasheets</div><div class="d">Per product</div></div><div class="cert"><div class="t">Test reports</div><div class="d">Per batch</div></div><div class="cert"><div class="t">Samples</div><div class="d">On request</div></div></div></div></section><section class="cta"><div class="wrap"><div><h2>Need documentation?</h2><p>Request datasheets, test reports or the full certification list.</p></div><div class="cta-actions"><a class="btn btn-light" href="contact.html?type=quote">Request documents</a><a class="btn btn-light" href="knowledge-center.html">Knowledge Center</a></div></div></section>
+<section class="section "><div class="wrap"><div class="sec-head reveal"><span class="eyebrow">Quality &amp; compliance</span><h2>Manufactured to recognised quality standards.</h2><p>Products are tested and documented under controlled production conditions, and supplied with batch traceability. Full certification list confirmed on request.</p></div><div class="grid grid-3 reveal-stagger"><div class="card" id="iso-9001"><span class="tag">Certified</span><h3>ISO 9001:2015</h3><p>Quality management system</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div><div class="card" id="iso-45001"><span class="tag">Certified</span><h3>ISO 45001:2018</h3><p>Occupational health &amp; safety</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div><div class="card" id="iso-14001"><span class="tag">Certified</span><h3>ISO 14001:2015</h3><p>Environmental management</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div><div class="card" id="ul"><span class="tag">Certified</span><h3>UL</h3><p>Recognised component / listing</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div><div class="card" id="bis"><span class="tag">Certified</span><h3>BIS &#183; IS 7809</h3><p>Bureau of Indian Standards</p><span class="muted" style="font-size:.82rem">Certificate available on request.</span></div></div></div></section><section class="section"><div class="wrap"><div class="sec-head reveal"><span class="eyebrow">Documented &amp; audit-ready</span><h2>Datasheets, test reports and samples.</h2></div><div class="certs reveal-stagger"><div class="cert"><div class="t">Datasheets</div><div class="d">Per product</div></div><div class="cert"><div class="t">Test reports</div><div class="d">Per batch</div></div><div class="cert"><div class="t">Samples</div><div class="d">On request</div></div></div></div></section><section class="section" id="testing-and-validation">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Testing &amp; validation</span>
+      <h2>Tested and documented at every stage of production.</h2>
+      <p>At DEON, absolute product reliability is achieved through rigorous, multi-stage testing. From the moment raw chemical monomers arrive at our 60,000 sq. mtr facility to the final automated packing of converted rolls, our quality-control engineering guarantees flawless, world-class tape performance under all environmental conditions.</p>
+    </div>
+    <style>
+      .qc-stage{border:1px solid var(--line);border-radius:12px;background:var(--white);margin-bottom:16px;overflow:hidden}
+      .qc-head{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:none;border:none;padding:22px 26px;font-family:inherit;cursor:pointer}
+      .qc-head:hover .qc-title{color:#CC0000}
+      .qc-head .qc-num{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:#CC0000;color:#fff;font-family:var(--font-head);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1rem}
+      .qc-head .qc-title{flex:1;font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--ink);transition:color .2s}
+      .qc-head .qc-count{flex-shrink:0;font-size:.78rem;font-weight:600;color:var(--text-mid);letter-spacing:.04em}
+      .qc-head .qc-chev{flex-shrink:0;font-size:.7rem;color:#CC0000;transition:transform .25s}
+      .qc-stage.open .qc-head .qc-chev{transform:rotate(180deg)}
+      .qc-body{display:none;padding:0 26px 26px}
+      .qc-stage.open .qc-body{display:block}
+      .qc-list{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
+      .qc-item{padding-left:20px;position:relative}
+      .qc-item::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:#CC0000}
+      .qc-item .qc-t{font-weight:700;color:var(--ink);font-size:.95rem;margin-bottom:3px}
+      .qc-item .qc-d{font-size:.86rem;line-height:1.55;color:var(--text-mid)}
+      @media(max-width:800px){.qc-list{grid-template-columns:1fr}}
+    </style>
+    <div class="reveal" id="qcAccordion">
+      <div class="qc-stage open">
+        <button class="qc-head" type="button"><span class="qc-num">1</span><span class="qc-title">Raw Material (RM) Reception &amp; Verification</span><span class="qc-count">3 tests</span><span class="qc-chev">&#9660;</span></button>
+        <div class="qc-body"><div class="qc-list">
+          <div class="qc-item"><div class="qc-t">Chemical Monomer Purity Analysis</div><div class="qc-d">Verifies incoming polymer and chemical resin compositions using infrared spectroscopy and gas chromatography.</div></div>
+          <div class="qc-item"><div class="qc-t">Polymer Carrier Resin Melt Index</div><div class="qc-d">Measures dry plastic resin flow properties under heat using precision extrusion plastometers.</div></div>
+          <div class="qc-item"><div class="qc-t">Solvent Assay &amp; Moisture Check</div><div class="qc-d">Utilizes Karl Fischer titration to monitor toluene purity, preventing premature chemical formulation breakdown.</div></div>
+        </div></div>
+      </div>
+      <div class="qc-stage">
+        <button class="qc-head" type="button"><span class="qc-num">2</span><span class="qc-title">In-Process Polymer Synthesizing &amp; Substrate Extrusion</span><span class="qc-count">7 tests</span><span class="qc-chev">&#9660;</span></button>
+        <div class="qc-body"><div class="qc-list">
+          <div class="qc-item"><div class="qc-t">Brookfield Viscosity</div><div class="qc-d">Measures fluid flow resistance of synthesized adhesive polymers inside jacketed reactors.</div></div>
+          <div class="qc-item"><div class="qc-t">Solids Content (%)</div><div class="qc-d">Verifies the active polymer percentage remaining after thermal evaporation.</div></div>
+          <div class="qc-item"><div class="qc-t">pH Value</div><div class="qc-d">Monitors acidity or alkalinity levels of water-based emulsion adhesives.</div></div>
+          <div class="qc-item"><div class="qc-t">Base Film Thickness</div><div class="qc-d">Measures cross-sectional thickness profiles across the raw backing web via laser sensors.</div></div>
+          <div class="qc-item"><div class="qc-t">Base Film Weight (GSM)</div><div class="qc-d">Calculates the physical mass of the raw carrier backing film per square meter.</div></div>
+          <div class="qc-item"><div class="qc-t">Film Tensile Strength</div><div class="qc-d">Determines the maximum pulling force the raw substrate can handle before permanently stretching.</div></div>
+          <div class="qc-item"><div class="qc-t">Film Elongation (%)</div><div class="qc-d">Measures the maximum capacity of the backing film to stretch before snapping.</div></div>
+        </div></div>
+      </div>
+      <div class="qc-stage">
+        <button class="qc-head" type="button"><span class="qc-num">3</span><span class="qc-title">High-Speed Web Coating &amp; Thermal Oven Curing</span><span class="qc-count">3 tests</span><span class="qc-chev">&#9660;</span></button>
+        <div class="qc-body"><div class="qc-list">
+          <div class="qc-item"><div class="qc-t">Airborne Particle Density Tracking</div><div class="qc-d">Utilizes laser counters inside positive-pressure clean rooms to ensure an environment completely free of dust.</div></div>
+          <div class="qc-item"><div class="qc-t">Wet Adhesive Mass Scanning</div><div class="qc-d">Deploys differential thickness sensors to continuously scan the wet adhesive layer weight during application.</div></div>
+          <div class="qc-item"><div class="qc-t">Cross-Linking Density</div><div class="qc-d">Evaluates the internal molecular network formation of the adhesive after moving through oil thermopack ovens.</div></div>
+        </div></div>
+      </div>
+      <div class="qc-stage">
+        <button class="qc-head" type="button"><span class="qc-num">4</span><span class="qc-title">Finished Product Mechanical Tape Testing</span><span class="qc-count">14 tests</span><span class="qc-chev">&#9660;</span></button>
+        <div class="qc-body"><div class="qc-list">
+          <div class="qc-item"><div class="qc-t">Roll Width Accuracy</div><div class="qc-d">Checks physical width compliance against target dimensional drawings.</div></div>
+          <div class="qc-item"><div class="qc-t">Roll Length (Metrage)</div><div class="qc-d">Calibrates winding counts to verify linear footage per roll.</div></div>
+          <div class="qc-item"><div class="qc-t">Total Tape Thickness</div><div class="qc-d">Measures cumulative thickness of both the backing film and cured adhesive layer.</div></div>
+          <div class="qc-item"><div class="qc-t">Adhesive Coat Weight (GSM)</div><div class="qc-d">Measures the absolute dry mass of adhesive applied per square meter.</div></div>
+          <div class="qc-item"><div class="qc-t">Peel Adhesion (180&deg;/90&deg;)</div><div class="qc-d">Measures the force required to remove a bonded tape strip from a standard steel panel.</div></div>
+          <div class="qc-item"><div class="qc-t">Rolling Ball Tack</div><div class="qc-d">Measures how far a steel ball rolls down an incline before stopping on the adhesive bed.</div></div>
+          <div class="qc-item"><div class="qc-t">Shear Resistance (Holding Power)</div><div class="qc-d">Measures internal adhesive resistance to slipping off a vertical plate under a continuous room-temperature weight load.</div></div>
+          <div class="qc-item"><div class="qc-t">Shear Adhesion to Backing (Unwind Adhesion)</div><div class="qc-d">Measures the force required to peel the tape off its own backing sheet to verify uniform unwind tension.</div></div>
+          <div class="qc-item"><div class="qc-t">Tensile Strength at Break</div><div class="qc-d">Evaluates the absolute maximum force required to snap the finished tape construction under a fast mechanical pull.</div></div>
+          <div class="qc-item"><div class="qc-t">Tear Propagation Resistance</div><div class="qc-d">Evaluates the tape&#8217;s structural resistance to continuing a rip once an initial edge-nick or cut has occurred.</div></div>
+          <div class="qc-item"><div class="qc-t">Dielectric Strength (BDV)</div><div class="qc-d">Pinpoints the peak voltage threshold a tape backing insulates against before breakdown.</div></div>
+          <div class="qc-item"><div class="qc-t">Release Liner Thickness</div><div class="qc-d">Evaluates the gauge of protective silicone-coated release papers or films.</div></div>
+          <div class="qc-item"><div class="qc-t">Release Liner Peel Force</div><div class="qc-d">Measures the force required to separate a protective release liner from the adhesive layer.</div></div>
+          <div class="qc-item"><div class="qc-t">Unwind Force</div><div class="qc-d">Measures the mechanical effort needed to unroll a finished tape roll at a set speed.</div></div>
+        </div></div>
+      </div>
+      <div class="qc-stage">
+        <button class="qc-head" type="button"><span class="qc-num">5</span><span class="qc-title">Advanced Environmental Safety &amp; Final Packaging</span><span class="qc-count">9 tests</span><span class="qc-chev">&#9660;</span></button>
+        <div class="qc-body"><div class="qc-list">
+          <div class="qc-item"><div class="qc-t">Accelerated Tape Ageing Test</div><div class="qc-d">Subjects tape rolls to prolonged high heat and humidity profiles to simulate years of shelf-life stability.</div></div>
+          <div class="qc-item"><div class="qc-t">Environmental Chamber Cycle</div><div class="qc-d">Subjects final tape rolls to cyclical exposure across extreme hot, cold, humid, and dry atmospheric profiles.</div></div>
+          <div class="qc-item"><div class="qc-t">Carton Drop &amp; Transit Shock Testing</div><div class="qc-d">Performs free-fall drops on loaded master shipping boxes from set heights to verify tape seal integrity under heavy impact.</div></div>
+          <div class="qc-item"><div class="qc-t">Copper Strip Corrosion</div><div class="qc-d">Wraps tape around a polished copper strip under intense heat and moisture to monitor chemical reactions.</div></div>
+          <div class="qc-item"><div class="qc-t">Flammability Rating</div><div class="qc-d">Subjects tape samples to a direct flame to monitor burn propagation speeds and self-extinguishing times.</div></div>
+          <div class="qc-item"><div class="qc-t">Color &amp; Clarity Analysis</div><div class="qc-d">Employs optical electronic sensors to verify shade consistency and crystal-clear film levels.</div></div>
+          <div class="qc-item"><div class="qc-t">SAFT (High-Temp Shear)</div><div class="qc-d">Ramps up temperature on weighted tape joins to locate the precise structural melting point.</div></div>
+          <div class="qc-item"><div class="qc-t">Weathering &amp; UV Resistance</div><div class="qc-d">Bombards tape samples with intense ultraviolet light, high heat, and humidity cycles in an aging chamber.</div></div>
+          <div class="qc-item"><div class="qc-t">Barcode Batch Traceability Logistics</div><div class="qc-d">Verifies final automated laser core markings to ensure every package maps back to its original reactor lot code.</div></div>
+        </div></div>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var acc=document.getElementById('qcAccordion');
+      if(!acc)return;
+      acc.querySelectorAll('.qc-head').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          btn.parentElement.classList.toggle('open');
+        });
+      });
+    })();
+    </script>
+  </div>
+</section><section class="cta"><div class="wrap"><div><h2>Need documentation?</h2><p>Request datasheets, test reports or the full certification list.</p></div><div class="cta-actions"><a class="btn btn-light" href="contact.html?type=quote">Request documents</a><a class="btn btn-light" href="knowledge-center.html">Knowledge Center</a></div></div></section>
 <script src="assets/chrome.js?v=2026081510"></script>
 <script src="assets/site.js?v=2026081510"></script>
 </body>
