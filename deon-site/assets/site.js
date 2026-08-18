@@ -358,12 +358,8 @@
       bar.style.transform = 'scaleX('+(h>0?Math.min(y/h,1):0)+')';
       if(header){
         header.classList.toggle('scrolled', y>40);
-        // hide on scroll down, reveal on scroll up (only past the first viewport)
-        if(y>window.innerHeight && y>lastY+4){
-          header.classList.add('nav-hidden');
-        }else if(y<lastY-4 || y<=window.innerHeight){
-          header.classList.remove('nav-hidden');
-        }
+        // keep the menu pinned and always visible (sticky, no auto-hide)
+        header.classList.remove('nav-hidden');
       }
       btt.classList.toggle('show', y>500);
       lastY=y;
