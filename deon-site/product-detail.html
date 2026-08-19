@@ -59,6 +59,27 @@
   </div>
 </section>
 
+<!-- APPLICATIONS & USAGE -->
+<section class="section" id="pdAppWrap" style="display:none;padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Applications &amp; Usage</span>
+      <h2>Where this tape is used.</h2>
+    </div>
+    <div class="grid grid-2 reveal" style="gap:32px;align-items:start">
+      <div>
+        <h4 style="font-size:.9rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px">Typical applications</h4>
+        <ul id="pdAppList" style="list-style:none;padding:0;margin:0;display:grid;gap:12px"></ul>
+      </div>
+      <div>
+        <h4 style="font-size:.9rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px">Usage &amp; storage</h4>
+        <p id="pdUsage" style="line-height:1.75;color:var(--text);margin:0"></p>
+        <p style="line-height:1.6;color:var(--text-mid);font-size:.88rem;margin-top:14px">Need help selecting a width, colour or format for your application? <a class="arrow" href="contact.html?type=sample">Talk to our technical team →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- RELATED PRODUCTS -->
 <section class="section">
   <div class="wrap">
@@ -114,6 +135,35 @@
   ];
   var FAMNAME={'electrical-insulation':'Electrical & Insulation','bonding':'Bonding & Double-sided','masking':'Masking','foil-sealing':'Foil & Sealing','packaging':'Packaging','harness':'Harness & Bundling','floor-marking':'Floor Marking'};
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+  // Application bullets per product (from the DEON product catalogue)
+  var APPLICATIONS={
+    '31700':['Insulation of electrical wires & cables','Bundling & harnessing','Protection of conductors'],
+    '50W13':['Wire harness bundling in automotive systems','Insulation of low-voltage wiring','Cable management in electrical assemblies','General-purpose use in industrial applications'],
+    'DT1111':['Motor winding & coil insulation','Capacitor wrapping (cast resin & film/foil)','Transformer layer & barrier insulation','Telecommunication cable insulation'],
+    'DT1113':['Motor coil winding with varnish impregnation','General electrical equipment insulation'],
+    'DT1123':['Motor coil winding with varnish impregnation','Transformer coil layer insulation','Slot liner & phase separation insulation','High-temperature electrical equipment insulation'],
+    'DT2131':['Coil insulation in traction & high-voltage motors','Wave soldering masking on PCBs','High-stress electrical insulation applications','High-temperature masking in electronics & PCB processing'],
+    'DT3121L':['Transformer & rectifier coil winding','High-temperature wire harnessing','Terminal insulation in electrical motors'],
+    'DT3124L':['Water ingress protection for locomotive rooftops','Seam sealing & waterproofing in buses & passenger vehicles','Weatherproof sealing in outdoor industrial equipment','Protective sealing in high-exposure environments'],
+    '41860':['Area demarcation','Aisle & floor marking','Safety & hazard zone identification','Lane marking for traffic management'],
+    'DT3131':['Heat tracing cable mounting & fixation','High-temperature duct insulation','Wire harnessing in high-temperature environments','Electrical component fixing & bundling'],
+    'DT4021':['HVAC duct seaming & insulation seam sealing','Refrigerator & freezer coil mounting','Glass wool & rock wool vapour barrier sealing','Insulation puncture repair & mending'],
+    'DT4041':['HVAC duct seaming & insulation seam sealing','Refrigerator & freezer coil mounting','Glass wool & rock wool vapour barrier sealing','Insulation puncture repair & mending'],
+    'M5001':['Masking for painting applications','Surface protection during processing','Masking for edge protection in furniture work','General-purpose use in industrial applications'],
+    'PW6001':['Pipeline protection & wrapping','Air conditioning duct wrapping','Moisture sealing & insulation'],
+    'DT1142':['Label fixing & component mounting (appliances)','Holding & sealing in packaging & container assembly','Film & fabric splicing in converting operations','Bonding on plastics & low surface energy substrates'],
+    'DT1221H':['Component holding in home appliances during transit','Glass & panel fixation during assembly & dispatch','Splicing in synthetic leather & fabric manufacturing','Temporary process holding in electronics assembly'],
+    'DT1231':['Wave soldering masking on PCBs','High-temperature masking in powder coating','Masking for surface protection during heat treatment & curing','Masking during thermal spray & paint baking processes'],
+    'DT5142':['Metal-to-metal structural bonding & assembly','Auto & electronic component mounting & fixation','Photovoltaic cell & panel bonding','Label & nameplate fixing in appliances'],
+    'DT6041':['Metal-to-metal bonding & assembly support','Foam lamination for gasket manufacturing','Label & nameplate fixing in appliances','Low-profile bonding of thin substrates'],
+    'DT6122':['Metal-to-metal bonding & assembly support','Foam lamination for gasket manufacturing','Label & nameplate fixing in appliances','Bonding in sanitary & industrial components'],
+    'DT3741L':['Steel coil & metal sheet packing','Container liner bonding & fixation','Greenhouse film fixation & securing','Heavy-duty industrial packaging & bundling'],
+    'DT7143':['Steel coil & metal bundle wrapping','Appliance & industrial equipment securing for transit','Heavy-duty export carton reinforcement','Container cover sealing & load unitising'],
+    'DT7243':['Steel coil & metal bundle wrapping','Appliance & equipment securing for transit','Heavy-duty export carton reinforcement','Container cover sealing & load unitising'],
+    'DT9151':['Carton sealing & box closure on automated and manual packaging lines','Flap-closure sealing & reinforcement in secondary and transit packaging','Securing corrugated shipping boxes for e-commerce, distribution & export logistics','Custom-printed branded packaging tape (logo printing on request)']
+  };
+  var USAGE_NOTE='Store at room temperature, away from direct sunlight, heat and moisture. Ensure the application surface is clean, dry and free from grease and oil. We recommend a trial application to confirm suitability for your intended use.';
 
   var sku=new URLSearchParams(location.search).get('sku');
   var p=PRODUCTS.find(function(x){return x[0]===sku;});
@@ -173,6 +223,17 @@
   var indMap={'electrical-insulation':['Electrical','Automotive','Renewable Energy'],'bonding':['Automotive','Construction','Packaging'],'masking':['Automotive','Construction','Paints & Carpentry'],'foil-sealing':['Construction','Packaging','HVAC'],'packaging':['Packaging','Construction'],'harness':['Automotive','Electrical'],'floor-marking':['Automotive','Construction','Healthcare']};
   var industries=indMap[p[2]]||['General industrial'];
   document.getElementById('pdIndustries').innerHTML='<h4 style="margin-bottom:8px;font-size:.9rem;color:var(--text-mid)">Industries served</h4>'+industries.map(function(i){return '<span class="chip">'+i+'</span>';}).join('');
+
+  // Applications & usage
+  var apps=APPLICATIONS[p[0]]||[];
+  if(apps.length){
+    document.getElementById('pdAppList').innerHTML=apps.map(function(a){
+      return '<li style="position:relative;padding-left:24px;line-height:1.5;color:var(--ink)">'+
+        '<span style="position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:#CC0000"></span>'+a+'</li>';
+    }).join('');
+    document.getElementById('pdUsage').textContent=USAGE_NOTE;
+    document.getElementById('pdAppWrap').style.display='';
+  }
 
   // Action links
   document.getElementById('pdSample').href='contact.html?type=sample&sku='+p[0];
