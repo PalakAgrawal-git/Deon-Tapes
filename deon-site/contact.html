@@ -272,11 +272,12 @@ document.addEventListener('DOMContentLoaded',function(){
   var rawType=q.get('type')||'samplequote', sku=q.get('sku');
   var type={sample:'samplequote',quote:'samplequote'}[rawType]||rawType;
 
+  // TEST recipients — distinct inbox(es) per tab for routing checks; swap to real addresses before go-live
   var RECIPIENTS={
-    samplequote:['info@deontapes.com','admin.mumbai@deontapes.com'],
-    job:['hr@deontechnology.co.in','hr1@deontechnology.co.in','hr1@deontapes.com','hr@deontapes.com','info@deontapes.com','admin.mumbai@deontapes.com'],
-    supply:['purchase.ho1@deontapes.com','info@deontapes.com'],
-    general:['info@deontapes.com','admin.mumbai@deontapes.com']
+    samplequote:['Smeet.kataria@gmail.com','smeetkataria7@gmail.com'],
+    job:['katariasmeet@gmail.com','katariasmeet7@gmail.com'],
+    supply:['Smeet.k@somaiya.edu'],
+    general:['katariasmeet07@gmail.com']
   };
   var BTN={samplequote:'Send request',job:'Submit application',supply:'Submit supply enquiry',general:'Send enquiry'};
   var DONE={samplequote:'sample / quote request',job:'application',supply:'supply enquiry',general:'enquiry'};
@@ -312,9 +313,9 @@ document.addEventListener('DOMContentLoaded',function(){
     var btn=document.getElementById('submitBtn');
     var ok=document.getElementById('formOk');
     btn.disabled=true;btn.textContent='Sending…';
-    var CONTACT_URL='https://script.google.com/macros/s/AKfycbyYTPE7cO_H9B2u8nJRSij0vriD2Olo5Q_BezqPOvJcY7YsnOlr0SUzbTGmEXbBIWtSHQ/exec';
-    var SUPPLY_URL='https://script.google.com/macros/s/AKfycbxnNMYKV-hS3D2wgjLQAN71cAXFfkDc9jsJAe4m_7qfpkzzwSvf37ZXz0FyM8i2k8TO/exec';
-    var url=type==='supply'?SUPPLY_URL:CONTACT_URL;
+    // Single Apps Script endpoint for all enquiry types (routes by `type`/`recipients`)
+    var FORM_URL='https://script.google.com/macros/s/AKfycbw_ECuuaSZamjpwtouGmVml4LyISog1mLdvoS67BZvw7gkKlkUfkzK8T_PKCwsaQzlyRA/exec';
+    var url=FORM_URL;
     var body;
     if(type==='job'){
       body={type:'job',recipients:RECIPIENTS.job.join(', '),
