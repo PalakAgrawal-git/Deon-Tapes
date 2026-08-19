@@ -272,12 +272,12 @@ document.addEventListener('DOMContentLoaded',function(){
   var rawType=q.get('type')||'samplequote', sku=q.get('sku');
   var type={sample:'samplequote',quote:'samplequote'}[rawType]||rawType;
 
-  // TEST recipients — distinct inbox(es) per tab for routing checks; swap to real addresses before go-live
+  // TEST recipients — all tabs to one inbox for now; swap to real addresses before go-live
   var RECIPIENTS={
-    samplequote:['Smeet.kataria@gmail.com','smeetkataria7@gmail.com'],
-    job:['katariasmeet@gmail.com','katariasmeet7@gmail.com'],
-    supply:['Smeet.k@somaiya.edu'],
-    general:['katariasmeet07@gmail.com']
+    samplequote:['smeetkataria7@gmail.com'],
+    job:['smeetkataria7@gmail.com'],
+    supply:['smeetkataria7@gmail.com'],
+    general:['smeetkataria7@gmail.com']
   };
   var BTN={samplequote:'Send request',job:'Submit application',supply:'Submit supply enquiry',general:'Send enquiry'};
   var DONE={samplequote:'sample / quote request',job:'application',supply:'supply enquiry',general:'enquiry'};
