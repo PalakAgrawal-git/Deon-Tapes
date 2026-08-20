@@ -699,8 +699,8 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 .site-header{transition:box-shadow .3s var(--ease),transform .35s var(--ease)}
 .site-header.nav-hidden{transform:none}
 .site-header.scrolled{box-shadow:0 6px 24px rgba(20,10,10,.10)}
-.site-header.scrolled .nav{height:72px}
-.site-header.scrolled .brand .mark{height:68px}
+/* Header keeps a constant height on scroll — shrinking it caused a
+   layout-feedback jitter as the threshold flipped on and off. */
 
 /* section rule draw */
 .rule{max-width:var(--content-max);margin:0 auto;padding:6px var(--edge)}
