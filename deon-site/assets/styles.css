@@ -125,8 +125,9 @@ p{margin:0}
 .mega-link .t{font-weight:500;color:var(--ink);font-size:.82rem}
 .mega-link .d{display:none}
 .mega-feature{grid-column:1/-1;margin-top:8px;padding-top:10px;border-top:1px solid var(--line);
-  display:flex;align-items:center;justify-content:space-between;gap:12px}
-.mega-feature .arrow{font-size:.78rem}
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.mega-feature .muted{white-space:nowrap}
+.mega-feature .arrow{font-size:.78rem;white-space:nowrap}
 
 /* backdrop when a menu / overlay is open */
 .scrim{position:fixed;inset:0;background:rgba(12,35,59,.32);opacity:0;visibility:hidden;
