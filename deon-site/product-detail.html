@@ -80,6 +80,26 @@
   </div>
 </section>
 
+<!-- FAQS -->
+<section class="section" id="pdFaqWrap" style="display:none;padding-top:0">
+  <div class="wrap" style="max-width:860px">
+    <div class="sec-head reveal">
+      <span class="eyebrow">FAQs</span>
+      <h2>Frequently asked questions.</h2>
+    </div>
+    <style>
+      .faq-item{border:1px solid var(--line);border-radius:12px;background:var(--white);margin-bottom:12px;overflow:hidden}
+      .faq-q{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 22px;font-family:inherit;font-weight:700;font-size:1.02rem;color:var(--ink)}
+      .faq-q:hover{color:#CC0000}
+      .faq-q .faq-chev{margin-left:auto;flex-shrink:0;font-size:.7rem;color:#CC0000;transition:transform .25s}
+      .faq-item.open .faq-chev{transform:rotate(180deg)}
+      .faq-a{display:none;padding:0 22px 20px;line-height:1.7;color:var(--text)}
+      .faq-item.open .faq-a{display:block}
+    </style>
+    <div class="reveal" id="pdFaqList"></div>
+  </div>
+</section>
+
 <!-- RELATED PRODUCTS -->
 <section class="section">
   <div class="wrap">
@@ -105,6 +125,7 @@
   </div>
 </section>
 
+<script src="assets/faqs.js?v=2026081903"></script>
 <script>
 (function(){
   var PRODUCTS = [
@@ -233,6 +254,20 @@
     }).join('');
     document.getElementById('pdUsage').textContent=USAGE_NOTE;
     document.getElementById('pdAppWrap').style.display='';
+  }
+
+  // FAQs
+  var faqs=(window.PRODUCT_FAQS&&window.PRODUCT_FAQS[p[0]])||[];
+  if(faqs.length){
+    document.getElementById('pdFaqList').innerHTML=faqs.map(function(f){
+      return '<div class="faq-item"><button class="faq-q" type="button">'+f.q+
+        '<span class="faq-chev">&#9660;</span></button><div class="faq-a">'+f.a+'</div></div>';
+    }).join('');
+    document.getElementById('pdFaqWrap').style.display='';
+    document.getElementById('pdFaqList').addEventListener('click',function(e){
+      var b=e.target.closest('.faq-q'); if(!b)return;
+      b.parentElement.classList.toggle('open');
+    });
   }
 
   // Action links
