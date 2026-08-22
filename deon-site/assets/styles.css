@@ -435,6 +435,13 @@ a.pcard{color:inherit;text-decoration:none;cursor:pointer}
 .prose p{margin:0 0 16px;color:var(--text-mid)}
 .prose ul{margin:0 0 18px;padding-left:22px;color:var(--text-mid)}
 .prose li{margin:6px 0}
+/* Blog-post article body — headings need breathing room (global reset zeroes them) */
+#postBody h2{margin:36px 0 12px;font-size:1.5rem;line-height:1.15}
+#postBody h3{margin:28px 0 10px;font-size:1.2rem}
+#postBody p{margin:0 0 16px;line-height:1.7}
+#postBody ul,#postBody ol{margin:0 0 18px;padding-left:22px}
+#postBody li{margin:6px 0}
+#postBody>*:first-child{margin-top:0}
 .split2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 @media (max-width:900px){.split2{grid-template-columns:1fr}}
 .info-card{background:var(--tint);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
