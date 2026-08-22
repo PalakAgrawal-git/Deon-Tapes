@@ -123,7 +123,7 @@
       </div>
     </div>
     <!-- IMAGE -->
-    <div style="flex:1;position:relative;border-radius:14px;overflow:hidden;min-height:550px">
+    <div class="jn-photo" style="flex:1;position:relative;border-radius:14px;overflow:hidden;min-height:550px">
       <img id="jnImage" src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .4s">
       <div id="jnThumbs" style="position:absolute;top:18px;right:18px;display:flex;gap:8px;z-index:2"></div>
       <div id="jnCaption" style="position:absolute;bottom:0;left:0;right:0;padding:80px 40px 36px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;transition:opacity .3s">
@@ -133,7 +133,7 @@
       </div>
     </div>
   </div>
-  <style>@media(max-width:900px){#jnWrap{flex-direction:column!important;gap:20px!important}.jn-clip{width:100%!important;height:60px!important}.jn-track{flex-direction:row!important;position:relative!important;transform:none!important}.jn-track button{font-size:.9rem!important;padding:6px 10px!important;white-space:nowrap}.jn-track button.active{font-size:1.4rem!important}}</style>
+  <style>@media(max-width:900px){#jnWrap{flex-direction:column!important;gap:20px!important}.jn-clip{width:100%!important;height:auto!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch}.jn-track{display:flex!important;flex-direction:row!important;align-items:center!important;position:relative!important;transform:none!important;gap:2px}.jn-track button{width:auto!important;flex:0 0 auto!important;font-size:1rem!important;padding:8px 12px!important;white-space:nowrap}.jn-track button.active{font-size:1.35rem!important}.jn-photo{min-height:380px!important}}</style>
   <script>
   (function(){
     var DATA=[
