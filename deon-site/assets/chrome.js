@@ -195,8 +195,7 @@
     '</div></div></footer>';
 
   /* ---- floating WhatsApp button ---- */
-  /* TODO: replace WA_NUMBER with the WhatsApp number (digits only, incl. country code, e.g. 917700085050) */
-  var WA_NUMBER = '';
+  var WA_NUMBER = '918989637070';
   var waHTML =
     '<a class="wa-float" href="'+(WA_NUMBER?'https://wa.me/'+WA_NUMBER:'#')+'" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">'+
       '<svg viewBox="0 0 32 32" width="32" height="32" fill="#fff" aria-hidden="true">'+
