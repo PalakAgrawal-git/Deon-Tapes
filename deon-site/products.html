@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Products | DEON®</title>
 <meta name="description" content="Browse DEON pressure-sensitive adhesive tapes — filter by product family, adhesive system, backing material and construction.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082201">
+<link rel="stylesheet" href="assets/styles.css?v=2026082202">
 </head>
 <body data-page="products">
 
@@ -20,6 +20,7 @@
 
 <div class="wrap">
   <div class="catalog">
+    <button class="facet-toggle" id="facetToggle" type="button" aria-expanded="false">Filters</button>
     <aside class="facets" id="facets"></aside>
     <div class="catalog-main">
       <div class="toolbar">
@@ -41,8 +42,25 @@
   </div>
 </section>
 
-<script src="assets/chrome.js?v=2026082201"></script>
-<script src="assets/site.js?v=2026082201"></script>
+<script>
+(function(){
+  var btn=document.getElementById('facetToggle'), facets=document.getElementById('facets');
+  if(!btn||!facets)return;
+  function count(){return facets.querySelectorAll('input:checked').length;}
+  function label(){var n=count();btn.textContent=n?('Filters ('+n+')'):'Filters';}
+  btn.addEventListener('click',function(){
+    var open=facets.classList.toggle('open');
+    btn.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  // keep the count badge live as filters change
+  facets.addEventListener('change',label);
+  var mo=new MutationObserver(label); mo.observe(facets,{childList:true,subtree:true});
+  label();
+})();
+</script>
+<script src="assets/chrome.js?v=2026082202"></script>
+<script src="assets/site.js?v=2026082202"></script>
 <script src="assets/products.js?v=2026080123"></script>
 </body>
 </html>

@@ -421,9 +421,23 @@ a.pcard{color:inherit;text-decoration:none;cursor:pointer}
 .pcard-foot{margin-top:6px;padding-top:12px;border-top:1px solid var(--line)}
 .pcard-foot .arrow{white-space:nowrap}
 .btn-sm{padding:.55em 1em;font-size:.78rem}
+.facet-toggle{display:none}
 @media (max-width:1080px){.catalog{grid-template-columns:1fr}.facets{position:static}
   .facet{display:inline-block;vertical-align:top;width:46%;margin-right:4%}.pgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.pgrid{grid-template-columns:1fr}.facet{width:100%}}
+/* Mobile: e-commerce style — products show first, filters behind a toggle */
+@media (max-width:900px){
+  .catalog{display:flex;flex-direction:column;gap:0}
+  .facet-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+    padding:13px 16px;margin-bottom:18px;border:1px solid var(--line);border-radius:8px;background:var(--white);
+    font-family:var(--font-head);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.92rem;
+    color:var(--ink);cursor:pointer}
+  .facet-toggle::after{content:"\25BC";color:var(--red);font-size:.7rem;transition:transform .2s}
+  .facet-toggle.open::after{transform:rotate(180deg)}
+  .facets{display:none;margin-bottom:20px}
+  .facets.open{display:block}
+  .facet{display:block;width:100%;margin-right:0}
+}
 
 /* ---- plain marked list + content-page helpers ---- */
 .card-list-plain{list-style:none;margin:0;padding:0;display:grid;gap:12px}
