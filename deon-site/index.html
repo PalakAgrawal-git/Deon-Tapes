@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082302">
+<link rel="stylesheet" href="assets/styles.css?v=2026082303">
 </head>
 <body data-page="home">
 
@@ -126,7 +126,7 @@
     <div class="jn-photo" style="flex:1;position:relative;border-radius:14px;overflow:hidden;min-height:550px">
       <img id="jnImage" src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1)">
       <div id="jnThumbs" style="position:absolute;top:18px;right:18px;display:flex;gap:8px;z-index:2"></div>
-      <div id="jnCaption" style="position:absolute;bottom:0;left:0;right:0;padding:80px 40px 36px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;transition:opacity .3s">
+      <div id="jnCaption" style="position:absolute;bottom:0;left:0;right:0;padding:80px 40px 36px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;transition:opacity .4s ease,transform .5s cubic-bezier(.2,.8,.2,1)">
         <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:#CC0000;margin:0 0 6px" id="jnCY">2016</div>
         <h3 style="font-family:var(--font-head);font-size:2rem;font-weight:800;color:#fff;margin:0 0 10px;line-height:1.15" id="jnCT">Plant launched in Silvassa</h3>
         <p style="font-size:1.05rem;line-height:1.65;color:rgba(255,255,255,.85);margin:0" id="jnCD">First plant launched in Silvassa (20,000 sq. mtr). Capacity: ~1.6 Million sq. mtrs/month. Products: Electrical insulation, wire harness, floor marking tapes.</p>
@@ -199,15 +199,16 @@
       center(i);
       // slide + fade the image on year change
       var src="assets/img/journey/"+d.imgs[0];
+      // slide the image + caption in the direction of travel, with a soft zoom
       img.style.opacity="0";
-      img.style.transform="translateY("+(down?"26px":"-26px")+")";
+      img.style.transform="translateY("+(down?"38px":"-38px")+") scale(1.05)";
+      cap.style.opacity="0";
+      cap.style.transform="translateY("+(down?"20px":"-20px")+")";
       var pre=new Image();
-      pre.onload=function(){img.src=src;img.style.opacity="1";img.style.transform="translateY(0)";};
+      pre.onload=function(){img.src=src;img.style.opacity="1";img.style.transform="translateY(0) scale(1)";};
       pre.src=src;
       shots(i);
-      // fade the caption text
-      cap.style.opacity="0";
-      setTimeout(function(){cy.textContent=btns[i].textContent;ct.textContent=d.t;cd.textContent=d.d;cap.style.opacity="1";},180);
+      setTimeout(function(){cy.textContent=btns[i].textContent;ct.textContent=d.t;cd.textContent=d.d;cap.style.opacity="1";cap.style.transform="translateY(0)";},170);
     }
     btns.forEach(function(btn,idx){
       btn.addEventListener("click",function(){go(idx);});
@@ -442,7 +443,7 @@ document.addEventListener('DOMContentLoaded',function(){
     '<span class="n">'+String(i+1).padStart(2,'0')+'</span><span class="nm">'+m[1]+'</span><span class="a">→</span></a>';}).join('');
 });
 </script>
-<script src="assets/chrome.js?v=2026082302"></script>
-<script src="assets/site.js?v=2026082302"></script>
+<script src="assets/chrome.js?v=2026082303"></script>
+<script src="assets/site.js?v=2026082303"></script>
 </body>
 </html>
