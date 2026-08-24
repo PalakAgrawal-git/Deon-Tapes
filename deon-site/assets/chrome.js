@@ -113,7 +113,7 @@
   var utilBar =
     '<div class="utilbar"><div class="utilbar-in">'+
       '<div class="util-links">'+
-        '<a href="about.html">About us</a><a href="careers.html">Career</a><a href="press.html">Press</a>'+
+        '<a href="about.html">About us</a><a href="careers.html">Career</a>'+
         '<a href="partners.html">Partner with us</a><a href="index.html#quality-standards">Quality &amp; Certifications</a>'+
       '</div>'+
     '</div></div>';
@@ -182,7 +182,7 @@
       '</div>'+
       fcol('Products',[['products.html','All products'],['products.html?sided=double','Double-sided & foam'],['products.html?backing=foil','Foil & sealing'],['application.html?group=masking','Masking'],['application.html?group=bundling','Harness & bundling'],['products.html?family=electrical-insulation','Insulation']])+
       fcol('Industries',[['markets.html','All industries'],['market.html?m=automotive','Automotive'],['market.html?m=electrical','Electrical'],['market.html?m=building','Building & Construction'],['market.html?m=packaging','Packaging'],['market.html?m=hvacr','HVAC & Insulation']])+
-      fcol('Company',[['about.html','About us'],['manufacturing-technology.html','Infrastructure & Manufacturing'],['certifications.html','Quality & Certifications'],['careers.html','Careers'],['press.html','Press'],['partners.html','Partners']])+
+      fcol('Company',[['about.html','About us'],['manufacturing-technology.html','Infrastructure & Manufacturing'],['certifications.html','Quality & Certifications'],['careers.html','Careers'],['partners.html','Partners']])+
       fcol('Resources',[['knowledge-center.html','Knowledge Center'],['blog.html','Blog'],['tools.html','Tools & Calculators'],['contact.html?type=quote','Request a quote'],['contact.html?type=sample','Request samples']])+
     '</div>'+
     '<div class="footer-bottom"><div class="wrap">'+

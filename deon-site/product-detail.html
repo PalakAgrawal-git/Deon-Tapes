@@ -280,7 +280,7 @@
   var dsPath='assets/datasheets/DEON-'+p[0]+'-Datasheet.pdf';
   var xhr=new XMLHttpRequest();
   xhr.open('HEAD',dsPath,true);
-  xhr.onload=function(){if(xhr.status>=200&&xhr.status<400){dsBtn.href=dsPath;dsBtn.setAttribute('download','');dsBtn.style.display='';}};
+  xhr.onload=function(){if(xhr.status>=200&&xhr.status<400){dsBtn.href=dsPath;dsBtn.setAttribute('download',p[1]+' — Deon '+p[0]+'.pdf');dsBtn.style.display='';}};
   xhr.send();
 
   // Related products (same family, excluding current)

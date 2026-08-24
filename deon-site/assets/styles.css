@@ -723,7 +723,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 
 /* nav shrink on scroll */
 .site-header{transition:box-shadow .3s var(--ease),transform .35s var(--ease)}
-.site-header.nav-hidden{transform:none}
+.site-header.nav-hidden{transform:translateY(-100%)}
 .site-header.scrolled{box-shadow:0 6px 24px rgba(20,10,10,.10)}
 /* Header keeps a constant height on scroll — shrinking it caused a
    layout-feedback jitter as the threshold flipped on and off. */
