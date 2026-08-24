@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082202">
+<link rel="stylesheet" href="assets/styles.css?v=2026082301">
 </head>
 <body data-page="home">
 
@@ -124,7 +124,7 @@
     </div>
     <!-- IMAGE -->
     <div class="jn-photo" style="flex:1;position:relative;border-radius:14px;overflow:hidden;min-height:550px">
-      <img id="jnImage" src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .4s">
+      <img id="jnImage" src="assets/img/journey/2016.jpg" alt="DEON Silvassa plant aerial view" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1)">
       <div id="jnThumbs" style="position:absolute;top:18px;right:18px;display:flex;gap:8px;z-index:2"></div>
       <div id="jnCaption" style="position:absolute;bottom:0;left:0;right:0;padding:80px 40px 36px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;transition:opacity .3s">
         <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:#CC0000;margin:0 0 6px" id="jnCY">2016</div>
@@ -147,7 +147,7 @@
       {t:"Vadodara facility launched",d:"Launched DEON Technology in Vadodara (+40,000 sq. mtr). Total area: 60,000 sq. mtrs; capacity: 20 Million sq. mtrs/month.",img:"2023.jpg"},
       {t:"4 new coating lines added",d:"Added 4 new coating lines. Backward integration continued with 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.",img:"2024.jpg"},
       {t:"30+ specialty tape types launched",d:"Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.",img:"2025.jpg"},
-      {t:"₹3.3 Billion revenue & 500+ employees",d:"Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹3.3 Billion | Net Worth: ₹2.5 Billion. 500+ employees.",img:"2026b.jpg"},
+      {t:"₹3.3 Billion revenue & 500+ employees",d:"Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹3.3 Billion. 500+ employees.",img:"2026b.jpg"},
       {t:"Next-gen expansion & IPO",d:"Next-gen plant expansion planned. IPO public stock listing. Target revenue: ₹10 Billion.",img:"2030.jpg"}
     ];
     var clip=document.getElementById("jnClip");
@@ -192,15 +192,22 @@
     function go(i){
       if(i===cur)return;
       var d=DATA[i];
+      var down=i>cur;
       btns[cur].classList.remove("active");
       btns[i].classList.add("active");
       cur=i;
       center(i);
-      img.src="assets/img/journey/"+d.imgs[0];
+      // slide + fade the image on year change
+      var src="assets/img/journey/"+d.imgs[0];
+      img.style.opacity="0";
+      img.style.transform="translateY("+(down?"26px":"-26px")+")";
+      var pre=new Image();
+      pre.onload=function(){img.src=src;img.style.opacity="1";img.style.transform="translateY(0)";};
+      pre.src=src;
       shots(i);
-      cy.textContent=btns[i].textContent;
-      ct.textContent=d.t;
-      cd.textContent=d.d;
+      // fade the caption text
+      cap.style.opacity="0";
+      setTimeout(function(){cy.textContent=btns[i].textContent;ct.textContent=d.t;cd.textContent=d.d;cap.style.opacity="1";},180);
     }
     btns.forEach(function(btn,idx){
       btn.addEventListener("click",function(){go(idx);});
@@ -394,10 +401,16 @@
         prev.style.opacity=pos<=0?'.3':'1';prev.style.pointerEvents=pos<=0?'none':'auto';
         next.style.opacity=pos>=max?'.3':'1';next.style.pointerEvents=pos>=max?'none':'auto';
       }
-      prev.addEventListener('click',function(){if(pos>0){pos--;slide();}});
-      next.addEventListener('click',function(){if(pos<max){pos++;slide();}});
+      var timer;
+      function auto(){pos=pos>=max?0:pos+1;slide();}
+      function start(){stop();timer=setInterval(auto,3000);}
+      function stop(){if(timer){clearInterval(timer);timer=null;}}
+      prev.addEventListener('click',function(){if(pos>0){pos--;slide();}start();});
+      next.addEventListener('click',function(){if(pos<max){pos++;slide();}start();});
+      vp.addEventListener('mouseenter',stop);
+      vp.addEventListener('mouseleave',start);
       window.addEventListener('resize',slide);
-      slide();
+      slide();start();
     })();
     </script>
     <div style="margin-top:24px"><a class="arrow" href="certifications.html">Datasheets, test reports &amp; certifications <span class="a">→</span></a></div>
@@ -429,7 +442,7 @@ document.addEventListener('DOMContentLoaded',function(){
     '<span class="n">'+String(i+1).padStart(2,'0')+'</span><span class="nm">'+m[1]+'</span><span class="a">→</span></a>';}).join('');
 });
 </script>
-<script src="assets/chrome.js?v=2026082202"></script>
-<script src="assets/site.js?v=2026082202"></script>
+<script src="assets/chrome.js?v=2026082301"></script>
+<script src="assets/site.js?v=2026082301"></script>
 </body>
 </html>

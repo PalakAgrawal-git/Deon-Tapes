@@ -273,7 +273,6 @@
     ['Page','Knowledge Center','knowledge-center.html','Guides, datasheets, FAQs'],
     ['Page','About us','about.html','Manufacturing since 2016'],
     ['Page','Careers','careers.html','Join DEON'],
-    ['Page','Press','press.html','News & announcements'],
     ['Page','Partners','partners.html','Converter, OEM, dealer programs'],
     ['Page','Contact','contact.html','Samples, quotes and enquiries']
   ];
@@ -358,8 +357,12 @@
       bar.style.transform = 'scaleX('+(h>0?Math.min(y/h,1):0)+')';
       if(header){
         header.classList.toggle('scrolled', y>40);
-        // keep the menu pinned and always visible (sticky, no auto-hide)
-        header.classList.remove('nav-hidden');
+        // hide on scroll down, reveal on scroll up (only past the first viewport)
+        if(y>header.offsetHeight && y>lastY+4){
+          header.classList.add('nav-hidden');
+        }else if(y<lastY-4 || y<=header.offsetHeight){
+          header.classList.remove('nav-hidden');
+        }
       }
       btt.classList.toggle('show', y>500);
       lastY=y;
