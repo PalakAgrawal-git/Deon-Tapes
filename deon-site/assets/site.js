@@ -46,6 +46,8 @@
     var mega=item.querySelector('.mega');
     // hovering ANY item (incl. Home, which has no dropdown) clears open menus
     item.addEventListener('mouseenter',function(){ closeAllMegas(); if(mega) positionMega(mega); });
+    // double-click the tab heading opens its main page
+    if(btn){ var nh=btn.getAttribute('data-href'); if(nh) btn.addEventListener('dblclick',function(){ location.href=nh; }); }
     if(!btn||!mega) return;
     // click toggles (for touch / keyboard), always closing the others first
     btn.addEventListener('click',function(e){

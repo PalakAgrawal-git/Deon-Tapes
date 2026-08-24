@@ -103,9 +103,9 @@
     '</div>';
 
   var NAV = [
-    ['products','Products',megaProducts],
-    ['manufacturing','Infrastructure',megaManufacturing],
-    ['knowledge','Knowledge Center',megaKnowledge]
+    ['products','Products',megaProducts,'products.html'],
+    ['manufacturing','Infrastructure',megaManufacturing,'manufacturing-technology.html'],
+    ['knowledge','Knowledge Center',megaKnowledge,'knowledge-center.html']
   ];
 
   var logoIMG =
@@ -126,7 +126,7 @@
         '<div class="nav-item"><a class="nav-trigger nav-home" href="index.html" data-nav="home">Home</a></div>'+
         NAV.map(function(it){
           return '<div class="nav-item">'+
-            '<button class="nav-trigger" aria-expanded="false" data-nav="'+it[0]+'">'+it[1]+'<span class="chev"></span></button>'+
+            '<button class="nav-trigger" aria-expanded="false" data-nav="'+it[0]+'" data-href="'+it[3]+'" title="Double-click to open '+it[1]+'">'+it[1]+'<span class="chev"></span></button>'+
             '<div class="mega">'+it[2]+'</div></div>';
         }).join('')+
         '<div class="nav-item"><a class="nav-trigger" href="about.html" data-nav="about">About Us</a></div>'+
