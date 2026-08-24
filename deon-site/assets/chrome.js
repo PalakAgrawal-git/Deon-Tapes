@@ -97,6 +97,7 @@
         link('knowledge-center.html','Knowledge Center','Guides, datasheets, FAQs')+
         link('tools.html','Tools & Calculators','Roll, weight, consumption')+
         link('certifications.html','Certifications','ISO, UL, BIS')+
+        link('blog.html#exhibitions','Exhibitions','Trade fairs &amp; events')+
       '</div>'+
       feat('knowledge-center.html','Visit the Knowledge Center')+
     '</div>';
