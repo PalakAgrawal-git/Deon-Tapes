@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Contact | DEON®</title>
 <meta name="description" content="Request product information, a quotation or samples from DEON. Send us the application and specification and our team will recommend a product.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082301">
+<link rel="stylesheet" href="assets/styles.css?v=2026082302">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 #locMap{width:100%;height:480px;border-radius:12px;border:1px solid var(--line);z-index:0}
@@ -74,6 +74,8 @@
               </div>
               <div class="form-row full"><label id="msgLabel">Application &amp; specification</label>
                 <textarea name="message" rows="5" placeholder="Tell us the application, substrate, width, length and volume."></textarea></div>
+              <div class="form-row full" id="supplyFileRow" style="display:none"><label>Upload catalogue / product list (PDF, Word, Excel or image, max 8 MB)</label>
+                <input type="file" name="supplyfile" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.jpg,.jpeg,.png" style="width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--white);font-size:.9rem"></div>
             </div>
           </div>
           <!-- JOB OPPORTUNITY FIELDS -->
@@ -90,6 +92,8 @@
               <div class="form-row"><label>Current state</label><input name="jcurrentstate"></div>
               <div class="form-row"><label>Preferred state</label><input name="jpreferredstate"></div>
               <div class="form-row"><label>Notice period</label><input name="jnotice"></div>
+              <div class="form-row full"><label>Upload CV / Resume (PDF or Word, max 8 MB)</label>
+                <input type="file" name="jcv" accept=".pdf,.doc,.docx" style="width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--white);font-size:.9rem"></div>
               <div class="form-row full"><label>Anything else? (optional)</label>
                 <textarea name="jmessage" rows="4" placeholder="Cover note, role of interest, or additional details."></textarea></div>
             </div>
@@ -295,6 +299,7 @@ document.addEventListener('DOMContentLoaded',function(){
     stdFields.style.display=isJob?'none':'';
     setDisabled(jobFields,!isJob);
     setDisabled(stdFields,isJob);
+    var sfr=document.getElementById('supplyFileRow'); if(sfr)sfr.style.display=(t==='supply')?'':'none';
     if(!isJob){
       skuRow.style.display=(t==='supply')?'none':'';
       var label={samplequote:'Application, specification &amp; requirement',general:'How can we help?',supply:'Material details &amp; pricing'}[t];
@@ -330,6 +335,7 @@ document.addEventListener('DOMContentLoaded',function(){
         email:form.email.value,phone:form.phone.value,
         sku:(type==='supply'?'':hiddenField.value),message:form.message.value};
     }
+    function sendNow(){
     fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)})
     .then(function(){
       ok.textContent='Thanks — your '+(DONE[type]||'request')+' has been received. Our team will reply within one business day.';
@@ -337,6 +343,7 @@ document.addEventListener('DOMContentLoaded',function(){
       selected=[];renderChips();
       var visible=(type==='job')?jobFields:stdFields;
       visible.querySelectorAll('input:not([type=hidden]),textarea').forEach(function(f){f.value='';});
+      var fi=(type==='job')?form.jcv:(type==='supply'?form.supplyfile:null); if(fi)fi.value='';
       if(sku&&type!=='job'&&type!=='supply'){selected.push(sku);renderChips();}
       ok.scrollIntoView({behavior:'smooth',block:'center'});
     })
@@ -348,10 +355,29 @@ document.addEventListener('DOMContentLoaded',function(){
       btn.disabled=false;
       btn.textContent=BTN[type];
     });
+    }
+    var fileInput=(type==='job')?form.jcv:(type==='supply'?form.supplyfile:null);
+    var file=fileInput&&fileInput.files&&fileInput.files[0];
+    if(file){
+      if(file.size>8*1024*1024){
+        ok.textContent='That file is over 8 MB. Please attach a smaller file, or email it to us directly.';
+        ok.classList.remove('hide');btn.disabled=false;btn.textContent=BTN[type];return;
+      }
+      var reader=new FileReader();
+      reader.onload=function(){
+        var res=String(reader.result),c=res.indexOf(',');
+        body.file={name:file.name,mimeType:(file.type||'application/octet-stream'),data:res.slice(c+1)};
+        sendNow();
+      };
+      reader.onerror=function(){sendNow();};
+      reader.readAsDataURL(file);
+    }else{
+      sendNow();
+    }
   });
 });
 </script>
-<script src="assets/chrome.js?v=2026082301"></script>
-<script src="assets/site.js?v=2026082301"></script>
+<script src="assets/chrome.js?v=2026082302"></script>
+<script src="assets/site.js?v=2026082302"></script>
 </body>
 </html>
