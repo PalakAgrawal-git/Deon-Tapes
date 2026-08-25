@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082504">
+<link rel="stylesheet" href="assets/styles.css?v=2026082505">
 </head>
 <body data-page="home">
 
@@ -258,6 +258,9 @@
     .fa-slides img{position:absolute;inset:0;opacity:0;transition:opacity .9s ease}
     .fa-slides img.fa-on{opacity:1}
     .fa-slides .fa-tag{z-index:2}
+    .fa-dots{position:absolute;bottom:12px;right:14px;display:flex;gap:7px;z-index:3}
+    .fa-dots .fa-dot{width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;background:rgba(255,255,255,.55);transition:background .2s,transform .2s}
+    .fa-dots .fa-dot.on{background:#fff;transform:scale(1.25)}
     .fa-tag{position:absolute;left:12px;bottom:12px;background:rgba(204,0,0,.92);color:#fff;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:6px;backdrop-filter:blur(2px);box-shadow:0 2px 8px rgba(0,0,0,.3)}
     .fa-step .fa-content h3{font-size:1.2rem;margin:0 0 8px}
     .fa-step .fa-content p{font-size:.95rem;line-height:1.65;color:var(--text-mid);margin:0 0 10px}
@@ -466,15 +469,25 @@ document.addEventListener('DOMContentLoaded',function(){
     var imgs=box.querySelectorAll('img');
     if(imgs.length<2)return;
     var cur=0;
-    setInterval(function(){
-      imgs[cur].classList.remove('fa-on');
-      cur=(cur+1)%imgs.length;
-      imgs[cur].classList.add('fa-on');
-    }, 3600+idx*450);
+    var dots=document.createElement('div'); dots.className='fa-dots';
+    for(var i=0;i<imgs.length;i++){
+      (function(n){
+        var d=document.createElement('button');
+        d.type='button'; d.className='fa-dot'+(n===0?' on':''); d.setAttribute('aria-label','Photo '+(n+1));
+        d.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();show(n);restart();});
+        dots.appendChild(d);
+      })(i);
+    }
+    box.appendChild(dots);
+    var ds=dots.querySelectorAll('.fa-dot');
+    function show(n){imgs[cur].classList.remove('fa-on');ds[cur].classList.remove('on');cur=n;imgs[cur].classList.add('fa-on');ds[cur].classList.add('on');}
+    var timer;
+    function restart(){clearInterval(timer);timer=setInterval(function(){show((cur+1)%imgs.length);},3600+idx*450);}
+    restart();
   });
 })();
 </script>
-<script src="assets/chrome.js?v=2026082504"></script>
-<script src="assets/site.js?v=2026082504"></script>
+<script src="assets/chrome.js?v=2026082505"></script>
+<script src="assets/site.js?v=2026082505"></script>
 </body>
 </html>
