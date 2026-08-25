@@ -865,7 +865,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 :root[data-theme="dark"]{--blue:#CC0000;--logo-blue:#3d8fd4;--brand-blue:#3d8fd4;--brand-blue-deep:#2a7bc0}
 
 /* ---------- products page-head catalogue download ---------- */
-.ph-actions{margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ph-actions{margin-top:40px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
 .ph-actions .btn svg{flex:0 0 auto}
 .ph-actions .btn:hover svg{animation:phDrop .5s var(--ease)}
 @keyframes phDrop{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
