@@ -863,3 +863,15 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 :root[data-theme="dark"] .card .tag{background:#2E1414}
 
 :root[data-theme="dark"]{--blue:#CC0000;--logo-blue:#3d8fd4;--brand-blue:#3d8fd4;--brand-blue-deep:#2a7bc0}
+
+/* ---------- products page-head catalogue download ---------- */
+.ph-actions{margin-top:26px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ph-actions .btn svg{flex:0 0 auto}
+.ph-actions .btn:hover svg{animation:phDrop .5s var(--ease)}
+@keyframes phDrop{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+.ph-actions-note{font-size:.82rem;letter-spacing:.03em;color:#C7BFBE}
+.page-head:not(.photo) .ph-actions-note{color:var(--text-mid)}
+@media(max-width:560px){
+  .ph-actions{gap:12px}
+  .ph-actions .btn{width:100%}
+}
