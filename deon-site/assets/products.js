@@ -65,22 +65,14 @@
 
   function card(p){
     var img='assets/img/products/'+p[0]+'/1.png';
-    var href='product-detail.html?sku='+p[0];
-    return '<div class="pcard reveal" data-href="'+href+'" title="Double-click to open">'+
-      '<div class="pimg"><img src="'+img+'" alt="'+p[1]+'" loading="lazy">'+
-        '<div class="pcard-hover"><div class="ph-in">'+
-          '<span class="ph-code">Deon '+p[0]+'</span>'+
-          '<div class="ph-name">'+p[1]+'</div>'+
-          '<div class="ph-meta">'+cap(p[3])+' adhesive · '+cap(p[4])+' backing · '+cap(p[5])+'-sided</div>'+
-          '<a class="btn btn-primary ph-explore" href="'+href+'">Explore</a>'+
-        '</div></div>'+
-      '</div>'+
+    return '<a class="pcard reveal" href="product-detail.html?sku='+p[0]+'">'+
+      '<div class="pimg"><img src="'+img+'" alt="'+p[1]+'" loading="lazy"></div>'+
       '<div class="pbody"><div class="pcard-top">'+
       '<span class="pcode">Deon '+p[0]+'</span>'+
       '<span class="ptag">'+(FAMNAME[p[2]]||p[2])+'</span></div>'+
       '<h3>'+p[1]+'</h3><p>'+p[6]+'</p>'+
       '<div class="pmeta"><span>'+cap(p[3])+' adhesive</span><span>'+cap(p[4])+' backing</span><span>'+cap(p[5])+'-sided</span></div>'+
-      '<div class="pcard-foot" style="justify-content:center"><span class="arrow">Explore <span class="a">→</span></span></div></div></div>';
+      '<div class="pcard-foot" style="justify-content:center"><span class="arrow">Explore <span class="a">→</span></span></div></div></a>';
   }
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 
@@ -132,18 +124,8 @@
       var cb=side.querySelector('input[data-key="'+k+'"][value="'+v+'"]');if(cb)cb.checked=false;
       syncURL();chips();render();
     });
-    // Product cards: EXPLORE / double-click open the page.
-    // On desktop the details show on hover; on touch (no hover) a single tap opens.
-    var grid=document.getElementById('pgrid');
-    var touch=!(window.matchMedia && window.matchMedia('(hover:hover)').matches);
-    grid.addEventListener('dblclick',function(e){
-      var c=e.target.closest('.pcard'); if(c&&c.dataset.href) location.href=c.dataset.href;
-    });
-    grid.addEventListener('click',function(e){
-      if(e.target.closest('.ph-explore')) return;      // Explore link works normally
-      if(!touch) return;                                // desktop: single click does nothing
-      var c=e.target.closest('.pcard'); if(c&&c.dataset.href) location.href=c.dataset.href;
-    });
+    // Product cards are plain links — a single click anywhere on the card
+    // opens its product page (no hover popup, no double-click).
 
     chips();render();
   });
