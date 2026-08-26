@@ -51,6 +51,17 @@ var FIELDS = {
   other: ['first', 'last', 'company', 'country', 'email', 'phone', 'sku', 'message']
 };
 
+// Column / row headings. Anything not listed falls back to a spaced-out
+// version of the key (acronyms like CTC would otherwise become "C T C").
+var HEADINGS = {
+  name: 'Name', first: 'First name', last: 'Last name',
+  phone: 'Phone', email: 'Email', company: 'Company', country: 'Country',
+  designation: 'Current designation', qualification: 'Qualification',
+  currentCTC: 'Current CTC', expectedCTC: 'Expected CTC',
+  currentState: 'Current state', preferredState: 'Preferred state',
+  noticePeriod: 'Notice period', sku: 'Product / SKU', message: 'Message'
+};
+
 // ---------------------------------------------------------------------------
 
 function doPost(e) {
@@ -109,14 +120,22 @@ function logRow_(type, data, stamp, fileInfo) {
   var sheet = ss.getSheetByName(type) || ss.insertSheet(type);
   var keys = (type === 'job') ? FIELDS.job : FIELDS.other;
 
+  var fileCol = (type === 'job') ? 'CV / Resume' : 'Attachment';
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['Timestamp'].concat(keys, ['File']));
+    sheet.appendRow(['Timestamp'].concat(keys.map(titleCase_), [fileCol]));
     sheet.getRange(1, 1, 1, keys.length + 2).setFontWeight('bold');
     sheet.setFrozenRows(1);
   }
   var row = [stamp].concat(keys.map(function (k) { return data[k] || ''; }));
-  row.push(fileInfo ? fileInfo.url : '');
+  row.push(''); // file cell filled in below so it can hold a formula
   sheet.appendRow(row);
+
+  // Show a clickable label rather than a bare Drive URL.
+  if (fileInfo) {
+    sheet.getRange(sheet.getLastRow(), keys.length + 2)
+         .setFormula('=HYPERLINK("' + fileInfo.url + '","' +
+                     (type === 'job' ? 'Open CV' : 'Open file') + '")');
+  }
 }
 
 // --- notification ----------------------------------------------------------
@@ -182,6 +201,7 @@ function plainText_(data, keys, fileInfo) {
 }
 
 function titleCase_(k) {
+  if (HEADINGS[k]) return HEADINGS[k];
   return k.replace(/([A-Z])/g, ' $1')
           .replace(/^./, function (c) { return c.toUpperCase(); });
 }
