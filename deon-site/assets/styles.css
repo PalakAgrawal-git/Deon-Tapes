@@ -33,6 +33,11 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+/* stop rotated tape strip / logo marquee from poking past the viewport edge
+   and creating a horizontal scroll into blank space on mobile.
+   overflow-x:clip does not create a scroll container, so the sticky header
+   keeps working (unlike overflow-x:hidden on body). */
+html,body{overflow-x:clip;max-width:100%}
 body{
   margin:0;background:var(--white);color:var(--text);
   font-family:var(--font-body);font-size:var(--body-size);line-height:var(--body-lh);
