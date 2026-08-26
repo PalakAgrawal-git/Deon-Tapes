@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082605">
+<link rel="stylesheet" href="assets/styles.css?v=2026082606">
 </head>
 <body data-page="home">
 
@@ -315,10 +315,14 @@
     .fa-stepno::after{content:'';flex:1;height:1px;background:var(--line)}
     .fa-step .fa-content h3{font-size:1.6rem;line-height:1.2;margin:0 0 14px;letter-spacing:-.01em}
     .fa-step .fa-content p{font-size:.97rem;line-height:1.7;color:var(--text-mid);margin:0 0 22px}
-    /* controls */
-    .fa-nav{display:flex;align-items:center;gap:10px;margin-top:24px}
-    .fa-arrow{-webkit-appearance:none;appearance:none;width:46px;height:46px;border-radius:50%;border:1px solid currentColor;background:none;color:var(--text-mid);font-size:1.05rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s,background-color .2s,transform .2s}
-    .fa-arrow:hover{background-color:#CC0000;border-color:#CC0000;color:#fff;transform:translateY(-2px)}
+    /* controls — arrows flank the slide, matching the certificate carousel */
+    .fa-stage{display:flex;align-items:center;gap:16px}
+    .fa-stage .fa-track{flex:1;min-width:0}
+    .fa-arrow{-webkit-appearance:none;appearance:none;width:44px;height:44px;flex-shrink:0;border-radius:50%;border:none;background-color:#CC0000;color:#fff;font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.2);transition:opacity .2s,transform .2s}
+    .fa-arrow:hover{opacity:.85;transform:scale(1.06)}
+    .fa-arrow:focus{outline:none}
+    .fa-arrow:focus-visible{outline:2px solid #CC0000;outline-offset:3px}
+    .fa-nav{display:flex;align-items:center;margin-top:18px}
     .fa-count{margin-left:auto;font-family:var(--font-head);font-weight:700;font-size:.82rem;color:var(--text-mid);letter-spacing:.08em}
     .fa-count b{color:#CC0000;font-size:1.05rem}
     .fa-tag{position:absolute;left:12px;bottom:12px;background:rgba(204,0,0,.92);color:#fff;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:6px;backdrop-filter:blur(2px);box-shadow:0 2px 8px rgba(0,0,0,.3)}
@@ -331,6 +335,8 @@
     .fa-card h3{font-size:1.1rem;margin:0 0 10px;color:var(--ink)}
     .fa-card p{font-size:.95rem;line-height:1.65;color:var(--text-mid);margin:0}
     @media(max-width:800px){
+      .fa-stage{gap:8px}
+      .fa-arrow{width:36px;height:36px;font-size:1rem}
       .fa-step{grid-template-columns:1fr}
       .fa-step .fa-img{min-height:250px}
       .fa-step .fa-content{padding:30px 24px}
@@ -356,6 +362,8 @@
 
     <div class="fa-show reveal" id="faShow">
       <div class="fa-rail" id="faRail"></div>
+      <div class="fa-stage">
+      <button class="fa-arrow" type="button" id="faPrev" aria-label="Previous step">&#8592;</button>
       <div class="fa-track">
         <a class="fa-step fa-on" href="manufacturing-technology.html#manufacturing-capabilities" data-short="PVC Film">
           <div class="fa-img"><img src="assets/brand/factory-pvc-coating.jpg" alt="PVC film calendaring line"><span class="fa-tag">PVC Coating Machine</span></div>
@@ -412,11 +420,9 @@
           </div>
         </a>
       </div>
-      <div class="fa-nav">
-        <button class="fa-arrow" type="button" id="faPrev" aria-label="Previous step">&#8592;</button>
-        <button class="fa-arrow" type="button" id="faNext" aria-label="Next step">&#8594;</button>
-        <span class="fa-count" id="faCount"></span>
+      <button class="fa-arrow" type="button" id="faNext" aria-label="Next step">&#8594;</button>
       </div>
+      <div class="fa-nav"><span class="fa-count" id="faCount"></span></div>
     </div>
 
     <!-- Testing, Compliance & Scale -->
@@ -590,7 +596,7 @@ document.addEventListener('DOMContentLoaded',function(){
   label(); restart();
 })();
 </script>
-<script src="assets/chrome.js?v=2026082605"></script>
-<script src="assets/site.js?v=2026082605"></script>
+<script src="assets/chrome.js?v=2026082606"></script>
+<script src="assets/site.js?v=2026082606"></script>
 </body>
 </html>
