@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082604">
+<link rel="stylesheet" href="assets/styles.css?v=2026082605">
 </head>
 <body data-page="home">
 
@@ -295,9 +295,10 @@
       .fa-tab.on::before{animation:none;width:100%}
       .fa-step .fa-img img,.fa-step.fa-on .fa-img img{transition:none;transform:none}
     }
-    .fa-tab .n{display:block;font-size:1.05rem;font-weight:800;letter-spacing:.02em;line-height:1}
-    .fa-tab .l{display:block;font-size:.72rem;font-weight:600;letter-spacing:.02em;margin-top:6px;line-height:1.35;opacity:.85}
+    .fa-tab .l{display:block;font-size:.85rem;font-weight:700;letter-spacing:.01em;line-height:1.35}
     .fa-tab:hover{color:var(--ink)}
+    .fa-tab:focus{outline:none}
+    .fa-tab:focus-visible{outline:2px solid #CC0000;outline-offset:-2px}
     .fa-tab.on{color:#CC0000}
     .fa-tab.on .l{color:var(--ink);opacity:1}
 
@@ -335,10 +336,10 @@
       .fa-step .fa-content{padding:30px 24px}
       .fa-step .fa-content h3{font-size:1.3rem}
       .fa-ghost{font-size:7rem;bottom:-26px}
-      .fa-rail{grid-template-columns:repeat(6,minmax(96px,1fr));overflow-x:auto;scrollbar-width:none}
+      .fa-rail{grid-template-columns:repeat(6,minmax(104px,1fr));overflow-x:auto;scrollbar-width:none}
       .fa-rail::-webkit-scrollbar{display:none}
       .fa-tab{padding:13px 12px}
-      .fa-tab .l{display:none}
+      .fa-tab .l{font-size:.78rem}
       .fa-count{display:none}
       .fa-cards{grid-template-columns:1fr}
     }
@@ -560,7 +561,7 @@ document.addEventListener('DOMContentLoaded',function(){
     // rail tab — keeps all six steps on screen while only one slide shows
     var t=document.createElement('button');
     t.type='button'; t.className='fa-tab'+(n===0?' on':'');
-    t.innerHTML='<span class="n">'+num+'</span><span class="l">'+steps[n].getAttribute('data-short')+'</span>';
+    t.innerHTML='<span class="l">'+steps[n].getAttribute('data-short')+'</span>';
     t.addEventListener('click',function(){go(n);restart();});
     rail.appendChild(t);
   })(i);}
@@ -589,7 +590,7 @@ document.addEventListener('DOMContentLoaded',function(){
   label(); restart();
 })();
 </script>
-<script src="assets/chrome.js?v=2026082604"></script>
-<script src="assets/site.js?v=2026082604"></script>
+<script src="assets/chrome.js?v=2026082605"></script>
+<script src="assets/site.js?v=2026082605"></script>
 </body>
 </html>
