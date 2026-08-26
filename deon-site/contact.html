@@ -275,8 +275,10 @@ document.addEventListener('DOMContentLoaded',function(){
   var q=new URLSearchParams(location.search);
   var rawType=q.get('type')||'samplequote', sku=q.get('sku'), role=q.get('role');
   var type={sample:'samplequote',quote:'samplequote'}[rawType]||rawType;
-  // arriving from an Apply link on the careers page — prefill the designation
-  if(role){var rf=document.querySelector('[name="jdesignation"]'); if(rf)rf.value=role;}
+  // arriving from an Apply link on the careers page — note which opening it is.
+  // NB: jdesignation is the applicant's CURRENT job title, so the role goes in the note.
+  if(role){var rf=document.querySelector('[name="jmessage"]');
+    if(rf)rf.value='Applying for: '+role+(rf.value?'\n\n'+rf.value:'');}
 
   // TEST recipients — all tabs to one inbox for now; swap to real addresses before go-live
   var RECIPIENTS={
