@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082602">
+<link rel="stylesheet" href="assets/styles.css?v=2026082603">
 </head>
 <body data-page="home">
 
@@ -133,7 +133,23 @@
       </div>
     </div>
   </div>
-  <style>@media(max-width:900px){#jnWrap{flex-direction:column!important;gap:20px!important}.jn-clip{width:100%!important;height:auto!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch}.jn-track{display:flex!important;flex-direction:row!important;align-items:center!important;position:relative!important;transform:none!important;gap:2px}.jn-track button{width:auto!important;flex:0 0 auto!important;font-size:1rem!important;padding:8px 12px!important;white-space:nowrap}.jn-track button.active{font-size:1.35rem!important}.jn-photo{min-height:380px!important}}</style>
+  <style>@media(max-width:900px){
+    #jnWrap{flex-direction:column!important;gap:20px!important;padding:0 1.25rem!important}
+    .jn-clip{width:100%!important;height:auto!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .jn-clip::-webkit-scrollbar{display:none}
+    .jn-track{display:flex!important;flex-direction:row!important;align-items:center!important;position:relative!important;transform:none!important;gap:2px}
+    .jn-track button{width:auto!important;flex:0 0 auto!important;font-size:1rem!important;padding:8px 12px!important;white-space:nowrap}
+    .jn-track button.active{font-size:1.35rem!important}
+    /* card grows to fit its text instead of clipping it */
+    .jn-photo{min-height:0!important;aspect-ratio:auto!important}
+    .jn-photo #jnImage{position:absolute!important;inset:0!important;height:100%!important}
+    #jnCaption{position:relative!important;padding:150px 20px 22px!important;
+      background:linear-gradient(rgba(0,0,0,.15) 0%,rgba(0,0,0,.62) 42%,rgba(0,0,0,.88) 100%)!important}
+    #jnCT{font-size:1.4rem!important;line-height:1.2!important;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+    #jnCY{font-size:.95rem!important;text-shadow:0 2px 8px rgba(0,0,0,.7)}
+    #jnCD{font-size:.94rem!important;line-height:1.6!important;color:rgba(255,255,255,.92)!important}
+    #jnThumbs{top:12px!important;right:12px!important}
+  }</style>
   <script>
   (function(){
     var DATA=[
@@ -190,12 +206,19 @@
       spin();
     }
     function center(i){
-      var clipH=clip.offsetHeight;
       var btn=btns[i];
+      // mobile lays the years out horizontally in a scroller; desktop shifts a vertical track
+      if(window.matchMedia("(max-width:900px)").matches){
+        track.style.transform="";
+        var max=clip.scrollWidth-clip.clientWidth;
+        var want=btn.offsetLeft-(clip.clientWidth/2-btn.offsetWidth/2);
+        clip.scrollLeft=Math.max(0,Math.min(max,want));
+        return;
+      }
       var btnMid=btn.offsetTop+btn.offsetHeight/2;
-      var shift=clipH/2-btnMid;
-      track.style.transform="translateY("+shift+"px)";
+      track.style.transform="translateY("+(clip.offsetHeight/2-btnMid)+"px)";
     }
+    window.addEventListener("resize",function(){center(cur);});
     var animating=false;
     function go(i){
       if(i===cur||animating)return;
@@ -530,7 +553,7 @@ document.addEventListener('DOMContentLoaded',function(){
   label(); restart();
 })();
 </script>
-<script src="assets/chrome.js?v=2026082602"></script>
-<script src="assets/site.js?v=2026082602"></script>
+<script src="assets/chrome.js?v=2026082603"></script>
+<script src="assets/site.js?v=2026082603"></script>
 </body>
 </html>
