@@ -280,12 +280,13 @@ document.addEventListener('DOMContentLoaded',function(){
   if(role){var rf=document.querySelector('[name="jmessage"]');
     if(rf)rf.value='Applying for: '+role+(rf.value?'\n\n'+rf.value:'');}
 
-  // TEST recipients — all tabs to one inbox for now; swap to real addresses before go-live
+  // Kept in sync with the Apps Script for reference only — the script uses its
+  // own server-side list and ignores what the browser sends.
   var RECIPIENTS={
-    samplequote:['smeetkataria7@gmail.com','smeet.kataria@gmail.com'],
-    job:['smeetkataria7@gmail.com','smeet.kataria@gmail.com','katariasmeet@gmail.com','katariasmeet7@gmail.com','katariasmeet07@gmail.com','Smeet.k@somaiya.edu'],
-    supply:['smeetkataria7@gmail.com','palakshweta08@gmail.com'],
-    general:['smeetkataria7@gmail.com','smeet.kataria@gmail.com']
+    samplequote:['info@deontapes.com','admin.mumbai@deontapes.com'],
+    job:['hr@deontechnology.co.in','hr1@deontechnology.co.in','hr1@deontapes.com','hr@deontapes.com','info@deontapes.com','admin.mumbai@deontapes.com'],
+    supply:['purchase.ho1@deontapes.com','info@deontapes.com'],
+    general:['info@deontapes.com','admin.mumbai@deontapes.com']
   };
   var BTN={samplequote:'Send request',job:'Submit application',supply:'Submit supply enquiry',general:'Send enquiry'};
   var DONE={samplequote:'sample / quote request',job:'application',supply:'supply enquiry',general:'enquiry'};
@@ -381,7 +382,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 </script>
-<script src="assets/chrome.js?v=2026082608"></script>
-<script src="assets/site.js?v=2026082608"></script>
+<script src="assets/chrome.js?v=2026082609"></script>
+<script src="assets/site.js?v=2026082609"></script>
 </body>
 </html>

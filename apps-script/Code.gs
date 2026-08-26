@@ -26,10 +26,12 @@
 // client-supplied address list would let anyone use it to send mail.
 // ---------------------------------------------------------------------------
 var RECIPIENTS = {
-  samplequote: ['smeetkataria7@gmail.com', 'smeet.kataria@gmail.com'],
-  job:         ['smeetkataria7@gmail.com', 'smeet.kataria@gmail.com'],
-  supply:      ['smeetkataria7@gmail.com', 'palakshweta08@gmail.com'],
-  general:     ['smeetkataria7@gmail.com', 'smeet.kataria@gmail.com']
+  samplequote: ['info@deontapes.com', 'admin.mumbai@deontapes.com'],
+  job:         ['hr@deontechnology.co.in', 'hr1@deontechnology.co.in',
+                'hr1@deontapes.com', 'hr@deontapes.com',
+                'info@deontapes.com', 'admin.mumbai@deontapes.com'],
+  supply:      ['purchase.ho1@deontapes.com', 'info@deontapes.com'],
+  general:     ['info@deontapes.com', 'admin.mumbai@deontapes.com']
 };
 
 // Drive folder for uploaded CVs / catalogues. Leave '' to auto-create
