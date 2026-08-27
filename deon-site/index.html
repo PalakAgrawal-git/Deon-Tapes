@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEON® — Pressure-sensitive adhesive tapes & soft PVC films, manufactured in-house</title>
 <meta name="description" content="DEON manufactures pressure-sensitive adhesive tapes and soft PVC films for packaging, electrical, insulation, HVAC, industrial and OEM applications — controlled in-house from adhesive formulation to finished roll.">
-<link rel="stylesheet" href="assets/styles.css?v=2026082702">
+<link rel="stylesheet" href="assets/styles.css?v=2026082703">
 </head>
 <body data-page="home">
 
@@ -281,142 +281,67 @@
 <section class="section">
   <style>
     .fa-intro{max-width:820px;font-size:1.05rem;line-height:1.7;color:var(--text-mid);margin-bottom:48px}
-    /* Factory Advantage — one slideshow, each slide is one manufacturing step */
-    .fa-show{position:relative}
-    @media (prefers-reduced-motion:reduce){
-      .fa-step .fa-img img,.fa-step.fa-on .fa-img img{transition:none;transform:none}
-    }
-
-    .fa-track{display:grid;border-radius:14px;overflow:hidden}
-    .fa-step{grid-area:1/1;display:grid;grid-template-columns:1.08fr .92fr;align-items:stretch;text-decoration:none;color:inherit;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility .6s;pointer-events:none;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-    .fa-step.fa-on{opacity:1;visibility:visible;pointer-events:auto}
-    .fa-step .fa-img{position:relative;overflow:hidden;min-height:430px}
-    .fa-step .fa-img img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 6.5s ease-out}
-    .fa-step.fa-on .fa-img img{transform:scale(1)}
-    /* oversized ghost numeral anchors each slide */
-    .fa-ghost{position:absolute;right:-14px;bottom:-40px;font-family:var(--font-head);font-weight:800;font-size:11rem;line-height:.8;color:rgba(255,255,255,.16);pointer-events:none;letter-spacing:-.04em}
-    .fa-step .fa-content{padding:52px 48px;display:flex;flex-direction:column;justify-content:flex-start}
-    .fa-stepno{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#CC0000;margin-bottom:16px}
-    .fa-stepno::after{content:'';flex:1;height:1px;background:var(--line)}
-    /* reserve two lines so the body copy starts at the same height on every slide */
-    .fa-step .fa-content h3{font-size:1.6rem;line-height:1.2;margin:0 0 14px;letter-spacing:-.01em;min-height:2.4em}
-    .fa-step .fa-content p{font-size:.97rem;line-height:1.7;color:var(--text-mid);margin:0 0 22px}
-    .fa-step .fa-content .arrow{margin-top:auto}
-    /* controls — arrows flank the slide, matching the certificate carousel */
-    .fa-stage{display:flex;align-items:center;gap:16px}
-    .fa-stage .fa-track{flex:1;min-width:0}
-    .fa-arrow{-webkit-appearance:none;appearance:none;width:44px;height:44px;flex-shrink:0;border-radius:50%;border:none;background-color:#CC0000;color:#fff;font-size:1.2rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.2);transition:opacity .2s,transform .2s}
-    .fa-arrow:hover{opacity:.85;transform:scale(1.06)}
-    .fa-arrow:focus{outline:none}
-    .fa-arrow:focus-visible{outline:2px solid #CC0000;outline-offset:3px}
-    .fa-nav{display:flex;align-items:center;margin-top:18px}
-    .fa-count{margin-left:auto;font-family:var(--font-head);font-weight:700;font-size:.82rem;color:var(--text-mid);letter-spacing:.08em}
-    .fa-count b{color:#CC0000;font-size:1.05rem}
-    .fa-tag{position:absolute;left:12px;bottom:12px;background:rgba(204,0,0,.92);color:#fff;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:6px;backdrop-filter:blur(2px);box-shadow:0 2px 8px rgba(0,0,0,.3)}
-    .fa-step .fa-content h3{font-size:1.2rem;margin:0 0 8px}
-    .fa-step .fa-content p{font-size:.95rem;line-height:1.65;color:var(--text-mid);margin:0 0 10px}
+    /* Tile row */
+    .fa-tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-bottom:8px}
+    .fa-tile{cursor:pointer;border:none;background:transparent;padding:0;text-align:left;font:inherit;display:flex;flex-direction:column;color:inherit}
+    .fa-tile-num{font-family:var(--font-head);font-weight:700;font-size:.82rem;color:var(--text-mid);margin:0 0 8px}
+    .fa-tile-photo{aspect-ratio:4/3;border-radius:10px;border:2px solid var(--line);background:var(--light-grey) center/cover no-repeat;overflow:hidden;transition:border-color .2s,box-shadow .2s,transform .2s}
+    .fa-tile:hover .fa-tile-photo{border-color:#CC0000;transform:translateY(-2px)}
+    .fa-tile.active .fa-tile-photo{border-color:#CC0000;box-shadow:0 0 0 3px rgba(204,0,0,.18)}
+    .fa-tile-label{margin:10px 0 0;font-family:var(--font-head);font-weight:700;font-size:.9rem;color:var(--ink);text-transform:uppercase;letter-spacing:.04em;line-height:1.2}
+    .fa-tile.active .fa-tile-label{color:#CC0000}
+    /* Detail panel */
+    .fa-panel{margin-top:36px;padding-top:36px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start}
+    .fa-panel-photo{position:relative;aspect-ratio:4/3;border-radius:14px;background:var(--light-grey) center/cover no-repeat;overflow:hidden}
+    .fa-panel-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .fa-panel-tag{position:absolute;left:14px;bottom:14px;background:rgba(204,0,0,.92);color:#fff;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+    .fa-panel-content .fa-stepno{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#CC0000;margin:0 0 14px}
+    .fa-panel-content .fa-stepno::after{content:'';flex:1;height:1px;background:var(--line)}
+    .fa-panel-content h3{font-size:1.7rem;line-height:1.2;margin:0 0 16px;color:var(--ink)}
+    .fa-panel-content p{font-size:1rem;line-height:1.7;color:var(--text-mid);margin:0 0 22px}
+    /* Testing sub-section */
     .fa-sub{margin-top:64px}
     .fa-sub .sec-head{margin-bottom:32px}
     .fa-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     .fa-card{padding:28px;border:1px solid var(--line);border-radius:10px;background:var(--white)}
     .fa-card h3{font-size:1.1rem;margin:0 0 10px;color:var(--ink)}
     .fa-card p{font-size:.95rem;line-height:1.65;color:var(--text-mid);margin:0}
+    @media(max-width:1000px){
+      .fa-tiles{grid-template-columns:repeat(3,1fr)}
+    }
     @media(max-width:800px){
-      /* single column; image inset to the same margins as the text so their
-         left/right edges line up, with arrows overlaid on the image edges */
-      .fa-stage{display:block;position:relative}
-      .fa-stage .fa-track{width:100%}
-      .fa-step{grid-template-columns:1fr;align-content:start}
-      .fa-step .fa-img{height:210px;min-height:0;margin:18px 18px 0;border-radius:10px}
-      .fa-arrow{position:absolute;top:123px;transform:translateY(-50%);z-index:4;
-        width:40px;height:40px;font-size:1.05rem;background-color:rgba(204,0,0,.92);
-        box-shadow:0 2px 10px rgba(0,0,0,.35)}
-      .fa-arrow:hover{transform:translateY(-50%) scale(1.06)}
-      #faPrev{left:26px}
-      #faNext{right:26px}
-      .fa-step .fa-content{padding:22px 18px 26px}
-      .fa-step .fa-content h3{font-size:1.3rem;min-height:2.5em}
-      .fa-step .fa-content p{margin-bottom:14px}
-      .fa-step .fa-content .arrow{margin-top:6px}
-      .fa-ghost{font-size:6rem;bottom:-22px}
-      .fa-nav{justify-content:center;margin-top:14px}
-      .fa-count{display:block;margin-left:0}
+      .fa-panel{grid-template-columns:1fr;gap:24px;margin-top:24px;padding-top:24px}
+      .fa-panel-content h3{font-size:1.4rem}
       .fa-cards{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .fa-tiles{grid-template-columns:repeat(2,1fr);gap:14px}
+      .fa-tile-label{font-size:.78rem}
     }
   </style>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The DEON Factory Advantage</span>
-      <h2>Vertical Integration: Total Quality Control &amp; Rapid Delivery</h2>
+      <h2>Our Complete In-House Manufacturing Loop</h2>
+      <p>We control every component of the final product under one roof, from raw material to dispatch. Select a stage to see it in detail.</p>
     </div>
     <p class="fa-intro reveal">At our state-of-the-art DEON factory, we do not just assemble tapes &#8212; we manufacture them from the ground up. Every single step of the development and production process is handled 100% in-house. By eliminating third-party dependencies, we maintain strict quality standards and guarantee exceptionally fast delivery times for our global clients.</p>
 
-    <h3 class="reveal" style="margin-bottom:8px;font-size:1.4rem">Our Complete In-House Manufacturing Loop</h3>
-    <p class="reveal" style="color:var(--text-mid);margin-bottom:32px">We control every component of the final product under one roof:</p>
-
     <div class="fa-show reveal" id="faShow">
-      <div class="fa-stage">
-      <button class="fa-arrow" type="button" id="faPrev" aria-label="Previous step">&#8592;</button>
-      <div class="fa-track">
-        <a class="fa-step fa-on" href="manufacturing-technology.html#manufacturing-capabilities" data-short="PVC Film">
-          <div class="fa-img"><img src="assets/brand/factory-pvc-coating.jpg" alt="PVC film calendaring line"><span class="fa-tag">PVC Coating Machine</span></div>
-          <div class="fa-content">
-            <span class="fa-stepno">Step 01</span>
-            <h3>Raw PVC film calendaring</h3>
-            <p>Processing and rolling out our own high-quality, high-precision PVC backing materials from scratch, with full support for customized branding, printing, and embossing directly on the film.</p>
-            <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
-          </div>
-        </a>
-        <a class="fa-step" href="manufacturing-technology.html#adhesive-technologies" data-short="Adhesive">
-          <div class="fa-img"><img src="assets/brand/factory-adhesive-plant.jpg" alt="Adhesive synthesis plant" loading="lazy"><span class="fa-tag">Adhesive Plant</span></div>
-          <div class="fa-content">
-            <span class="fa-stepno">Step 02</span>
-            <h3>Advanced adhesive synthesis</h3>
-            <p>Formulating and mixing more than 4 distinct types of adhesive technologies (including specialized acrylics, high-tack rubbers, and performance silicones) to meet exact application needs.</p>
-            <span class="arrow">See adhesive tech <span class="a">&rarr;</span></span>
-          </div>
-        </a>
-        <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" data-short="Paper Core">
-          <div class="fa-img"><img src="assets/brand/factory-machinery.jpg" alt="Core production machinery" loading="lazy"></div>
-          <div class="fa-content">
-            <span class="fa-stepno">Step 03</span>
-            <h3>Heavy-duty paper core production</h3>
-            <p>Manufacturing internal cardboard cores to exact structural tolerances, completely customized with your branded inner liners or logos.</p>
-            <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
-          </div>
-        </a>
-        <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" data-short="Coating">
-          <div class="fa-img"><img src="assets/brand/factory-coating.jpg" alt="Adhesive web coating line" loading="lazy"><span class="fa-tag">Bopp Coating Line</span></div>
-          <div class="fa-content">
-            <span class="fa-stepno">Step 04</span>
-            <h3>Precision adhesive web coating</h3>
-            <p>Applying uniform adhesive layers onto backings and winding them into master logrolls.</p>
-            <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
-          </div>
-        </a>
-        <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" data-short="Packaging">
-          <div class="fa-img"><img src="assets/brand/factory-printing.jpg" alt="In-house packaging and printing" loading="lazy"></div>
-          <div class="fa-content">
-            <span class="fa-stepno">Step 05</span>
-            <h3>In-house packaging &amp; artwork plant</h3>
-            <p>Designing and manufacturing custom protective materials on-site, including fully branded tags, mono boxes, and heavy-duty shippers (outer cartons). This includes our in-house artwork development team capable of creating or modifying any kind of graphic design or artwork for your brand.</p>
-            <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
-          </div>
-        </a>
-        <a class="fa-step" href="manufacturing-technology.html#manufacturing-capabilities" data-short="Slitting">
-          <div class="fa-img"><img src="assets/brand/factory-cutting-packing.jpg" alt="High-speed logroll slitting" loading="lazy"></div>
-          <div class="fa-content">
-            <span class="fa-stepno">Step 06</span>
-            <h3>High-speed logroll slitting &amp; automated packing</h3>
-            <p>Precision cutting of master logrolls into custom tape widths, followed by final retail or industrial packing and sealing &#8212; ready for immediate global shipment.</p>
-            <span class="arrow">See in our factory <span class="a">&rarr;</span></span>
-          </div>
-        </a>
-      </div>
-      <button class="fa-arrow" type="button" id="faNext" aria-label="Next step">&#8594;</button>
-      </div>
-      <div class="fa-nav"><span class="fa-count" id="faCount"></span></div>
+      <div class="fa-tiles" id="faTiles"></div>
+      <div class="fa-panel" id="faPanel"></div>
     </div>
+
+    <script id="faData" type="application/json">
+    [
+      {"label":"PVC Film","title":"Raw PVC film calendaring","img":"assets/brand/factory-pvc-coating.jpg","tag":"PVC Coating Machine","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Processing and rolling out our own high-quality, high-precision PVC backing materials from scratch, with full support for customized branding, printing, and embossing directly on the film."},
+      {"label":"Adhesive","title":"Advanced adhesive synthesis","img":"assets/brand/factory-adhesive-plant.jpg","tag":"Adhesive Plant","href":"manufacturing-technology.html#adhesive-technologies","body":"Formulating and mixing more than 4 distinct types of adhesive technologies (including specialized acrylics, high-tack rubbers, and performance silicones) to meet exact application needs."},
+      {"label":"Paper Core","title":"Heavy-duty paper core production","img":"assets/brand/factory-machinery.jpg","tag":"","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Manufacturing internal cardboard cores to exact structural tolerances, completely customized with your branded inner liners or logos."},
+      {"label":"Coating","title":"Precision adhesive web coating","img":"assets/brand/factory-coating.jpg","tag":"Bopp Coating Line","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Applying uniform adhesive layers onto backings and winding them into master logrolls."},
+      {"label":"Packaging","title":"In-house packaging & artwork plant","img":"assets/brand/factory-printing.jpg","tag":"","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Designing and manufacturing custom protective materials on-site, including fully branded tags, mono boxes, and heavy-duty shippers (outer cartons). This includes our in-house artwork development team capable of creating or modifying any kind of graphic design or artwork for your brand."},
+      {"label":"Slitting","title":"High-speed logroll slitting & automated packing","img":"assets/brand/factory-cutting-packing.jpg","tag":"","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Precision cutting of master logrolls into custom tape widths, followed by final retail or industrial packing and sealing — ready for immediate global shipment."}
+    ]
+    </script>
 
     <!-- Testing, Compliance & Scale -->
     <div class="fa-sub">
@@ -545,38 +470,50 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 <script>
-/* Factory Advantage — one slideshow cycling through the manufacturing steps */
+/* Factory Advantage — tile row + detail panel per client wireframe */
 (function(){
   var show=document.getElementById('faShow'); if(!show)return;
-  var steps=show.querySelectorAll('.fa-step'); if(steps.length<2)return;
-  var count=document.getElementById('faCount'), cur=0;
-
-  // oversized numeral watermarked into each photo
-  for(var i=0;i<steps.length;i++){
-    var g=document.createElement('span');
-    g.className='fa-ghost'; g.textContent=String(i+1).padStart(2,'0'); g.setAttribute('aria-hidden','true');
-    steps[i].querySelector('.fa-img').appendChild(g);
+  var tilesEl=document.getElementById('faTiles');
+  var panelEl=document.getElementById('faPanel');
+  var stages; try{stages=JSON.parse(document.getElementById('faData').textContent);}catch(e){return;}
+  var active=0, timer;
+  function renderTiles(){
+    tilesEl.innerHTML=stages.map(function(s,i){
+      var num=String(i+1).padStart(2,'0');
+      return '<button class="fa-tile'+(i===active?' active':'')+'" type="button" data-i="'+i+'">'
+        +'<span class="fa-tile-num">'+num+'</span>'
+        +'<span class="fa-tile-photo" style="background-image:url(\''+s.img+'\')"></span>'
+        +'<span class="fa-tile-label">'+s.label+'</span>'
+      +'</button>';
+    }).join('');
   }
-
-  function label(){count.innerHTML='<b>'+String(cur+1).padStart(2,'0')+'</b> / '+String(steps.length).padStart(2,'0');}
-  function go(n){
-    if(n===cur)return;
-    steps[cur].classList.remove('fa-on');
-    cur=(n+steps.length)%steps.length;
-    steps[cur].classList.add('fa-on');
-    label();
+  function renderPanel(){
+    var s=stages[active];
+    var num=String(active+1).padStart(2,'0');
+    panelEl.innerHTML=
+      '<div class="fa-panel-photo"><img src="'+s.img+'" alt="'+s.title+'" loading="lazy">'
+        +(s.tag?'<span class="fa-panel-tag">'+s.tag+'</span>':'')
+      +'</div>'
+      +'<div class="fa-panel-content">'
+        +'<span class="fa-stepno">Step '+num+'</span>'
+        +'<h3>'+s.title+'</h3>'
+        +'<p>'+s.body+'</p>'
+        +'<a class="arrow" href="'+s.href+'">See in our factory <span class="a">&rarr;</span></a>'
+      +'</div>';
   }
-  document.getElementById('faNext').addEventListener('click',function(){go((cur+1)%steps.length);restart();});
-  document.getElementById('faPrev').addEventListener('click',function(){go((cur-1+steps.length)%steps.length);restart();});
-
-  var timer;
-  function restart(){clearInterval(timer);timer=setInterval(function(){go((cur+1)%steps.length);},5000);}
-  show.addEventListener('mouseenter',function(){clearInterval(timer);show.classList.add('fa-paused');});
-  show.addEventListener('mouseleave',function(){show.classList.remove('fa-paused');restart();});
-  label(); restart();
+  function go(i){active=(i+stages.length)%stages.length;renderTiles();renderPanel();}
+  tilesEl.addEventListener('click',function(e){
+    var b=e.target.closest('.fa-tile'); if(!b)return;
+    go(parseInt(b.getAttribute('data-i'),10));
+    restart();
+  });
+  function restart(){clearInterval(timer);timer=setInterval(function(){go(active+1);},6000);}
+  show.addEventListener('mouseenter',function(){clearInterval(timer);});
+  show.addEventListener('mouseleave',restart);
+  renderTiles(); renderPanel(); restart();
 })();
 </script>
-<script src="assets/chrome.js?v=2026082607"></script>
-<script src="assets/site.js?v=2026082607"></script>
+<script src="assets/chrome.js?v=2026082703"></script>
+<script src="assets/site.js?v=2026082703"></script>
 </body>
 </html>
