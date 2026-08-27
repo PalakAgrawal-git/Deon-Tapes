@@ -66,7 +66,12 @@
             </div>
           </div>
           <style>
-            #pdShareMenu button:hover,#pdShareMenu a:hover{background:var(--tint)}
+            #pdShareMenu{background:#fff!important}
+            #pdShareMenu button,#pdShareMenu a{color:#111!important;font-weight:500}
+            #pdShareMenu button:hover,#pdShareMenu a:hover{background:#f3f3f3!important;color:#CC0000!important}
+            :root[data-theme="dark"] #pdShareMenu{background:#1a1a1a!important;border-color:#333}
+            :root[data-theme="dark"] #pdShareMenu button,:root[data-theme="dark"] #pdShareMenu a{color:#fff!important}
+            :root[data-theme="dark"] #pdShareMenu button:hover,:root[data-theme="dark"] #pdShareMenu a:hover{background:#2a2a2a!important;color:#ff6b6b!important}
           </style>
         </div>
 
