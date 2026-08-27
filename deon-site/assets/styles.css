@@ -535,7 +535,8 @@ a.pcard{color:inherit;text-decoration:none;cursor:pointer}
 
 /* ---------- product / what-we-make cards with images ---------- */
 .card.has-img{padding:0;overflow:hidden;display:flex;flex-direction:column}
-.card.has-img .cimg{aspect-ratio:1/1;overflow:hidden;background:var(--light-grey);flex-shrink:0}
+.card.has-img .cimg{aspect-ratio:16/10;overflow:hidden;background:var(--light-grey);flex-shrink:0}
+#exhibitions .card.has-img .cimg{aspect-ratio:16/9}
 .card.has-img .cimg img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .5s var(--ease)}
 .card.has-img:hover .cimg img{transform:scale(1.05)}
 .card.has-img .cbody{padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
