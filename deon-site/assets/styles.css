@@ -260,7 +260,8 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 
 /* stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
-.stat .v{font-family:var(--font-head);font-weight:700;font-size:clamp(2.4rem,4.4vw,3.4rem);color:#fff;line-height:1}
+.stat .v{font-family:var(--font-head);font-weight:700;font-size:clamp(2.4rem,4.4vw,3.4rem);color:var(--ink);line-height:1}
+.dark .stat .v,section.dark .stat .v{color:#fff}
 .stat .k{margin-top:10px;color:#B0A8A7;font-size:.92rem}
 .stat{border-left:2px solid var(--brand-blue);padding-left:20px}
 
