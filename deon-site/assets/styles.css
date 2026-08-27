@@ -881,3 +881,7 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
   .ph-actions{gap:12px}
   .ph-actions .btn{width:100%}
 }
+
+/* #24 — smaller exhibition & blog cards so a single card fits a 15" laptop
+   (square cover images made a single card taller than the viewport) */
+body[data-page="blog"] .card.has-img .cimg{aspect-ratio:16/10}
