@@ -293,7 +293,20 @@
     /* Detail panel */
     .fa-panel{margin-top:36px;padding-top:36px;border-top:1px solid var(--line);display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start}
     .fa-panel-photo{position:relative;aspect-ratio:4/3;border-radius:14px;background:var(--light-grey) center/cover no-repeat;overflow:hidden}
-    .fa-panel-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    /* slides stack; only .on is visible, cross-faded */
+    .fa-panel-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .55s ease}
+    .fa-panel-photo img.on{opacity:1}
+    .fa-sarrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border:none;border-radius:50%;background:rgba(204,0,0,.92);color:#fff;font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.28);opacity:0;transition:opacity .25s,transform .2s;-webkit-appearance:none;appearance:none}
+    .fa-panel-photo:hover .fa-sarrow{opacity:1}
+    .fa-sarrow:hover{transform:translateY(-50%) scale(1.08)}
+    .fa-sarrow:focus-visible{opacity:1;outline:2px solid #fff;outline-offset:2px}
+    .fa-sprev{left:12px}
+    .fa-snext{right:12px}
+    .fa-dots{position:absolute;left:0;right:0;bottom:14px;z-index:3;display:flex;gap:7px;justify-content:center}
+    .fa-dot{width:8px;height:8px;padding:0;border:none;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.35);transition:background .2s,transform .2s;-webkit-appearance:none;appearance:none}
+    .fa-dot.on{background:#CC0000;transform:scale(1.25)}
+    .fa-dot:hover{background:#fff}
+    @media (prefers-reduced-motion:reduce){.fa-panel-photo img{transition:none}}
     .fa-panel-tag{position:absolute;left:14px;bottom:14px;background:rgba(204,0,0,.92);color:#fff;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
     .fa-panel-content .fa-stepno{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#CC0000;margin:0 0 14px}
     .fa-panel-content .fa-stepno::after{content:'';flex:1;height:1px;background:var(--line)}
@@ -334,12 +347,12 @@
 
     <script id="faData" type="application/json">
     [
-      {"label":"Film Calender","title":"Soft PVC film calendaring","img":"assets/brand/factory-calender.jpg","tag":"Calender Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Processing and rolling out our own high-quality, high-precision soft PVC backing films from scratch on our in-house calendering line, with full support for customized branding, printing and embossing directly on the film."},
-      {"label":"Adhesive","title":"Advanced adhesive synthesis","img":"assets/brand/factory-adhesive-new.jpg","tag":"Adhesive Plant","href":"manufacturing-technology.html#adhesive-technologies","body":"Formulating and mixing more than 4 distinct types of adhesive technologies — specialized acrylics, high-tack rubbers and performance silicones — to meet exact application needs."},
-      {"label":"Paper Core","title":"Heavy-duty paper core production","img":"assets/brand/factory-paper-core.jpg","tag":"Paper Core Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Manufacturing internal cardboard cores to exact structural tolerances, completely customized with your branded inner liners or logos."},
-      {"label":"PVC Coating","title":"Precision PVC & BOPP coating","img":"assets/brand/factory-pvc-coating-new.jpg","tag":"PVC Coating Line","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Applying uniform adhesive layers onto PVC and BOPP backings on our high-precision coating lines and winding them into master logrolls."},
-      {"label":"Corrugation","title":"In-house corrugation plant","img":"assets/brand/factory-corrugation.jpg","tag":"Corrugation Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Designing and manufacturing our own corrugated cartons on-site — including fully branded tags, mono boxes and heavy-duty shippers — so every roll ships out in DEON packaging made under the same roof."},
-      {"label":"Slitting","title":"High-speed logroll slitting & automated packing","img":"assets/brand/factory-cutting-packing-new.jpg","tag":"Slitting & Packing","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Precision cutting of master logrolls into custom tape widths, followed by final retail or industrial packing and sealing — ready for immediate global shipment."}
+      {"label":"Film Calender","title":"Soft PVC film calendaring","slides":["assets/brand/factory-calender.jpg","assets/factory/calender-2.jpg","assets/factory/calender-3.jpg"],"tag":"Calender Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Processing and rolling out our own high-quality, high-precision soft PVC backing films from scratch on our in-house calendering line, with full support for customized branding, printing and embossing directly on the film."},
+      {"label":"Adhesive","title":"Advanced adhesive synthesis","slides":["assets/brand/factory-adhesive-new.jpg","assets/factory/adhesive-2.jpg","assets/factory/adhesive-3.jpg"],"tag":"Adhesive Plant","href":"manufacturing-technology.html#adhesive-technologies","body":"Formulating and mixing more than 4 distinct types of adhesive technologies — specialized acrylics, high-tack rubbers and performance silicones — to meet exact application needs."},
+      {"label":"Paper Core","title":"Heavy-duty paper core production","slides":["assets/brand/factory-paper-core.jpg","assets/factory/paper-core-2.jpg","assets/factory/paper-core-3.jpg"],"tag":"Paper Core Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Manufacturing internal cardboard cores to exact structural tolerances, completely customized with your branded inner liners or logos."},
+      {"label":"PVC Coating","title":"Precision PVC & BOPP coating","slides":["assets/brand/factory-pvc-coating-new.jpg","assets/factory/pvc-2.jpg","assets/factory/bopp-2.jpg"],"tag":"PVC Coating Line","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Applying uniform adhesive layers onto PVC and BOPP backings on our high-precision coating lines and winding them into master logrolls."},
+      {"label":"Corrugation","title":"In-house corrugation plant","slides":["assets/brand/factory-corrugation.jpg","assets/factory/corrugation-2.jpg","assets/factory/corrugation-3.jpg"],"tag":"Corrugation Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Designing and manufacturing our own corrugated cartons on-site — including fully branded tags, mono boxes and heavy-duty shippers — so every roll ships out in DEON packaging made under the same roof."},
+      {"label":"Slitting","title":"High-speed logroll slitting & automated packing","slides":["assets/brand/factory-cutting-packing-new.jpg","assets/factory/slitting-2.jpg","assets/factory/slitting-3.jpg"],"tag":"Slitting & Packing","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Precision cutting of master logrolls into custom tape widths, followed by final retail or industrial packing and sealing — ready for immediate global shipment."}
     ]
     </script>
 
@@ -476,23 +489,34 @@ document.addEventListener('DOMContentLoaded',function(){
   var tilesEl=document.getElementById('faTiles');
   var panelEl=document.getElementById('faPanel');
   var stages; try{stages=JSON.parse(document.getElementById('faData').textContent);}catch(e){return;}
-  var active=0, timer;
+  var active=0, slide=0, stageTimer, slideTimer;
+  function slidesOf(s){return (s.slides&&s.slides.length)?s.slides:[s.img];}
+
   function renderTiles(){
     tilesEl.innerHTML=stages.map(function(s,i){
       var num=String(i+1).padStart(2,'0');
       return '<button class="fa-tile'+(i===active?' active':'')+'" type="button" data-i="'+i+'">'
         +'<span class="fa-tile-num">'+num+'</span>'
-        +'<span class="fa-tile-photo" style="background-image:url(\''+s.img+'\')"></span>'
+        +'<span class="fa-tile-photo" style="background-image:url(\''+slidesOf(s)[0]+'\')"></span>'
         +'<span class="fa-tile-label">'+s.label+'</span>'
       +'</button>';
     }).join('');
   }
   function renderPanel(){
-    var s=stages[active];
+    var s=stages[active], imgs=slidesOf(s);
     var num=String(active+1).padStart(2,'0');
     panelEl.innerHTML=
-      '<div class="fa-panel-photo"><img src="'+s.img+'" alt="'+s.title+'" loading="lazy">'
+      '<div class="fa-panel-photo">'
+        +imgs.map(function(src,i){
+          return '<img class="fa-slide'+(i===slide?' on':'')+'" src="'+src+'" alt="'+s.title+' — photo '+(i+1)+'"'+(i?' loading="lazy"':'')+'>';
+        }).join('')
         +(s.tag?'<span class="fa-panel-tag">'+s.tag+'</span>':'')
+        +(imgs.length>1?
+          '<button class="fa-sarrow fa-sprev" type="button" aria-label="Previous photo">&#8592;</button>'
+         +'<button class="fa-sarrow fa-snext" type="button" aria-label="Next photo">&#8594;</button>'
+         +'<div class="fa-dots">'+imgs.map(function(_,i){
+              return '<button class="fa-dot'+(i===slide?' on':'')+'" type="button" data-s="'+i+'" aria-label="Photo '+(i+1)+'"></button>';
+           }).join('')+'</div>':'')
       +'</div>'
       +'<div class="fa-panel-content">'
         +'<span class="fa-stepno">Step '+num+'</span>'
@@ -501,16 +525,48 @@ document.addEventListener('DOMContentLoaded',function(){
         +'<a class="arrow" href="'+s.href+'">See in our factory <span class="a">&rarr;</span></a>'
       +'</div>';
   }
-  function go(i){active=(i+stages.length)%stages.length;renderTiles();renderPanel();}
+  // swap the visible slide in place — no full re-render, so the fade reads cleanly
+  function paintSlide(){
+    var imgs=panelEl.querySelectorAll('.fa-slide'),
+        dots=panelEl.querySelectorAll('.fa-dot');
+    for(var i=0;i<imgs.length;i++)imgs[i].classList.toggle('on',i===slide);
+    for(var j=0;j<dots.length;j++)dots[j].classList.toggle('on',j===slide);
+  }
+  function goSlide(n){
+    var len=slidesOf(stages[active]).length;
+    slide=(n+len)%len; paintSlide();
+  }
+  function go(i){
+    active=(i+stages.length)%stages.length; slide=0;
+    renderTiles(); renderPanel(); restartSlides();
+  }
+
   tilesEl.addEventListener('click',function(e){
     var b=e.target.closest('.fa-tile'); if(!b)return;
-    go(parseInt(b.getAttribute('data-i'),10));
-    restart();
+    go(parseInt(b.getAttribute('data-i'),10)); restartStage();
   });
-  function restart(){clearInterval(timer);timer=setInterval(function(){go(active+1);},6000);}
-  show.addEventListener('mouseenter',function(){clearInterval(timer);});
-  show.addEventListener('mouseleave',restart);
-  renderTiles(); renderPanel(); restart();
+  panelEl.addEventListener('click',function(e){
+    var d=e.target.closest('.fa-dot');
+    if(d){goSlide(parseInt(d.getAttribute('data-s'),10));restartSlides();restartStage();return;}
+    if(e.target.closest('.fa-snext')){goSlide(slide+1);restartSlides();restartStage();return;}
+    if(e.target.closest('.fa-sprev')){goSlide(slide-1);restartSlides();restartStage();}
+  });
+
+  // photos cycle every 3s; the whole stage advances every 12s
+  function restartSlides(){
+    clearInterval(slideTimer);
+    if(slidesOf(stages[active]).length>1)
+      slideTimer=setInterval(function(){goSlide(slide+1);},3000);
+  }
+  function restartStage(){
+    clearInterval(stageTimer);
+    stageTimer=setInterval(function(){go(active+1);},12000);
+  }
+  function stopAll(){clearInterval(slideTimer);clearInterval(stageTimer);}
+  show.addEventListener('mouseenter',stopAll);
+  show.addEventListener('mouseleave',function(){restartSlides();restartStage();});
+
+  renderTiles(); renderPanel(); restartSlides(); restartStage();
 })();
 </script>
 <script src="assets/chrome.js?v=2026082703"></script>
