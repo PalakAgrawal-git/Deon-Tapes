@@ -20,6 +20,12 @@
 .job ul li+li{margin-top:7px}
 .job ul li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:1px;background:#CC0000}
 .job .arrow{margin-top:auto}
+.job-details{display:none}
+.job.open .job-details{display:block}
+.job-toggle{align-self:flex-start;background:none;border:none;color:#CC0000;font-family:var(--font-head);font-weight:700;font-size:.85rem;letter-spacing:.02em;cursor:pointer;padding:0;margin:0 0 18px;display:inline-flex;align-items:center;gap:6px}
+.job-toggle:hover{text-decoration:underline}
+.job-toggle .chev{display:inline-block;transition:transform .2s}
+.job.open .job-toggle .chev{transform:rotate(180deg)}
 @media (max-width:900px){.jobs{grid-template-columns:1fr}.job{padding:24px}}
 </style>
 </head>
@@ -92,6 +98,26 @@
   </article>
 
 </div></div></section><section class="cta"><div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:40px"><div style="flex:1"><h2>Don't see your role?</h2><p style="max-width:none">Think you belong on our team? Don't let a lack of open listings stop you. Send your CV and portfolio to us, we love connecting with passionate people and will reach out if a spot opens up.</p></div><div class="cta-actions" style="flex-shrink:0"><a class="btn btn-light" href="contact.html?type=job">Send your CV</a></div></div></section>
+<script>
+/* Careers — collapse each job to title only; "View more" expands its details in place */
+(function(){
+  document.querySelectorAll('.job').forEach(function(job){
+    var resp=job.querySelector('.job-resp'), ul=job.querySelector('ul');
+    if(!resp||!ul)return;
+    var det=document.createElement('div'); det.className='job-details';
+    resp.parentNode.insertBefore(det,resp); det.appendChild(resp); det.appendChild(ul);
+    var btn=document.createElement('button');
+    btn.type='button'; btn.className='job-toggle'; btn.setAttribute('aria-expanded','false');
+    btn.innerHTML='View more <span class="chev">&#9660;</span>';
+    det.parentNode.insertBefore(btn,det.nextSibling);
+    btn.addEventListener('click',function(){
+      var open=job.classList.toggle('open');
+      btn.innerHTML=(open?'View less':'View more')+' <span class="chev">&#9660;</span>';
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+})();
+</script>
 <script src="assets/chrome.js?v=2026082703"></script>
 <script src="assets/site.js?v=2026082703"></script>
 </body>
