@@ -45,7 +45,7 @@
     <div class="stats reveal">
       <div class="stat"><div class="v"><span data-count="100" data-suffix="+">0</span></div><div class="k">OEM brands served</div></div>
       <div class="stat"><div class="v"><span data-count="20" data-suffix=" M">0</span></div><div class="k">sq mt monthly production capacity</div></div>
-      <div class="stat"><div class="v"><span data-count="500" data-suffix="+">0</span></div><div class="k">Employees</div></div>
+      <div class="stat"><div class="v"><span data-count="1000" data-suffix="+">0</span></div><div class="k">Employees</div></div>
       <div class="stat"><div class="v"><span data-count="25" data-suffix="+">0</span></div><div class="k">Product categories</div></div>
     </div>
   </div>
@@ -163,7 +163,7 @@
       {t:"Vadodara facility launched",d:"Launched DEON Technology in Vadodara (+40,000 sq. mtr). Total area: 60,000 sq. mtrs; capacity: 20 Million sq. mtrs/month.",img:"2023_2.jpg"},
       {t:"4 new coating lines added",d:"Added 4 new coating lines. Backward integration continued with 2 PVC calendering lines, manufacturing own PVC backing for electrical tape and eliminating import reliance.",img:"2024.jpg"},
       {t:"30+ specialty tape types launched",d:"Launched BOPP, polyester, aluminium foil, polyimide, and 30+ specialty tape types from the Vadodara facility.",img:"2025.jpg"},
-      {t:"₹3.3 Billion revenue & 500+ employees",d:"Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹3.3 Billion. 500+ employees.",img:"2026b.jpg"},
+      {t:"₹3.3 Billion revenue & 1000+ employees",d:"Active 60,000 sq. mtr infrastructure across two plants. Revenue: ₹3.3 Billion. 1000+ employees.",img:"2026b.jpg"},
       {t:"Next-gen expansion & IPO",d:"Next-gen plant expansion planned. IPO public stock listing. Target revenue: ₹10 Billion.",img:"2030.jpg"}
     ];
     var clip=document.getElementById("jnClip");
@@ -350,9 +350,9 @@
       {"label":"Film Calender","title":"Soft PVC film calendaring","slides":["assets/brand/factory-calender.jpg","assets/factory/calender-2.jpg","assets/factory/calender-3.jpg"],"tag":"Calender Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Processing and rolling out our own high-quality, high-precision soft PVC backing films from scratch on our in-house calendering line, with full support for customized branding, printing and embossing directly on the film."},
       {"label":"Adhesive","title":"Advanced adhesive synthesis","slides":["assets/brand/factory-adhesive-new.jpg","assets/factory/adhesive-2.jpg","assets/factory/adhesive-3.jpg"],"tag":"Adhesive Plant","href":"manufacturing-technology.html#adhesive-technologies","body":"Formulating and mixing more than 4 distinct types of adhesive technologies — specialized acrylics, high-tack rubbers and performance silicones — to meet exact application needs."},
       {"label":"Paper Core","title":"Heavy-duty paper core production","slides":["assets/brand/factory-paper-core.jpg","assets/factory/paper-core-2.jpg","assets/factory/paper-core-3.jpg"],"tag":"Paper Core Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Manufacturing internal cardboard cores to exact structural tolerances, completely customized with your branded inner liners or logos."},
-      {"label":"PVC Coating","title":"Precision PVC & BOPP coating","slides":["assets/brand/factory-pvc-coating-new.jpg","assets/factory/pvc-2.jpg","assets/factory/bopp-2.jpg"],"tag":"PVC Coating Line","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Applying uniform adhesive layers onto PVC and BOPP backings on our high-precision coating lines and winding them into master logrolls."},
+      {"label":"Film Coating","title":"Precision film & BOPP coating","slides":["assets/brand/factory-pvc-coating-new.jpg","assets/factory/pvc-2.jpg","assets/factory/bopp-2.jpg"],"tag":"Film Coating Line","tags":["Film Coating Line","PVC Coating","BOPP Coating"],"href":"manufacturing-technology.html#manufacturing-capabilities","body":"Applying uniform adhesive layers onto PVC and BOPP backings on our high-precision coating lines and winding them into master logrolls."},
       {"label":"Corrugation","title":"In-house corrugation plant","slides":["assets/brand/factory-corrugation.jpg","assets/factory/corrugation-2.jpg","assets/factory/corrugation-3.jpg"],"tag":"Corrugation Plant","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Designing and manufacturing our own corrugated cartons on-site — including fully branded tags, mono boxes and heavy-duty shippers — so every roll ships out in DEON packaging made under the same roof."},
-      {"label":"Slitting","title":"High-speed logroll slitting & automated packing","slides":["assets/brand/factory-cutting-packing-new.jpg","assets/factory/slitting-2.jpg","assets/factory/slitting-3.jpg"],"tag":"Slitting & Packing","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Precision cutting of master logrolls into custom tape widths, followed by final retail or industrial packing and sealing — ready for immediate global shipment."}
+      {"label":"Slitting & Packaging","title":"High-speed logroll slitting & automated packing","slides":["assets/brand/factory-cutting-packing-new.jpg","assets/factory/slitting-2.jpg","assets/factory/slitting-3.jpg"],"tag":"Slitting & Packaging","href":"manufacturing-technology.html#manufacturing-capabilities","body":"Precision cutting of master logrolls into custom tape widths, followed by final retail or industrial packing and sealing — ready for immediate global shipment."}
     ]
     </script>
 
@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded',function(){
         +imgs.map(function(src,i){
           return '<img class="fa-slide'+(i===slide?' on':'')+'" src="'+src+'" alt="'+s.title+' — photo '+(i+1)+'"'+(i?' loading="lazy"':'')+'>';
         }).join('')
-        +(s.tag?'<span class="fa-panel-tag">'+s.tag+'</span>':'')
+        +(tagFor(s,slide)?'<span class="fa-panel-tag">'+tagFor(s,slide)+'</span>':'')
         +(imgs.length>1?
           '<button class="fa-sarrow fa-sprev" type="button" aria-label="Previous photo">&#8592;</button>'
          +'<button class="fa-sarrow fa-snext" type="button" aria-label="Next photo">&#8594;</button>'
@@ -525,12 +525,16 @@ document.addEventListener('DOMContentLoaded',function(){
         +'<a class="arrow" href="'+s.href+'">See in our factory <span class="a">&rarr;</span></a>'
       +'</div>';
   }
+  // per-photo caption: use the stage's tags[] for this slide, else its single tag
+  function tagFor(s,idx){return (s.tags&&s.tags[idx])||s.tag||'';}
   // swap the visible slide in place — no full re-render, so the fade reads cleanly
   function paintSlide(){
     var imgs=panelEl.querySelectorAll('.fa-slide'),
-        dots=panelEl.querySelectorAll('.fa-dot');
+        dots=panelEl.querySelectorAll('.fa-dot'),
+        tag=panelEl.querySelector('.fa-panel-tag');
     for(var i=0;i<imgs.length;i++)imgs[i].classList.toggle('on',i===slide);
     for(var j=0;j<dots.length;j++)dots[j].classList.toggle('on',j===slide);
+    if(tag)tag.textContent=tagFor(stages[active],slide);
   }
   function goSlide(n){
     var len=slidesOf(stages[active]).length;
