@@ -12,7 +12,7 @@
     ['DT3121L','Class F Glass Cloth Insulation Tape','electrical-insulation','acrylic','cloth','single','Woven glass fabric, acrylic adhesive, Class F, high tensile with PET liner.'],
     ['DT3124L','Polyglass Waterproofing Tape','foil-sealing','acrylic','cloth','single','LDPE-coated glass fabric — waterproof barrier, weather-resistant sealing.'],
     ['41860','Floor Marking Tape','floor-marking','rubber','pvc','single','High-visibility PVC lane and hazard marking — clean removal, 6 colours.'],
-    ['DT3131','High-Temperature Glass Cloth Tape','masking','silicone','cloth','single','Glass fabric, silicone adhesive, –40°C to 300°C — heat tracing & duct.'],
+    ['DT3131','High-Temperature Glass Cloth Tape','foil-sealing,harness','silicone','cloth','single','Glass fabric, silicone adhesive, –40°C to 300°C — heat tracing & duct.'],
     ['DT4021','Aluminium Foil Tape — Acrylic Series','foil-sealing','acrylic','foil','single','Soft aluminium foil, acrylic adhesive — HVAC seaming and heat reflection.'],
     ['DT4041','Aluminium Foil Tape — Hot Melt Series','foil-sealing','hotmelt','foil','single','Soft aluminium foil, hot-melt adhesive — high tack for irregular surfaces.'],
     ['M5001','Masking Tape','masking','rubber','paper','single','Crepe paper masking, clean removal, easy tear — paint and surface protection.'],
@@ -56,8 +56,8 @@
   }
 
   function matches(p){
-    var fam=p[2],adh=p[3],bk=p[4],sd=p[5];
-    return (!active.family.length||active.family.indexOf(fam)>-1)
+    var fam=p[2].split(','),adh=p[3],bk=p[4],sd=p[5];
+    return (!active.family.length||active.family.some(function(f){return fam.indexOf(f)>-1;}))
       &&(!active.adhesive.length||active.adhesive.indexOf(adh)>-1)
       &&(!active.backing.length||active.backing.indexOf(bk)>-1)
       &&(!active.sided.length||active.sided.indexOf(sd)>-1);
@@ -69,7 +69,7 @@
       '<div class="pimg"><img src="'+img+'" alt="'+p[1]+'" loading="lazy"></div>'+
       '<div class="pbody"><div class="pcard-top">'+
       '<span class="pcode">Deon '+p[0]+'</span>'+
-      '<span class="ptag">'+(FAMNAME[p[2]]||p[2])+'</span></div>'+
+      '<span class="ptag">'+(FAMNAME[p[2].split(',')[0]]||p[2].split(',')[0])+'</span></div>'+
       '<h3>'+p[1]+'</h3><p>'+p[6]+'</p>'+
       '<div class="pmeta"><span>'+cap(p[3])+' adhesive</span><span>'+cap(p[4])+' backing</span><span>'+cap(p[5])+'-sided</span></div>'+
       '<div class="pcard-foot" style="justify-content:center"><span class="arrow">Explore <span class="a">→</span></span></div></div></a>';
