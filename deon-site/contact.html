@@ -26,16 +26,6 @@
 .loc-popup-dir{display:inline-block;margin-top:8px;font-size:.8rem;font-weight:600;color:#CC0000;text-decoration:none}
 .loc-popup-dir:hover{text-decoration:underline}
 @media(max-width:900px){.loc-cards{grid-template-columns:1fr}.loc-split{grid-template-columns:1fr}#locMap,.loc-photo{height:360px}}
-.phone-field{display:flex;gap:8px;align-items:stretch}
-.phone-field input{flex:1}
-.btn-verify{white-space:nowrap;border:1px solid #CC0000;background:none;color:#CC0000;border-radius:8px;padding:0 16px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit}
-.btn-verify:hover{background:#CC0000;color:#fff}
-.phone-field.verified .btn-verify{border-color:#1a9d4b;color:#1a9d4b;background:none;cursor:default}
-.phone-field.verified input{border-color:#1a9d4b}
-.verify-msg{font-size:.8rem;margin-top:6px;min-height:1em;line-height:1.4}
-.verify-msg.ok{color:#1a9d4b}
-.verify-msg.err{color:#CC0000}
-.verify-msg.hint{color:var(--text-mid)}
 </style>
 </head>
 <body data-page="contact">
@@ -68,9 +58,7 @@
               <div class="form-row"><label>Company</label><input name="company" required></div>
               <div class="form-row"><label>Country</label><input name="country" required></div>
               <div class="form-row"><label>Work email</label><input type="email" name="email" required></div>
-              <div class="form-row"><label>Phone</label>
-                <div class="phone-field"><input type="tel" name="phone" required inputmode="tel" autocomplete="tel"><button type="button" class="btn-verify">Verify</button></div>
-                <div class="verify-msg"></div></div>
+              <div class="form-row"><label>Phone</label><input type="tel" name="phone" required inputmode="tel" autocomplete="tel"></div>
               <div class="form-row full" id="skuRow"><label>Product / SKU of interest</label>
                 <div id="skuPicker" style="position:relative">
                   <div id="skuDisplay" style="min-height:44px;border:1px solid var(--line);border-radius:8px;padding:8px 12px 8px 12px;cursor:pointer;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--white);position:relative;padding-right:36px">
@@ -97,9 +85,7 @@
           <div id="jobFields" style="display:none">
             <div class="form-grid">
               <div class="form-row full"><label>Full name</label><input name="jname" required></div>
-              <div class="form-row"><label>Phone number</label>
-                <div class="phone-field"><input type="tel" name="jphone" required inputmode="tel" autocomplete="tel"><button type="button" class="btn-verify">Verify</button></div>
-                <div class="verify-msg"></div></div>
+              <div class="form-row"><label>Phone number</label><input type="tel" name="jphone" required inputmode="tel" autocomplete="tel"></div>
               <div class="form-row"><label>Personal email</label><input type="email" name="jemail" required></div>
               <div class="form-row"><label>Current designation</label><input name="jdesignation" required></div>
               <div class="form-row"><label>Highest qualification</label><input name="jqualification" required></div>
@@ -341,48 +327,12 @@ document.addEventListener('DOMContentLoaded',function(){
   setType(type);
   if(sku){selected.push(sku);renderChips();}
 
-  // #53 — phone verification gate. This is a static site with no SMS gateway, so
-  // this is a confirm-to-verify step (validate format, then an explicit confirm)
-  // rather than a texted OTP. Editing the number clears the verified state.
-  function digitsOnly(v){return (v||'').replace(/\D/g,'');}
-  function setupVerify(input){
-    if(!input)return;
-    var field=input.closest('.phone-field');
-    var btn=field.querySelector('.btn-verify');
-    var msg=field.parentNode.querySelector('.verify-msg');
-    function reset(){field.classList.remove('verified');input.removeAttribute('data-verified');btn.textContent='Verify';btn.dataset.stage='';msg.textContent='';msg.className='verify-msg';}
-    input.addEventListener('input',reset);
-    btn.addEventListener('click',function(){
-      if(field.classList.contains('verified'))return;
-      var d=digitsOnly(input.value);
-      if(d.length<8||d.length>15){msg.textContent='Enter a valid phone number including country code.';msg.className='verify-msg err';input.focus();return;}
-      if(btn.dataset.stage!=='confirm'){
-        btn.dataset.stage='confirm';btn.textContent='Confirm';
-        msg.textContent='Please check — is '+input.value.trim()+' correct? Tap Confirm to verify.';msg.className='verify-msg hint';
-        return;
-      }
-      field.classList.add('verified');input.setAttribute('data-verified','1');
-      btn.textContent='Verified ✓';
-      msg.textContent='✓ Number confirmed.';msg.className='verify-msg ok';
-    });
-  }
-  setupVerify(form.phone); setupVerify(form.jphone);
-
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var btn=document.getElementById('submitBtn');
     var ok=document.getElementById('formOk');
     // #52 — block blank submits; native validation focuses & scrolls to the first empty/invalid field
     if(!form.reportValidity())return;
-    // #53 — the active form's phone number must be verified before sending
-    var activePhone=(type==='job')?form.jphone:form.phone;
-    if(activePhone&&!activePhone.getAttribute('data-verified')){
-      var vfield=activePhone.closest('.phone-field'),vmsg=vfield.parentNode.querySelector('.verify-msg');
-      if(vmsg){vmsg.textContent='Please verify your phone number before sending.';vmsg.className='verify-msg err';}
-      activePhone.scrollIntoView({behavior:'smooth',block:'center'});
-      var vb=vfield.querySelector('.btn-verify');if(vb)vb.focus();
-      return;
-    }
     btn.disabled=true;btn.textContent='Sending…';
     // Single Apps Script endpoint for all enquiry types (routes by `type`/`recipients`)
     var FORM_URL='https://script.google.com/macros/s/AKfycbw_ECuuaSZamjpwtouGmVml4LyISog1mLdvoS67BZvw7gkKlkUfkzK8T_PKCwsaQzlyRA/exec';
@@ -409,7 +359,6 @@ document.addEventListener('DOMContentLoaded',function(){
       selected=[];renderChips();
       var visible=(type==='job')?jobFields:stdFields;
       visible.querySelectorAll('input:not([type=hidden]),textarea').forEach(function(f){f.value='';});
-      [form.phone,form.jphone].forEach(function(pi){if(pi)pi.dispatchEvent(new Event('input'));});
       var fi=(type==='job')?form.jcv:(type==='supply'?form.supplyfile:null); if(fi)fi.value='';
       if(sku&&type!=='job'&&type!=='supply'){selected.push(sku);renderChips();}
       ok.scrollIntoView({behavior:'smooth',block:'center'});
