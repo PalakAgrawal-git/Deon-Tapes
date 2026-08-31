@@ -337,9 +337,12 @@
   // Datasheet PDF link
   var dsBtn=document.getElementById('pdDatasheet');
   var dsPath='assets/datasheets/DEON-'+p[0]+'-Datasheet.pdf';
+  // Download filename = the product's catalogue title (code + name, the first line
+  // of each product's catalogue entry), sanitised of characters filenames can't hold.
+  var dsName=('Deon '+p[0]+' - '+p[1]).replace(/[\\/:*?"<>|]/g,'-').replace(/\s+/g,' ').trim();
   var xhr=new XMLHttpRequest();
   xhr.open('HEAD',dsPath,true);
-  xhr.onload=function(){if(xhr.status>=200&&xhr.status<400){dsBtn.href=dsPath;dsBtn.setAttribute('download',p[1]+'.pdf');dsBtn.style.display='';}};
+  xhr.onload=function(){if(xhr.status>=200&&xhr.status<400){dsBtn.href=dsPath;dsBtn.setAttribute('download',dsName+'.pdf');dsBtn.style.display='';}};
   xhr.send();
 
   // Related products (same family, excluding current)

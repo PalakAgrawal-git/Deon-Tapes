@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var tilesEl=document.getElementById('faTiles');
   var panelEl=document.getElementById('faPanel');
   var stages; try{stages=JSON.parse(document.getElementById('faData').textContent);}catch(e){return;}
-  var active=0, slide=0, stageTimer, slideTimer;
+  var active=0, slide=0, autoTimer;
   function slidesOf(s){return (s.slides&&s.slides.length)?s.slides:[s.img];}
 
   function renderTiles(){
@@ -542,35 +542,33 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   function go(i){
     active=(i+stages.length)%stages.length; slide=0;
-    renderTiles(); renderPanel(); restartSlides();
+    renderTiles(); renderPanel();
   }
 
   tilesEl.addEventListener('click',function(e){
     var b=e.target.closest('.fa-tile'); if(!b)return;
-    go(parseInt(b.getAttribute('data-i'),10)); restartStage();
+    go(parseInt(b.getAttribute('data-i'),10)); restartAuto();
   });
   panelEl.addEventListener('click',function(e){
     var d=e.target.closest('.fa-dot');
-    if(d){goSlide(parseInt(d.getAttribute('data-s'),10));restartSlides();restartStage();return;}
-    if(e.target.closest('.fa-snext')){goSlide(slide+1);restartSlides();restartStage();return;}
-    if(e.target.closest('.fa-sprev')){goSlide(slide-1);restartSlides();restartStage();}
+    if(d){goSlide(parseInt(d.getAttribute('data-s'),10));restartAuto();return;}
+    if(e.target.closest('.fa-snext')){goSlide(slide+1);restartAuto();return;}
+    if(e.target.closest('.fa-sprev')){goSlide(slide-1);restartAuto();}
   });
 
-  // photos cycle every 3s; the whole stage advances every 12s
-  function restartSlides(){
-    clearInterval(slideTimer);
-    if(slidesOf(stages[active]).length>1)
-      slideTimer=setInterval(function(){goSlide(slide+1);},3000);
+  // Photos auto-advance every 2s. When the last photo of a step has shown, the
+  // tour rolls on to the next step, cycles its photos, then the next — and loops.
+  function tick(){
+    var len=slidesOf(stages[active]).length;
+    if(slide<len-1){goSlide(slide+1);}   // next photo within this step
+    else{go(active+1);}                   // all photos seen — advance to next step
   }
-  function restartStage(){
-    clearInterval(stageTimer);
-    stageTimer=setInterval(function(){go(active+1);},12000);
-  }
-  function stopAll(){clearInterval(slideTimer);clearInterval(stageTimer);}
+  function restartAuto(){clearInterval(autoTimer);autoTimer=setInterval(tick,2000);}
+  function stopAll(){clearInterval(autoTimer);}
   show.addEventListener('mouseenter',stopAll);
-  show.addEventListener('mouseleave',function(){restartSlides();restartStage();});
+  show.addEventListener('mouseleave',restartAuto);
 
-  renderTiles(); renderPanel(); restartSlides(); restartStage();
+  renderTiles(); renderPanel(); restartAuto();
 })();
 </script>
 <script src="assets/chrome.js?v=2026082703"></script>
