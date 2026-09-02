@@ -341,31 +341,34 @@
   // "DEON® <code> - <NAME>" heading that opens each product's entry. Transcribed
   // verbatim; the ® is dropped because filenames travel badly with it. Pages that
   // cover several variants (foil series, tissue) are narrowed to this SKU.
+  // Title Case, with material acronyms (PVC, PE, HDPE, BOPP) and the thermal class
+  // letters left uppercase. DT1113 gains the " - " separator the catalogue omits,
+  // so all 24 read the same way.
   var CATALOGUE_NAMES={
-    '31700':  'DEON 31700 - PVC ELECTRICAL INSULATION TAPE',
-    '50W13':  'DEON 50W13 - WIRE HARNESS TAPE',
-    'DT1111': 'DEON DT1111 - CLASS B POLYESTER INSULATION TAPE',
-    'DT1113': 'DEON DT1113 - CLASS B POLYESTER FLEECE INSULATION TAPE',
-    'DT1123': 'DEON DT1123 - CLASS F POLYESTER FLEECE INSULATION TAPE',
-    'DT2131': 'DEON DT2131 - CLASS H POLYIMIDE INSULATION TAPE',
-    'DT3121L':'DEON DT3121L - CLASS F GLASS CLOTH INSULATION TAPE',
-    'DT3124L':'DEON DT3124L - POLYGLASS WATERPROOFING TAPE',
-    '41860':  'DEON 41860 - FLOOR MARKING TAPE',
-    'DT3131': 'DEON DT3131 - HIGH-TEMPERATURE GLASS CLOTH TAPE',
-    'DT4021': 'DEON DT4021 - ALUMINIUM FOIL TAPE - ACRYLIC SERIES',
-    'DT4041': 'DEON DT4041 - ALUMINIUM FOIL TAPE - HOT MELT SERIES',
-    'M5001':  'DEON M5001 - MASKING TAPE',
-    'PW6001': 'DEON PW6001 - PVC PIPE WRAPPING TAPE',
-    'DT1142': 'DEON DT1142 - DOUBLE-SIDED POLYESTER BONDING TAPE',
-    'DT1221H':'DEON DT1221H - POLYESTER HOLDING & SPLICING TAPE',
-    'DT1231': 'DEON DT1231 - HIGH-TEMPERATURE POLYESTER MASKING TAPE',
-    'DT5142': 'DEON DT5142 - DOUBLE-SIDED PE FOAM BONDING TAPE',
-    'DT6041': 'DEON DT6041 - ADHESIVE TRANSFER TAPE',
-    'DT6122': 'DEON DT6122 - DOUBLE-SIDED TISSUE BONDING TAPE',
-    'DT3741L':'DEON DT3741L - HDPE FABRIC TAPE',
-    'DT7143': 'DEON DT7143 - MONOFILAMENT REINFORCED PACKAGING TAPE',
-    'DT7243': 'DEON DT7243 - CROSS FILAMENT REINFORCED PACKAGING TAPE',
-    'DT9151': 'DEON DT9151 - BOPP PACKAGING TAPE'
+    '31700':  'DEON 31700 - PVC Electrical Insulation Tape',
+    '50W13':  'DEON 50W13 - Wire Harness Tape',
+    'DT1111': 'DEON DT1111 - Class B Polyester Insulation Tape',
+    'DT1113': 'DEON DT1113 - Class B Polyester Fleece Insulation Tape',
+    'DT1123': 'DEON DT1123 - Class F Polyester Fleece Insulation Tape',
+    'DT2131': 'DEON DT2131 - Class H Polyimide Insulation Tape',
+    'DT3121L':'DEON DT3121L - Class F Glass Cloth Insulation Tape',
+    'DT3124L':'DEON DT3124L - Polyglass Waterproofing Tape',
+    '41860':  'DEON 41860 - Floor Marking Tape',
+    'DT3131': 'DEON DT3131 - High-Temperature Glass Cloth Tape',
+    'DT4021': 'DEON DT4021 - Aluminium Foil Tape - Acrylic Series',
+    'DT4041': 'DEON DT4041 - Aluminium Foil Tape - Hot Melt Series',
+    'M5001':  'DEON M5001 - Masking Tape',
+    'PW6001': 'DEON PW6001 - PVC Pipe Wrapping Tape',
+    'DT1142': 'DEON DT1142 - Double-Sided Polyester Bonding Tape',
+    'DT1221H':'DEON DT1221H - Polyester Holding & Splicing Tape',
+    'DT1231': 'DEON DT1231 - High-Temperature Polyester Masking Tape',
+    'DT5142': 'DEON DT5142 - Double-Sided PE Foam Bonding Tape',
+    'DT6041': 'DEON DT6041 - Adhesive Transfer Tape',
+    'DT6122': 'DEON DT6122 - Double-Sided Tissue Bonding Tape',
+    'DT3741L':'DEON DT3741L - HDPE Fabric Tape',
+    'DT7143': 'DEON DT7143 - Monofilament Reinforced Packaging Tape',
+    'DT7243': 'DEON DT7243 - Cross Filament Reinforced Packaging Tape',
+    'DT9151': 'DEON DT9151 - BOPP Packaging Tape'
   };
   var dsName=(CATALOGUE_NAMES[p[0]]||('DEON '+p[0]+' - '+p[1]))
     .replace(/[\\/:*?"<>|]/g,'-').replace(/\s+/g,' ').trim();
