@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Product Detail | DEON&#174;</title>
 <meta name="description" content="Product specifications, datasheet and enquiry — DEON Tapes.">
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css?v=2026090201">
 </head>
 <body data-page="products">
 <div class="page-head">
@@ -268,10 +268,26 @@
     return '<tr><td style="font-weight:600;width:40%;color:var(--ink)">'+s[0]+'</td><td>'+s[1]+'</td></tr>';
   }).join('');
 
-  // Industry tags
-  var indMap={'electrical-insulation':['Electrical','Automotive','Renewable Energy'],'bonding':['Automotive','Construction','Packaging'],'masking':['Automotive','Construction','Paints & Carpentry'],'foil-sealing':['Construction','Packaging','HVAC'],'packaging':['Packaging','Construction'],'harness':['Automotive','Electrical'],'floor-marking':['Automotive','Construction','Healthcare']};
-  var industries=indMap[p[2]]||['General industrial'];
-  document.getElementById('pdIndustries').innerHTML='<h4 style="margin-bottom:8px;font-size:.9rem;color:var(--text-mid)">Industries served</h4>'+industries.map(function(i){return '<span class="chip">'+i+'</span>';}).join('');
+  // Industry tags — each links through to that market's page, so a visitor who
+  // arrived on a product can jump sideways into the industry it serves.
+  // Pairs are [label shown, DEON_MARKETS key]; the key must exist in data.js.
+  var indMap={
+    'electrical-insulation':[['Electrical','electrical'],['Automotive','automotive'],['Renewable energy','renewable']],
+    'bonding':              [['Automotive','automotive'],['Building & Construction','building'],['Packaging & logistics','packaging']],
+    'masking':              [['Automotive','automotive'],['Building & Construction','building'],['Print & Paper','print']],
+    'foil-sealing':         [['Building & Construction','building'],['HVAC & Insulation','hvacr'],['Appliance manufacturing','appliance']],
+    'packaging':            [['Packaging & logistics','packaging'],['Building & Construction','building'],['Metal manufacturing','metal']],
+    'harness':              [['Automotive','automotive'],['Electrical','electrical'],['Transportation','transportation']],
+    'floor-marking':        [['Building & Construction','building'],['Metal manufacturing','metal'],['Packaging & logistics','packaging']]
+  };
+  var industries=indMap[p[2]]||[['General industrial','']];
+  document.getElementById('pdIndustries').innerHTML=
+    '<h4 style="margin-bottom:8px;font-size:.9rem;color:var(--text-mid)">Industries served</h4>'
+    +industries.map(function(x){
+      return x[1]
+        ? '<a class="chip chip-link" href="market.html?m='+x[1]+'">'+x[0]+' <span aria-hidden="true">&rarr;</span></a>'
+        : '<span class="chip">'+x[0]+'</span>';
+    }).join('');
 
   // Applications & usage
   var apps=APPLICATIONS[p[0]]||[];

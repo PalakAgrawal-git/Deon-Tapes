@@ -608,8 +608,15 @@ html,body{overflow-x:clip}
 .page-head.photo .lead{color:#EDE7E6}
 .page-head.photo .wrap{padding-top:64px;padding-bottom:58px}
 
-/* market/application product cards with thumbnails */
-#products.pgrid,#tapes.pgrid{grid-template-columns:repeat(2,1fr)}
+/* market/application product cards with thumbnails.
+   These sit in a half-width column, so the square product image the catalogue
+   grid uses makes each card far too tall — a market's four products then run
+   off a laptop screen. Shorter image + tighter body keeps them to two rows. */
+#products.pgrid,#tapes.pgrid{grid-template-columns:repeat(2,1fr);gap:12px}
+#products.pgrid .pimg,#tapes.pgrid .pimg{aspect-ratio:4/3}
+#products.pgrid .pbody,#tapes.pgrid .pbody{padding:12px 14px 14px;gap:6px}
+#products.pgrid .pcard h3,#tapes.pgrid .pcard h3{font-size:.92rem}
+#products.pgrid .pcard p,#tapes.pgrid .pcard p{font-size:.78rem;line-height:1.5}
 @media (max-width:640px){#products.pgrid,#tapes.pgrid{grid-template-columns:1fr}}
 
 /* ---------- signature tape strip (from approved product mockup) ---------- */
@@ -708,6 +715,10 @@ body.js-anim .cimg img.loaded,body.js-anim .pimg img.loaded{opacity:1;filter:non
 .market-row:hover .a{transform:translateX(6px)}
 .chip,.cert,.std{transition:transform .25s var(--ease),box-shadow .25s,border-color .25s,background .25s}
 .chip:hover{transform:translateY(-3px);border-color:var(--red);color:var(--red)}
+/* industry chips on a product page navigate to that market */
+.chip-link{cursor:pointer;text-decoration:none}
+.chip-link span{opacity:0;margin-left:-.55em;transition:opacity .2s,margin-left .2s}
+.chip-link:hover span,.chip-link:focus-visible span{opacity:1;margin-left:0}
 .cert:hover,.std:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--red)}
 .pillar{transition:background .25s,transform .25s var(--ease)}
 .pillar:hover{background:var(--tint);transform:translateY(-3px)}
