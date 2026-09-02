@@ -337,9 +337,38 @@
   // Datasheet PDF link
   var dsBtn=document.getElementById('pdDatasheet');
   var dsPath='assets/datasheets/DEON-'+p[0]+'-Datasheet.pdf';
-  // Download filename = the product's catalogue title (code + name, the first line
-  // of each product's catalogue entry), sanitised of characters filenames can't hold.
-  var dsName=('Deon '+p[0]+' - '+p[1]).replace(/[\\/:*?"<>|]/g,'-').replace(/\s+/g,' ').trim();
+  // Download filename = the product's title line from the 2026 catalogue — the
+  // "DEON® <code> - <NAME>" heading that opens each product's entry. Transcribed
+  // verbatim; the ® is dropped because filenames travel badly with it. Pages that
+  // cover several variants (foil series, tissue) are narrowed to this SKU.
+  var CATALOGUE_NAMES={
+    '31700':  'DEON 31700 - PVC ELECTRICAL INSULATION TAPE',
+    '50W13':  'DEON 50W13 - WIRE HARNESS TAPE',
+    'DT1111': 'DEON DT1111 - CLASS B POLYESTER INSULATION TAPE',
+    'DT1113': 'DEON DT1113 - CLASS B POLYESTER FLEECE INSULATION TAPE',
+    'DT1123': 'DEON DT1123 - CLASS F POLYESTER FLEECE INSULATION TAPE',
+    'DT2131': 'DEON DT2131 - CLASS H POLYIMIDE INSULATION TAPE',
+    'DT3121L':'DEON DT3121L - CLASS F GLASS CLOTH INSULATION TAPE',
+    'DT3124L':'DEON DT3124L - POLYGLASS WATERPROOFING TAPE',
+    '41860':  'DEON 41860 - FLOOR MARKING TAPE',
+    'DT3131': 'DEON DT3131 - HIGH-TEMPERATURE GLASS CLOTH TAPE',
+    'DT4021': 'DEON DT4021 - ALUMINIUM FOIL TAPE - ACRYLIC SERIES',
+    'DT4041': 'DEON DT4041 - ALUMINIUM FOIL TAPE - HOT MELT SERIES',
+    'M5001':  'DEON M5001 - MASKING TAPE',
+    'PW6001': 'DEON PW6001 - PVC PIPE WRAPPING TAPE',
+    'DT1142': 'DEON DT1142 - DOUBLE-SIDED POLYESTER BONDING TAPE',
+    'DT1221H':'DEON DT1221H - POLYESTER HOLDING & SPLICING TAPE',
+    'DT1231': 'DEON DT1231 - HIGH-TEMPERATURE POLYESTER MASKING TAPE',
+    'DT5142': 'DEON DT5142 - DOUBLE-SIDED PE FOAM BONDING TAPE',
+    'DT6041': 'DEON DT6041 - ADHESIVE TRANSFER TAPE',
+    'DT6122': 'DEON DT6122 - DOUBLE-SIDED TISSUE BONDING TAPE',
+    'DT3741L':'DEON DT3741L - HDPE FABRIC TAPE',
+    'DT7143': 'DEON DT7143 - MONOFILAMENT REINFORCED PACKAGING TAPE',
+    'DT7243': 'DEON DT7243 - CROSS FILAMENT REINFORCED PACKAGING TAPE',
+    'DT9151': 'DEON DT9151 - BOPP PACKAGING TAPE'
+  };
+  var dsName=(CATALOGUE_NAMES[p[0]]||('DEON '+p[0]+' - '+p[1]))
+    .replace(/[\\/:*?"<>|]/g,'-').replace(/\s+/g,' ').trim();
   var xhr=new XMLHttpRequest();
   xhr.open('HEAD',dsPath,true);
   xhr.onload=function(){if(xhr.status>=200&&xhr.status<400){dsBtn.href=dsPath;dsBtn.setAttribute('download',dsName+'.pdf');dsBtn.style.display='';}};

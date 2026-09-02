@@ -58,7 +58,7 @@
               <div class="form-row"><label>Company</label><input name="company" required></div>
               <div class="form-row"><label>Country</label><input name="country" required></div>
               <div class="form-row"><label>Work email</label><input type="email" name="email" required></div>
-              <div class="form-row"><label>Phone</label><input type="tel" name="phone" required inputmode="tel" autocomplete="tel"></div>
+              <div class="form-row"><label>Phone</label><input type="tel" name="phone" required inputmode="numeric" autocomplete="tel" pattern="\d{10}" maxlength="10" title="Enter a 10-digit phone number" placeholder="10-digit number"></div>
               <div class="form-row full" id="skuRow"><label>Product / SKU of interest</label>
                 <div id="skuPicker" style="position:relative">
                   <div id="skuDisplay" style="min-height:44px;border:1px solid var(--line);border-radius:8px;padding:8px 12px 8px 12px;cursor:pointer;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--white);position:relative;padding-right:36px">
@@ -85,7 +85,7 @@
           <div id="jobFields" style="display:none">
             <div class="form-grid">
               <div class="form-row full"><label>Full name</label><input name="jname" required></div>
-              <div class="form-row"><label>Phone number</label><input type="tel" name="jphone" required inputmode="tel" autocomplete="tel"></div>
+              <div class="form-row"><label>Phone number</label><input type="tel" name="jphone" required inputmode="numeric" autocomplete="tel" pattern="\d{10}" maxlength="10" title="Enter a 10-digit phone number" placeholder="10-digit number"></div>
               <div class="form-row"><label>Personal email</label><input type="email" name="jemail" required></div>
               <div class="form-row"><label>Current designation</label><input name="jdesignation" required></div>
               <div class="form-row"><label>Highest qualification</label><input name="jqualification" required></div>
@@ -392,6 +392,27 @@ document.addEventListener('DOMContentLoaded',function(){
     }
   });
 });
+</script>
+<script>
+/* Phone fields accept exactly 10 digits. The pattern attribute blocks submit on its
+   own, but stripping as the visitor types (and on paste) means they never get to the
+   error in the first place — a pasted "+91 98765 43210" lands as 10 clean digits. */
+(function(){
+  var fields=document.querySelectorAll('input[name="phone"],input[name="jphone"]');
+  Array.prototype.forEach.call(fields,function(el){
+    function clean(){
+      var digits=el.value.replace(/\D/g,'');
+      // a pasted number carrying the 91 country code still leaves 10 usable digits
+      if(digits.length>10&&digits.slice(0,2)==='91')digits=digits.slice(2);
+      digits=digits.slice(0,10);
+      if(el.value!==digits)el.value=digits;
+      el.setCustomValidity(digits.length===10?'':'Enter a 10-digit phone number');
+    }
+    el.addEventListener('input',clean);
+    el.addEventListener('blur',clean);
+    el.addEventListener('paste',function(){setTimeout(clean,0);});
+  });
+})();
 </script>
 <script src="assets/chrome.js?v=2026082703"></script>
 <script src="assets/site.js?v=2026082703"></script>
