@@ -394,20 +394,18 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 /* =========================================================================
    PRODUCTS CATALOG
    ========================================================================= */
-/* Filters and product grid each scroll on their own, so a long filter list
-   stays reachable while the grid moves and vice versa. The block is capped to
-   the viewport (less the sticky header) and each column owns its overflow. */
-.catalog{display:grid;grid-template-columns:230px 1fr;gap:24px;padding:44px 0 90px;
-  height:calc(100vh - var(--nav-h));min-height:560px}
-.facets{align-self:stretch;min-height:0;overflow-y:auto;padding-right:10px}
-.catalog-main{min-height:0;overflow-y:auto;padding-right:6px}
-/* slim, unobtrusive scrollbars so the two panes read as deliberate */
-.facets::-webkit-scrollbar,.catalog-main::-webkit-scrollbar{width:8px}
-.facets::-webkit-scrollbar-track,.catalog-main::-webkit-scrollbar-track{background:transparent}
-.facets::-webkit-scrollbar-thumb,.catalog-main::-webkit-scrollbar-thumb{
-  background:var(--line);border-radius:4px}
-.facets:hover::-webkit-scrollbar-thumb,.catalog-main:hover::-webkit-scrollbar-thumb{background:#c9bcbb}
-.facets,.catalog-main{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.catalog{display:grid;grid-template-columns:230px 1fr;gap:24px;padding:44px 0 90px}
+/* The filter column stays pinned and scrolls within itself once it outgrows the
+   viewport, so a long filter list is reachable while the grid scrolls with the
+   page. Page height is untouched — the grid keeps using the page scrollbar. */
+.facets{align-self:start;position:sticky;top:calc(var(--nav-h) + 16px);
+  max-height:calc(100vh - var(--nav-h) - 32px);overflow-y:auto;padding-right:10px}
+/* slim, unobtrusive scrollbar so the filter pane reads as deliberate */
+.facets::-webkit-scrollbar{width:8px}
+.facets::-webkit-scrollbar-track{background:transparent}
+.facets::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+.facets:hover::-webkit-scrollbar-thumb{background:#c9bcbb}
+.facets{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 .facet{margin-bottom:24px}
 .facet h4{font-family:var(--font-body);text-transform:uppercase;font-size:.68rem;letter-spacing:.13em;
   color:var(--text-mid);font-weight:700;margin:0 0 12px}
@@ -440,11 +438,10 @@ a.pcard{color:inherit;text-decoration:none;cursor:pointer}
 .pcard-foot .arrow{white-space:nowrap}
 .btn-sm{padding:.55em 1em;font-size:.78rem}
 .facet-toggle{display:none}
-/* Stacked layout: the two panes become one column, so hand scrolling back to
-   the page rather than trapping it in nested panes. */
-@media (max-width:1080px){.catalog{grid-template-columns:1fr;height:auto;min-height:0}
-  .facets{position:static;align-self:auto;overflow-y:visible;padding-right:0}
-  .catalog-main{overflow-y:visible;padding-right:0}
+/* Stacked layout: filters sit inline, so drop the pinning and inner scroll
+   rather than nesting a scroll pane inside the page scroll. */
+@media (max-width:1080px){.catalog{grid-template-columns:1fr}
+  .facets{position:static;max-height:none;overflow-y:visible;padding-right:0}
   .facet{display:inline-block;vertical-align:top;width:46%;margin-right:4%}.pgrid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.pgrid{grid-template-columns:1fr}.facet{width:100%}}
 /* Mobile: e-commerce style — products show first, filters behind a toggle */
