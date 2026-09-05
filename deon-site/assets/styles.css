@@ -395,7 +395,11 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 /* =========================================================================
    PRODUCTS CATALOG
    ========================================================================= */
-.catalog{display:grid;grid-template-columns:230px 1fr;gap:24px;padding:44px 0 90px}
+.catalog{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;padding:44px 0 90px}
+/* min-width:0 lets the main column honour its track instead of stretching to
+   fit the non-wrapping industries row — without it the row expands the whole
+   grid past the viewport and never scrolls. */
+.catalog-main{min-width:0}
 /* The filter column stays pinned and scrolls within itself once it outgrows the
    viewport, so a long filter list is reachable while the grid scrolls with the
    page. Page height is untouched — the grid keeps using the page scrollbar. */
@@ -417,7 +421,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
 .ind-bar{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
 .ind-bar-lbl{flex:none;font-family:var(--font-body);text-transform:uppercase;font-size:.68rem;
   letter-spacing:.13em;color:var(--text-mid);font-weight:700}
-.ind-scroll{position:relative;display:flex;gap:9px;overflow-x:auto;scroll-behavior:smooth;
+.ind-scroll{position:relative;min-width:0;display:flex;gap:9px;overflow-x:auto;scroll-behavior:smooth;
   -webkit-overflow-scrolling:touch;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 .ind-scroll::-webkit-scrollbar{height:6px}
 .ind-scroll::-webkit-scrollbar-track{background:transparent}
