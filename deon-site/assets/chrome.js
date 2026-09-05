@@ -43,7 +43,7 @@
     '</div>';
 
   var megaProducts =
-    '<div class="mega-grid mega-wide">'+
+    '<div class="mega-grid mega-p3">'+
       '<div class="mega-col"><h4>By type</h4>'+
         link('products.html?sided=double','Double-sided & foam')+
         link('products.html?backing=foil','Foil & sealing')+
@@ -67,10 +67,6 @@
         link('application.html?group=bonding','Bonding')+
         link('application.html?group=mounting','Mounting')+
         link('application.html?group=packaging','Packaging')+
-      '</div>'+
-      '<div class="mega-col"><h4>Industries</h4>'+
-        MARKETS.slice(0,6).map(function(m){return link('market.html?m='+m[0],m[1]);}).join('')+
-        link('markets.html','Explore all industries →')+
       '</div>'+
       feat('products.html','See the full product range')+
     '</div>';
