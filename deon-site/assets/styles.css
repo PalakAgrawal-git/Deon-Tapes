@@ -411,6 +411,19 @@ html[data-motion="off"] *{animation:none!important;transition:none!important;scr
   color:var(--text-mid);font-weight:700;margin:0 0 12px}
 .facet-opt{display:flex;align-items:center;gap:10px;padding:7px 0;cursor:pointer;font-size:.92rem;color:var(--ink)}
 .facet-opt input{width:17px;height:17px;accent-color:var(--blue);cursor:pointer}
+/* Industries quick-nav — single row that scrolls sideways when it overflows,
+   so all 11 stay on one line without wrapping. Fade on the right hints at more. */
+.ind-bar{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.ind-bar-lbl{flex:none;font-family:var(--font-body);text-transform:uppercase;font-size:.68rem;
+  letter-spacing:.13em;color:var(--text-mid);font-weight:700}
+.ind-scroll{position:relative;display:flex;gap:9px;overflow-x:auto;scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;padding-bottom:2px;scrollbar-width:none}
+.ind-scroll::-webkit-scrollbar{display:none}
+.ind-chip{flex:none;white-space:nowrap;font-size:.85rem;font-weight:500;color:var(--ink);
+  background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:7px 15px;
+  text-decoration:none;transition:background .2s,border-color .2s,color .2s}
+.ind-chip:hover{background:var(--white);border-color:var(--red);color:var(--red)}
+@media (max-width:1080px){.ind-bar{flex-direction:column;align-items:flex-start;gap:8px}.ind-scroll{max-width:100%}}
 .catalog-main .toolbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
 .catalog-main .count{font-size:.9rem;color:var(--text-mid)}
 .catalog-main .count b{color:var(--ink)}
